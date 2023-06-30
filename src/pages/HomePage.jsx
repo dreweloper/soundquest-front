@@ -1,16 +1,16 @@
 import { useSelector } from 'react-redux';
-import { useTokenStore } from "../hooks";
+import { useSpotifyStore } from "../hooks";
 
 export const HomePage = () => {
 
-    const { access_token } = useSelector(state => state.token);
+    const { token, isLoading } = useSelector(state => state.spotify);
 
-    const { fetchData } = useTokenStore();
+    const { fetchToken } = useSpotifyStore();
 
 
     const handleToken = () => {
 
-        fetchData();
+        fetchToken();
 
     };
 
@@ -27,9 +27,10 @@ export const HomePage = () => {
                 Generate token!
             </button>
 
-            <p> {access_token} </p>
+            <p> {isLoading && JSON.stringify(token)} </p>
 
         </>
 
     );
+    
 };
