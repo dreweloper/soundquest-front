@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setPlaylistID, setToken, startLoading } from '../store/slices';
+import { setPlaylistID, setToken, setTrackID, startLoading } from '../store/slices';
 import { fetchAPI } from "../api/fetchAPI";
 
 const urlBase = 'https://soundquest-xf5r.onrender.com/api/v1/spotify';
@@ -46,11 +46,11 @@ export const useSpotifyStore = () => {
     };
 
 
-    const fetchPlaylistID = async () => {
+    const fetchPlaylistID = async (id) => {
 
         const authorization = `${token_type} ${access_token}`;
 
-        const url = `${urlBase}/user-playlists/aleon88`;
+        const url = `${urlBase}/user-playlists/${id}`;
 
 
         try {
@@ -78,9 +78,42 @@ export const useSpotifyStore = () => {
     };
 
 
+    const fetchTrackID = async (id) => {
+
+        const authorization = `${token_type} ${access_token}`;
+
+        const url = `${urlBase}/playlist/${id}`;
+
+        
+        try {
+            
+            const response = await fetchAPI(url, authorization);
+
+            if(response.ok){
+
+                const { track_id } = response;
+
+                dispatch(setTrackID({ track_id }));
+
+            } else {
+
+                throw response;
+
+            };
+
+        } catch (error) {
+
+            console.log(error);
+            
+        };
+
+    };
+
+
     return {
         fetchToken,
-        fetchPlaylistID
+        fetchPlaylistID,
+        fetchTrackID
     };
 
 };

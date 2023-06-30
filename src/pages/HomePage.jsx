@@ -4,22 +4,34 @@ import { useEffect } from 'react';
 
 export const HomePage = () => {
 
-    const { token, playlist_id, isLoading } = useSelector(state => state.spotify);
+    const {
+        token,
+        playlist_id,
+        track_id,
+        isLoading } = useSelector(state => state.spotify);
 
-    const { fetchToken, fetchPlaylistID } = useSpotifyStore();
+    const {
+        fetchToken,
+        fetchPlaylistID,
+        fetchTrackID
+    } = useSpotifyStore();
 
 
-    const handleToken = () => {
+    const handleToken = () => fetchToken();
 
-        fetchToken();
-
-    };
 
     useEffect(() => {
 
-        token.access_token && fetchPlaylistID();
+        token.access_token && fetchPlaylistID('aleon88');
 
     }, [token]);
+
+
+    useEffect(() => {
+
+        playlist_id && fetchTrackID(playlist_id);
+
+    }, [playlist_id]);
 
 
     return (
@@ -37,6 +49,8 @@ export const HomePage = () => {
             <p> { token.access_token && (JSON.stringify(token)) } </p>
 
             <p> { playlist_id && `playlist_id: ${playlist_id}` } </p>
+
+            <p> { track_id && `track_id: ${track_id}` } </p>
 
         </>
 
