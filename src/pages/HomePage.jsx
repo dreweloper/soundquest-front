@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { useSpotifyStore } from "../hooks";
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Card } from '../components/Card';
 
 export const HomePage = () => {
 
@@ -50,23 +50,11 @@ export const HomePage = () => {
 
             <h1> SoundQuest </h1>
 
-            <button
-                onClick={handleToken}
-            >
-                Generate token!
-            </button>
+            <button onClick={handleToken}> Give me a random track </button>
             
-            <span> {isLoading && 'Loading…'} </span>
+            <span> { isLoading && 'Loading…' } </span>
 
-            <p> { token.access_token && (JSON.stringify(token)) } </p>
-
-            <p> { playlist_id && `playlist_id: ${playlist_id}` } </p>
-
-            <p> { track_id && `track_id: ${track_id}` } </p>
-
-            <p> { track.album && JSON.stringify(track) } </p>
-
-            { track.album && <Link to={track.url}> Open Spotify! </Link>}
+            { track.album && <Card track={track} /> }
 
         </>
 
