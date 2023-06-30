@@ -1,11 +1,12 @@
 import { useSelector } from 'react-redux';
 import { useSpotifyStore } from "../hooks";
+import { useEffect } from 'react';
 
 export const HomePage = () => {
 
-    const { token, isLoading } = useSelector(state => state.spotify);
+    const { token, playlist_id, isLoading } = useSelector(state => state.spotify);
 
-    const { fetchToken } = useSpotifyStore();
+    const { fetchToken, fetchPlaylistID } = useSpotifyStore();
 
 
     const handleToken = () => {
@@ -13,6 +14,12 @@ export const HomePage = () => {
         fetchToken();
 
     };
+
+    useEffect(() => {
+
+        token.access_token && fetchPlaylistID();
+
+    }, [token]);
 
 
     return (
@@ -27,7 +34,9 @@ export const HomePage = () => {
                 Generate token!
             </button>
 
-            <p> {isLoading && JSON.stringify(token)} </p>
+            <p> { token.access_token && (JSON.stringify(token)) } </p>
+
+            <p> { playlist_id && `playlist_id: ${playlist_id}` } </p>
 
         </>
 
