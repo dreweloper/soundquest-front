@@ -9,7 +9,7 @@ export const useTokenStore = () => {
 
     const fetchData = async () => {
 
-        const url = 'https://soundquest-xf5r.onrender.com/api/v1/token';
+        const url = 'https://soundquest-xf5r.onrender.com/api/v1/spotify/token';
 
         try {
             
