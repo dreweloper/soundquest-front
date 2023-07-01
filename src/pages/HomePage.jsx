@@ -48,16 +48,24 @@ export const HomePage = () => {
 
         <>
 
-            <h1> SoundQuest </h1>
+            <main>
 
-            <button onClick={handleToken}> Give me a random track </button>
-            
-            <span> { isLoading && 'Loading…' } </span>
+                <h1> SoundQuest </h1>
 
-            { track.album && <Card track={track} /> }
+                <div>
+
+                    <button onClick={handleToken}> Give me a random track </button>
+
+                    {isLoading && <span> Loading… </span>}
+
+                </div>
+
+                {track.album && <Card track={track} />}
+
+            </main>
 
         </>
 
     );
-    
+
 };

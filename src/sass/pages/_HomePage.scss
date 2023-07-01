@@ -1,0 +1,29 @@
+
+main {
+    @include displayFlex(column, center, center);
+    gap: 20px;
+    width: 100%;
+    height: 100vh;
+    font-family: $source-sans;
+    color: $white;
+    background-color: $primary;
+
+    h1 {
+        font-family: $oswald;
+        font-size: 2rem;
+    }
+
+    div {
+        
+        button {
+            border: none;
+            color: $primary;
+            background-color: $secondary;
+            
+            &:hover {
+                color: $primary;
+                background-color: $white;
+            }
+        }
+    }
+}

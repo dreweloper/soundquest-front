@@ -13,7 +13,7 @@ export const Card = ({ track }) => {
 
                 <div>
 
-                    <img src={image} alt="Album cover" title="Album cover" width="300px" />
+                    <img src={image} alt="Album cover" title="Album cover" />
 
                 </div>
 
