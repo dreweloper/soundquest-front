@@ -8,22 +8,29 @@ export const Card = ({ track }) => {
     return (
 
         <>
-        
-            <section>
 
-                <div>
+            <section className='trackCard'>
+
+                <div className='albumCover'>
 
                     <img src={image} alt="Album cover" title="Album cover" />
 
                 </div>
 
-                <p> <strong> Song: </strong> {name} </p>
+                <p> {name} </p>
 
-                <p> <strong> Artist: </strong> {artist} </p>
+                <p> {artist} </p>
 
-                <p> <strong> Album: </strong> {album} </p>
+                <p> {album} </p>
 
-                <Link to={url}> Open Spotify! </Link>
+                <Link to={url}>
+
+                    <span className="material-symbols-rounded">
+                        play_circle
+                    </span>
+                    
+                    Play now
+                </Link>
 
             </section>
 

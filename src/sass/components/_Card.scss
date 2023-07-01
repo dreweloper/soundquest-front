@@ -1,20 +1,45 @@
 
-section {
-    @include displayFlex(column, start, center);
+.trackCard {
+    @include displayFlex(column, start, space-evenly);
     width: 90%;
+    min-height: 450px;
     margin: 0 auto;
+    border-radius: 20px;
+    background-color: $secondary;
 
-    & > * {
-        padding: 5px;    
+    > * {
+        margin: 5px;
     }
 
-    div {
-        width: 300px;
+    .albumCover {
+        display: flex;
+        max-width: 250px;
         margin: 0 auto;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+
+    p {
+        font-size: 1.2rem;
+        font-weight: 300;
+        font-style: italic;
+        margin-left: 20px;
+        color: $primary;
     }
 
     a {
+        @include displayFlex(row, center, center);
+        width: 120px;
+        height: 40px;
         text-decoration: none;
-        color: $secondary;
+        font-weight: 600;
+        margin-left: 20px;
+        border-radius: 20px;
+        color: $white;
+        background-color: $accent;
+
+        span {
+            margin-right: 6px;
+        }
     }
 }

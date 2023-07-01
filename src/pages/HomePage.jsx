@@ -48,17 +48,21 @@ export const HomePage = () => {
 
         <>
 
-            <main>
+            <main className='mainHome'>
 
                 <h1> SoundQuest </h1>
 
-                <div>
+                {
+                    !isLoading ? (
 
-                    <button onClick={handleToken}> Give me a random track </button>
+                        <button onClick={handleToken}> Give me a random track </button>
 
-                    {isLoading && <span> Loading… </span>}
+                    ) : (
 
-                </div>
+                        <div className='spinner'></div>
+
+                    )
+                }
 
                 {track.album && <Card track={track} />}
 
