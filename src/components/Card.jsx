@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 
 export const Card = ({ track }) => {
 
@@ -19,6 +20,14 @@ export const Card = ({ track }) => {
                 <p className='song'> {name} </p>
 
                 <p className='artist'> {artist} </p>
+
+                <Link to={url} className='spotifyLink'>
+
+                    <img src='/assets/spotify/icons/Spotify_Icon_RGB_Black.png' alt="Spotify logo" title='Spotify logo' />
+
+                    Play now
+
+                </Link>
 
             </section>
 

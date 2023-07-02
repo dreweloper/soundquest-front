@@ -53,45 +53,27 @@ export const HomePage = () => {
 
                 <h1> SoundQuest </h1>
 
-                {
-                    !isLoading ? (
-
-                        <button onClick={handleToken}> Discover new music </button>
-
-                    ) : (
-
-                        <div className='spinner'></div>
-
-                    )
-                }
-
             </header>
 
             <main className='mainHome'>
 
-                {
+                <div className='discoverMusic'>
 
-                    track.album &&
+                    {
+                        !isLoading ? (
 
-                    <>
+                            <button onClick={handleToken}> Discover new music </button>
 
-                        <Card track={track} />
+                        ) : (
 
-                        <section>
+                            <div className='spinner'></div>
 
-                            <Link to={track.url} className='spotifyLink'>
+                        )
+                    }
 
-                                <img src='/assets/spotify/icons/Spotify_Icon_RGB_Black.png' alt="Spotify logo" title='Spotify logo' />
+                </div>
 
-                                Play now
-
-                            </Link>
-
-                        </section>
-
-                    </>
-
-                }
+                {track.album && <Card track={track} />}
 
             </main>
 

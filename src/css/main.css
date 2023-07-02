@@ -141,60 +141,51 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  height: 120px;
+  justify-content: center;
+  width: 100%;
+  height: 80px;
 }
 .headerHome h1 {
   font-family: "Oswald", sans-serif;
   font-size: 2rem;
   letter-spacing: 0.5rem;
-  margin-top: 20px;
-}
-.headerHome button {
-  width: 200px;
-  height: 50px;
   text-align: center;
-  text-decoration: none;
-  font-size: 1.3rem;
-  font-weight: 500;
-  border-radius: 25px;
-  color: #191414;
-  background-color: #1db954;
-}
-.headerHome .spinner {
-  border: 4px solid rgba(255, 255, 255, 0.1);
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border-left-color: #1db954;
-  animation: spin 1s ease infinite;
 }
 
 .mainHome {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 20px;
+  justify-content: start;
   width: 100%;
-  min-height: calc(100vh - 120px);
+  min-height: calc(100vh - 80px);
   color: #ffffff;
 }
-.mainHome .spotifyLink {
+.mainHome .discoverMusic {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
+  width: 100%;
+  height: 80px;
+}
+.mainHome .discoverMusic button {
   width: 200px;
-  height: 90px;
+  height: 50px;
+  border-radius: 25px;
   font-size: 1.3rem;
   font-weight: 500;
-  border-radius: 20px;
+  text-align: center;
   color: #191414;
   background-color: #1db954;
 }
-.mainHome .spotifyLink img {
-  width: 70px;
+.mainHome .discoverMusic .spinner {
+  width: 20px;
+  height: 20px;
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  border-left-color: #1db954;
+  animation: spin 1s ease infinite;
 }
 
 @keyframes spin {
@@ -210,29 +201,45 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   width: 90%;
   max-width: 340px;
-  min-height: 375px;
+  height: 100%;
   text-align: center;
-  margin: 0 auto;
   border-radius: 20px;
   background: linear-gradient(#191414, #302c2c);
 }
 .trackContainer .artwork {
   display: flex;
-  max-width: 250px;
-  margin: 10px auto;
+  width: 250px;
+  padding: 10px;
 }
 .trackContainer .song {
   font-size: 1.5rem;
   font-weight: 500;
-  margin: 20px 0 5px;
+  padding-top: 20px;
 }
 .trackContainer .artist {
   font-size: 1.1rem;
   font-weight: 300;
-  margin: 5px 0 20px;
+  padding-top: 10px;
+}
+.trackContainer .spotifyLink {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 200px;
+  height: 80px;
+  font-size: 1.3rem;
+  font-weight: 500;
+  border-radius: 20px;
+  margin: 20px 0;
+  color: #191414;
+  background-color: #1db954;
+}
+.trackContainer .spotifyLink img {
+  width: 70px;
 }
 
 body {
