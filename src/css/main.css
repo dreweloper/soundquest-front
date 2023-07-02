@@ -195,6 +195,18 @@ button {
     transform: rotate(360deg);
   }
 }
+/* ***************************************/
+/* MEDIA QUERIES *************************/
+/* ***************************************/
+/* 992px *************************/
+@media screen and (min-width: 992px) {
+  .headerHome h1 {
+    font-size: 2.3rem;
+  }
+  .mainHome .discoverMusic {
+    height: 100px;
+  }
+} /* 992px end */
 /* COMPONENTS */
 .trackContainer {
   display: flex;
