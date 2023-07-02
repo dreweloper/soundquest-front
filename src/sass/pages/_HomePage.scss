@@ -1,27 +1,24 @@
 
-.mainHome {
-    @include displayFlex(column, center, start);
-    gap: 20px;
-    width: 100%;
-    height: 100vh;
-    padding-top: 40px;
-    font-family: $source-sans;
-    color: $white;
-    background-color: $primary;
+.headerHome {
+    @include displayFlex(column, center, space-between);
+    height: 120px;
 
     h1 {
         font-family: $oswald;
         font-size: 2rem;
+        letter-spacing: 0.5rem;
+        margin-top: 20px;
     }
         
     button {
         width: 200px;
-        height: 40px;
+        height: 50px;
         text-align: center;
         text-decoration: none;
-        font-weight: 600;
-        border-radius: 20px;
-        color: $secondary;
+        font-size: 1.3rem;
+        font-weight: 500;
+        border-radius: 25px;
+        color: $primary;
         background-color: $accent;
     }
 
@@ -34,6 +31,29 @@
         border-left-color: $accent;
         animation: spin 1s ease infinite;
         // @include spinAnimation(spin 1s ease infinite);
+    }
+}
+
+.mainHome {
+    @include displayFlex(column, center, center);
+    gap: 20px;
+    width: 100%;
+    min-height: calc(100vh - 120px);
+    color: $white;
+
+    .spotifyLink {
+        @include displayFlex(row, center, space-evenly);
+        width: 200px;
+        height: 90px;
+        font-size: 1.3rem;
+        font-weight: 500;
+        border-radius: 20px;
+        color: $primary;
+        background-color: $accent;
+
+        img {
+            width: 70px;
+        }
     }
 }
 

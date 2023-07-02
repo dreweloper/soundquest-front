@@ -11,3 +11,10 @@
 
 /* COMPONENTS */
 @import './components/Card';
+
+
+body {
+    font-family: $source-sans;
+    color: $secondary;
+    background-color: $primary;
+}

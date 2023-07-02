@@ -137,40 +137,64 @@ button {
 }
 
 /* PAGES */
-.mainHome {
+.headerHome {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: start;
-  gap: 20px;
-  width: 100%;
-  height: 100vh;
-  padding-top: 40px;
-  font-family: "Source Sans 3", sans-serif;
-  color: #ffffff;
-  background-color: #191414;
+  justify-content: space-between;
+  height: 120px;
 }
-.mainHome h1 {
+.headerHome h1 {
   font-family: "Oswald", sans-serif;
   font-size: 2rem;
+  letter-spacing: 0.5rem;
+  margin-top: 20px;
 }
-.mainHome button {
+.headerHome button {
   width: 200px;
-  height: 40px;
+  height: 50px;
   text-align: center;
   text-decoration: none;
-  font-weight: 600;
-  border-radius: 20px;
-  color: #ffffff;
+  font-size: 1.3rem;
+  font-weight: 500;
+  border-radius: 25px;
+  color: #191414;
   background-color: #1db954;
 }
-.mainHome .spinner {
+.headerHome .spinner {
   border: 4px solid rgba(255, 255, 255, 0.1);
   width: 20px;
   height: 20px;
   border-radius: 50%;
   border-left-color: #1db954;
   animation: spin 1s ease infinite;
+}
+
+.mainHome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  min-height: calc(100vh - 120px);
+  color: #ffffff;
+}
+.mainHome .spotifyLink {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 200px;
+  height: 90px;
+  font-size: 1.3rem;
+  font-weight: 500;
+  border-radius: 20px;
+  color: #191414;
+  background-color: #1db954;
+}
+.mainHome .spotifyLink img {
+  width: 70px;
 }
 
 @keyframes spin {
@@ -188,18 +212,16 @@ button {
   align-items: center;
   justify-content: center;
   width: 90%;
-  min-height: 450px;
+  min-height: 375px;
+  text-align: center;
   margin: 0 auto;
   border-radius: 20px;
-  background: linear-gradient(#191414, #5e5b5b);
-}
-.trackCard > * {
-  margin: 5px;
+  background: linear-gradient(#191414, #302c2c);
 }
 .trackCard .albumCover {
   display: flex;
   max-width: 250px;
-  margin: 0 auto;
+  margin: 10px auto;
 }
 .trackCard .song {
   font-size: 1.5rem;
@@ -211,20 +233,9 @@ button {
   font-weight: 300;
   margin: 5px 0 20px;
 }
-.trackCard a {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  width: 120px;
-  height: 40px;
-  text-decoration: none;
-  font-weight: 600;
-  margin-left: 20px;
-  border-radius: 20px;
+
+body {
+  font-family: "Source Sans 3", sans-serif;
   color: #ffffff;
-  background-color: #1db954;
-}
-.trackCard a span {
-  margin-right: 6px;
+  background-color: #191414;
 }/*# sourceMappingURL=main.css.map */

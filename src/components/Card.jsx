@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 
 export const Card = ({ track }) => {
 
@@ -20,17 +19,6 @@ export const Card = ({ track }) => {
                 <p className='song'> {name} </p>
 
                 <p className='artist'> {artist} </p>
-
-                {/* <p> {album} </p> */}
-
-                <Link to={url}>
-
-                    <span className="material-symbols-rounded">
-                        play_circle
-                    </span>
-                    
-                    Play now
-                </Link>
 
             </section>
 

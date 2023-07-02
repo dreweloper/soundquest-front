@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import { useSpotifyStore } from "../hooks";
 import { useEffect } from 'react';
 import { Card } from '../components/Card';
+import { Link } from 'react-router-dom';
 
 export const HomePage = () => {
 
@@ -48,7 +49,7 @@ export const HomePage = () => {
 
         <>
 
-            <main className='mainHome'>
+            <header className='headerHome'>
 
                 <h1> SoundQuest </h1>
 
@@ -64,7 +65,33 @@ export const HomePage = () => {
                     )
                 }
 
-                {track.album && <Card track={track} />}
+            </header>
+
+            <main className='mainHome'>
+
+                {
+
+                    track.album &&
+
+                    <>
+
+                        <Card track={track} />
+
+                        <section>
+
+                            <Link to={track.url} className='spotifyLink'>
+
+                                <img src='/assets/spotify/icons/Spotify_Icon_RGB_Black.png' alt="Spotify logo" title='Spotify logo' />
+
+                                Play now
+
+                            </Link>
+
+                        </section>
+
+                    </>
+
+                }
 
             </main>
 

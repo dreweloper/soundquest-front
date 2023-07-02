@@ -2,19 +2,16 @@
 .trackCard {
     @include displayFlex(column, center, center);
     width: 90%;
-    min-height: 450px;
+    min-height: 375px;
+    text-align: center;
     margin: 0 auto;
     border-radius: 20px;
-    background: linear-gradient($primary, $primary-30);
-
-    > * {
-        margin: 5px;
-    }
+    background: linear-gradient($primary, $primary-10);
 
     .albumCover {
         display: flex;
         max-width: 250px;
-        margin: 0 auto;
+        margin: 10px auto;
     }
 
     .song {
@@ -27,21 +24,5 @@
         font-size: 1.1rem;
         font-weight: 300;
         margin: 5px 0 20px;
-    }
-
-    a {
-        @include displayFlex(row, center, center);
-        width: 120px;
-        height: 40px;
-        text-decoration: none;
-        font-weight: 600;
-        margin-left: 20px;
-        border-radius: 20px;
-        color: $white;
-        background-color: $accent;
-
-        span {
-            margin-right: 6px;
-        }
     }
 }
