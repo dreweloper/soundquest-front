@@ -8,9 +8,9 @@ export const Card = ({ track }) => {
 
         <>
 
-            <section className='trackCard'>
+            <section className='trackContainer'>
 
-                <div className='albumCover'>
+                <div className='artwork'>
 
                     <img src={image} alt="Album cover" title="Album cover" />
 

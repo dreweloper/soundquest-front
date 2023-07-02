@@ -1,14 +1,15 @@
 
-.trackCard {
+.trackContainer {
     @include displayFlex(column, center, center);
     width: 90%;
+    max-width: 340px;
     min-height: 375px;
     text-align: center;
     margin: 0 auto;
     border-radius: 20px;
     background: linear-gradient($primary, $primary-10);
 
-    .albumCover {
+    .artwork {
         display: flex;
         max-width: 250px;
         margin: 10px auto;

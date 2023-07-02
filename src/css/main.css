@@ -206,29 +206,30 @@ button {
   }
 }
 /* COMPONENTS */
-.trackCard {
+.trackContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 90%;
+  max-width: 340px;
   min-height: 375px;
   text-align: center;
   margin: 0 auto;
   border-radius: 20px;
   background: linear-gradient(#191414, #302c2c);
 }
-.trackCard .albumCover {
+.trackContainer .artwork {
   display: flex;
   max-width: 250px;
   margin: 10px auto;
 }
-.trackCard .song {
+.trackContainer .song {
   font-size: 1.5rem;
   font-weight: 500;
   margin: 20px 0 5px;
 }
-.trackCard .artist {
+.trackContainer .artist {
   font-size: 1.1rem;
   font-weight: 300;
   margin: 5px 0 20px;
