@@ -158,7 +158,6 @@ button {
   align-items: center;
   justify-content: start;
   width: 100%;
-  min-height: calc(100vh - 80px);
   color: #ffffff;
 }
 .mainHome .discoverMusic {
