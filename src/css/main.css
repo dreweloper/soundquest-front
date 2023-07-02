@@ -179,8 +179,8 @@ button {
   background-color: #1db954;
 }
 .mainHome .discoverMusic .spinner {
-  width: 20px;
-  height: 20px;
+  width: 40px;
+  height: 40px;
   border: 4px solid rgba(255, 255, 255, 0.1);
   border-radius: 50%;
   border-left-color: #1db954;
@@ -205,6 +205,7 @@ button {
   max-width: 340px;
   height: 100%;
   text-align: center;
+  margin-bottom: 20px;
   border-radius: 20px;
   background: linear-gradient(#191414, #302c2c);
 }
@@ -213,17 +214,24 @@ button {
   width: 250px;
   padding: 10px;
 }
-.trackContainer .song {
+.trackContainer .trackInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+}
+.trackContainer .trackInfo .song {
   font-size: 1.5rem;
   font-weight: 500;
   padding-top: 20px;
 }
-.trackContainer .artist {
+.trackContainer .trackInfo .artist {
   font-size: 1.1rem;
   font-weight: 300;
   padding-top: 10px;
 }
-.trackContainer .spotifyLink {
+.trackContainer .trackInfo .spotifyLink {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -233,14 +241,62 @@ button {
   font-size: 1.3rem;
   font-weight: 500;
   border-radius: 20px;
-  margin: 20px 0;
+  margin: 20px auto;
   color: #191414;
   background-color: #1db954;
 }
-.trackContainer .spotifyLink img {
+.trackContainer .trackInfo .spotifyLink img {
   width: 70px;
 }
 
+/* ***************************************/
+/* MEDIA QUERIES *************************/
+/* ***************************************/
+/* 992px *************************/
+@media screen and (min-width: 992px) {
+  .trackContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 800px;
+    min-height: 350px;
+    text-align: start;
+    border-radius: 20px;
+    background: linear-gradient(#191414, #302c2c);
+  }
+  .trackContainer .artwork {
+    width: 400px;
+    padding: 0;
+    margin-left: 40px;
+    background-color: red;
+  }
+  .trackContainer .trackInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-left: 40px;
+  }
+  .trackContainer .trackInfo .song {
+    font-size: 1.7rem;
+    padding-top: 0;
+    margin: 10px 0 10px;
+  }
+  .trackContainer .trackInfo .artist {
+    font-size: 1.3rem;
+    padding-top: 0;
+    margin-bottom: 40px;
+  }
+  .trackContainer .trackInfo .spotifyLink {
+    justify-self: flex-end;
+    margin: 0;
+    color: #191414;
+    background-color: #1db954;
+  }
+} /* 992px end */
 body {
   font-family: "Source Sans 3", sans-serif;
   color: #ffffff;

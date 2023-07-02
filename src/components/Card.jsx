@@ -17,17 +17,21 @@ export const Card = ({ track }) => {
 
                 </div>
 
-                <p className='song'> {name} </p>
+                <div className='trackInfo'>
 
-                <p className='artist'> {artist} </p>
+                    <p className='song'> {name} </p>
 
-                <Link to={url} className='spotifyLink'>
+                    <p className='artist'> {artist} </p>
 
-                    <img src='/assets/spotify/icons/Spotify_Icon_RGB_Black.png' alt="Spotify logo" title='Spotify logo' />
+                    <Link to={url} className='spotifyLink'>
 
-                    Play now
+                        <img src='/assets/spotify/icons/Spotify_Icon_RGB_Black.png' alt="Spotify logo" title='Spotify logo' />
 
-                </Link>
+                        Play now
+
+                    </Link>
+
+                </div>
 
             </section>
 
