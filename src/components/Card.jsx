@@ -17,11 +17,11 @@ export const Card = ({ track }) => {
 
                 </div>
 
-                <p> {name} </p>
+                <p className='song'> {name} </p>
 
-                <p> {artist} </p>
+                <p className='artist'> {artist} </p>
 
-                <p> {album} </p>
+                {/* <p> {album} </p> */}
 
                 <Link to={url}>
 

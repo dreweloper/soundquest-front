@@ -55,7 +55,7 @@ export const HomePage = () => {
                 {
                     !isLoading ? (
 
-                        <button onClick={handleToken}> Give me a random track </button>
+                        <button onClick={handleToken}> Discover new music </button>
 
                     ) : (
 

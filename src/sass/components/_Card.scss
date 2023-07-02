@@ -1,11 +1,11 @@
 
 .trackCard {
-    @include displayFlex(column, start, space-evenly);
+    @include displayFlex(column, center, center);
     width: 90%;
     min-height: 450px;
     margin: 0 auto;
     border-radius: 20px;
-    background-color: $secondary;
+    background: linear-gradient($primary, $primary-30);
 
     > * {
         margin: 5px;
@@ -15,16 +15,18 @@
         display: flex;
         max-width: 250px;
         margin: 0 auto;
-        border-radius: 20px;
-        overflow: hidden;
     }
 
-    p {
-        font-size: 1.2rem;
+    .song {
+        font-size: 1.5rem;
+        font-weight: 500;
+        margin: 20px 0 5px;
+    }
+
+    .artist {
+        font-size: 1.1rem;
         font-weight: 300;
-        font-style: italic;
-        margin-left: 20px;
-        color: $primary;
+        margin: 5px 0 20px;
     }
 
     a {
