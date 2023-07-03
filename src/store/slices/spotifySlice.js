@@ -36,8 +36,8 @@ export const spotifySlice = createSlice({
             state.loadings.track_loading = true;
         },
         setToken: (state, { payload }) => {
-            state.token.token_type = undefined;
-            state.token.access_token = undefined;
+            state.token.token_type = undefined; // To force a state change so the first useEffect in 'HomePage' component will run correctly.
+            state.token.access_token = undefined; // To force a state change so the first useEffect in 'HomePage' component will run correctly.
             state.token.token_type = payload.token_type;
             state.token.access_token = payload.access_token;
             state.loadings.token_loading = false;
