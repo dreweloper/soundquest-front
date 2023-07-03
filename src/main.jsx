@@ -4,14 +4,17 @@ import { App } from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
+import { CookiesProvider } from 'react-cookie';
 
 createRoot(document.getElementById('app')).render(
 
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <CookiesProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </CookiesProvider>
     </Provider>
   </React.StrictMode>
 

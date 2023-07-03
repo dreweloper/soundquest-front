@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { setPlaylistID, setToken, setTrack, setTrackID, startLoading } from '../store/slices';
 import { fetchAPI } from "../api/fetchAPI";
+import { getCookie, setCookie } from "../helpers/cookies";
 
 const urlBase = 'https://soundquest-xf5r.onrender.com/api/v1/spotify';
 
