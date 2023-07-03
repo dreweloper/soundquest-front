@@ -10,36 +10,37 @@ export const HomePage = () => {
         playlist_id,
         track_id,
         track,
-        isLoading } = useSelector(state => state.spotify);
+        isLoading
+    } = useSelector(state => state.spotify);
 
     const {
-        fetchToken,
-        fetchPlaylistID,
-        fetchTrackID,
-        fetchTrack
+        getToken,
+        getPlaylistID,
+        getTrackID,
+        getTrack
     } = useSpotifyStore();
 
 
-    const handleToken = () => fetchToken();
+    const handleToken = () => getToken();
 
 
     useEffect(() => {
 
-        token.access_token && fetchPlaylistID('aleon88');
+        token.access_token && getPlaylistID('aleon88');
 
     }, [token]);
 
 
     useEffect(() => {
 
-        playlist_id && fetchTrackID(playlist_id);
+        playlist_id && getTrackID(playlist_id);
 
     }, [playlist_id]);
 
 
     useEffect(() => {
 
-        track_id && fetchTrack(track_id);
+        track_id && getTrack(track_id);
 
     }, [track_id]);
 

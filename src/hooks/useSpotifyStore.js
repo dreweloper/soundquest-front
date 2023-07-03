@@ -15,7 +15,7 @@ export const useSpotifyStore = () => {
     const dispatch = useDispatch();
 
 
-    const fetchToken = async () => {
+    const getToken = async () => {
 
         const url = `${urlBase}/token`;
 
@@ -26,19 +26,19 @@ export const useSpotifyStore = () => {
 
             const cookieToken = getCookie('token');
 
-            if(cookieToken){
+            if(cookieToken){ // Conditional: if "cookieToken" is not undefined.
 
-                const { token_type, access_token } = cookieToken;
+                const { token_type, access_token } = cookieToken; // Destructuring of the properties "token_type" and "access_token" of "cookieToken" object.
 
                 return dispatch(setToken({ token_type, access_token }));
 
             };
 
-            const response = await fetchAPI(url);
+            const response = await fetchAPI(url); // If "cookieToken" is undefined (because cookieToken doesn't exist or expired)
             
             if(response.ok){
 
-                const { token_type, access_token } = response.data;
+                const { token_type, access_token } = response.data; // Destructuring of the properties "token_type" and "access_token" of "response.data" object.
 
                 dispatch(setToken({ token_type, access_token }));
 
@@ -56,10 +56,10 @@ export const useSpotifyStore = () => {
 
         };
 
-    }; //!FETCHTOKEN
+    }; //!GETTOKEN
 
 
-    const fetchPlaylistID = async (id) => {
+    const getPlaylistID = async (id) => {
 
         const authorization = `${token_type} ${access_token}`;
 
@@ -88,10 +88,10 @@ export const useSpotifyStore = () => {
 
         };
 
-    }; //!FETCHPLAYLISTID
+    }; //!GETPLAYLISTID
 
 
-    const fetchTrackID = async (id) => {
+    const getTrackID = async (id) => {
 
         const authorization = `${token_type} ${access_token}`;
 
@@ -120,10 +120,10 @@ export const useSpotifyStore = () => {
             
         };
 
-    }; //!FETCHTRACKID
+    }; //!GETTRACKID
 
 
-    const fetchTrack = async (id) => {
+    const getTrack = async (id) => {
 
         const authorization = `${token_type} ${access_token}`;
 
@@ -154,14 +154,14 @@ export const useSpotifyStore = () => {
 
         };
 
-    }; //!FETCHTRACK
+    }; //!GETCHTRACK
 
 
     return {
-        fetchToken,
-        fetchPlaylistID,
-        fetchTrackID,
-        fetchTrack
+        getToken,
+        getPlaylistID,
+        getTrackID,
+        getTrack
     };
 
 };
