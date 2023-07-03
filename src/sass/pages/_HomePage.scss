@@ -1,0 +1,83 @@
+
+.headerHome {
+    @include displayFlex(column, center, center);
+    width: 100%;
+    height: 80px;
+
+    h1 {
+        font-family: $oswald;
+        font-size: 2rem;
+        letter-spacing: 0.5rem;
+        text-align: center;
+    }
+}
+
+.mainHome {
+    @include displayFlex(column, center, start);
+    width: 100%;
+    // min-height: calc(100vh - 80px);
+    color: $white;
+
+    .discoverMusic {
+        @include displayFlex(row, center, center);
+        width: 100%;
+        height: 80px;
+
+        button {
+            width: 200px;
+            height: 50px;
+            border-radius: 25px;
+            font-size: 1.3rem;
+            font-weight: 500;
+            text-align: center;
+            color: $primary;
+            background-color: $accent;
+        }
+    
+        .spinner {
+            // @include spinKeyframes(spin);
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255, 255, 255, .1);
+            border-radius: 50%;
+            border-left-color: $accent;
+            animation: spin 1s ease infinite;
+            // @include spinAnimation(spin 1s ease infinite);
+        }
+    }
+}
+
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+/* ***************************************/
+/* MEDIA QUERIES *************************/
+/* ***************************************/
+
+/* 992px *************************/
+  
+@media screen and (min-width:992px) {
+
+    .headerHome {
+
+        h1 {
+            font-size: 2.3rem;
+        }
+    }
+    
+    .mainHome {
+    
+        .discoverMusic {
+            height: 100px;
+        }
+    }
+} /* 992px end */

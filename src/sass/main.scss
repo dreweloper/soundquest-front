@@ -1,0 +1,20 @@
+/* UTILITIES */
+@import './utilities/reset';
+
+/* BASE */
+@import './base/fonts';
+@import './base/mixins';
+@import './base/variables';
+
+/* PAGES */
+@import './pages/HomePage';
+
+/* COMPONENTS */
+@import './components/Card';
+
+
+body {
+    font-family: $source-sans;
+    color: $secondary;
+    background-color: $primary;
+}

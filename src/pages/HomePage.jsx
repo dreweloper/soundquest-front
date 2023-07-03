@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import { useSpotifyStore } from "../hooks";
 import { useEffect } from 'react';
 import { Card } from '../components/Card';
+import { Link } from 'react-router-dom';
 
 export const HomePage = () => {
 
@@ -48,16 +49,36 @@ export const HomePage = () => {
 
         <>
 
-            <h1> SoundQuest </h1>
+            <header className='headerHome'>
 
-            <button onClick={handleToken}> Give me a random track </button>
-            
-            <span> { isLoading && 'Loading…' } </span>
+                <h1> SoundQuest </h1>
 
-            { track.album && <Card track={track} /> }
+            </header>
+
+            <main className='mainHome'>
+
+                <section className='discoverMusic'>
+
+                    {
+                        !isLoading ? (
+
+                            <button onClick={handleToken}> Discover new music </button>
+
+                        ) : (
+
+                            <div className='spinner'></div>
+
+                        )
+                    }
+
+                </section>
+
+                {track.album && <Card track={track} />}
+
+            </main>
 
         </>
 
     );
-    
+
 };

@@ -1,0 +1,103 @@
+
+.trackContainer {
+    @include displayFlex(column, center, start);
+    width: 90%;
+    max-width: 340px;
+    height: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    background: linear-gradient($primary, $primary-10);
+
+    .artwork {
+        display: flex;
+        width: 250px;
+        padding: 10px;
+    }
+
+    .trackInfo {
+        @include displayFlex(column, center, center);
+        width: 90%;
+        
+        .song {
+            font-size: 1.5rem;
+            font-weight: 500;
+            padding-top: 20px;
+        }
+    
+        .artist {
+            font-size: 1.1rem;
+            font-weight: 300;
+            padding-top: 10px;
+        }
+    
+        .spotifyLink {
+            @include displayFlex(row, center, space-evenly);
+            width: 200px;
+            height: 80px;
+            font-size: 1.3rem;
+            font-weight: 500;
+            border-radius: 20px;
+            margin: 20px auto;
+            color: $primary;
+            background-color: $accent;
+    
+            img {
+                width: 70px;
+            }
+        }
+    }
+}
+
+
+
+/* ***************************************/
+/* MEDIA QUERIES *************************/
+/* ***************************************/
+
+/* 992px *************************/
+  
+@media screen and (min-width:992px) {
+
+    .trackContainer {
+        @include displayFlex(row, center, center);
+        width: 100%;
+        max-width: 800px;
+        min-height: 350px;
+        text-align: start;
+        border-radius: 20px;
+        background: linear-gradient($primary, $primary-10);
+    
+        .artwork {
+            width: 400px;
+            padding: 0;
+            margin-left: 40px;
+            background-color: red
+        }
+
+        .trackInfo {
+            @include displayFlex(column, center, center);
+            width: 100%;
+            margin-left: 40px;
+
+            .song {
+                font-size: 1.7rem;
+                padding-top: 0;
+                margin: 10px 0 10px;
+            }
+        
+            .artist {
+                font-size: 1.3rem;
+                padding-top: 0;
+                margin-bottom: 40px;
+            }
+        
+            .spotifyLink {
+                justify-self: flex-end;
+                margin: 0;
+                color: $primary;
+                background-color: $accent;
+            }
+        }
+    }
+} /* 992px end */
