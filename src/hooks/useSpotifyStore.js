@@ -27,9 +27,9 @@ export const useSpotifyStore = () => {
 
             if(response.ok){
 
-                const { access_token } = response.data;
+                const { token_type, access_token } = response.data;
 
-                dispatch(setToken({ access_token }));
+                dispatch(setToken({ token_type, access_token }));
 
             } else {
 

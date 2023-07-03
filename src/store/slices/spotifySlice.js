@@ -6,8 +6,8 @@ export const spotifySlice = createSlice({
 
     initialState: {
         token: {
-            access_token: undefined,
-            token_type: "Bearer",
+            token_type: undefined,
+            access_token: undefined
         },
         playlist_id: undefined,
         track_id: undefined,
@@ -26,6 +26,7 @@ export const spotifySlice = createSlice({
             state.isLoading = true;
         },
         setToken: (state, { payload }) => {
+            state.token.token_type = payload.token_type;
             state.token.access_token = payload.access_token;
         },
         setPlaylistID: (state, { payload }) => {
@@ -35,11 +36,11 @@ export const spotifySlice = createSlice({
             state.track_id = payload.track_id;
         },
         setTrack: (state, { payload }) => {
-            state.track.album = payload.album,
-            state.track.image = payload.image,
-            state.track.artist = payload.artist,
-            state.track.name = payload.name,
-            state.track.url = payload.url
+            state.track.album = payload.album;
+            state.track.image = payload.image;
+            state.track.artist = payload.artist;
+            state.track.name = payload.name;
+            state.track.url = payload.url;
             state.isLoading = false;
         },
     }
