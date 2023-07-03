@@ -22,7 +22,7 @@
     * @property {(boolean|none|lax|strict)} sameSite Strict or Lax enforcement.
     */
    const options = {
-      maxAge: 30,
+      maxAge: 3600,
       secure: true,
       sameSite: 'strict'
    };

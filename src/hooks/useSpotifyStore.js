@@ -23,14 +23,26 @@ export const useSpotifyStore = () => {
 
 
         try {
-            
-            const response = await fetchAPI(url);
 
+            const cookieToken = getCookie('token');
+
+            if(cookieToken){
+
+                const { token_type, access_token } = cookieToken;
+
+                return dispatch(setToken({ token_type, access_token }));
+
+            };
+
+            const response = await fetchAPI(url);
+            
             if(response.ok){
 
                 const { token_type, access_token } = response.data;
 
                 dispatch(setToken({ token_type, access_token }));
+
+                setCookie('token', response.data);
 
             } else {
 

@@ -18,7 +18,7 @@ export const spotifySlice = createSlice({
             name: undefined,
             url: undefined
         },
-        isLoading: false
+        isLoading: false,
     },
 
     reducers: {
@@ -26,6 +26,8 @@ export const spotifySlice = createSlice({
             state.isLoading = true;
         },
         setToken: (state, { payload }) => {
+            state.token.token_type = undefined;
+            state.token.access_token = undefined;
             state.token.token_type = payload.token_type;
             state.token.access_token = payload.access_token;
         },
