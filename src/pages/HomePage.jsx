@@ -57,7 +57,7 @@ export const HomePage = () => {
 
             <main className='mainHome'>
 
-                <div className='discoverMusic'>
+                <section className='discoverMusic'>
 
                     {
                         !isLoading ? (
@@ -71,7 +71,7 @@ export const HomePage = () => {
                         )
                     }
 
-                </div>
+                </section>
 
                 {track.album && <Card track={track} />}
 

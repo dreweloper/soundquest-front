@@ -17,7 +17,7 @@ export const Card = ({ track }) => {
 
                 </div>
 
-                <div className='trackInfo'>
+                <article className='trackInfo'>
 
                     <p className='song'> {name} </p>
 
@@ -31,7 +31,7 @@ export const Card = ({ track }) => {
 
                     </Link>
 
-                </div>
+                </article>
 
             </section>
 

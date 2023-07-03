@@ -1,10 +1,10 @@
+/* UTILITIES */
+@import './utilities/reset';
+
 /* BASE */
 @import './base/fonts';
 @import './base/mixins';
 @import './base/variables';
-
-/* UTILITIES */
-@import './utilities/reset';
 
 /* PAGES */
 @import './pages/HomePage';
