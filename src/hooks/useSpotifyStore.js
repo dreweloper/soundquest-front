@@ -139,7 +139,9 @@ export const useSpotifyStore = () => {
 
         const authorization = `${token_type} ${access_token}`;
 
-        const url = `${urlBase}/track/${id}`;
+        // const url = `${urlBase}/track/${id}`;
+
+        const url = `${urlBase}/v1/tracks/${id}`;
 
 
         try {
@@ -148,11 +150,21 @@ export const useSpotifyStore = () => {
 
             if(response.ok){
 
-                const { track } = response;
+                const { data } = response;
 
-                const { album, image, artist, name, url } = track;
+                const track = {
+                    album: data.album.name,
+                    artwork: data.album.images[0].url,
+                    artist: data.artists[0].name,
+                    name: data.name,
+                    url: data.external_urls.spotify
+                };
 
-                dispatch(setTrack({ album, image, artist, name, url }));
+                const { album, artwork, artist, name, url } = track;
+
+                console.log(artwork)
+
+                dispatch(setTrack({ album, artwork, artist, name, url }));
 
             } else {
 

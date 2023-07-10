@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 export const Card = ({ track }) => {
 
-    const { album, image, artist, name, url } = track;
+    const { album, artwork, artist, name, url } = track;
 
 
     return (
@@ -13,7 +13,7 @@ export const Card = ({ track }) => {
 
                 <div className='artwork'>
 
-                    <img src={image} alt="Album cover" title="Album cover" />
+                    <img src={artwork} alt="Album cover" title="Album cover" />
 
                 </div>
 
