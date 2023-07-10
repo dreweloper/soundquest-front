@@ -17,7 +17,9 @@ export const useSpotifyStore = () => {
 
     const getToken = async () => {
 
-        const url = `${urlBase}/token`;
+        // const url = `${urlBase}/token`;
+
+        const url = 'https://accounts.spotify.com/api/token';
 
         dispatch(startLoading());
 
@@ -34,7 +36,7 @@ export const useSpotifyStore = () => {
 
             };
 
-            const response = await fetchAPI(url); // If "cookieToken" is undefined (because cookieToken doesn't exist or expired)
+            const response = await fetchAPI(url, 'POST'); // If "cookieToken" is undefined (because cookieToken doesn't exist or expired)
             
             if(response.ok){
 
@@ -65,10 +67,12 @@ export const useSpotifyStore = () => {
 
         const url = `${urlBase}/user-playlists/${id}`;
 
+        // const url = 'https://api.spotify.com/v1/users/aleon88/playlists';
+
 
         try {
             
-            const response = await fetchAPI(url, authorization);
+            const response = await fetchAPI(url, 'GET', authorization);
 
             if(response.ok){
 
@@ -100,7 +104,7 @@ export const useSpotifyStore = () => {
         
         try {
             
-            const response = await fetchAPI(url, authorization);
+            const response = await fetchAPI(url, 'GET', authorization);
 
             if(response.ok){
 
@@ -132,7 +136,7 @@ export const useSpotifyStore = () => {
 
         try {
             
-            const response = await fetchAPI(url, authorization);
+            const response = await fetchAPI(url, 'GET', authorization);
 
             if(response.ok){
 
