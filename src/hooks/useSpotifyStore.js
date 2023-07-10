@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setPlaylistID, setToken, setTrack, setTrackID, startLoading } from '../store/slices';
 import { fetchAPI } from "../api/fetchAPI";
 import { getCookie, setCookie } from "../helpers/cookies";
+import { randomPlaylist } from "../helpers/randomElement";
 
 const urlBase = 'https://soundquest-xf5r.onrender.com/api/v1/spotify';
 
@@ -65,9 +66,9 @@ export const useSpotifyStore = () => {
 
         const authorization = `${token_type} ${access_token}`;
 
-        const url = `${urlBase}/user-playlists/${id}`;
+        // const url = `${urlBase}/user-playlists/${id}`;
 
-        // const url = 'https://api.spotify.com/v1/users/aleon88/playlists';
+        const url = 'https://api.spotify.com/v1/users/aleon88/playlists?offset=0&limit=50';
 
 
         try {
@@ -76,7 +77,9 @@ export const useSpotifyStore = () => {
 
             if(response.ok){
 
-                const { playlist_id } = response;
+                const { data } = response;
+
+                const playlist_id = randomPlaylist(data.items);
 
                 dispatch(setPlaylistID({ playlist_id }));
 
@@ -84,7 +87,7 @@ export const useSpotifyStore = () => {
 
                 throw response;
 
-            }
+            };
 
         } catch (error) {
             

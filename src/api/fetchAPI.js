@@ -37,12 +37,25 @@ export const fetchAPI = async (url, method, token) => {
 
     try {
         
-        const request = await fetch(url, options);
+        const response = await fetch(url, options);
 
-        if(request.ok) return await request.json();
+        console.log(response)
+
+        if(response.ok){
+
+            const data = await response.json();
+
+            return {
+                ok: true,
+                data
+            };
+
+        } else {
+
+            throw response;
+
+        };
         
-        else throw request;
-
     } catch (error) {
         
         return error;
