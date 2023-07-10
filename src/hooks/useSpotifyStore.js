@@ -2,9 +2,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { setPlaylistID, setToken, setTrack, setTrackID, startLoading } from '../store/slices';
 import { fetchAPI } from "../api/fetchAPI";
 import { getCookie, setCookie } from "../helpers/cookies";
-import { randomPlaylist } from "../helpers/randomElement";
+import { randomPlaylist, randomTrack } from "../helpers/randomElement";
 
-const urlBase = 'https://soundquest-xf5r.onrender.com/api/v1/spotify';
+// const urlBase = 'https://soundquest-xf5r.onrender.com/api/v1/spotify';
+
+const urlBase = 'https://api.spotify.com';
 
 
 export const useSpotifyStore = () => {
@@ -68,7 +70,7 @@ export const useSpotifyStore = () => {
 
         // const url = `${urlBase}/user-playlists/${id}`;
 
-        const url = 'https://api.spotify.com/v1/users/aleon88/playlists?offset=0&limit=50';
+        const url = `${urlBase}/v1/users/${id}/playlists?offset=0&limit=50`;
 
 
         try {
@@ -102,8 +104,9 @@ export const useSpotifyStore = () => {
 
         const authorization = `${token_type} ${access_token}`;
 
-        const url = `${urlBase}/playlist/${id}`;
+        // const url = `${urlBase}/playlist/${id}`;
 
+        const url = `${urlBase}/v1/playlists/${id}?offset=0&limit=50`;
         
         try {
             
@@ -111,7 +114,9 @@ export const useSpotifyStore = () => {
 
             if(response.ok){
 
-                const { track_id } = response;
+                const { tracks } = response.data;
+
+                const track_id = randomTrack(tracks.items);
 
                 dispatch(setTrackID({ track_id }));
 

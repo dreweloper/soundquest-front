@@ -39,8 +39,6 @@ export const fetchAPI = async (url, method, token) => {
         
         const response = await fetch(url, options);
 
-        console.log(response)
-
         if(response.ok){
 
             const data = await response.json();
