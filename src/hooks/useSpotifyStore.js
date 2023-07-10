@@ -4,8 +4,6 @@ import { fetchAPI } from "../api/fetchAPI";
 import { getCookie, setCookie } from "../helpers/cookies";
 import { randomPlaylist, randomTrack } from "../helpers/randomElement";
 
-// const urlBase = 'https://soundquest-xf5r.onrender.com/api/v1/spotify';
-
 const urlBase = 'https://api.spotify.com';
 
 
@@ -19,8 +17,6 @@ export const useSpotifyStore = () => {
 
 
     const getToken = async () => {
-
-        // const url = `${urlBase}/token`;
 
         const url = 'https://accounts.spotify.com/api/token';
 
@@ -39,7 +35,7 @@ export const useSpotifyStore = () => {
 
             };
 
-            const response = await fetchAPI(url, 'POST'); // If "cookieToken" is undefined (because cookieToken doesn't exist or expired)
+            const response = await fetchAPI(url, 'POST'); // If "cookieToken" is undefined (because cookieToken doesn't exist or is expired).
             
             if(response.ok){
 
@@ -67,8 +63,6 @@ export const useSpotifyStore = () => {
     const getPlaylistID = async (id) => {
 
         const authorization = `${token_type} ${access_token}`;
-
-        // const url = `${urlBase}/user-playlists/${id}`;
 
         const url = `${urlBase}/v1/users/${id}/playlists?offset=0&limit=50`;
 
@@ -104,9 +98,8 @@ export const useSpotifyStore = () => {
 
         const authorization = `${token_type} ${access_token}`;
 
-        // const url = `${urlBase}/playlist/${id}`;
-
         const url = `${urlBase}/v1/playlists/${id}?offset=0&limit=50`;
+
         
         try {
             
@@ -139,8 +132,6 @@ export const useSpotifyStore = () => {
 
         const authorization = `${token_type} ${access_token}`;
 
-        // const url = `${urlBase}/track/${id}`;
-
         const url = `${urlBase}/v1/tracks/${id}`;
 
 
@@ -161,8 +152,6 @@ export const useSpotifyStore = () => {
                 };
 
                 const { album, artwork, artist, name, url } = track;
-
-                console.log(artwork)
 
                 dispatch(setTrack({ album, artwork, artist, name, url }));
 
