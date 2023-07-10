@@ -1,32 +1,63 @@
 /**
- * To make requests to an API.
+ * Fetch function that connects with Spotify's API and MongoDB.
  * @function fetchAPI
  * @async
- * @param {String} url API endpoint.
- * @param {String} token Authentication header Bearer token.
- * @returns {Promise} A request object at first and a JSON response body at last.
+ * @param {String} url Spotify's endpoint.
+ * @param {String} method HTTP verb for the request.
+ * @param {String} token Authorization header's value that contains "token_type" (Bearer) and "access_token".
+ * @returns {Promise}
  */
-export const fetchAPI = async (url, token) => {
+export const fetchAPI = async (url, method, token) => {
 
     /**
+     * Fetch options.
      * @typedef {Object} options
-     * @property {String} [headers] Authentication header set to token type "Bearer" and the token itself.
+     * @property {String} method HTTP verb for the request.
+     * @property {Object} body URLSearchParams object that contains the Client ID and Client Secret, along with the grant_type parameter set to client_credentials.
+     * @property {Object} headers Content-type header set to the application/x-www-form-urlencoded value or Authentication header set to token type "Bearer" and the token itself.
      */
-    let options = {}
+    let options = {};
 
-    if(token) options = { headers: { Authorization: token } }; // Conditional: if "token" is not "undefined"
+
+    if(method == 'POST'){
+        options = {
+            method,
+            body: new URLSearchParams({
+                'grant_type': 'client_credentials',
+                'client_id': import.meta.env.VITE_CLIENT_ID,
+                'client_secret': import.meta.env.VITE_CLIENT_SECRET
+            }),
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        };
+    };
+
+
+    if(method == 'GET'){
+        options = {
+            headers: { Authorization: token }
+        };
+    };
 
 
     try {
         
-        const request = await fetch(url, options);
+        const response = await fetch(url, options);
 
-        const response = await request.json();
+        if(response.ok){
 
-        if(response.ok) return response;
+            const data = await response.json();
+
+            return {
+                ok: true,
+                data
+            };
+
+        } else {
+
+            throw response;
+
+        };
         
-        else throw response;
-
     } catch (error) {
         
         return error;

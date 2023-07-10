@@ -2,8 +2,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { setPlaylistID, setToken, setTrack, setTrackID, startLoading } from '../store/slices';
 import { fetchAPI } from "../api/fetchAPI";
 import { getCookie, setCookie } from "../helpers/cookies";
+import { randomPlaylist, randomTrack } from "../helpers/randomElement";
 
-const urlBase = 'https://soundquest-xf5r.onrender.com/api/v1/spotify';
+const urlBase = 'https://api.spotify.com';
 
 
 export const useSpotifyStore = () => {
@@ -17,7 +18,7 @@ export const useSpotifyStore = () => {
 
     const getToken = async () => {
 
-        const url = `${urlBase}/token`;
+        const url = 'https://accounts.spotify.com/api/token';
 
         dispatch(startLoading());
 
@@ -34,7 +35,7 @@ export const useSpotifyStore = () => {
 
             };
 
-            const response = await fetchAPI(url); // If "cookieToken" is undefined (because cookieToken doesn't exist or expired)
+            const response = await fetchAPI(url, 'POST'); // If "cookieToken" is undefined (because cookieToken doesn't exist or is expired).
             
             if(response.ok){
 
@@ -63,16 +64,18 @@ export const useSpotifyStore = () => {
 
         const authorization = `${token_type} ${access_token}`;
 
-        const url = `${urlBase}/user-playlists/${id}`;
+        const url = `${urlBase}/v1/users/${id}/playlists?offset=0&limit=50`;
 
 
         try {
             
-            const response = await fetchAPI(url, authorization);
+            const response = await fetchAPI(url, 'GET', authorization);
 
             if(response.ok){
 
-                const { playlist_id } = response;
+                const { data } = response;
+
+                const playlist_id = randomPlaylist(data.items);
 
                 dispatch(setPlaylistID({ playlist_id }));
 
@@ -80,7 +83,7 @@ export const useSpotifyStore = () => {
 
                 throw response;
 
-            }
+            };
 
         } catch (error) {
             
@@ -95,16 +98,18 @@ export const useSpotifyStore = () => {
 
         const authorization = `${token_type} ${access_token}`;
 
-        const url = `${urlBase}/playlist/${id}`;
+        const url = `${urlBase}/v1/playlists/${id}?offset=0&limit=50`;
 
         
         try {
             
-            const response = await fetchAPI(url, authorization);
+            const response = await fetchAPI(url, 'GET', authorization);
 
             if(response.ok){
 
-                const { track_id } = response;
+                const { tracks } = response.data;
+
+                const track_id = randomTrack(tracks.items);
 
                 dispatch(setTrackID({ track_id }));
 
@@ -127,20 +132,28 @@ export const useSpotifyStore = () => {
 
         const authorization = `${token_type} ${access_token}`;
 
-        const url = `${urlBase}/track/${id}`;
+        const url = `${urlBase}/v1/tracks/${id}`;
 
 
         try {
             
-            const response = await fetchAPI(url, authorization);
+            const response = await fetchAPI(url, 'GET', authorization);
 
             if(response.ok){
 
-                const { track } = response;
+                const { data } = response;
 
-                const { album, image, artist, name, url } = track;
+                const track = {
+                    album: data.album.name,
+                    artwork: data.album.images[0].url,
+                    artist: data.artists[0].name,
+                    name: data.name,
+                    url: data.external_urls.spotify
+                };
 
-                dispatch(setTrack({ album, image, artist, name, url }));
+                const { album, artwork, artist, name, url } = track;
+
+                dispatch(setTrack({ album, artwork, artist, name, url }));
 
             } else {
 

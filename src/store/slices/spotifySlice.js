@@ -13,7 +13,7 @@ export const spotifySlice = createSlice({
         track_id: undefined,
         track: {
             album: undefined,
-            image: undefined,
+            artwork: undefined,
             artist: undefined,
             name: undefined,
             url: undefined
@@ -52,7 +52,7 @@ export const spotifySlice = createSlice({
         },
         setTrack: (state, { payload }) => {
             state.track.album = payload.album;
-            state.track.image = payload.image;
+            state.track.artwork = payload.artwork;
             state.track.artist = payload.artist;
             state.track.name = payload.name;
             state.track.url = payload.url;
