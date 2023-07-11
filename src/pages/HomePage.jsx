@@ -7,8 +7,7 @@ export const HomePage = () => {
 
     const {
         token,
-        playlist_id,
-        track_id,
+        playlist,
         track,
         isLoading
     } = useSelector(state => state.spotify);
@@ -33,16 +32,16 @@ export const HomePage = () => {
 
     useEffect(() => {
 
-        playlist_id && getTrackID(playlist_id);
+        playlist.playlist_id && getTrackID(playlist.playlist_id);
 
-    }, [playlist_id]);
+    }, [playlist.playlist_id]);
 
 
     useEffect(() => {
 
-        track_id && getTrack(track_id);
+        track.track_id && getTrack(track.track_id);
 
-    }, [track_id]);
+    }, [track.track_id]);
 
 
     return (
