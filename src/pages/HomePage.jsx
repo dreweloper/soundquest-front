@@ -6,12 +6,10 @@ import { Card } from '../components';
 export const HomePage = () => {
 
     // LOADING
-
     const { isLoading } = useSelector(state => state.loading);
     
 
     // TOKEN
-
     const { access_token } = useSelector(state => state.token); // Destructuring of the property 'access_token' of 'token' state's object.
 
     const { getToken } = useTokenStore();
@@ -20,21 +18,18 @@ export const HomePage = () => {
 
 
     // PLAYLIST
-
     const { playlist_id } = useSelector(state => state.playlist); // Destructuring of the property 'playlist_id' of 'playlist' state's object.
 
     const { getUserPlaylists } = usePlaylistStore();
 
 
     // TRACK
-
     const { track_id, track_url } = useSelector(state => state.track); // Destructuring of the properties 'track_id' and 'track_url' of 'track' state's object.
 
     const { getPlaylist, getTrack } = useTrackStore();
 
 
     // MONGODB
-    
     const { addTrack } = useFetch();
 
 
