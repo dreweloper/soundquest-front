@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { clearToken, setToken } from "../store/slices";
+import { clearToken, setToken, startLoading } from "../store/slices";
 import { getCookie, setCookie } from "../helpers/cookies";
 import { fetchAPI } from "../api";
 
@@ -18,6 +18,8 @@ export const useTokenStore = () => {
      * @async
      */
     const getToken = async () => {
+
+        dispatch(startLoading());
 
         /**
          * @type {String} Token Spotify endpoint URI.

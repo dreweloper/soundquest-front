@@ -50,19 +50,19 @@ export const spotifySlice = createSlice({
             state.playlist.playlist_url = payload.playlist_url;
             state.loadings.playlist_id_loading = false;
         },
-        // setTrackID: (state, { payload }) => {
-        //     state.track.track_id = payload.track_id;
-        //     state.loadings.track_id_loading = false;
-        // },
-        // setTrack: (state, { payload }) => {
-        //     state.track.album = payload.album;
-        //     state.track.artwork = payload.artwork;
-        //     state.track.artist = payload.artist;
-        //     state.track.name = payload.name;
-        //     state.track.track_url = payload.track_url;
-        //     state.loadings.track_loading = false;
-        //     state.isLoading = false;
-        // },
+        setTrackID: (state, { payload }) => {
+            state.track.track_id = payload.track_id;
+            state.loadings.track_id_loading = false;
+        },
+        setTrack: (state, { payload }) => {
+            state.track.album = payload.album;
+            state.track.artwork = payload.artwork;
+            state.track.artist = payload.artist;
+            state.track.name = payload.name;
+            state.track.track_url = payload.track_url;
+            state.loadings.track_loading = false;
+            state.isLoading = false;
+        },
     }
 
 });
@@ -71,6 +71,6 @@ export const {
     startLoading,
     setTokenB,
     setPlaylistID,
-    // setTrackID,
-    // setTrack
+    setTrackID,
+    setTrack
 } = spotifySlice.actions;

@@ -1,9 +1,14 @@
 import { useSelector } from 'react-redux';
-import { useFetch, usePlaylistStore, useSpotifyStore, useTokenStore, useTrackStore } from "../hooks";
+import { useFetch, usePlaylistStore, useTokenStore, useTrackStore } from "../hooks";
 import { useEffect } from 'react';
 import { Card } from '../components';
 
 export const HomePage = () => {
+
+    // LOADING
+
+    const { isLoading } = useSelector(state => state.loading);
+    
 
     // TOKEN
 
@@ -23,15 +28,12 @@ export const HomePage = () => {
 
     // TRACK
 
-    const { track_id, track_url } = useSelector(state => state.track);
+    const { track_id, track_url } = useSelector(state => state.track); // Destructuring of the properties 'track_id' and 'track_url' of 'track' state's object.
 
     const { getPlaylist, getTrack } = useTrackStore();
 
-    //!!!!!!!!!!!!!!!!
-    const {
-        isLoading
-    } = useSelector(state => state.spotify);
-    //!!!!!!!!!!!!!!!!
+
+    // MONGODB
     
     const { addTrack } = useFetch();
 

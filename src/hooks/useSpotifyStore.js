@@ -11,55 +11,55 @@ export const useSpotifyStore = () => {
 
     const { token_type, access_token } = useSelector(state => state.token);
 
-    // const { token } = useSelector(state => state.spotify);
+    const { token } = useSelector(state => state.spotify);
 
-    // const { token_type, access_token } = token; // Destructuring of the properties "token_type" and "access_token" of state's object "token".
+    const { token_type, access_token } = token; // Destructuring of the properties "token_type" and "access_token" of state's object "token".
 
     const dispatch = useDispatch();
 
 
-    // const getToken = async () => {
+    const getToken = async () => {
 
-    //     const url = 'https://accounts.spotify.com/api/token';
+        const url = 'https://accounts.spotify.com/api/token';
 
-    //     dispatch(startLoading());
+        dispatch(startLoading());
 
 
-    //     try {
+        try {
 
-    //         const cookieToken = getCookie('token');
+            const cookieToken = getCookie('token');
 
-    //         if(cookieToken){ // Conditional: if "cookieToken" is not undefined.
+            if(cookieToken){ // Conditional: if "cookieToken" is not undefined.
 
-    //             const { token_type, access_token } = cookieToken; // Destructuring of the properties "token_type" and "access_token" of "cookieToken" object.
+                const { token_type, access_token } = cookieToken; // Destructuring of the properties "token_type" and "access_token" of "cookieToken" object.
 
-    //             return dispatch(setTokenB({ token_type, access_token }));
+                return dispatch(setTokenB({ token_type, access_token }));
 
-    //         };
+            };
 
-    //         const response = await fetchAPI(url, 'POST'); // If "cookieToken" is undefined (because cookieToken doesn't exist or is expired).
+            const response = await fetchAPI(url, 'POST'); // If "cookieToken" is undefined (because cookieToken doesn't exist or is expired).
             
-    //         if(response.ok){
+            if(response.ok){
 
-    //             const { token_type, access_token } = response.data; // Destructuring of the properties "token_type" and "access_token" of "response.data" object.
+                const { token_type, access_token } = response.data; // Destructuring of the properties "token_type" and "access_token" of "response.data" object.
 
-    //             dispatch(setTokenB({ token_type, access_token }));
+                dispatch(setTokenB({ token_type, access_token }));
 
-    //             setCookie('token', response.data);
+                setCookie('token', response.data);
 
-    //         } else {
+            } else {
 
-    //             throw response; 
+                throw response; 
 
-    //         };
+            };
 
-    //     } catch (error) {
+        } catch (error) {
             
-    //         console.log(error);
+            console.log(error);
 
-    //     };
+        };
 
-    // }; //!GETTOKEN
+    }; //!GETTOKEN
 
 
     const getPlaylistID = async (id) => {
@@ -98,87 +98,87 @@ export const useSpotifyStore = () => {
     }; //!GETPLAYLISTID
 
 
-    // const getTrackID = async (id) => {
+    const getTrackID = async (id) => {
 
-    //     const authorization = `${token_type} ${access_token}`;
+        const authorization = `${token_type} ${access_token}`;
 
-    //     const url = `${urlBase}/v1/playlists/${id}?offset=0&limit=50`;
+        const url = `${urlBase}/v1/playlists/${id}?offset=0&limit=50`;
 
         
-    //     try {
+        try {
             
-    //         const response = await fetchAPI(url, 'GET', authorization);
+            const response = await fetchAPI(url, 'GET', authorization);
 
-    //         if(response.ok){
+            if(response.ok){
 
-    //             const { tracks } = response.data;
+                const { tracks } = response.data;
 
-    //             const track_id = randomTrack(tracks.items);
+                const track_id = randomTrack(tracks.items);
 
-    //             dispatch(setTrackID({ track_id }));
+                dispatch(setTrackID({ track_id }));
 
-    //         } else {
+            } else {
 
-    //             throw response;
+                throw response;
 
-    //         };
+            };
 
-    //     } catch (error) {
+        } catch (error) {
 
-    //         console.log(error);
+            console.log(error);
             
-    //     };
+        };
 
-    // }; //!GETTRACKID
-
-
-    // const getTrack = async (id) => {
-
-    //     const authorization = `${token_type} ${access_token}`;
-
-    //     const url = `${urlBase}/v1/tracks/${id}`;
+    }; //!GETTRACKID
 
 
-    //     try {
+    const getTrack = async (id) => {
+
+        const authorization = `${token_type} ${access_token}`;
+
+        const url = `${urlBase}/v1/tracks/${id}`;
+
+
+        try {
             
-    //         const response = await fetchAPI(url, 'GET', authorization);
+            const response = await fetchAPI(url, 'GET', authorization);
 
-    //         if(response.ok){
+            if(response.ok){
 
-    //             const { data } = response;
+                const { data } = response;
 
-    //             const track = {
-    //                 album: data.album.name,
-    //                 artwork: data.album.images[0].url,
-    //                 artist: data.artists[0].name,
-    //                 name: data.name,
-    //                 track_url: data.external_urls.spotify
-    //             };
+                const track = {
+                    album: data.album.name,
+                    artwork: data.album.images[0].url,
+                    artist: data.artists[0].name,
+                    name: data.name,
+                    track_url: data.external_urls.spotify
+                };
 
-    //             const { album, artwork, artist, name, track_url } = track;
+                const { album, artwork, artist, name, track_url } = track;
 
-    //             dispatch(setTrack({ album, artwork, artist, name, track_url }));
+                dispatch(setTrack({ album, artwork, artist, name, track_url }));
 
-    //         } else {
+            } else {
 
-    //             throw response;
+                throw response;
 
-    //         };
+            };
 
-    //     } catch (error) {
+        } catch (error) {
             
-    //         console.log(error);
+            console.log(error);
 
-    //     };
+        };
 
-    // }; //!GETCHTRACK
+    }; //!GETCHTRACK
 
 
     return {
-        // getToken,
+        getToken,
         getPlaylistID,
-        // getTrackID,
-        // getTrack
+        getTrackID,
+        getTrack
     };
 
 };

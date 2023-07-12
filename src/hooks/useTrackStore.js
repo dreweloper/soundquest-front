@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAPI } from "../api";
-import { setTrack, setTrackID } from "../store/slices";
+import { finishLoading, setTrack, setTrackID } from "../store/slices";
 import { randomTrack } from "../helpers";
 
 /**
@@ -110,6 +110,8 @@ export const useTrackStore = () => {
                 const { album, artwork, artist, name, track_url } = track;
 
                 dispatch(setTrack({ album, artwork, artist, name, track_url }));
+
+                dispatch(finishLoading());
 
             } else {
 

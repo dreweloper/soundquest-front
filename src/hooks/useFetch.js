@@ -3,14 +3,14 @@ import { fetchMongoDB } from "../api";
 
 export const useFetch = () => {
 
-    const { playlist, track } = useSelector(state => state.spotify);
+    // const { playlist, track } = useSelector(state => state.spotify);
 
 
     const addTrack = async () => {
 
         const url = 'https://soundquest-xf5r.onrender.com/api/v1/tracks';
 
-        const body = { playlist, track };
+        // const body = { playlist, track };
 
 
         try {
