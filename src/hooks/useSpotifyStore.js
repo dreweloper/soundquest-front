@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setPlaylistID, setToken, setTrack, setTrackID, startLoading } from '../store/slices';
+import { setPlaylistID, setTokenB, setTrack, setTrackID, startLoading } from '../store/slices';
 import { fetchAPI } from "../api";
 import { getCookie, setCookie } from "../helpers/cookies";
 import { getPlaylistURL, randomPlaylist, randomTrack } from "../helpers/randomElement";
@@ -9,55 +9,57 @@ const urlBase = 'https://api.spotify.com';
 
 export const useSpotifyStore = () => {
 
-    const { token } = useSelector(state => state.spotify);
+    const { token_type, access_token } = useSelector(state => state.token);
 
-    const { token_type, access_token } = token; // Destructuring of the properties "token_type" and "access_token" of state's object "token".
+    // const { token } = useSelector(state => state.spotify);
+
+    // const { token_type, access_token } = token; // Destructuring of the properties "token_type" and "access_token" of state's object "token".
 
     const dispatch = useDispatch();
 
 
-    const getToken = async () => {
+    // const getToken = async () => {
 
-        const url = 'https://accounts.spotify.com/api/token';
+    //     const url = 'https://accounts.spotify.com/api/token';
 
-        dispatch(startLoading());
+    //     dispatch(startLoading());
 
 
-        try {
+    //     try {
 
-            const cookieToken = getCookie('token');
+    //         const cookieToken = getCookie('token');
 
-            if(cookieToken){ // Conditional: if "cookieToken" is not undefined.
+    //         if(cookieToken){ // Conditional: if "cookieToken" is not undefined.
 
-                const { token_type, access_token } = cookieToken; // Destructuring of the properties "token_type" and "access_token" of "cookieToken" object.
+    //             const { token_type, access_token } = cookieToken; // Destructuring of the properties "token_type" and "access_token" of "cookieToken" object.
 
-                return dispatch(setToken({ token_type, access_token }));
+    //             return dispatch(setTokenB({ token_type, access_token }));
 
-            };
+    //         };
 
-            const response = await fetchAPI(url, 'POST'); // If "cookieToken" is undefined (because cookieToken doesn't exist or is expired).
+    //         const response = await fetchAPI(url, 'POST'); // If "cookieToken" is undefined (because cookieToken doesn't exist or is expired).
             
-            if(response.ok){
+    //         if(response.ok){
 
-                const { token_type, access_token } = response.data; // Destructuring of the properties "token_type" and "access_token" of "response.data" object.
+    //             const { token_type, access_token } = response.data; // Destructuring of the properties "token_type" and "access_token" of "response.data" object.
 
-                dispatch(setToken({ token_type, access_token }));
+    //             dispatch(setTokenB({ token_type, access_token }));
 
-                setCookie('token', response.data);
+    //             setCookie('token', response.data);
 
-            } else {
+    //         } else {
 
-                throw response; 
+    //             throw response; 
 
-            };
+    //         };
 
-        } catch (error) {
+    //     } catch (error) {
             
-            console.log(error);
+    //         console.log(error);
 
-        };
+    //     };
 
-    }; //!GETTOKEN
+    // }; //!GETTOKEN
 
 
     const getPlaylistID = async (id) => {
@@ -173,7 +175,7 @@ export const useSpotifyStore = () => {
 
 
     return {
-        getToken,
+        // getToken,
         getPlaylistID,
         getTrackID,
         getTrack
