@@ -1,10 +1,11 @@
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-export const Card = ({ track, playlist }) => {
+export const Card = () => {
 
-    const { album, artwork, artist, name, track_url } = track;
+    const { playlist_url } = useSelector(state => state.playlist);
 
-    const { playlist_url } = playlist;
+    const { album, artwork, artist, name, track_url } = useSelector(state => state.track);
 
 
     return (

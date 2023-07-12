@@ -17,16 +17,16 @@ export const trackSlice = createSlice({
         setTrackID: (state, { payload }) => {
             state.track_id = payload.track_id
         },
-        // setTrack: (state, { payload }) => {
-        //     state.album = payload.album;
-        //     state.artwork = payload.artwork;
-        //     state.artist = payload.artist;
-        //     state.name = payload.name;
-        //     state.track_url = payload.track_url;
-        // }
+        setTrack: (state, { payload }) => {
+            state.album = payload.album;
+            state.artwork = payload.artwork;
+            state.artist = payload.artist;
+            state.name = payload.name;
+            state.track_url = payload.track_url;
+        }
     }
 
 });
 
 
-export const { setTrackID } = trackSlice.actions;
+export const { setTrackID, setTrack } = trackSlice.actions;

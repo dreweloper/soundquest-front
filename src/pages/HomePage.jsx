@@ -23,25 +23,16 @@ export const HomePage = () => {
 
     // TRACK
 
-    const { track_id } = useSelector(state => state.track);
+    const { track_id, track_url } = useSelector(state => state.track);
 
-    const { getPlaylist } = useTrackStore();
+    const { getPlaylist, getTrack } = useTrackStore();
 
-
+    //!!!!!!!!!!!!!!!!
     const {
-        token,
-        playlist,
-        track,
         isLoading
     } = useSelector(state => state.spotify);
-
-    const {
-        // getToken,
-        // getPlaylistID,
-        // getTrackID,
-        getTrack
-    } = useSpotifyStore();
-
+    //!!!!!!!!!!!!!!!!
+    
     const { addTrack } = useFetch();
 
 
@@ -101,7 +92,7 @@ export const HomePage = () => {
 
                 </section>
 
-                {track.album && <Card track={track} playlist={playlist} />}
+                {track_url && <Card />}
 
             </main>
 

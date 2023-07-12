@@ -132,53 +132,53 @@ export const useSpotifyStore = () => {
     // }; //!GETTRACKID
 
 
-    const getTrack = async (id) => {
+    // const getTrack = async (id) => {
 
-        const authorization = `${token_type} ${access_token}`;
+    //     const authorization = `${token_type} ${access_token}`;
 
-        const url = `${urlBase}/v1/tracks/${id}`;
+    //     const url = `${urlBase}/v1/tracks/${id}`;
 
 
-        try {
+    //     try {
             
-            const response = await fetchAPI(url, 'GET', authorization);
+    //         const response = await fetchAPI(url, 'GET', authorization);
 
-            if(response.ok){
+    //         if(response.ok){
 
-                const { data } = response;
+    //             const { data } = response;
 
-                const track = {
-                    album: data.album.name,
-                    artwork: data.album.images[0].url,
-                    artist: data.artists[0].name,
-                    name: data.name,
-                    track_url: data.external_urls.spotify
-                };
+    //             const track = {
+    //                 album: data.album.name,
+    //                 artwork: data.album.images[0].url,
+    //                 artist: data.artists[0].name,
+    //                 name: data.name,
+    //                 track_url: data.external_urls.spotify
+    //             };
 
-                const { album, artwork, artist, name, track_url } = track;
+    //             const { album, artwork, artist, name, track_url } = track;
 
-                dispatch(setTrack({ album, artwork, artist, name, track_url }));
+    //             dispatch(setTrack({ album, artwork, artist, name, track_url }));
 
-            } else {
+    //         } else {
 
-                throw response;
+    //             throw response;
 
-            };
+    //         };
 
-        } catch (error) {
+    //     } catch (error) {
             
-            console.log(error);
+    //         console.log(error);
 
-        };
+    //     };
 
-    }; //!GETCHTRACK
+    // }; //!GETCHTRACK
 
 
     return {
         // getToken,
         getPlaylistID,
         // getTrackID,
-        getTrack
+        // getTrack
     };
 
 };
