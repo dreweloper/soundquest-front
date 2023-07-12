@@ -45,11 +45,11 @@ export const HomePage = () => {
     }, [track.track_id]);
 
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        track.album && addTrack();
+    //     track.album && addTrack();
 
-    }, [track.album]);
+    // }, [track.album]);
 
 
     return (
@@ -69,7 +69,7 @@ export const HomePage = () => {
                     {
                         !isLoading ? (
 
-                            <button onClick={handleToken}> Discover new music </button>
+                            <button onClick={handleToken}>Discover new music</button>
 
                         ) : (
 
@@ -80,7 +80,7 @@ export const HomePage = () => {
 
                 </section>
 
-                {track.album && <Card track={track} />}
+                {track.album && <Card track={track} playlist={playlist} />}
 
             </main>
 

@@ -17,6 +17,7 @@
     width: 100%;
     // min-height: calc(100vh - 80px);
     color: $white;
+    gap: 10px;
 
     .discoverMusic {
         @include displayFlex(row, center, center);

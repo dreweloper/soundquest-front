@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { setPlaylistID, setToken, setTrack, setTrackID, startLoading } from '../store/slices';
-import { fetchAPI } from "../api/fetchAPI";
+import { fetchAPI } from "../api";
 import { getCookie, setCookie } from "../helpers/cookies";
 import { getPlaylistURL, randomPlaylist, randomTrack } from "../helpers/randomElement";
 
