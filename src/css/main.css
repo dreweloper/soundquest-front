@@ -167,21 +167,21 @@ button {
   height: 80px;
 }
 .mainHome .discoverMusic button {
-  width: 200px;
+  width: 220px;
   height: 50px;
   border-radius: 25px;
   font-size: 1.3rem;
   font-weight: 500;
   text-align: center;
   color: #191414;
-  background-color: #1db954;
+  background-color: #FDA707;
 }
 .mainHome .discoverMusic .spinner {
   width: 40px;
   height: 40px;
   border: 4px solid rgba(255, 255, 255, 0.1);
   border-radius: 50%;
-  border-left-color: #1db954;
+  border-left-color: #FDA707;
   animation: spin 1s ease infinite;
 }
 
@@ -217,12 +217,12 @@ button {
   text-align: center;
   margin-bottom: 20px;
   border-radius: 20px;
-  background: linear-gradient(#191414, #302c2c);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 .trackContainer .artwork {
   display: flex;
-  width: 200px;
-  padding: 10px;
+  width: 220px;
+  margin: 10px 0;
 }
 .trackContainer .trackInfo {
   display: flex;
@@ -234,12 +234,12 @@ button {
 .trackContainer .trackInfo .song {
   font-size: 1.5rem;
   font-weight: 500;
-  padding-top: 20px;
+  margin: 8px 0;
 }
 .trackContainer .trackInfo .artist {
   font-size: 1.1rem;
   font-weight: 300;
-  padding-top: 10px;
+  margin-bottom: 20px;
 }
 .trackContainer .trackInfo .spotifySection {
   display: flex;
@@ -247,7 +247,7 @@ button {
   align-items: center;
   justify-content: space-evenly;
   width: 100%;
-  height: 100px;
+  padding: 10px;
   margin: 10px 0;
 }
 .trackContainer .trackInfo .spotifySection .spotifyLogo {
@@ -255,7 +255,7 @@ button {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  width: 70px;
+  width: 80px;
 }
 .trackContainer .trackInfo .spotifySection .spotifyLinks {
   display: flex;
@@ -272,11 +272,11 @@ button {
   align-items: center;
   justify-content: center;
   width: 130px;
-  height: 30px;
+  height: 40px;
   font-weight: 600;
-  border-radius: 15px;
+  border-radius: 20px;
   color: #191414;
-  background-color: #1db954;
+  background-color: #FDA707;
 }
 .trackContainer .trackInfo .spotifySection .spotifyLinks a span {
   font-weight: 600;
@@ -298,7 +298,6 @@ button {
     min-height: 350px;
     text-align: start;
     border-radius: 20px;
-    background: linear-gradient(#191414, #302c2c);
   }
   .trackContainer .artwork {
     width: 400px;
@@ -356,6 +355,6 @@ button {
 } /* 992px end */
 body {
   font-family: "Source Sans 3", sans-serif;
-  color: #ffffff;
-  background-color: #191414;
+  color: #191414;
+  background-color: #098A5A;
 }/*# sourceMappingURL=main.css.map */
