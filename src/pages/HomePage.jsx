@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { useFetch, usePlaylistStore, useSpotifyStore, useTokenStore, useTrackStore } from "../hooks";
 import { useEffect } from 'react';
-import { Card } from '../components/Card';
+import { Card } from '../components';
 
 export const HomePage = () => {
 
@@ -25,7 +25,7 @@ export const HomePage = () => {
 
     const { track_id } = useSelector(state => state.track);
 
-    const { getTrackID } = useTrackStore();
+    const { getPlaylist } = useTrackStore();
 
 
     const {
@@ -54,7 +54,7 @@ export const HomePage = () => {
 
     useEffect(() => {
 
-        playlist_id && getTrackID(playlist_id);
+        playlist_id && getPlaylist(playlist_id);
 
     }, [playlist_id]);
 
