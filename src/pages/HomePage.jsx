@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { useFetch, usePlaylistStore, useSpotifyStore, useTokenStore } from "../hooks";
+import { useFetch, usePlaylistStore, useSpotifyStore, useTokenStore, useTrackStore } from "../hooks";
 import { useEffect } from 'react';
 import { Card } from '../components/Card';
 
@@ -21,6 +21,13 @@ export const HomePage = () => {
     const { getUserPlaylists } = usePlaylistStore();
 
 
+    // TRACK
+
+    const { track_id } = useSelector(state => state.track);
+
+    const { getTrackID } = useTrackStore();
+
+
     const {
         token,
         playlist,
@@ -31,7 +38,7 @@ export const HomePage = () => {
     const {
         // getToken,
         // getPlaylistID,
-        getTrackID,
+        // getTrackID,
         getTrack
     } = useSpotifyStore();
 
@@ -54,9 +61,9 @@ export const HomePage = () => {
 
     useEffect(() => {
 
-        track.track_id && getTrack(track.track_id);
+        track_id && getTrack(track_id);
 
-    }, [track.track_id]);
+    }, [track_id]);
 
 
     // useEffect(() => {

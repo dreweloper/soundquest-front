@@ -50,10 +50,10 @@ export const spotifySlice = createSlice({
             state.playlist.playlist_url = payload.playlist_url;
             state.loadings.playlist_id_loading = false;
         },
-        setTrackID: (state, { payload }) => {
-            state.track.track_id = payload.track_id;
-            state.loadings.track_id_loading = false;
-        },
+        // setTrackID: (state, { payload }) => {
+        //     state.track.track_id = payload.track_id;
+        //     state.loadings.track_id_loading = false;
+        // },
         setTrack: (state, { payload }) => {
             state.track.album = payload.album;
             state.track.artwork = payload.artwork;
@@ -71,6 +71,6 @@ export const {
     startLoading,
     setTokenB,
     setPlaylistID,
-    setTrackID,
+    // setTrackID,
     setTrack
 } = spotifySlice.actions;

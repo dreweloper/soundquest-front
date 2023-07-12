@@ -98,38 +98,38 @@ export const useSpotifyStore = () => {
     }; //!GETPLAYLISTID
 
 
-    const getTrackID = async (id) => {
+    // const getTrackID = async (id) => {
 
-        const authorization = `${token_type} ${access_token}`;
+    //     const authorization = `${token_type} ${access_token}`;
 
-        const url = `${urlBase}/v1/playlists/${id}?offset=0&limit=50`;
+    //     const url = `${urlBase}/v1/playlists/${id}?offset=0&limit=50`;
 
         
-        try {
+    //     try {
             
-            const response = await fetchAPI(url, 'GET', authorization);
+    //         const response = await fetchAPI(url, 'GET', authorization);
 
-            if(response.ok){
+    //         if(response.ok){
 
-                const { tracks } = response.data;
+    //             const { tracks } = response.data;
 
-                const track_id = randomTrack(tracks.items);
+    //             const track_id = randomTrack(tracks.items);
 
-                dispatch(setTrackID({ track_id }));
+    //             dispatch(setTrackID({ track_id }));
 
-            } else {
+    //         } else {
 
-                throw response;
+    //             throw response;
 
-            };
+    //         };
 
-        } catch (error) {
+    //     } catch (error) {
 
-            console.log(error);
+    //         console.log(error);
             
-        };
+    //     };
 
-    }; //!GETTRACKID
+    // }; //!GETTRACKID
 
 
     const getTrack = async (id) => {
@@ -177,7 +177,7 @@ export const useSpotifyStore = () => {
     return {
         // getToken,
         getPlaylistID,
-        getTrackID,
+        // getTrackID,
         getTrack
     };
 

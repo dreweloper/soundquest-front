@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { playlistSlice, spotifySlice, tokenSlice } from './slices';
+import { playlistSlice, spotifySlice, tokenSlice, trackSlice } from './slices';
 
 export const store = configureStore({
 
@@ -7,7 +7,8 @@ export const store = configureStore({
         spotify: spotifySlice.reducer,
 
         token: tokenSlice.reducer,
-        playlist: playlistSlice.reducer
+        playlist: playlistSlice.reducer,
+        track: trackSlice.reducer
     }
 
 });
