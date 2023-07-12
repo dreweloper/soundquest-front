@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { useFetch, useSpotifyStore, useTokenStore } from "../hooks";
+import { useFetch, usePlaylistStore, useSpotifyStore, useTokenStore } from "../hooks";
 import { useEffect } from 'react';
 import { Card } from '../components/Card';
 
@@ -14,6 +14,12 @@ export const HomePage = () => {
     const handleToken = () => getToken();
 
 
+    // PLAYLIST
+
+    const { playlist_id } = useSelector(state => state.playlist); // Destructuring of the property 'playlist_id' of 'playlist' state's object.
+
+    const { getUserPlaylists } = usePlaylistStore();
+
 
     const {
         token,
@@ -24,7 +30,7 @@ export const HomePage = () => {
 
     const {
         // getToken,
-        getPlaylistID,
+        // getPlaylistID,
         getTrackID,
         getTrack
     } = useSpotifyStore();
@@ -34,16 +40,16 @@ export const HomePage = () => {
 
     useEffect(() => {
 
-        access_token && getPlaylistID('aleon88');
+        access_token && getUserPlaylists('aleon88');
 
     }, [access_token]);
 
 
     useEffect(() => {
 
-        playlist.playlist_id && getTrackID(playlist.playlist_id);
+        playlist_id && getTrackID(playlist_id);
 
-    }, [playlist.playlist_id]);
+    }, [playlist_id]);
 
 
     useEffect(() => {
