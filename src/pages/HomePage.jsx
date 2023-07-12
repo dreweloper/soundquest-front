@@ -1,55 +1,64 @@
 import { useSelector } from 'react-redux';
-import { useFetch, useSpotifyStore } from "../hooks";
+import { useFetch, usePlaylistStore, useTokenStore, useTrackStore } from "../hooks";
 import { useEffect } from 'react';
-import { Card } from '../components/Card';
+import { Card } from '../components';
 
 export const HomePage = () => {
 
+    // LOADING
+    const { isLoading } = useSelector(state => state.loading);
+    
+
+    // TOKEN
+    const { access_token } = useSelector(state => state.token); // Destructuring of the property 'access_token' of 'token' state's object.
+
+    const { getToken } = useTokenStore();
+
     const handleToken = () => getToken();
 
-    const {
-        token,
-        playlist,
-        track,
-        isLoading
-    } = useSelector(state => state.spotify);
 
-    const {
-        getToken,
-        getPlaylistID,
-        getTrackID,
-        getTrack
-    } = useSpotifyStore();
+    // PLAYLIST
+    const { playlist_id } = useSelector(state => state.playlist); // Destructuring of the property 'playlist_id' of 'playlist' state's object.
 
+    const { getUserPlaylists } = usePlaylistStore();
+
+
+    // TRACK
+    const { track_id, track_url } = useSelector(state => state.track); // Destructuring of the properties 'track_id' and 'track_url' of 'track' state's object.
+
+    const { getPlaylist, getTrack } = useTrackStore();
+
+
+    // MONGODB
     const { addTrack } = useFetch();
 
 
     useEffect(() => {
 
-        token.access_token && getPlaylistID('aleon88');
+        access_token && getUserPlaylists('aleon88');
 
-    }, [token]);
-
-
-    useEffect(() => {
-
-        playlist.playlist_id && getTrackID(playlist.playlist_id);
-
-    }, [playlist.playlist_id]);
+    }, [access_token]);
 
 
     useEffect(() => {
 
-        track.track_id && getTrack(track.track_id);
+        playlist_id && getPlaylist(playlist_id);
 
-    }, [track.track_id]);
+    }, [playlist_id]);
 
 
     useEffect(() => {
 
-        track.album && addTrack();
+        track_id && getTrack(track_id);
 
-    }, [track.album]);
+    }, [track_id]);
+
+
+    // useEffect(() => {
+
+    //     track.album && addTrack();
+
+    // }, [track.album]);
 
 
     return (
@@ -69,7 +78,7 @@ export const HomePage = () => {
                     {
                         !isLoading ? (
 
-                            <button onClick={handleToken}> Discover new music </button>
+                            <button onClick={handleToken}>Discover new music</button>
 
                         ) : (
 
@@ -80,7 +89,7 @@ export const HomePage = () => {
 
                 </section>
 
-                {track.album && <Card track={track} />}
+                {track_url && <Card />}
 
             </main>
 

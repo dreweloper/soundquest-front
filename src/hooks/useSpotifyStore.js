@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setPlaylistID, setToken, setTrack, setTrackID, startLoading } from '../store/slices';
-import { fetchAPI } from "../api/fetchAPI";
+import { setPlaylistID, setTokenB, setTrack, setTrackID, startLoading } from '../store/slices';
+import { fetchAPI } from "../api";
 import { getCookie, setCookie } from "../helpers/cookies";
 import { getPlaylistURL, randomPlaylist, randomTrack } from "../helpers/randomElement";
 
@@ -8,6 +8,8 @@ const urlBase = 'https://api.spotify.com';
 
 
 export const useSpotifyStore = () => {
+
+    const { token_type, access_token } = useSelector(state => state.token);
 
     const { token } = useSelector(state => state.spotify);
 
@@ -31,7 +33,7 @@ export const useSpotifyStore = () => {
 
                 const { token_type, access_token } = cookieToken; // Destructuring of the properties "token_type" and "access_token" of "cookieToken" object.
 
-                return dispatch(setToken({ token_type, access_token }));
+                return dispatch(setTokenB({ token_type, access_token }));
 
             };
 
@@ -41,7 +43,7 @@ export const useSpotifyStore = () => {
 
                 const { token_type, access_token } = response.data; // Destructuring of the properties "token_type" and "access_token" of "response.data" object.
 
-                dispatch(setToken({ token_type, access_token }));
+                dispatch(setTokenB({ token_type, access_token }));
 
                 setCookie('token', response.data);
 

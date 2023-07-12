@@ -1,8 +1,11 @@
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-export const Card = ({ track }) => {
+export const Card = () => {
 
-    const { album, artwork, artist, name, track_url } = track;
+    const { playlist_url } = useSelector(state => state.playlist);
+
+    const { album, artwork, artist, name, track_url } = useSelector(state => state.track);
 
 
     return (
@@ -23,13 +26,30 @@ export const Card = ({ track }) => {
 
                     <p className='artist'> {artist} </p>
 
-                    <Link to={track_url} className='spotifyLink'>
+                    <section className='spotifySection'>
 
-                        <img src='/assets/spotify/icons/Spotify_Icon_RGB_Black.png' alt="Spotify logo" title='Spotify logo' />
+                        <div className='spotifyLogo'>
 
-                        Play now
+                            <img src='/assets/spotify/icons/Spotify_Icon_RGB_Green.png' alt="Spotify logo" title='Spotify logo' />
 
-                    </Link>
+                        </div>
+
+                        <div className='spotifyLinks'>
+
+                            <Link to={track_url}>
+
+                                <span className="material-symbols-rounded">
+                                    play_arrow
+                                </span>
+
+                                Play
+                            </Link>
+
+                            <Link to={playlist_url}>Open Playlist</Link>
+
+                        </div>
+
+                    </section>
 
                 </article>
 
