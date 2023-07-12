@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setPlaylistID, setToken, setTrack, setTrackID, startLoading } from '../store/slices';
 import { fetchAPI } from "../api/fetchAPI";
 import { getCookie, setCookie } from "../helpers/cookies";
-import { randomPlaylist, randomTrack } from "../helpers/randomElement";
+import { getPlaylistURL, randomPlaylist, randomTrack } from "../helpers/randomElement";
 
 const urlBase = 'https://api.spotify.com';
 
@@ -77,7 +77,9 @@ export const useSpotifyStore = () => {
 
                 const playlist_id = randomPlaylist(data.items);
 
-                dispatch(setPlaylistID({ playlist_id }));
+                const playlist_url = getPlaylistURL(data.items, playlist_id);
+
+                dispatch(setPlaylistID({ playlist_id, playlist_url }));
 
             } else {
 
@@ -148,12 +150,12 @@ export const useSpotifyStore = () => {
                     artwork: data.album.images[0].url,
                     artist: data.artists[0].name,
                     name: data.name,
-                    url: data.external_urls.spotify
+                    track_url: data.external_urls.spotify
                 };
 
-                const { album, artwork, artist, name, url } = track;
+                const { album, artwork, artist, name, track_url } = track;
 
-                dispatch(setTrack({ album, artwork, artist, name, url }));
+                dispatch(setTrack({ album, artwork, artist, name, track_url }));
 
             } else {
 

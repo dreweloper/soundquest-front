@@ -1,14 +1,15 @@
 import { useSelector } from 'react-redux';
-import { useSpotifyStore } from "../hooks";
+import { useFetch, useSpotifyStore } from "../hooks";
 import { useEffect } from 'react';
 import { Card } from '../components/Card';
 
 export const HomePage = () => {
 
+    const handleToken = () => getToken();
+
     const {
         token,
-        playlist_id,
-        track_id,
+        playlist,
         track,
         isLoading
     } = useSelector(state => state.spotify);
@@ -20,8 +21,7 @@ export const HomePage = () => {
         getTrack
     } = useSpotifyStore();
 
-
-    const handleToken = () => getToken();
+    const { addTrack } = useFetch();
 
 
     useEffect(() => {
@@ -33,16 +33,23 @@ export const HomePage = () => {
 
     useEffect(() => {
 
-        playlist_id && getTrackID(playlist_id);
+        playlist.playlist_id && getTrackID(playlist.playlist_id);
 
-    }, [playlist_id]);
+    }, [playlist.playlist_id]);
 
 
     useEffect(() => {
 
-        track_id && getTrack(track_id);
+        track.track_id && getTrack(track.track_id);
 
-    }, [track_id]);
+    }, [track.track_id]);
+
+
+    useEffect(() => {
+
+        track.album && addTrack();
+
+    }, [track.album]);
 
 
     return (
