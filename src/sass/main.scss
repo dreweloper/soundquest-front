@@ -8,13 +8,14 @@
 
 /* PAGES */
 @import './pages/HomePage';
+@import './pages/DiscoverPage';
 
 /* COMPONENTS */
 @import './components/Card';
 
 
 body {
-    font-family: $source-sans;
+    font-family: $font-arimo;
     color: $secondary;
     background-color: $primary;
 }

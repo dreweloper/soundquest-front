@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { HomePage } from '../pages';
+import { DiscoverPage, HomePage } from '../pages';
 
 export const AppRouter = () => {
 
@@ -9,6 +9,7 @@ export const AppRouter = () => {
         <Routes>
 
             <Route path='/' element={<HomePage />} />
+            <Route path='/discover' element={<DiscoverPage />} />
 
             <Route path={'/*'} element={<Navigate to='/' />} />
 

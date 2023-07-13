@@ -1,0 +1,102 @@
+.headerDiscover {
+    @include displayFlex(row, center, start);
+    width: 100%;
+    height: 60px;
+    color: $white;
+    background-color: $secondary;
+    gap: 10px;
+
+    span {
+        font-size: 2rem;
+        margin-left: 10px;
+        color: $primary;
+    }
+
+    h1 {
+        font-family: $font-prompt;
+        font-size: 2rem;
+        text-transform: uppercase;
+    }
+}
+
+.mainDiscover {
+    @include displayFlex(column, center, start);
+    width: 100%;
+    // min-height: calc(100vh - 80px);
+    color: $white;
+    // gap: 10px;
+
+    .discoverMusic {
+        @include displayFlex(row, center, center);
+        width: 100%;
+        height: 90px;
+
+        button {
+            @include displayFlex(row, center, center);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            color: $secondary;
+            background-color: $accent;
+
+            span {
+                font-size: 2rem;
+                font-weight: 600;
+            }
+        }
+    
+        .spinner {
+            // @include spinKeyframes(spin);
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255, 255, 255, .1);
+            border-radius: 50%;
+            border-left-color: $accent;
+            animation: spin 1s ease infinite;
+            // @include spinAnimation(spin 1s ease infinite);
+        }
+    }
+}
+
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+/* ***************************************/
+/* MEDIA QUERIES *************************/
+/* ***************************************/
+
+/* 992px *************************/
+  
+@media screen and (min-width:992px) {
+
+    .headerDiscover {
+        height: 80px;
+        gap: 15px;
+    
+        span {
+            font-size: 2.5rem;
+            margin-left: 20px;
+        }
+    
+        h1 {
+            font-size: 2.5rem;
+        }
+    }
+    
+    .mainDiscover {
+        gap: 20px;
+    
+        .discoverMusic {
+            height: 100px;
+        }
+    }
+} /* 992px end */
