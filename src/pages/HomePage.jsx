@@ -10,7 +10,7 @@ export const HomePage = () => {
     
 
     // TOKEN
-    const { access_token } = useSelector(state => state.token); // Destructuring of the property 'access_token' of 'token' state's object.
+    const token = useSelector(state => state.token);
 
     const { getToken } = useTokenStore();
 
@@ -18,13 +18,13 @@ export const HomePage = () => {
 
 
     // PLAYLIST
-    const { playlist_id } = useSelector(state => state.playlist); // Destructuring of the property 'playlist_id' of 'playlist' state's object.
+    const { playlist_id } = useSelector(state => state.playlist); // Destructuring of the property 'playlist_id' of 'playlist' state object.
 
     const { getUserPlaylists } = usePlaylistStore();
 
 
     // TRACK
-    const { track_id, track_url } = useSelector(state => state.track); // Destructuring of the properties 'track_id' and 'track_url' of 'track' state's object.
+    const { track_id, track_url } = useSelector(state => state.track); // Destructuring of the properties 'track_id' and 'track_url' of 'track' state object.
 
     const { getPlaylist, getTrack } = useTrackStore();
 
@@ -35,9 +35,9 @@ export const HomePage = () => {
 
     useEffect(() => {
 
-        access_token && getUserPlaylists('aleon88');
+        token.access_token && getUserPlaylists('aleon88');
 
-    }, [access_token]);
+    }, [token]);
 
 
     useEffect(() => {
