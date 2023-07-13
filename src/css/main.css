@@ -204,7 +204,6 @@ button {
   justify-content: start;
   width: 100%;
   color: #ffffff;
-  gap: 10px;
 }
 .mainDiscover .discoverMusic {
   display: flex;
@@ -215,14 +214,19 @@ button {
   height: 90px;
 }
 .mainDiscover .discoverMusic button {
-  width: 220px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
   height: 50px;
-  border-radius: 25px;
-  font-weight: 500;
-  text-align: center;
-  text-transform: uppercase;
+  border-radius: 50%;
   color: #191414;
   background-color: #FDA707;
+}
+.mainDiscover .discoverMusic button span {
+  font-size: 2rem;
+  font-weight: 600;
 }
 .mainDiscover .discoverMusic .spinner {
   width: 40px;

@@ -24,7 +24,7 @@
     width: 100%;
     // min-height: calc(100vh - 80px);
     color: $white;
-    gap: 10px;
+    // gap: 10px;
 
     .discoverMusic {
         @include displayFlex(row, center, center);
@@ -32,14 +32,17 @@
         height: 90px;
 
         button {
-            width: 220px;
+            @include displayFlex(row, center, center);
+            width: 50px;
             height: 50px;
-            border-radius: 25px;
-            font-weight: 500;
-            text-align: center;
-            text-transform: uppercase;
+            border-radius: 50%;
             color: $secondary;
             background-color: $accent;
+
+            span {
+                font-size: 2rem;
+                font-weight: 600;
+            }
         }
     
         .spinner {

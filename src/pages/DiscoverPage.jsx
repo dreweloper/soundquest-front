@@ -72,7 +72,7 @@ export const DiscoverPage = () => {
                 </span>
 
                 <h1> SoundQuest </h1>
-                
+
             </header>
 
             <main className='mainDiscover'>
@@ -82,7 +82,13 @@ export const DiscoverPage = () => {
                     {
                         !isLoading ? (
 
-                            <button onClick={handleToken}>Discover new music</button>
+                            <button onClick={handleToken}>
+
+                                <span className="material-symbols-rounded">
+                                    shuffle
+                                </span>
+
+                            </button>
 
                         ) : (
 
