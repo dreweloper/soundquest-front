@@ -40,7 +40,7 @@ export const useTrackStore = () => {
 
             if (response.ok) {
 
-                const { tracks } = response.data;
+                const { tracks } = response.data; // Destructuring of the property 'tracks' of 'response.data' object.
 
                 /**
                  * @type {String} A random track ID.
@@ -89,7 +89,7 @@ export const useTrackStore = () => {
 
             if(response.ok){
 
-                const { data } = response;
+                const { data } = response;  // Destructuring of the property 'tracks' of 'response' object.
 
                 /**
                  * @typedef {Object} track
