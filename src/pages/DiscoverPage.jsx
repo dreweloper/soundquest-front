@@ -7,7 +7,7 @@ export const DiscoverPage = () => {
 
     // LOADING
     const { isLoading } = useSelector(state => state.loading);
-    
+
 
     // TOKEN
     const token = useSelector(state => state.token);
@@ -67,8 +67,12 @@ export const DiscoverPage = () => {
 
             <header className='headerDiscover'>
 
-                <h1> SoundQuest </h1>
+                <span className="material-symbols-rounded">
+                    equalizer
+                </span>
 
+                <h1> SoundQuest </h1>
+                
             </header>
 
             <main className='mainDiscover'>
