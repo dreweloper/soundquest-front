@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setPlaylistID, setTokenB, setTrack, setTrackID, startLoading } from '../store/slices';
-import { fetchAPI } from "../api";
-import { getCookie, setCookie } from "../helpers/cookies";
-import { getPlaylistURL, randomPlaylist, randomTrack } from "../helpers/randomElement";
+import { setPlaylistID, setTokenB, setTrack, setTrackID, startLoading } from '../../store/slices';
+import { fetchAPI } from "../../api";
+import { getCookie, setCookie } from "../../helpers/cookies";
+import { getPlaylistURL, randomPlaylist, randomTrack } from "../../helpers/randomElement";
 
 const urlBase = 'https://api.spotify.com';
 
