@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { clearPlaylist, clearToken, clearTrack } from '../store/slices';
+import { clearPlaylist, clearToken, clearTrack, finishLoading } from '../store/slices';
 
 export const HomePage = () => {
 
@@ -14,6 +14,8 @@ export const HomePage = () => {
         dispatch(clearPlaylist());
 
         dispatch(clearTrack());
+
+        dispatch(finishLoading());
 
     };
 
