@@ -1,6 +1,21 @@
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { clearPlaylist, clearToken, clearTrack } from '../store/slices';
 
 export const HomePage = () => {
+
+    const dispatch = useDispatch();
+
+
+    const handleButton = () => {
+
+        dispatch(clearToken());
+
+        dispatch(clearPlaylist());
+
+        dispatch(clearTrack());
+
+    };
 
 
     return (
@@ -21,9 +36,13 @@ export const HomePage = () => {
 
                 <Link to='/discover'>
 
-                    <span className="material-symbols-rounded">
-                        arrow_forward
-                    </span>
+                    <button onClick={handleButton}>
+
+                        <span className="material-symbols-rounded">
+                            arrow_forward
+                        </span>
+
+                    </button>
 
                 </Link>
 

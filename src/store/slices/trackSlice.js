@@ -15,7 +15,7 @@ export const trackSlice = createSlice({
 
     reducers: {
         setTrackID: (state, { payload }) => {
-            state.track_id = payload.track_id
+            state.track_id = payload.track_id;
         },
         setTrack: (state, { payload }) => {
             state.album = payload.album;
@@ -23,10 +23,18 @@ export const trackSlice = createSlice({
             state.artist = payload.artist;
             state.name = payload.name;
             state.track_url = payload.track_url;
+        },
+        clearTrack: (state) => {
+            state.track_id = undefined;
+            state.album = undefined;
+            state.artwork = undefined;
+            state.artist = undefined;
+            state.name = undefined;
+            state.track_url = undefined;
         }
     }
 
 });
 
 
-export const { setTrackID, setTrack } = trackSlice.actions;
+export const { setTrackID, setTrack, clearTrack } = trackSlice.actions;

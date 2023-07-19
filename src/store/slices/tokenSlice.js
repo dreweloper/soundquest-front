@@ -15,10 +15,14 @@ export const tokenSlice = createSlice({
             state.access_token = undefined; // To force a state change so the first useEffect in 'HomePage' component will run correctly.
             state.token_type = payload.token_type;
             state.access_token = payload.access_token;
+        },
+        clearToken: (state) => {
+            state.token_type = undefined;
+            state.access_token = undefined;
         }
     }
 
 });
 
 
-export const { setToken } = tokenSlice.actions;
+export const { setToken, clearToken } = tokenSlice.actions;

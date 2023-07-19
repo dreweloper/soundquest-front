@@ -173,7 +173,13 @@ button {
   color: #191414;
   background-color: #1db954;
 }
-.mainHome a span {
+.mainHome a button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.mainHome a button span {
   font-size: 2rem;
   font-weight: 700;
 }
