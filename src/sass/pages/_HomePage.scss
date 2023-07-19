@@ -28,9 +28,13 @@
         color: $primary;
         background-color: $accent;
 
-        span {
-            font-size: 2rem;
-            font-weight: 700;
+        button {
+            @include displayFlex(row, center, center);
+
+            span {
+                font-size: 2rem;
+                font-weight: 700;
+            }
         }
     }
 }
