@@ -216,7 +216,7 @@ button {
   align-items: center;
   justify-content: start;
   width: 100%;
-  min-height: calc(100vh - 60px);
+  min-height: calc(100vh - 160px);
   color: #ffffff;
   background-color: #191414;
 }
@@ -252,17 +252,38 @@ button {
   animation: spin 1s ease infinite;
 }
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+.footerDiscover {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px;
+  height: 100px;
+  margin: 0 auto;
 }
+.footerDiscover .spotifyLogo {
+  width: 70px;
+}
+.footerDiscover .spotifyLogo .logoXL {
+  display: none;
+}
+
 /* ***************************************/
 /* MEDIA QUERIES *************************/
 /* ***************************************/
+/* 768px *************************/
+@media screen and (min-width: 768px) {
+  .footerDiscover .spotifyLogo {
+    width: 200px;
+  }
+  .footerDiscover .spotifyLogo .logoS {
+    display: none;
+  }
+  .footerDiscover .spotifyLogo .logoXL {
+    display: initial;
+  }
+} /* 768px end */
 /* 992px *************************/
 @media screen and (min-width: 992px) {
   .headerDiscover {
@@ -278,7 +299,7 @@ button {
     color: #1db954;
   }
   .mainDiscover {
-    min-height: calc(100vh - 80px);
+    min-height: calc(100vh - 180px);
   }
   .mainDiscover .discoverMusic {
     height: 110px;
@@ -295,6 +316,17 @@ button {
     height: 40px;
   }
 } /* 992px end */
+/* ***************************************/
+/* KEYFRAMES *****************************/
+/* ***************************************/
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 /* COMPONENTS */
 .trackContainer {
   display: flex;
