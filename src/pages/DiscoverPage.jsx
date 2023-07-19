@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import { useFetch, usePlaylistStore, useTokenStore, useTrackStore } from "../hooks";
 import { useEffect } from 'react';
 import { Card } from '../components';
+import { Link } from 'react-router-dom';
 
 export const DiscoverPage = () => {
 
@@ -67,11 +68,15 @@ export const DiscoverPage = () => {
 
             <header className='headerDiscover'>
 
-                <span className="material-symbols-rounded">
-                    equalizer
-                </span>
+                <Link to='/'>
 
-                <h1> SoundQuest </h1>
+                    <span className="material-symbols-rounded">
+                        equalizer
+                    </span>
+
+                    SoundQuest
+
+                </Link>
 
             </header>
 
@@ -102,6 +107,18 @@ export const DiscoverPage = () => {
                 {track_url && <Card />}
 
             </main>
+
+            <footer className='footerDiscover'>
+
+                <div className='spotifyLogo'>
+
+                    <img className='logoS' src="/assets/spotify/icons/Spotify_Icon_RGB_Green.png" alt="Spotify logo" title='Spotify logo' />
+
+                    <img className='logoXL' src="/assets/spotify/logos/Spotify_Logo_RGB_Green.png" alt="Spotify logo" title='Spotify logo' />
+
+                </div>
+
+            </footer>
 
         </>
 
