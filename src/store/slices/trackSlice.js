@@ -37,4 +37,8 @@ export const trackSlice = createSlice({
 });
 
 
-export const { setTrackID, setTrack, clearTrack } = trackSlice.actions;
+export const {
+    setTrackID,
+    setTrack,
+    clearTrack
+} = trackSlice.actions;

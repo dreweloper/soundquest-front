@@ -3,14 +3,16 @@ import { fetchMongoDB } from "../api";
 
 export const useFetch = () => {
 
-    // const { playlist, track } = useSelector(state => state.spotify);
+    const playlist = useSelector(state => state.playlist);
+
+    const track = useSelector(state => state.track);
 
 
     const addTrack = async () => {
 
         const url = 'https://soundquest-xf5r.onrender.com/api/v1/tracks';
 
-        // const body = { playlist, track };
+        const body = { playlist, track };
 
 
         try {
@@ -22,6 +24,8 @@ export const useFetch = () => {
                 console.log(response);
 
                 // Aquí se podría hacer la llamada al GET para actualizar el length de la collection en la base de datos, por ejemplo.
+
+                // Se podría hacer un "return" de un estado "OK", por ej., para disabled del botón o cambiar el icon.
 
             } else {
 
