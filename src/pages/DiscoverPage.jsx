@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { useFetch, usePlaylistStore, useTokenStore, useTrackStore } from "../hooks";
+import { usePlaylistStore, useTokenStore, useTrackStore } from "../hooks";
 import { useEffect } from 'react';
 import { Card } from '../components';
 import { Link } from 'react-router-dom';
@@ -30,9 +30,6 @@ export const DiscoverPage = () => {
     const { getPlaylist, getTrack } = useTrackStore();
 
 
-    // MONGODB
-    const { addTrack } = useFetch();
-
 
     useEffect(() => {
 
@@ -53,13 +50,7 @@ export const DiscoverPage = () => {
         track_id && getTrack(track_id);
 
     }, [track_id]);
-
-
-    // useEffect(() => {
-
-    //     track.album && addTrack();
-
-    // }, [track.album]);
+    
 
 
     return (

@@ -20,6 +20,10 @@ export const HomePage = () => {
     };
 
 
+    //! Aquí falta el useEffect con la función que "despierta" el Back-End para poder guardar/actualizar los "likes" y "dislikes".
+    
+
+
     return (
 
         <>
