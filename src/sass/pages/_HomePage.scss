@@ -9,12 +9,14 @@
 
         .equalizerIcon {
             font-size: 7rem;
+            color: $accent;
         }
     
         h1 {
             font-family: $font-prompt;
             font-size: 2rem;
             text-transform: uppercase;
+            color: $secondary;
         }
     }
 
@@ -23,6 +25,7 @@
         width: 40px;
         height: 40px;
         border-radius: 50%;
+        color: $primary;
         background-color: $accent;
 
         span {

@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import { useFetch, usePlaylistStore, useTokenStore, useTrackStore } from "../hooks";
 import { useEffect } from 'react';
 import { Card } from '../components';
+import { Link } from 'react-router-dom';
 
 export const DiscoverPage = () => {
 
@@ -67,11 +68,15 @@ export const DiscoverPage = () => {
 
             <header className='headerDiscover'>
 
-                <span className="material-symbols-rounded">
-                    equalizer
-                </span>
+                <Link to='/'>
 
-                <h1> SoundQuest </h1>
+                    <span className="material-symbols-rounded">
+                        equalizer
+                    </span>
+
+                    SoundQuest
+
+                </Link>
 
             </header>
 

@@ -1,54 +1,59 @@
 .headerDiscover {
     @include displayFlex(row, center, start);
     width: 100%;
+    max-width: 1200px;
     height: 60px;
+    margin: 0 auto;
     color: $white;
-    background-color: $secondary;
-    gap: 10px;
+    background-color: $primary;
 
-    span {
-        font-size: 2rem;
-        margin-left: 10px;
-        color: $primary;
-    }
-
-    h1 {
+    a {
+        @include displayFlex(row, flex-end, space-between);
+        width: fit-content;
+        height: fit-content;
+        gap: 10px;
         font-family: $font-prompt;
-        font-size: 2rem;
+        font-size: 1.8rem;
         text-transform: uppercase;
+
+        span {
+            font-size: 2rem;
+            margin-left: 10px;
+            color: $accent;
+        }
     }
 }
 
 .mainDiscover {
     @include displayFlex(column, center, start);
     width: 100%;
-    // min-height: calc(100vh - 80px);
+    min-height: calc(100vh - 60px);
     color: $white;
-    // gap: 10px;
+    background-color: $primary;
 
     .discoverMusic {
         @include displayFlex(row, center, center);
         width: 100%;
-        height: 90px;
+        height: 80px;
 
         button {
             @include displayFlex(row, center, center);
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            color: $secondary;
+            color: $primary;
             background-color: $accent;
 
             span {
-                font-size: 2rem;
+                font-size: 1.8rem;
                 font-weight: 600;
             }
         }
     
         .spinner {
             // @include spinKeyframes(spin);
-            width: 40px;
-            height: 40px;
+            width: 30px;
+            height: 30px;
             border: 4px solid rgba(255, 255, 255, .1);
             border-radius: 50%;
             border-left-color: $accent;
@@ -80,23 +85,38 @@
 
     .headerDiscover {
         height: 80px;
-        gap: 15px;
     
-        span {
-            font-size: 2.5rem;
-            margin-left: 20px;
-        }
+        a {
+            font-size: 2.1rem;
+            gap: 15px;
     
-        h1 {
-            font-size: 2.5rem;
+            span {
+                font-size: 2.5rem;
+                margin-left: 30px;
+                color: $accent;
+            }
         }
     }
     
     .mainDiscover {
-        gap: 20px;
-    
+        min-height: calc(100vh - 80px);
+
         .discoverMusic {
-            height: 100px;
+            height: 110px;
+
+            button {
+                width: 50px;
+                height: 50px;
+    
+                span {
+                    font-size: 2rem;
+                }
+            }
+        
+            .spinner {
+                width: 40px;
+                height: 40px;
+            }
         }
     }
 } /* 992px end */

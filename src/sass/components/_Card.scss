@@ -1,21 +1,18 @@
-
 .trackContainer {
     @include displayFlex(column, center, start);
-    width: 90%;
+    width: 80%;
     max-width: 340px;
     height: 100%;
     text-align: center;
     margin-bottom: 20px;
-    // border: 1px solid $secondary;
     border-radius: 20px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-    // background: linear-gradient($primary, $primary-10);
+    background-color: $primary-dark;
+    // background: linear-gradient($primary, $primary-dark);
 
     .artwork {
         display: flex;
-        width: 220px;
-        margin: 10px 0;
-        // padding: 10px;
+        width: 180px;
+        margin: 20px 0;
     }
 
     .trackInfo {
@@ -23,49 +20,31 @@
         width: 90%;
         
         .song {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 500;
-            margin: 8px 0;
-            // padding-top: 20px;
+            margin-bottom: 8px;
         }
     
         .artist {
-            font-size: 1.1rem;
-            font-weight: 300;
-            margin-bottom: 20px;
-            // padding-top: 10px;
+            font-size: 1rem;
+            font-weight: 400;
         }
 
-        .spotifySection {
+        .spotifyButtons {
             @include displayFlex(row, center, space-evenly);
             width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-
-            .spotifyLogo {
+            margin: 30px 0;
+            gap: 20px;
+            
+            a {
                 @include displayFlex(row, center, center);
-                width: 80px;
-            }
-
-            .spotifyLinks {
-                @include displayFlex(column, center, center);
-                width: fit-content;
-                gap: 10px;
-
-                & a {
-                    @include displayFlex(row, center, center);
-                    width: 130px;
-                    height: 40px;
-                    font-weight: 400;
-                    border-radius: 20px;
-                    color: $secondary;
-                    background-color: $accent;
-
-                    & span {
-                        font-weight: 600;
-                        margin-right: 5px;
-                    }
-                }
+                width: 120px;
+                height: 30px;
+                font-weight: 500;
+                border-radius: 15px;
+                color: $primary;
+                background-color: $accent;
+                gap: 3px;
             }
         }
     }
@@ -82,61 +61,49 @@
 @media screen and (min-width:992px) {
 
     .trackContainer {
-        @include displayFlex(row, center, center);
-        width: 100%;
-        max-width: 800px;
-        min-height: 350px;
-        text-align: start;
-        border-radius: 20px;
-        // background: linear-gradient($primary, $primary-10);
+        @include displayFlex(row, center, space-around);
+        width: 90%;
+        max-width: 992px;
+        height: 100%;
+        min-height: 300px;
+        margin-bottom: 40px;
     
         .artwork {
-            width: 400px;
-            padding: 0;
-            margin-left: 40px;
-            background-color: red
+            width: 250px;
+            margin: 0;
         }
-
+    
         .trackInfo {
             @include displayFlex(column, center, center);
             width: 100%;
-            margin-left: 40px;
-
+            max-width: 500px;
+            
             .song {
-                font-size: 1.7rem;
-                padding-top: 0;
-                margin: 10px 0 10px;
+                font-size: 1.5rem;
+                margin-bottom: 15px;
             }
         
             .artist {
-                font-size: 1.3rem;
-                padding-top: 0;
-                margin-bottom: 40px;
+                font-size: 1.1rem;
             }
-        
-            .spotifySection {
+    
+            .spotifyButtons {
                 @include displayFlex(row, center, center);
-                margin: 0;
-    
-                .spotifyLogo {
-                    height: 100%;
-                    margin-right: 20px;
+                width: 100%;
+                margin: 40px 0 10px;
+                gap: 40px;
+                
+                a {
+                    @include displayFlex(row, center, center);
+                    width: 150px;
+                    height: 40px;
+                    padding: 0;
+                    font-size: 1.2rem;
+                    font-weight: 500;
+                    border-radius: 20px;
+                    gap: 5px;
                 }
-    
-                .spotifyLinks {
-                    @include displayFlex(column, center, center);
-                    width: 160px;
-                    height: 100%;
-                    margin-left: 20px;
-    
-                    & a {
-                        @include displayFlex(row, center, center);
-                        width: 100%;
-                        height: 36px;
-                        border-radius: 16px;
-                    }
-                }
-            }    
+            }
         }
     }
 } /* 992px end */
