@@ -17,7 +17,7 @@ export const Card = () => {
 
 
     // MONGODB
-    const { addTrack, deleteTrack } = useFetchMongoDB(); //! pendiente añadir en handleLike (falta deleteTrack)
+    const { addTrack, deleteTrack } = useFetchMongoDB();
 
 
     const handleLike = () => {

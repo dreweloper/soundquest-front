@@ -4,18 +4,57 @@ import { useState } from "react";
 
 export const useFetchMongoDB = () => {
 
-    const [objectID, setObjectID] = useState(undefined); // MongoDB document ID.
+    const [objectID, setObjectID] = useState(undefined); // MongoDB document's ID.
 
 
     const playlist = useSelector(state => state.playlist);
 
     const track = useSelector(state => state.track);
 
+    /**
+     * The function fetches all documents in the 'tracks' collection from the MongoDB 'soundquest' database.
+     * @function getTrack
+     * @async
+     */
+    const getTracks = async () => {
 
-    const addTrack = async () => {
-
+        /**
+         * @type {String} Get tracks MongoDB API endpoint.
+         */
         const url = 'https://soundquest-xf5r.onrender.com/api/v1/tracks';
 
+
+        try {
+            
+            await fetchMongoDB(url, 'GET');
+
+            console.log('Wake up, Render!');
+
+        } catch (error) {
+            
+            console.log(error);
+
+        };
+
+    }; //!GETTRACK
+
+    /**
+     * The function adds a new document to the "tracks" collection of the MongoDB "soundquest" database.
+     * @function addTrack
+     * @async
+     */
+    const addTrack = async () => {
+
+        /**
+         * @type {String} Add track MongoDB API endpoint.
+         */
+        const url = 'https://soundquest-xf5r.onrender.com/api/v1/tracks';
+
+        /**
+         * @typedef {Object} body
+         * @property {Object} playlist
+         * @property {Object} track
+         */
         const body = { playlist, track };
 
 
@@ -28,10 +67,6 @@ export const useFetchMongoDB = () => {
                 const { _id } = response.data;
 
                 setObjectID(_id);
-
-                // Aquí se podría hacer la llamada al GET para actualizar el length de la collection en la base de datos, por ejemplo.
-
-                // Se podría hacer un "return" de un estado "OK", por ej., para disabled del botón o cambiar el icon.
 
             } else {
 
@@ -47,9 +82,17 @@ export const useFetchMongoDB = () => {
         
     }; //!ADDTRACK
 
-
+    /**
+     * The function deletes by ID a document from the "tracks" collection of the MongoDB "soundquest" database.
+     * @function deleteTrack
+     * @async
+     * @returns {Object}
+     */
     const deleteTrack = async () => {
 
+        /**
+         * @type {String} Delete track MongoDB API endpoint.
+         */
         const url = `https://soundquest-xf5r.onrender.com/api/v1/tracks/${objectID}`;
 
 
@@ -59,7 +102,7 @@ export const useFetchMongoDB = () => {
 
             if(request.ok){
 
-                console.log(request);
+                return request;
 
             } else {
 
@@ -77,6 +120,7 @@ export const useFetchMongoDB = () => {
 
 
     return {
+        getTracks,
         addTrack,
         deleteTrack
     };
