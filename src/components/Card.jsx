@@ -17,12 +17,12 @@ export const Card = () => {
 
 
     // MONGODB
-    const { addTrack } = useFetchMongoDB(); //! pendiente añadir en handleLike (falta deleteTrack)
+    const { addTrack, deleteTrack } = useFetchMongoDB(); //! pendiente añadir en handleLike (falta deleteTrack)
 
 
     const handleLike = () => {
 
-        !like ? dispatch(setLike()) && addTrack() : dispatch(setDislike());
+        !like ? dispatch(setLike()) && addTrack() : dispatch(setDislike()) && deleteTrack();
 
     };
 

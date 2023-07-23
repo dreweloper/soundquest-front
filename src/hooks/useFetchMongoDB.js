@@ -1,7 +1,10 @@
 import { useSelector } from "react-redux";
 import { fetchMongoDB } from "../api";
+import { useState } from "react";
 
 export const useFetchMongoDB = () => {
+
+    const [objectID, setObjectID] = useState(undefined); // MongoDB document ID.
 
 
     const playlist = useSelector(state => state.playlist);
@@ -22,7 +25,9 @@ export const useFetchMongoDB = () => {
 
             if(response.ok){
 
-                console.log(response);
+                const { _id } = response.data;
+
+                setObjectID(_id);
 
                 // Aquí se podría hacer la llamada al GET para actualizar el length de la collection en la base de datos, por ejemplo.
 
@@ -40,9 +45,40 @@ export const useFetchMongoDB = () => {
 
         };
         
+    }; //!ADDTRACK
+
+
+    const deleteTrack = async () => {
+
+        const url = `https://soundquest-xf5r.onrender.com/api/v1/tracks/${objectID}`;
+
+
+        try {
+            
+            const request = await fetchMongoDB(url, 'DELETE');
+
+            if(request.ok){
+
+                console.log(request);
+
+            } else {
+
+                throw request;
+
+            };
+            
+        } catch (error) {
+            
+            console.log(error);
+
+        };
+
+    }; //!DELETETRACK
+
+
+    return {
+        addTrack,
+        deleteTrack
     };
-
-
-    return { addTrack };
 
 };

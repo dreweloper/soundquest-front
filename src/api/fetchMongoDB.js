@@ -19,6 +19,8 @@ export const fetchMongoDB = async (url, method, body = {}) => {
         };
     };
 
+    if(method == 'DELETE') options = { method };
+
 
     try {
         
