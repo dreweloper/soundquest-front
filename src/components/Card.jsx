@@ -31,11 +31,19 @@ export const Card = () => {
 
                     <p className='artist'> {artist} </p>
 
+                    <button onClick={() => addTrack()}>
+
+                        <span className="material-symbols-rounded">
+                            favorite
+                        </span>
+
+                    </button>
+
                     <div className='spotifyButtons'>
 
                         <Link to={track_url}>
 
-                            <span className="material-symbols-rounded">
+                            <span className="material-symbols-rounded fill">
                                 play_arrow
                             </span>
 
@@ -47,26 +55,6 @@ export const Card = () => {
                     </div>
 
                 </div>
-
-                <section>
-
-                    <button onClick={() => addTrack()}>
-
-                        <span className="material-symbols-rounded">
-                            favorite
-                        </span>
-
-                    </button>
-
-                    {/* <button>
-
-                        <span className="material-symbols-rounded">
-                            thumb_down
-                        </span>
-
-                    </button> */}
-
-                </section>
 
             </article>
 
