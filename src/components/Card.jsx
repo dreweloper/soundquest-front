@@ -2,12 +2,11 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useFetch } from '../hooks';
 
-export const Card = () => {
+export const Card = ({ like, setLike }) => {
 
     const { playlist_url } = useSelector(state => state.playlist);
 
     const { album, artwork, artist, name, track_url } = useSelector(state => state.track);
-
 
     // MONGODB
     const { addTrack } = useFetch();
@@ -31,7 +30,7 @@ export const Card = () => {
 
                     <p className='artist'> {artist} </p>
 
-                    <button onClick={() => addTrack()}>
+                    <button onClick={() => setLike(!like)}>
 
                         <span className="material-symbols-rounded">
                             favorite
@@ -39,11 +38,11 @@ export const Card = () => {
 
                     </button>
 
-                    <div className='spotifyButtons'>
+                    <nav className='spotifyButtons'>
 
                         <Link to={track_url}>
 
-                            <span className="material-symbols-rounded fill">
+                            <span className="material-symbols-rounded">
                                 play_arrow
                             </span>
 
@@ -52,7 +51,7 @@ export const Card = () => {
 
                         <Link to={playlist_url}>Open Playlist</Link>
 
-                    </div>
+                    </nav>
 
                 </div>
 

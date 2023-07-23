@@ -1,10 +1,13 @@
 import { useSelector } from 'react-redux';
 import { usePlaylistStore, useTokenStore, useTrackStore } from "../hooks";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Card } from '../components';
 import { Link } from 'react-router-dom';
 
 export const DiscoverPage = () => {
+
+    const [like, setLike] = useState(false); // Toggle to save or delete song of MongoDB.
+
 
     // LOADING
     const { isLoading } = useSelector(state => state.loading);
@@ -95,7 +98,7 @@ export const DiscoverPage = () => {
 
                 </section>
 
-                {track_url && <Card />}
+                {track_url && <Card like={like} setLike={setLike} />}
 
             </main>
 
