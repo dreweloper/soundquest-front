@@ -3,13 +3,15 @@ import { createSlice } from '@reduxjs/toolkit';
 export const likeSlice = createSlice({
 
     name: 'like',
-    initialState: false,
+    initialState: {
+        like: false
+    },
     reducers: {
         setLike: (state) => {
-            state = true;
+            state.like = true;
         },
         setDislike: (state) => {
-            state = false;
+            state.like = false;
         }
     }
 

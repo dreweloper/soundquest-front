@@ -10,7 +10,7 @@ import { fetchAPI } from "../api";
  */
 export const useTokenStore = () => {
 
-    const like = useSelector(state => state.like);
+    const { like } = useSelector(state => state.like); // Destructuring the property 'like' of the state.
 
     const dispatch = useDispatch();
 
@@ -21,7 +21,7 @@ export const useTokenStore = () => {
      */
     const getToken = async () => {
 
-        like && dispatch(setDislike());
+        like && dispatch(setDislike()); // If the state prop 'like' is 'true', the dispatch will restart the state to its initial value ('false') and the like icon won't have any fill.
 
         dispatch(startLoading());
 

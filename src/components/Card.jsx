@@ -1,20 +1,28 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useFetch } from '../hooks';
+import { setDislike, setLike } from '../store/slices';
 
 export const Card = () => {
+
+    const { like } = useSelector(state => state.like);
+
+    const dispatch = useDispatch();
+
 
     const { playlist_url } = useSelector(state => state.playlist);
 
     const { album, artwork, artist, name, track_url } = useSelector(state => state.track);
 
+
+
     // MONGODB
-    const { addTrack } = useFetch();
+    const { addTrack } = useFetch(); //! pendiente añadir en handleLike (falta deleteTrack)
 
 
     const handleLike = () => {
 
-        console.log('Hola')
+        !like ? dispatch(setLike()) : dispatch(setDislike());
 
     };
 
