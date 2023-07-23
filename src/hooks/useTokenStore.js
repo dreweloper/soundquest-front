@@ -1,5 +1,5 @@
-import { useDispatch } from "react-redux";
-import { setToken, startLoading } from "../store/slices";
+import { useDispatch, useSelector } from "react-redux";
+import { setDislike, setToken, startLoading } from "../store/slices";
 import { getCookie, setCookie } from "../helpers/cookies";
 import { fetchAPI } from "../api";
 
@@ -10,6 +10,8 @@ import { fetchAPI } from "../api";
  */
 export const useTokenStore = () => {
 
+    const like = useSelector(state => state.like);
+
     const dispatch = useDispatch();
 
     /**
@@ -18,6 +20,8 @@ export const useTokenStore = () => {
      * @async
      */
     const getToken = async () => {
+
+        like && dispatch(setDislike());
 
         dispatch(startLoading());
 

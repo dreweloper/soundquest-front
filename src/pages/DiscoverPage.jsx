@@ -1,13 +1,10 @@
 import { useSelector } from 'react-redux';
 import { usePlaylistStore, useTokenStore, useTrackStore } from "../hooks";
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Card } from '../components';
 import { Link } from 'react-router-dom';
 
 export const DiscoverPage = () => {
-
-    const [like, setLike] = useState(false); // Toggle to save or delete song of MongoDB.
-
 
     // LOADING
     const { isLoading } = useSelector(state => state.loading);
@@ -17,8 +14,6 @@ export const DiscoverPage = () => {
     const token = useSelector(state => state.token);
 
     const { getToken } = useTokenStore();
-
-    const handleToken = () => getToken();
 
 
     // PLAYLIST
@@ -81,7 +76,7 @@ export const DiscoverPage = () => {
                     {
                         !isLoading ? (
 
-                            <button onClick={handleToken}>
+                            <button onClick={() => getToken()}>
 
                                 <span className="material-symbols-rounded">
                                     shuffle
@@ -98,7 +93,7 @@ export const DiscoverPage = () => {
 
                 </section>
 
-                {track_url && <Card like={like} setLike={setLike} />}
+                {track_url && <Card />}
 
             </main>
 

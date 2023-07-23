@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useFetch } from '../hooks';
 
-export const Card = ({ like, setLike }) => {
+export const Card = () => {
 
     const { playlist_url } = useSelector(state => state.playlist);
 
@@ -10,6 +10,13 @@ export const Card = ({ like, setLike }) => {
 
     // MONGODB
     const { addTrack } = useFetch();
+
+
+    const handleLike = () => {
+
+        console.log('Hola')
+
+    };
 
 
     return (
@@ -30,9 +37,9 @@ export const Card = ({ like, setLike }) => {
 
                     <p className='artist'> {artist} </p>
 
-                    <button onClick={() => setLike(!like)}>
+                    <button onClick={handleLike}>
 
-                        <span className="material-symbols-rounded">
+                        <span id='like' className="material-symbols-rounded">
                             favorite
                         </span>
 
