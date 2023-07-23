@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { useFetch } from '../hooks';
+import { useFetchMongoDB } from '../hooks';
 import { setDislike, setLike } from '../store/slices';
 
 export const Card = () => {
@@ -17,12 +17,12 @@ export const Card = () => {
 
 
     // MONGODB
-    const { addTrack } = useFetch(); //! pendiente añadir en handleLike (falta deleteTrack)
+    const { addTrack } = useFetchMongoDB(); //! pendiente añadir en handleLike (falta deleteTrack)
 
 
     const handleLike = () => {
 
-        !like ? dispatch(setLike()) : dispatch(setDislike());
+        !like ? dispatch(setLike()) && addTrack() : dispatch(setDislike());
 
     };
 

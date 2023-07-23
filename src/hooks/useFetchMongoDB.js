@@ -1,7 +1,8 @@
 import { useSelector } from "react-redux";
 import { fetchMongoDB } from "../api";
 
-export const useFetch = () => {
+export const useFetchMongoDB = () => {
+
 
     const playlist = useSelector(state => state.playlist);
 
