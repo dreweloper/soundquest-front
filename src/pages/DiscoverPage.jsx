@@ -3,6 +3,7 @@ import { usePlaylistStore, useTokenStore, useTrackStore } from "../hooks";
 import { useEffect } from 'react';
 import { Card } from '../components';
 import { Link } from 'react-router-dom';
+import { setIconFill } from '../helpers';
 
 export const DiscoverPage = () => {
 
@@ -14,6 +15,14 @@ export const DiscoverPage = () => {
     const token = useSelector(state => state.token);
 
     const { getToken } = useTokenStore();
+
+    const handleToken = () => {
+
+        token.access_token && setIconFill(0); // Avoid pre-rendering Card error.
+
+        getToken();
+
+    };
 
 
     // PLAYLIST
@@ -76,7 +85,7 @@ export const DiscoverPage = () => {
                     {
                         !isLoading ? (
 
-                            <button onClick={() => getToken()}>
+                            <button onClick={handleToken}>
 
                                 <span className="material-symbols-rounded">
                                     shuffle
