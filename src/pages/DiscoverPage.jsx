@@ -15,8 +15,6 @@ export const DiscoverPage = () => {
 
     const { getToken } = useTokenStore();
 
-    const handleToken = () => getToken();
-
 
     // PLAYLIST
     const { playlist_id } = useSelector(state => state.playlist); // Destructuring of the property 'playlist_id' of 'playlist' state object.
@@ -78,7 +76,7 @@ export const DiscoverPage = () => {
                     {
                         !isLoading ? (
 
-                            <button onClick={handleToken}>
+                            <button onClick={() => getToken()}>
 
                                 <span className="material-symbols-rounded">
                                     shuffle

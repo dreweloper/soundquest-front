@@ -1,10 +1,14 @@
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { clearPlaylist, clearToken, clearTrack, finishLoading } from '../store/slices';
+import { useEffect } from 'react';
+import { useFetchMongoDB } from '../hooks';
 
 export const HomePage = () => {
 
     const dispatch = useDispatch();
+
+    const { getTracks } = useFetchMongoDB();
 
 
     const handleButton = () => {
@@ -20,7 +24,11 @@ export const HomePage = () => {
     };
 
 
-    //! Aquí falta el useEffect con la función que "despierta" el Back-End para poder guardar/actualizar los "likes" y "dislikes".
+    useEffect(() => {
+
+        getTracks();
+
+    }, []);
     
 
 

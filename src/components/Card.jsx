@@ -1,16 +1,47 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { useFetch } from '../hooks';
+import { useFetchMongoDB } from '../hooks';
+import { setDislike, setLike } from '../store/slices';
+import { setIconFill } from '../helpers';
 
 export const Card = () => {
+
+    const { like } = useSelector(state => state.like);
+
+    const dispatch = useDispatch();
+
 
     const { playlist_url } = useSelector(state => state.playlist);
 
     const { album, artwork, artist, name, track_url } = useSelector(state => state.track);
 
 
+
     // MONGODB
-    const { addTrack } = useFetch();
+    const { addTrack, deleteTrack } = useFetchMongoDB();
+
+
+    const handleLike = () => {
+
+        if(!like){
+
+            dispatch(setLike()); // It changes the 'like' state's value to 'true'.
+
+            addTrack(); // It adds the track to MongoDB.
+
+            setIconFill(1); // It changes the icon fill's value to '1'.
+
+        } else {
+
+            dispatch(setDislike()); // It changes the 'like' state's value to 'false'.
+
+            deleteTrack(); // It deletes the track of MongoDB.
+
+            setIconFill(0); // It changes the icon fill's value to '0'.
+
+        };
+
+    };
 
 
     return (
@@ -31,7 +62,15 @@ export const Card = () => {
 
                     <p className='artist'> {artist} </p>
 
-                    <div className='spotifyButtons'>
+                    <button onClick={handleLike}>
+
+                        <span id='like' className="material-symbols-rounded">
+                            favorite
+                        </span>
+
+                    </button>
+
+                    <nav className='spotifyButtons'>
 
                         <Link to={track_url}>
 
@@ -44,29 +83,9 @@ export const Card = () => {
 
                         <Link to={playlist_url}>Open Playlist</Link>
 
-                    </div>
+                    </nav>
 
                 </div>
-
-                <section>
-
-                    <button onClick={() => addTrack()}>
-
-                        <span className="material-symbols-rounded">
-                            favorite
-                        </span>
-
-                    </button>
-
-                    {/* <button>
-
-                        <span className="material-symbols-rounded">
-                            thumb_down
-                        </span>
-
-                    </button> */}
-
-                </section>
 
             </article>
 
