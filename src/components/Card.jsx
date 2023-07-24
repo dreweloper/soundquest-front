@@ -13,7 +13,7 @@ export const Card = () => {
 
     const { playlist_url } = useSelector(state => state.playlist);
 
-    const { album, artwork, artist, name, track_url } = useSelector(state => state.track);
+    const { artwork, artist, name, track_url } = useSelector(state => state.track);
 
 
 
@@ -29,7 +29,7 @@ export const Card = () => {
 
             addTrack(); // It adds the track to MongoDB.
 
-            setIconFill(1); // It changes the icon fill's value to '1'.
+            setIconFill(1); // It changes the icon 'favorite' fill's value to '1'.
 
         } else {
 
@@ -37,7 +37,7 @@ export const Card = () => {
 
             deleteTrack(); // It deletes the track of MongoDB.
 
-            setIconFill(0); // It changes the icon fill's value to '0'.
+            setIconFill(0); // It changes the icon 'favorite' fill's value to '0'.
 
         };
 

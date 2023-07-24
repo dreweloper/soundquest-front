@@ -40,9 +40,16 @@
             @include displayFlex(row, center, center);
             width: 40px;
             height: 40px;
+            border: 2px solid $primary;
             border-radius: 50%;
             color: $primary;
             background-color: $accent;
+
+            &:hover {
+                border: 2px solid $accent;
+                color: $accent;
+                background-color: $primary;
+            }
 
             span {
                 font-size: 1.8rem;

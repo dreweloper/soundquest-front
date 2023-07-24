@@ -6,10 +6,8 @@ Last Updated: 2010-09-17
 Author: Richard Clark - http://richclarkdesign.com 
 Twitter: @rich_clark
 */
-@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 html, body, div, span, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 abbr, address, cite, code,
@@ -136,14 +134,20 @@ button {
 
 /* BASE */
 /* VARIABLES */
-/* LOADING SPINNER –HOMEPAGE– */ /* PAGES */
+/* LOADING SPINNER –HOMEPAGE– */
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #191414;
+}
+
+/* PAGES */
 .mainHome {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   gap: 80px;
 }
 .mainHome header {
@@ -170,8 +174,14 @@ button {
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  border: 2px solid #191414;
   color: #191414;
   background-color: #1db954;
+}
+.mainHome a:hover {
+  border: 2px solid #1db954;
+  color: #1db954;
+  background-color: #191414;
 }
 .mainHome a button {
   display: flex;
@@ -181,7 +191,7 @@ button {
 }
 .mainHome a button span {
   font-size: 2rem;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .headerDiscover {
@@ -241,9 +251,15 @@ button {
   justify-content: center;
   width: 40px;
   height: 40px;
+  border: 2px solid #191414;
   border-radius: 50%;
   color: #191414;
   background-color: #1db954;
+}
+.mainDiscover .discoverMusic button:hover {
+  border: 2px solid #1db954;
+  color: #1db954;
+  background-color: #191414;
 }
 .mainDiscover .discoverMusic button span {
   font-size: 1.8rem;
@@ -394,6 +410,7 @@ button {
   justify-content: center;
   width: 120px;
   height: 30px;
+  font-size: 0.9rem;
   font-weight: 500;
   border-radius: 15px;
   color: #191414;
@@ -446,25 +463,19 @@ button {
     justify-content: center;
     width: 100%;
     margin: 40px 0 10px;
-    gap: 40px;
+    gap: 30px;
   }
   .trackContainer .trackInfo .spotifyButtons a {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    width: 150px;
+    width: 140px;
     height: 40px;
     padding: 0;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 500;
     border-radius: 20px;
     gap: 5px;
   }
-} /* 992px end */
-body {
-  width: 100%;
-  height: 100%;
-  font-family: "Arimo", sans-serif;
-  background-color: #191414;
-}/*# sourceMappingURL=main.css.map */
+} /* 992px end *//*# sourceMappingURL=main.css.map */
