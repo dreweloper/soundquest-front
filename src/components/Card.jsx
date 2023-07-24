@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useFetchMongoDB } from '../hooks';
 import { setDislike, setLike } from '../store/slices';
+import { setIconFill } from '../helpers';
 
 export const Card = () => {
 
@@ -22,7 +23,23 @@ export const Card = () => {
 
     const handleLike = () => {
 
-        !like ? dispatch(setLike()) && addTrack() : dispatch(setDislike()) && deleteTrack();
+        if(!like){
+
+            dispatch(setLike()); // It changes the 'like' state's value to 'true'.
+
+            addTrack(); // It adds the track to MongoDB.
+
+            setIconFill(1); // It changes the icon fill's value to '1'.
+
+        } else {
+
+            dispatch(setDislike()); // It changes the 'like' state's value to 'false'.
+
+            deleteTrack(); // It deletes the track of MongoDB.
+
+            setIconFill(0); // It changes the icon fill's value to '0'.
+
+        };
 
     };
 

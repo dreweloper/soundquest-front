@@ -1,3 +1,7 @@
+:root {
+    --icon-fill-value: 0;
+}
+
 .trackContainer {
     @include displayFlex(column, center, flex-start);
     width: 80%;
@@ -35,7 +39,7 @@
 
             .material-symbols-rounded {
                 font-variation-settings:
-                'FILL' $icon-fill-value
+                'FILL' var(--icon-fill-value)
               }
         }
 
