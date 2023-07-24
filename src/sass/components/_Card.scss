@@ -40,7 +40,7 @@
             .material-symbols-rounded {
                 font-variation-settings:
                 'FILL' var(--icon-fill-value)
-              }
+            }
         }
 
         .spotifyButtons {
@@ -53,6 +53,7 @@
                 @include displayFlex(row, center, center);
                 width: 120px;
                 height: 30px;
+                font-size: 0.9rem;
                 font-weight: 500;
                 border-radius: 15px;
                 color: $primary;
@@ -110,14 +111,14 @@
                 @include displayFlex(row, center, center);
                 width: 100%;
                 margin: 40px 0 10px;
-                gap: 40px;
+                gap: 30px;
                 
                 a {
                     @include displayFlex(row, center, center);
-                    width: 150px;
+                    width: 140px;
                     height: 40px;
                     padding: 0;
-                    font-size: 1.2rem;
+                    font-size: 1rem;
                     font-weight: 500;
                     border-radius: 20px;
                     gap: 5px;
