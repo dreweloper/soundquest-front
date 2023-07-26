@@ -110,6 +110,39 @@
   
 @media screen and (min-width:992px) {
 
-
+    .mainHome {
+    
+        header {
+            gap: 15px;
+    
+            .equalizerIcon {
+                font-size: 10rem;
+            }
+    
+            .headerHome {
+                gap: 10px;
+    
+                h1 {
+                    font-size: 3rem;
+                }
+    
+                p {
+                    font-size: 1.5rem;
+                }
+            }
+        }
+    
+        a {
+            width: 60px;
+            height: 60px;
+    
+            button {
+    
+                span {
+                    font-size: 3rem;
+                }
+            }
+        }
+    }
 
 } /* 992px end */

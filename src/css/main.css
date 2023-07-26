@@ -236,7 +236,30 @@ body {
   }
 } /* 768px end */
 /* 992px *************************/
-/* 992px end */
+@media screen and (min-width: 992px) {
+  .mainHome header {
+    gap: 15px;
+  }
+  .mainHome header .equalizerIcon {
+    font-size: 10rem;
+  }
+  .mainHome header .headerHome {
+    gap: 10px;
+  }
+  .mainHome header .headerHome h1 {
+    font-size: 3rem;
+  }
+  .mainHome header .headerHome p {
+    font-size: 1.5rem;
+  }
+  .mainHome a {
+    width: 60px;
+    height: 60px;
+  }
+  .mainHome a button span {
+    font-size: 3rem;
+  }
+} /* 992px end */
 .headerDiscover {
   display: flex;
   flex-direction: row;
