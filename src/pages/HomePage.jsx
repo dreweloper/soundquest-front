@@ -29,7 +29,7 @@ export const HomePage = () => {
         getTracks();
 
     }, []);
-    
+
 
 
     return (
@@ -44,7 +44,13 @@ export const HomePage = () => {
                         equalizer
                     </span>
 
-                    <h1> SoundQuest </h1>
+                    <div className='headerHome'>
+
+                        <h1> SoundQuest </h1>
+
+                        <p> Let's discover new music! </p>
+
+                    </div>
 
                 </header>
 

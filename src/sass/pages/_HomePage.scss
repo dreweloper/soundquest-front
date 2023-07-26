@@ -1,8 +1,8 @@
 .mainHome {
     @include displayFlex(column, center, center);
     width: 100%;
-    min-height: 100vh;
-    gap: 80px;
+    min-height: 100svh;
+    gap: 50px;
 
     header {
         @include displayFlex(column, center, center);
@@ -11,12 +11,21 @@
             font-size: 7rem;
             color: $accent;
         }
-    
-        h1 {
-            font-family: $font-prompt;
-            font-size: 2rem;
-            text-transform: uppercase;
-            color: $secondary;
+
+        .headerHome {
+            @include displayFlex(column, center, center);
+            gap: 8px;
+
+            h1 {
+                font-family: $font-prompt;
+                font-size: 2rem;
+                text-transform: uppercase;
+                color: $secondary;
+            }
+
+            p {
+                color: $primary-ligth;
+            }
         }
     }
 

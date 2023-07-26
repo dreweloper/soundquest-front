@@ -27,7 +27,7 @@
 .mainDiscover {
     @include displayFlex(column, center, flex-start);
     width: 100%;
-    min-height: calc(100vh - (60px + 100px));
+    min-height: calc(100svh - (60px + 100px));
     color: $white;
     background-color: $primary;
 
