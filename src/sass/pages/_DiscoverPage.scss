@@ -1,29 +1,3 @@
-.headerDiscover {
-    @include displayFlex(row, center, flex-start);
-    width: 100%;
-    max-width: 1200px;
-    height: 60px;
-    margin: 0 auto;
-    color: $white;
-    background-color: $primary;
-
-    a {
-        @include displayFlex(row, flex-end, space-between);
-        width: fit-content;
-        height: fit-content;
-        gap: 10px;
-        font-family: $font-prompt;
-        font-size: 1.8rem;
-        text-transform: uppercase;
-
-        span {
-            font-size: 2rem;
-            margin-left: 10px;
-            color: $accent;
-        }
-    }
-}
-
 .mainDiscover {
     @include displayFlex(column, center, flex-start);
     width: 100%;
@@ -49,6 +23,8 @@
                 border: 2px solid $accent;
                 color: $accent;
                 background-color: $primary;
+                transition-duration: 0.5s;
+                transition-timing-function: ease-in-out;
             }
 
             span {

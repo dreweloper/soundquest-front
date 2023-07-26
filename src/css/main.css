@@ -140,6 +140,61 @@ body {
   background-color: #191414;
 }
 
+/* LAYOUTS */
+.navBar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 1200px;
+  height: 60px;
+  margin: 0 auto;
+  color: #FFFFFF;
+  background-color: #191414;
+}
+.navBar a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: -moz-fit-content;
+  width: fit-content;
+  min-height: 100%;
+  gap: 10px;
+}
+.navBar a .material-symbols-rounded {
+  font-size: 1.8rem;
+  margin-left: 10px;
+  color: #1DB954;
+}
+.navBar a .titleNav {
+  font-family: "Prompt", sans-serif;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  margin-right: 10px;
+}
+
+/* ***************************************/
+/* MEDIA QUERIES *************************/
+/* ***************************************/
+/* 992px *************************/
+@media screen and (min-width: 992px) {
+  .navBar {
+    height: 80px;
+  }
+  .navBar a {
+    gap: 15px;
+  }
+  .navBar a .material-symbols-rounded {
+    font-size: 2rem;
+    margin-left: 15px;
+  }
+  .navBar a .titleNav {
+    font-size: 2rem;
+    margin-right: 15px;
+  }
+} /* 992px end */
 /* PAGES */
 .mainHome {
   display: flex;
@@ -260,38 +315,6 @@ body {
     font-size: 3rem;
   }
 } /* 992px end */
-.headerDiscover {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  width: 100%;
-  max-width: 1200px;
-  height: 60px;
-  margin: 0 auto;
-  color: #FFF;
-  background-color: #191414;
-}
-.headerDiscover a {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-  justify-content: space-between;
-  width: -moz-fit-content;
-  width: fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-  gap: 10px;
-  font-family: "Prompt", sans-serif;
-  font-size: 1.8rem;
-  text-transform: uppercase;
-}
-.headerDiscover a span {
-  font-size: 2rem;
-  margin-left: 10px;
-  color: #1DB954;
-}
-
 .mainDiscover {
   display: flex;
   flex-direction: column;
@@ -326,6 +349,8 @@ body {
   border: 2px solid #1DB954;
   color: #1DB954;
   background-color: #191414;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
 }
 .mainDiscover .discoverMusic button span {
   font-size: 1.8rem;

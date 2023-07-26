@@ -1,0 +1,58 @@
+.navBar {
+    @include displayFlex(row, center, flex-start);
+    width: 100%;
+    max-width: 1200px;
+    height: 60px;
+    margin: 0 auto;
+    color: $secondary;
+    background-color: $primary;
+
+    a {
+        @include displayFlex(row, center, space-between);
+        width: fit-content;
+        min-height: 100%;
+        gap: 10px;
+
+        .material-symbols-rounded {
+            font-size: 1.8rem;
+            margin-left: 10px;
+            color: $accent;
+        }
+
+        .titleNav {
+            font-family: $font-prompt;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            margin-right: 10px;
+        }
+    }
+}
+
+
+
+/* ***************************************/
+/* MEDIA QUERIES *************************/
+/* ***************************************/
+
+/* 992px *************************/
+  
+@media screen and (min-width:992px) {
+
+    .navBar {
+        height: 80px;
+    
+        a {
+            gap: 15px;
+    
+            .material-symbols-rounded {
+                font-size: 2rem;
+                margin-left: 15px;
+            }
+    
+            .titleNav {
+                font-size: 2rem;
+                margin-right: 15px;
+            }
+        }
+    }
+} /* 992px end */
