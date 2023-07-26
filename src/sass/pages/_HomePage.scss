@@ -18,13 +18,14 @@
 
             h1 {
                 font-family: $font-prompt;
-                font-size: 2rem;
+                font-size: 2.1rem;
                 text-transform: uppercase;
                 color: $secondary;
             }
 
             p {
-                color: $primary-ligth;
+                font-size: 1.05rem;
+                color: $secondary-20;
             }
         }
     }
@@ -42,6 +43,8 @@
             border: 2px solid $accent;
             color: $accent;
             background-color: $primary;
+            transition-duration: 0.5s;
+            transition-timing-function: ease-in-out;
         }
 
         button {
@@ -54,3 +57,59 @@
         }
     }
 }
+
+
+
+/* ***************************************/
+/* MEDIA QUERIES *************************/
+/* ***************************************/
+
+/* 768px *************************/
+
+@media screen and (min-width:768px) {
+
+    .mainHome {
+    
+        header {
+            gap: 10px;
+    
+            .equalizerIcon {
+                font-size: 8rem;
+            }
+    
+            .headerHome {
+                gap: 10px;
+    
+                h1 {
+                    font-size: 2.4rem;
+                }
+    
+                p {
+                    font-size: 1.2rem;
+                }
+            }
+        }
+    
+        a {
+            width: 48px;
+            height: 48px;
+    
+            button {
+    
+                span {
+                    font-size: 2.4rem;
+                }
+            }
+        }
+    }
+
+} /* 768px end */
+
+
+/* 992px *************************/
+  
+@media screen and (min-width:992px) {
+
+
+
+} /* 992px end */

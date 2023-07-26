@@ -169,12 +169,13 @@ body {
 }
 .mainHome header .headerHome h1 {
   font-family: "Prompt", sans-serif;
-  font-size: 2rem;
+  font-size: 2.1rem;
   text-transform: uppercase;
   color: #FFFFFF;
 }
 .mainHome header .headerHome p {
-  color: #808080;
+  font-size: 1.05rem;
+  color: #CCCCCC;
 }
 .mainHome a {
   display: flex;
@@ -192,6 +193,8 @@ body {
   border: 2px solid #1DB954;
   color: #1DB954;
   background-color: #191414;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
 }
 .mainHome a button {
   display: flex;
@@ -204,6 +207,36 @@ body {
   font-weight: 600;
 }
 
+/* ***************************************/
+/* MEDIA QUERIES *************************/
+/* ***************************************/
+/* 768px *************************/
+@media screen and (min-width: 768px) {
+  .mainHome header {
+    gap: 10px;
+  }
+  .mainHome header .equalizerIcon {
+    font-size: 8rem;
+  }
+  .mainHome header .headerHome {
+    gap: 10px;
+  }
+  .mainHome header .headerHome h1 {
+    font-size: 2.4rem;
+  }
+  .mainHome header .headerHome p {
+    font-size: 1.2rem;
+  }
+  .mainHome a {
+    width: 48px;
+    height: 48px;
+  }
+  .mainHome a button span {
+    font-size: 2.4rem;
+  }
+} /* 768px end */
+/* 992px *************************/
+/* 992px end */
 .headerDiscover {
   display: flex;
   flex-direction: row;
