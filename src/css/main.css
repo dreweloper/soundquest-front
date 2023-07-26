@@ -354,10 +354,9 @@ body {
   justify-content: flex-start;
   width: 100%;
   min-height: calc(100svh - 160px);
-  color: #FFF;
   background-color: #191414;
 }
-.mainDiscover .discoverMusic {
+.mainDiscover .headerDiscover {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -365,35 +364,35 @@ body {
   width: 100%;
   height: 80px;
 }
-.mainDiscover .discoverMusic button {
+.mainDiscover .headerDiscover button {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
-  width: 40px;
+  justify-content: space-between;
+  width: 200px;
   height: 40px;
+  padding: 0 20px;
   border: 2px solid #191414;
-  border-radius: 50%;
+  border-radius: 10px;
   color: #191414;
   background-color: #1DB954;
 }
-.mainDiscover .discoverMusic button:hover {
+.mainDiscover .headerDiscover button:hover {
   border: 2px solid #1DB954;
   color: #1DB954;
   background-color: #191414;
   transition-duration: 0.5s;
   transition-timing-function: ease-in-out;
 }
-.mainDiscover .discoverMusic button span {
-  font-size: 1.8rem;
-  font-weight: 600;
+.mainDiscover .headerDiscover button span {
+  font-weight: 500;
 }
-.mainDiscover .discoverMusic .spinner {
-  width: 30px;
-  height: 30px;
-  border: 4px solid rgba(255, 255, 255, 0.1);
+.mainDiscover .headerDiscover button .spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
   border-radius: 50%;
-  border-left-color: #1DB954;
+  border-left-color: #FFFFFF;
   animation: spin 1s ease infinite;
 }
 

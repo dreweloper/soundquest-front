@@ -68,12 +68,36 @@ export const DiscoverPage = () => {
 
             <main className='mainDiscover'>
 
-                <section className='discoverMusic'>
+                <header className='headerDiscover'>
+
+                    <button onClick={handleToken}>
+
+                        <span className='randomTrack'>Random track</span>
+
+                        {
+                            !isLoading ? (
+                                <span className="material-symbols-rounded">
+                                    shuffle
+                                </span>
+                            ) : (
+                                <div className='spinner'></div>
+                            )
+                        }
+
+                    </button>
+
+                </header>
+
+                {track_url && <Card />}
+
+                {/* <section className='discoverMusic'>
 
                     {
                         !isLoading ? (
 
                             <button onClick={handleToken}>
+
+                                <span>Random track</span>
 
                                 <span className="material-symbols-rounded">
                                     shuffle
@@ -90,11 +114,11 @@ export const DiscoverPage = () => {
 
                 </section>
 
-                {track_url && <Card />}
+                {track_url && <Card />} */}
 
             </main>
 
-            <Footer />
+            {/* <Footer /> */}
 
         </>
 
