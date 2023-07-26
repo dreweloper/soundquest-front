@@ -3,7 +3,7 @@ import { usePlaylistStore, useTokenStore, useTrackStore } from "../hooks";
 import { useEffect } from 'react';
 import { Card } from '../components';
 import { setIconFill } from '../helpers';
-import { NavBar } from '../layouts/NavBar';
+import { Footer, NavBar } from '../layouts';
 
 export const DiscoverPage = () => {
 
@@ -57,7 +57,7 @@ export const DiscoverPage = () => {
         track_id && getTrack(track_id);
 
     }, [track_id]);
-    
+
 
 
     return (
@@ -94,17 +94,7 @@ export const DiscoverPage = () => {
 
             </main>
 
-            <footer className='footerDiscover'>
-
-                <div className='spotifyLogo'>
-
-                    <img className='logoS' src="/assets/spotify/icons/Spotify_Icon_RGB_Green.png" alt="Spotify logo" title='Spotify logo' />
-
-                    <img className='logoXL' src="/assets/spotify/logos/Spotify_Logo_RGB_Green.png" alt="Spotify logo" title='Spotify logo' />
-
-                </div>
-
-            </footer>
+            <Footer />
 
         </>
 
