@@ -195,38 +195,6 @@ body {
     margin-right: 15px;
   }
 } /* 992px end */
-.footerDiscover {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: 1200px;
-  height: 100px;
-  margin: 0 auto;
-}
-.footerDiscover .spotifyLogo {
-  width: 70px;
-}
-.footerDiscover .spotifyLogo .logoXL {
-  display: none;
-}
-
-/* ***************************************/
-/* MEDIA QUERIES *************************/
-/* ***************************************/
-/* 768px *************************/
-@media screen and (min-width: 768px) {
-  .footerDiscover .spotifyLogo {
-    width: 200px;
-  }
-  .footerDiscover .spotifyLogo .logoS {
-    display: none;
-  }
-  .footerDiscover .spotifyLogo .logoXL {
-    display: initial;
-  }
-} /* 768px end */
 /* PAGES */
 .mainHome {
   display: flex;
@@ -449,6 +417,7 @@ body {
   align-items: center;
   justify-content: center;
   width: 80%;
+  gap: 10px;
 }
 .cardContainer .cardItem {
   display: flex;
@@ -490,66 +459,57 @@ body {
   align-items: center;
   justify-content: center;
   margin: 15px 0;
+  color: #1DB954;
 }
 .cardContainer .cardItem .trackInfo button .material-symbols-rounded {
   font-variation-settings: "FILL" var(--icon-fill-value);
+}
+.cardContainer .cardNav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 300px;
+  height: 80px;
+  margin-bottom: 10px;
+}
+.cardContainer .cardNav .spotifyLogo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+}
+.cardContainer .cardNav .spotifyButtons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 100%;
+}
+.cardContainer .cardNav .spotifyButtons a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 180px;
+  height: 30px;
+  font-size: 0.9rem;
+  border-radius: 25px;
+  background-color: #1DB954;
+}
+.cardContainer .cardNav .spotifyButtons a:hover {
+  color: #191414;
+  background-color: #3FE178;
+  transition-duration: 0.4s;
+  transition-timing-function: ease-in-out;
 }
 
 /* ***************************************/
 /* MEDIA QUERIES *************************/
 /* ***************************************/
+/* 768px *************************/
+/* 768px end */
 /* 992px *************************/
-@media screen and (min-width: 992px) {
-  .trackContainer {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    width: 90%;
-    max-width: 992px;
-    height: 100%;
-    min-height: 300px;
-    margin-bottom: 40px;
-  }
-  .trackContainer .artwork {
-    width: 250px;
-    margin: 0;
-  }
-  .trackContainer .trackInfo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    max-width: 500px;
-  }
-  .trackContainer .trackInfo .song {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-  }
-  .trackContainer .trackInfo .artist {
-    font-size: 1.1rem;
-  }
-  .trackContainer .trackInfo .spotifyButtons {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    margin: 40px 0 10px;
-    gap: 30px;
-  }
-  .trackContainer .trackInfo .spotifyButtons a {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 140px;
-    height: 40px;
-    padding: 0;
-    font-size: 1rem;
-    font-weight: 500;
-    border-radius: 20px;
-    gap: 5px;
-  }
-} /* 992px end *//*# sourceMappingURL=main.css.map */
+/* 992px end *//*# sourceMappingURL=main.css.map */

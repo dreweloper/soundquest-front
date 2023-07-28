@@ -78,61 +78,23 @@ export const Card = () => {
 
                 <nav className='cardNav'>
 
-                    <Link to={track_url}>
+                    <div className='spotifyLogo'>
 
-                        <span className="material-symbols-rounded">
-                            play_arrow
-                        </span>
+                        <img src='/assets/spotify/icons/Spotify_Icon_RGB_White.png' alt='Spotify Logo' title='Spotify logo' />
 
-                        Play
-                    </Link>
+                    </div>
 
-                    <Link to={playlist_url}>Open Playlist</Link>
+                    <div className='spotifyButtons'>
+
+                        <Link to={track_url}> Play on Spotify </Link>
+
+                        <Link to={playlist_url}> Open playlist </Link>
+
+                    </div>
 
                 </nav>
 
             </section>
-
-            {/* <article className='trackContainer'>
-
-                <div className='artwork'>
-
-                    <img src={artwork} alt="Album cover" title="Album cover" />
-
-                </div>
-
-                <div className='trackInfo'>
-
-                    <p className='song'> {name} </p>
-
-                    <p className='artist'> {artist} </p>
-
-                    <button onClick={handleLike}>
-
-                        <span id='like' className="material-symbols-rounded">
-                            favorite
-                        </span>
-
-                    </button>
-
-                    <nav className='spotifyButtons'>
-
-                        <Link to={track_url}>
-
-                            <span className="material-symbols-rounded">
-                                play_arrow
-                            </span>
-
-                            Play
-                        </Link>
-
-                        <Link to={playlist_url}>Open Playlist</Link>
-
-                    </nav>
-
-                </div>
-
-            </article> */}
 
         </>
 
