@@ -40,11 +40,11 @@
         background-color: $accent;
         
         &:hover {
-            border: 2px solid $accent;
-            color: $accent;
-            background-color: $primary;
-            transition-duration: 0.5s;
-            transition-timing-function: ease-in-out;
+            @include buttonEffect($accent, $primary, $accent);
+        }
+
+        &:active {
+            @include buttonEffect($primary, $accent, $primary);
         }
 
         button {

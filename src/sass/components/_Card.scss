@@ -28,6 +28,7 @@
                 text-align: center;
                 font-size: 1.1rem;
                 font-weight: 300;
+                padding: 0 5px;
                 margin: 10px 0 8px;
             }
     
@@ -36,6 +37,7 @@
                 font-size: 0.9rem;
                 font-weight: 200;
                 font-style: italic;
+                padding: 0 5px;
             }
     
             button {
@@ -78,11 +80,11 @@
                 background-color: $primary;
 
                 &:hover {
-                    border: 2px solid $accent-dark;
-                    color: $primary;
-                    background-color: $accent-dark;
-                    transition-duration: 0.4s;
-                    transition-timing-function: ease-in-out;
+                    @include buttonEffect($primary, $accent-dark, $accent-dark);
+                }
+
+                &:active {
+                    @include buttonEffect($accent, $primary, $accent);
                 }
             }
         }

@@ -245,10 +245,17 @@ body {
   background-color: #1DB954;
 }
 .mainHome a:hover {
-  border: 2px solid #1DB954;
   color: #1DB954;
   background-color: #191414;
-  transition-duration: 0.5s;
+  border: 2px solid #1DB954;
+  transition-duration: 0.4s;
+  transition-timing-function: ease-in-out;
+}
+.mainHome a:active {
+  color: #191414;
+  background-color: #1DB954;
+  border: 2px solid #191414;
+  transition-duration: 0.4s;
   transition-timing-function: ease-in-out;
 }
 .mainHome a button {
@@ -340,6 +347,7 @@ body {
   width: 200px;
   height: 40px;
   padding: 0 20px;
+  border: 2px solid #1DB954;
   border-radius: 10px;
   color: #191414;
   background-color: #1DB954;
@@ -347,6 +355,14 @@ body {
 .mainDiscover .headerDiscover button:hover {
   color: #191414;
   background-color: #3FE178;
+  border: 2px solid #3FE178;
+  transition-duration: 0.4s;
+  transition-timing-function: ease-in-out;
+}
+.mainDiscover .headerDiscover button:active {
+  color: #191414;
+  background-color: #1DB954;
+  border: 2px solid #1DB954;
   transition-duration: 0.4s;
   transition-timing-function: ease-in-out;
 }
@@ -446,6 +462,7 @@ body {
   text-align: center;
   font-size: 1.1rem;
   font-weight: 300;
+  padding: 0 5px;
   margin: 10px 0 8px;
 }
 .cardContainer .cardItem .trackInfo .artist {
@@ -453,6 +470,7 @@ body {
   font-size: 0.9rem;
   font-weight: 200;
   font-style: italic;
+  padding: 0 5px;
 }
 .cardContainer .cardItem .trackInfo button {
   display: flex;
@@ -503,9 +521,16 @@ body {
   background-color: #191414;
 }
 .cardContainer .cardNav .spotifyButtons a:hover {
-  border: 2px solid #3FE178;
   color: #191414;
   background-color: #3FE178;
+  border: 2px solid #3FE178;
+  transition-duration: 0.4s;
+  transition-timing-function: ease-in-out;
+}
+.cardContainer .cardNav .spotifyButtons a:active {
+  color: #1DB954;
+  background-color: #191414;
+  border: 2px solid #1DB954;
   transition-duration: 0.4s;
   transition-timing-function: ease-in-out;
 }

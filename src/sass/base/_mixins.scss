@@ -1,9 +1,17 @@
 
-@mixin displayFlex($direction, $align, $justify) {
+@mixin displayFlex($direction, $align, $justify){
     display: flex;
     flex-direction: $direction;
     align-items: $align;
     justify-content: $justify;
+}
+
+@mixin buttonEffect($fontColor, $bgColor, $borderColor){
+    color: $fontColor;
+    background-color: $bgColor;
+    border: 2px solid $borderColor;
+    transition-duration: 0.4s;
+    transition-timing-function: ease-in-out;
 }
 
 /* LOADING SPINNER –HOMEPAGE– */
