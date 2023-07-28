@@ -23,21 +23,21 @@ export const Card = () => {
 
     const handleLike = () => {
 
-        if(!like){
+        if (!like) {
 
-            dispatch(setLike()); // It changes the 'like' state's value to 'true'.
+            dispatch(setLike()); // Changes the 'like' state's value to 'true'.
 
-            addTrack(); // It adds the track to MongoDB.
+            addTrack(); // Adds the track to MongoDB.
 
-            setIconFill(1); // It changes the icon 'favorite' fill's value to '1'.
+            setIconFill(1); // Changes the icon 'favorite' fill's value to '1'.
 
         } else {
 
-            dispatch(setDislike()); // It changes the 'like' state's value to 'false'.
+            dispatch(setDislike()); // Changes the 'like' state's value to 'false'.
 
-            deleteTrack(); // It deletes the track of MongoDB.
+            deleteTrack(); // Deletes the track of MongoDB.
 
-            setIconFill(0); // It changes the icon 'favorite' fill's value to '0'.
+            setIconFill(0); // Changes the icon 'favorite' fill's value to '0'.
 
         };
 
@@ -48,7 +48,52 @@ export const Card = () => {
 
         <>
 
-            <article className='trackContainer'>
+            <section className='cardContainer'>
+
+                <article className='cardItem'>
+
+                    <div className='artwork'>
+
+                        <img src={artwork} alt="Album cover" title="Album cover" />
+
+                    </div>
+
+                    <div className='trackInfo'>
+
+                        <p className='song'> {name} </p>
+
+                        <p className='artist'> {artist} </p>
+
+                        <button onClick={handleLike}>
+
+                            <span id='like' className="material-symbols-rounded">
+                                favorite
+                            </span>
+
+                        </button>
+
+                    </div>
+
+                </article>
+
+                <nav className='cardNav'>
+
+                    <Link to={track_url}>
+
+                        <span className="material-symbols-rounded">
+                            play_arrow
+                        </span>
+
+                        Play
+                    </Link>
+
+                    <Link to={playlist_url}>Open Playlist</Link>
+
+                </nav>
+
+            </section>
+
+            {/* <article className='trackContainer'>
 
                 <div className='artwork'>
 
@@ -87,7 +132,7 @@ export const Card = () => {
 
                 </div>
 
-            </article>
+            </article> */}
 
         </>
 

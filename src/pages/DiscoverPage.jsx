@@ -97,32 +97,6 @@ export const DiscoverPage = () => {
 
                 {track_url && <Card />}
 
-                {/* <section className='discoverMusic'>
-
-                    {
-                        !isLoading ? (
-
-                            <button onClick={handleToken}>
-
-                                <span>Random track</span>
-
-                                <span className="material-symbols-rounded">
-                                    shuffle
-                                </span>
-
-                            </button>
-
-                        ) : (
-
-                            <div className='spinner'></div>
-
-                        )
-                    }
-
-                </section>
-
-                {track_url && <Card />} */}
-
             </main>
 
             {/* <Footer /> */}
