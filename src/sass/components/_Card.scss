@@ -5,7 +5,7 @@
 .cardContainer {
     @include displayFlex(column, center, center);
     width: 80%;
-    gap: 10px;
+    gap: 15px;
 
     .cardItem {
         @include displayFlex(column, center, center);
@@ -64,7 +64,7 @@
         }
 
         .spotifyButtons {
-            @include displayFlex(column, center, space-around);
+            @include displayFlex(column, center, space-between);
             height: 100%;
 
             a {
@@ -72,10 +72,13 @@
                 width: 180px;
                 height: 30px;
                 font-size: 0.9rem;
+                border: 2px solid $accent;
                 border-radius: 25px;
-                background-color: $accent;
+                color: $accent;
+                background-color: $primary;
 
                 &:hover {
+                    border: 2px solid $accent-dark;
                     color: $primary;
                     background-color: $accent-dark;
                     transition-duration: 0.4s;

@@ -350,7 +350,8 @@ body {
   transition-duration: 0.4s;
   transition-timing-function: ease-in-out;
 }
-.mainDiscover .headerDiscover button span {
+.mainDiscover .headerDiscover button .randomTrack {
+  font-size: 1rem;
   font-weight: 500;
 }
 .mainDiscover .headerDiscover button .spinner {
@@ -417,7 +418,7 @@ body {
   align-items: center;
   justify-content: center;
   width: 80%;
-  gap: 10px;
+  gap: 15px;
 }
 .cardContainer .cardItem {
   display: flex;
@@ -485,7 +486,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   height: 100%;
 }
 .cardContainer .cardNav .spotifyButtons a {
@@ -496,10 +497,13 @@ body {
   width: 180px;
   height: 30px;
   font-size: 0.9rem;
+  border: 2px solid #1DB954;
   border-radius: 25px;
-  background-color: #1DB954;
+  color: #1DB954;
+  background-color: #191414;
 }
 .cardContainer .cardNav .spotifyButtons a:hover {
+  border: 2px solid #3FE178;
   color: #191414;
   background-color: #3FE178;
   transition-duration: 0.4s;
