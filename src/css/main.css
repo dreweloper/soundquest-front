@@ -397,24 +397,34 @@ body {
 /* ***************************************/
 /* MEDIA QUERIES *************************/
 /* ***************************************/
+/* 768px *************************/
+@media screen and (min-width: 768px) {
+  .mainDiscover .headerDiscover {
+    height: 90px;
+  }
+  .mainDiscover .headerDiscover button {
+    width: 240px;
+    padding: 0 30px;
+  }
+  .mainDiscover .headerDiscover .randomTrack {
+    font-size: 1.1rem;
+  }
+} /* 768px end */
 /* 992px *************************/
 @media screen and (min-width: 992px) {
   .mainDiscover {
-    min-height: calc(100vh - 180px);
+    min-height: calc(100svh - 180px);
   }
-  .mainDiscover .discoverMusic {
+  .mainDiscover .headerDiscover {
     height: 110px;
   }
-  .mainDiscover .discoverMusic button {
-    width: 50px;
+  .mainDiscover .headerDiscover button {
+    width: 250px;
     height: 50px;
+    padding: 0 30px;
   }
-  .mainDiscover .discoverMusic button span {
-    font-size: 2rem;
-  }
-  .mainDiscover .discoverMusic .spinner {
-    width: 40px;
-    height: 40px;
+  .mainDiscover .headerDiscover button .randomTrack {
+    font-size: 1.2rem;
   }
 } /* 992px end */
 /* ***************************************/
