@@ -372,16 +372,14 @@ body {
   width: 200px;
   height: 40px;
   padding: 0 20px;
-  border: 2px solid #191414;
   border-radius: 10px;
   color: #191414;
   background-color: #1DB954;
 }
 .mainDiscover .headerDiscover button:hover {
-  border: 2px solid #1DB954;
-  color: #1DB954;
-  background-color: #191414;
-  transition-duration: 0.5s;
+  color: #191414;
+  background-color: #3FE178;
+  transition-duration: 0.4s;
   transition-timing-function: ease-in-out;
 }
 .mainDiscover .headerDiscover button span {
@@ -390,9 +388,9 @@ body {
 .mainDiscover .headerDiscover button .spinner {
   width: 20px;
   height: 20px;
-  border: 3px solid rgba(255, 255, 255, 0.1);
+  border: 3px solid rgba(0, 0, 0, 0.1);
   border-radius: 50%;
-  border-left-color: #FFFFFF;
+  border-left-color: #191414;
   animation: spin 1s ease infinite;
 }
 

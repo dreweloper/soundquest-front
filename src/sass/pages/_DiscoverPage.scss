@@ -15,16 +15,14 @@
             width: 200px;
             height: 40px;
             padding: 0 20px;
-            border: 2px solid $primary;
             border-radius: 10px;
             color: $primary;
             background-color: $accent;
 
             &:hover {
-                border: 2px solid $accent;
-                color: $accent;
-                background-color: $primary;
-                transition-duration: 0.5s;
+                color: $primary;
+                background-color: $accent-dark;
+                transition-duration: 0.4s;
                 transition-timing-function: ease-in-out;
             }
 
@@ -36,9 +34,9 @@
                 // @include spinKeyframes(spin);
                 width: 20px;
                 height: 20px;
-                border: 3px solid rgba(255, 255, 255, .1);
+                border: 3px solid rgba(0, 0, 0, .1);
                 border-radius: 50%;
-                border-left-color: $secondary;
+                border-left-color: $primary;
                 animation: spin 1s ease infinite;
                 // @include spinAnimation(spin 1s ease infinite);
             }
