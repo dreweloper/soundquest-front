@@ -54,7 +54,14 @@ export const DiscoverPage = () => {
 
     useEffect(() => {
 
-        track_id && getTrack(track_id);
+        if(track_id){
+
+            setTimeout(() => {
+
+                getTrack(track_id);
+
+            }, 1000);
+        };
 
     }, [track_id]);
 
