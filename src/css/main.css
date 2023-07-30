@@ -584,18 +584,12 @@ body {
     font-size: 1.8rem;
   }
   .cardContainer .cardNav {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
     max-width: none;
-    height: 80px;
     margin-bottom: 20px;
     overflow: hidden;
   }
   .cardContainer .cardNav .spotifyLogoContainer {
-    width: 50%;
+    width: 45%;
     height: 100%;
     -o-object-fit: contain;
        object-fit: contain;
@@ -619,10 +613,6 @@ body {
     gap: 10px;
   }
   .cardContainer .cardNav .spotifyButtons a {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
     width: 100%;
     max-width: 180px;
     height: 40px;

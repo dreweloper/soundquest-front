@@ -144,15 +144,12 @@
         }
     
         .cardNav {
-            @include displayFlex(row, center, space-between);
-            width: 100%;
             max-width: none;
-            height: 80px;
             margin-bottom: 20px;
             overflow: hidden;
     
             .spotifyLogoContainer {
-                width: 50%;
+                width: 45%;
                 height: 100%;
                 object-fit: contain;
 
@@ -172,7 +169,6 @@
                 gap: 10px;
     
                 a {
-                    @include displayFlex(row, center, center);
                     width: 100%;
                     max-width: 180px;
                     height: 40px;
