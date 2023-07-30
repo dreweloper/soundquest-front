@@ -82,7 +82,7 @@ export const Card = () => {
 
                         <img className='spotifyIcon' src='/assets/spotify/icons/Spotify_Icon_RGB_Green.png' alt='Spotify logo icon' title='Spotify logo icon' />
 
-                        <img className='spotifyLogo' src='/public/assets/spotify/logos/Spotify_Logo_RGB_Green.png' alt='Spotify logo' title='Spotify logo' />
+                        <img className='spotifyLogo' src='/assets/spotify/logos/Spotify_Logo_RGB_Green.png' alt='Spotify logo' title='Spotify logo' />
 
                     </div>
 

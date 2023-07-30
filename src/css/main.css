@@ -572,13 +572,15 @@ body {
   }
   .cardContainer .cardItem .trackInfo .song {
     font-size: 1.2rem;
+    padding: 0 10px;
     margin: 10px 0 10px;
   }
   .cardContainer .cardItem .trackInfo .artist {
     font-size: 1rem;
+    padding: 0 10px;
   }
   .cardContainer .cardItem .trackInfo button {
-    margin: 20px 0;
+    margin: 30px 0 0;
   }
   .cardContainer .cardItem .trackInfo button .material-symbols-rounded {
     font-size: 1.8rem;
