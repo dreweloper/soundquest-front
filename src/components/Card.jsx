@@ -78,9 +78,11 @@ export const Card = () => {
 
                 <nav className='cardNav'>
 
-                    <div className='spotifyLogo'>
+                    <div className='spotifyLogoContainer'>
 
-                        <img src='/assets/spotify/icons/Spotify_Icon_RGB_Green.png' alt='Spotify Logo' title='Spotify logo' />
+                        <img className='spotifyIcon' src='/assets/spotify/icons/Spotify_Icon_RGB_Green.png' alt='Spotify logo icon' title='Spotify logo icon' />
+
+                        <img className='spotifyLogo' src='/public/assets/spotify/logos/Spotify_Logo_RGB_Green.png' alt='Spotify logo' title='Spotify logo' />
 
                     </div>
 

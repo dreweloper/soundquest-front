@@ -60,9 +60,13 @@
         height: 80px;
         margin-bottom: 10px;
 
-        .spotifyLogo {
+        .spotifyLogoContainer {
             @include displayFlex(row, center, center);
             width: 70px;
+
+            .spotifyLogo {
+                display: none;
+            }
         }
 
         .spotifyButtons {
@@ -101,7 +105,82 @@
   
 @media screen and (min-width:768px) {
 
+    .cardContainer {
+        @include displayFlex(column, center, center);
+        width: 90%;
+        max-width: 800px;
     
+        .cardItem {
+            @include displayFlex(row, center, space-between);
+            max-width: none;
+            gap: 0;
+    
+            .artwork {
+                width: 45%;
+            }
+    
+            .trackInfo {
+                @include displayFlex(column, center, center);
+                width: 50%;
+                min-height: 200px;
+    
+                .song {
+                    font-size: 1.2rem;
+                    margin: 10px 0 10px;
+                }
+        
+                .artist {
+                    font-size: 1rem;
+                }
+        
+                button {
+                    margin: 20px 0;
+    
+                    .material-symbols-rounded {
+                        font-size: 1.8rem;
+                    }
+                }
+            }
+        }
+    
+        .cardNav {
+            @include displayFlex(row, center, space-between);
+            width: 100%;
+            max-width: none;
+            height: 80px;
+            margin-bottom: 20px;
+            overflow: hidden;
+    
+            .spotifyLogoContainer {
+                width: 50%;
+                height: 100%;
+                object-fit: contain;
+
+                .spotifyIcon {
+                    display: none;
+                }
+    
+                .spotifyLogo {
+                    @include displayFlex(row, center, center);
+                    width: 200px;
+                }
+            }
+    
+            .spotifyButtons {
+                @include displayFlex(row, center, space-between);
+                width: 50%;
+                gap: 10px;
+    
+                a {
+                    @include displayFlex(row, center, center);
+                    width: 100%;
+                    max-width: 180px;
+                    height: 40px;
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
 
 } /* 768px end */
 

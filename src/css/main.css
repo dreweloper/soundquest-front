@@ -493,12 +493,15 @@ body {
   height: 80px;
   margin-bottom: 10px;
 }
-.cardContainer .cardNav .spotifyLogo {
+.cardContainer .cardNav .spotifyLogoContainer {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   width: 70px;
+}
+.cardContainer .cardNav .spotifyLogoContainer .spotifyLogo {
+  display: none;
 }
 .cardContainer .cardNav .spotifyButtons {
   display: flex;
@@ -539,6 +542,92 @@ body {
 /* MEDIA QUERIES *************************/
 /* ***************************************/
 /* 768px *************************/
-/* 768px end */
+@media screen and (min-width: 768px) {
+  .cardContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    max-width: 800px;
+  }
+  .cardContainer .cardItem {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    max-width: none;
+    gap: 0;
+  }
+  .cardContainer .cardItem .artwork {
+    width: 45%;
+  }
+  .cardContainer .cardItem .trackInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    min-height: 200px;
+  }
+  .cardContainer .cardItem .trackInfo .song {
+    font-size: 1.2rem;
+    margin: 10px 0 10px;
+  }
+  .cardContainer .cardItem .trackInfo .artist {
+    font-size: 1rem;
+  }
+  .cardContainer .cardItem .trackInfo button {
+    margin: 20px 0;
+  }
+  .cardContainer .cardItem .trackInfo button .material-symbols-rounded {
+    font-size: 1.8rem;
+  }
+  .cardContainer .cardNav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: none;
+    height: 80px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .cardContainer .cardNav .spotifyLogoContainer {
+    width: 50%;
+    height: 100%;
+    -o-object-fit: contain;
+       object-fit: contain;
+  }
+  .cardContainer .cardNav .spotifyLogoContainer .spotifyIcon {
+    display: none;
+  }
+  .cardContainer .cardNav .spotifyLogoContainer .spotifyLogo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+  }
+  .cardContainer .cardNav .spotifyButtons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 50%;
+    gap: 10px;
+  }
+  .cardContainer .cardNav .spotifyButtons a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 180px;
+    height: 40px;
+    font-size: 1rem;
+  }
+} /* 768px end */
 /* 992px *************************/
 /* 992px end *//*# sourceMappingURL=main.css.map */
