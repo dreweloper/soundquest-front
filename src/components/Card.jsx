@@ -23,21 +23,21 @@ export const Card = () => {
 
     const handleLike = () => {
 
-        if(!like){
+        if (!like) {
 
-            dispatch(setLike()); // It changes the 'like' state's value to 'true'.
+            dispatch(setLike()); // Changes the 'like' state's value to 'true'.
 
-            addTrack(); // It adds the track to MongoDB.
+            addTrack(); // Adds the track to MongoDB.
 
-            setIconFill(1); // It changes the icon 'favorite' fill's value to '1'.
+            setIconFill(1); // Changes the icon 'favorite' fill's value to '1'.
 
         } else {
 
-            dispatch(setDislike()); // It changes the 'like' state's value to 'false'.
+            dispatch(setDislike()); // Changes the 'like' state's value to 'false'.
 
-            deleteTrack(); // It deletes the track of MongoDB.
+            deleteTrack(); // Deletes the track of MongoDB.
 
-            setIconFill(0); // It changes the icon 'favorite' fill's value to '0'.
+            setIconFill(0); // Changes the icon 'favorite' fill's value to '0'.
 
         };
 
@@ -48,46 +48,55 @@ export const Card = () => {
 
         <>
 
-            <article className='trackContainer'>
+            <section className='cardContainer'>
 
-                <div className='artwork'>
+                <article className='cardItem'>
 
-                    <img src={artwork} alt="Album cover" title="Album cover" />
+                    <div className='artwork'>
 
-                </div>
+                        <img src={artwork} alt="Album cover" title="Album cover" />
 
-                <div className='trackInfo'>
+                    </div>
 
-                    <p className='song'> {name} </p>
+                    <section className='trackInfo'>
 
-                    <p className='artist'> {artist} </p>
+                        <p className='song'> {name} </p>
 
-                    <button onClick={handleLike}>
+                        <p className='artist'> {artist} </p>
 
-                        <span id='like' className="material-symbols-rounded">
-                            favorite
-                        </span>
+                        <button onClick={handleLike}>
 
-                    </button>
+                            <span id='like' className="material-symbols-rounded">
+                                favorite
+                            </span>
+
+                        </button>
+
+                    </section>
+
+                </article>
+
+                <footer className='cardFooter'>
+
+                    <Link to='https://open.spotify.com/user/aleon88' className='spotifyLogoContainer'>
+
+                        <img className='spotifyIcon' src='/assets/spotify/icons/Spotify_Icon_RGB_Green.png' alt='Spotify logo icon' title='Spotify logo icon' />
+
+                        <img className='spotifyLogo' src='/assets/spotify/logos/Spotify_Logo_RGB_Green.png' alt='Spotify logo' title='Spotify logo' />
+
+                    </Link>
 
                     <nav className='spotifyButtons'>
 
-                        <Link to={track_url}>
+                        <Link to={track_url}> Play on Spotify </Link>
 
-                            <span className="material-symbols-rounded">
-                                play_arrow
-                            </span>
-
-                            Play
-                        </Link>
-
-                        <Link to={playlist_url}>Open Playlist</Link>
+                        <Link to={playlist_url}> Open playlist </Link>
 
                     </nav>
 
-                </div>
+                </footer>
 
-            </article>
+            </section>
 
         </>
 

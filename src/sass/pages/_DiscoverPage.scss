@@ -1,87 +1,67 @@
-.headerDiscover {
-    @include displayFlex(row, center, flex-start);
-    width: 100%;
-    max-width: 1200px;
-    height: 60px;
-    margin: 0 auto;
-    color: $white;
-    background-color: $primary;
-
-    a {
-        @include displayFlex(row, flex-end, space-between);
-        width: fit-content;
-        height: fit-content;
-        gap: 10px;
-        font-family: $font-prompt;
-        font-size: 1.8rem;
-        text-transform: uppercase;
-
-        span {
-            font-size: 2rem;
-            margin-left: 10px;
-            color: $accent;
-        }
-    }
-}
-
 .mainDiscover {
     @include displayFlex(column, center, flex-start);
     width: 100%;
-    min-height: calc(100vh - (60px + 100px));
-    color: $white;
+    min-height: calc(100svh - 60px);
     background-color: $primary;
 
-    .discoverMusic {
+    .headerDiscover {
         @include displayFlex(row, center, center);
         width: 100%;
         height: 80px;
 
-        button {
-            @include displayFlex(row, center, center);
-            width: 40px;
+        .shuffleButton {
+            @include displayFlex(row, center, space-between);
+            width: 200px;
             height: 40px;
-            border: 2px solid $primary;
-            border-radius: 50%;
+            padding: 0 20px;
+            border: 2px solid $accent;
+            border-radius: 10px;
             color: $primary;
             background-color: $accent;
 
             &:hover {
-                border: 2px solid $accent;
-                color: $accent;
-                background-color: $primary;
+                @include buttonEffect($primary, $accent-dark, $accent-dark);
             }
 
-            span {
-                font-size: 1.8rem;
-                font-weight: 600;
+            &:active {
+                @include buttonEffect($primary, $accent, $accent);
             }
-        }
-    
-        .spinner {
-            // @include spinKeyframes(spin);
-            width: 30px;
-            height: 30px;
-            border: 4px solid rgba(255, 255, 255, .1);
-            border-radius: 50%;
-            border-left-color: $accent;
-            animation: spin 1s ease infinite;
-            // @include spinAnimation(spin 1s ease infinite);
+
+            .shuffleButtonText {
+                font-size: 1rem;
+                font-weight: 500;
+            }
+
+            .spinner {
+                @include keyframes(spinner){
+                    0% {
+                        transform: rotate(0deg);
+                    }
+                    100% {
+                        transform: rotate(360deg);
+                    }
+                }
+                @include spinner(20px, 20px, 3px, 0, $primary);
+            }
         }
     }
-}
 
-.footerDiscover {
-    @include displayFlex(row, center, center);
-    width: 100%;
-    max-width: 1200px;
-    height: 100px;
-    margin: 0 auto;
+    .spinnerContainer {
+        @include displayFlex(row, flex-start, center);
+        width: 100%;
+        height: calc(100svh - (60px + 80px));
 
-    .spotifyLogo {
-        width: 70px;
-
-        .logoXL {
-            display: none;
+        .spinner {
+            @include keyframes(spinner){
+                0% {
+                    transform: rotate(0deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+            margin-top: 100px;
+            @include spinner(50px, 50px, 5px, 255, $accent);
         }
     }
 }
@@ -93,21 +73,25 @@
 /* ***************************************/
 
 /* 768px *************************/
-
+  
 @media screen and (min-width:768px) {
-
-    .footerDiscover {
-
-        .spotifyLogo {
-            width: 200px;
-
-            .logoS {
-                display: none;
+    
+    .mainDiscover {
+    
+        .headerDiscover {
+            height: 90px;
+    
+            button {
+                width: 240px;
+                padding: 0 30px;
             }
 
-            .logoXL {
-                display: initial;
+            .randomTrack {
+                font-size: 1.1rem;
             }
+        }
+        .spinnerContainer {
+            height: calc(100svh - (60px + 90px));
         }
     }
 } /* 768px end */
@@ -116,56 +100,25 @@
 /* 992px *************************/
   
 @media screen and (min-width:992px) {
-
-    .headerDiscover {
-        height: 80px;
-    
-        a {
-            font-size: 2.1rem;
-            gap: 15px;
-    
-            span {
-                font-size: 2.5rem;
-                margin-left: 30px;
-                color: $accent;
-            }
-        }
-    }
     
     .mainDiscover {
-        min-height: calc(100vh - (80px + 100px));
+        min-height: calc(100svh - 80px);
 
-        .discoverMusic {
+        .headerDiscover {
             height: 110px;
 
             button {
-                width: 50px;
+                width: 250px;
                 height: 50px;
-    
-                span {
-                    font-size: 2rem;
+                padding: 0 30px;
+
+                .randomTrack {
+                    font-size: 1.2rem;
                 }
             }
-        
-            .spinner {
-                width: 40px;
-                height: 40px;
-            }
+        }
+        .spinnerContainer {
+            height: calc(100svh - (80px + 110px));
         }
     }
 } /* 992px end */
-
-
-
-/* ***************************************/
-/* KEYFRAMES *****************************/
-/* ***************************************/
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}

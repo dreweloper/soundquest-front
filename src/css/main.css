@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /* UTILITIES */ /* 
 html5doctor.com Reset Stylesheet
 v1.6.1
@@ -134,12 +133,67 @@ button {
 
 /* BASE */
 /* VARIABLES */
-/* LOADING SPINNER –HOMEPAGE– */
+/* GENERIC KEYFRAMES */
 body {
   font-family: "Poppins", sans-serif;
   background-color: #191414;
 }
 
+/* LAYOUTS */
+.navBar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 1200px;
+  height: 60px;
+  margin: 0 auto;
+  color: #FFFFFF;
+  background-color: #191414;
+}
+.navBar a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: -moz-fit-content;
+  width: fit-content;
+  min-height: 100%;
+  gap: 10px;
+}
+.navBar a .material-symbols-rounded {
+  font-size: 1.8rem;
+  margin-left: 10px;
+  color: #1DB954;
+}
+.navBar a .titleNav {
+  font-family: "Prompt", sans-serif;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  margin-right: 10px;
+}
+
+/* ***************************************/
+/* MEDIA QUERIES *************************/
+/* ***************************************/
+/* 992px *************************/
+@media screen and (min-width: 992px) {
+  .navBar {
+    height: 80px;
+  }
+  .navBar a {
+    gap: 15px;
+  }
+  .navBar a .material-symbols-rounded {
+    font-size: 2rem;
+    margin-left: 15px;
+  }
+  .navBar a .titleNav {
+    font-size: 2rem;
+    margin-right: 15px;
+  }
+} /* 992px end */
 /* PAGES */
 .mainHome {
   display: flex;
@@ -147,8 +201,8 @@ body {
   align-items: center;
   justify-content: center;
   width: 100%;
-  min-height: 100vh;
-  gap: 80px;
+  min-height: 100svh;
+  gap: 50px;
 }
 .mainHome header {
   display: flex;
@@ -158,13 +212,24 @@ body {
 }
 .mainHome header .equalizerIcon {
   font-size: 7rem;
-  color: #1db954;
+  color: #1DB954;
 }
-.mainHome header h1 {
+.mainHome header .headerHome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.mainHome header .headerHome h1 {
   font-family: "Prompt", sans-serif;
-  font-size: 2rem;
+  font-size: 2.1rem;
   text-transform: uppercase;
-  color: #ffffff;
+  color: #FFFFFF;
+}
+.mainHome header .headerHome p {
+  font-size: 1.05rem;
+  color: #CCCCCC;
 }
 .mainHome a {
   display: flex;
@@ -176,119 +241,25 @@ body {
   border-radius: 50%;
   border: 2px solid #191414;
   color: #191414;
-  background-color: #1db954;
+  background-color: #1DB954;
 }
 .mainHome a:hover {
-  border: 2px solid #1db954;
-  color: #1db954;
+  color: #1DB954;
   background-color: #191414;
+  border: 2px solid #1DB954;
+  transition-duration: 0.4s;
+  transition-timing-function: ease-in-out;
 }
-.mainHome a button {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-.mainHome a button span {
-  font-size: 2rem;
-  font-weight: 600;
-}
-
-.headerDiscover {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  width: 100%;
-  max-width: 1200px;
-  height: 60px;
-  margin: 0 auto;
-  color: #ffffff;
-  background-color: #191414;
-}
-.headerDiscover a {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-  justify-content: space-between;
-  width: -moz-fit-content;
-  width: fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-  gap: 10px;
-  font-family: "Prompt", sans-serif;
-  font-size: 1.8rem;
-  text-transform: uppercase;
-}
-.headerDiscover a span {
-  font-size: 2rem;
-  margin-left: 10px;
-  color: #1db954;
-}
-
-.mainDiscover {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  width: 100%;
-  min-height: calc(100vh - 160px);
-  color: #ffffff;
-  background-color: #191414;
-}
-.mainDiscover .discoverMusic {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 80px;
-}
-.mainDiscover .discoverMusic button {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border: 2px solid #191414;
-  border-radius: 50%;
+.mainHome a:active {
   color: #191414;
-  background-color: #1db954;
+  background-color: #1DB954;
+  border: 2px solid #191414;
+  transition-duration: 0.4s;
+  transition-timing-function: ease-in-out;
 }
-.mainDiscover .discoverMusic button:hover {
-  border: 2px solid #1db954;
-  color: #1db954;
-  background-color: #191414;
-}
-.mainDiscover .discoverMusic button span {
-  font-size: 1.8rem;
+.mainHome a .material-symbols-rounded {
+  font-size: 2rem;
   font-weight: 600;
-}
-.mainDiscover .discoverMusic .spinner {
-  width: 30px;
-  height: 30px;
-  border: 4px solid rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-  border-left-color: #1db954;
-  animation: spin 1s ease infinite;
-}
-
-.footerDiscover {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: 1200px;
-  height: 100px;
-  margin: 0 auto;
-}
-.footerDiscover .spotifyLogo {
-  width: 70px;
-}
-.footerDiscover .spotifyLogo .logoXL {
-  display: none;
 }
 
 /* ***************************************/
@@ -296,52 +267,111 @@ body {
 /* ***************************************/
 /* 768px *************************/
 @media screen and (min-width: 768px) {
-  .footerDiscover .spotifyLogo {
-    width: 200px;
+  .mainHome header {
+    gap: 10px;
   }
-  .footerDiscover .spotifyLogo .logoS {
-    display: none;
+  .mainHome header .equalizerIcon {
+    font-size: 8rem;
   }
-  .footerDiscover .spotifyLogo .logoXL {
-    display: initial;
+  .mainHome header .headerHome {
+    gap: 10px;
+  }
+  .mainHome header .headerHome h1 {
+    font-size: 2.4rem;
+  }
+  .mainHome header .headerHome p {
+    font-size: 1.2rem;
+  }
+  .mainHome a {
+    width: 48px;
+    height: 48px;
+  }
+  .mainHome a .material-symbols-rounded {
+    font-size: 2.4rem;
   }
 } /* 768px end */
 /* 992px *************************/
 @media screen and (min-width: 992px) {
-  .headerDiscover {
-    height: 80px;
-  }
-  .headerDiscover a {
-    font-size: 2.1rem;
+  .mainHome header {
     gap: 15px;
   }
-  .headerDiscover a span {
-    font-size: 2.5rem;
-    margin-left: 30px;
-    color: #1db954;
+  .mainHome header .equalizerIcon {
+    font-size: 10rem;
   }
-  .mainDiscover {
-    min-height: calc(100vh - 180px);
+  .mainHome header .headerHome {
+    gap: 10px;
   }
-  .mainDiscover .discoverMusic {
-    height: 110px;
+  .mainHome header .headerHome h1 {
+    font-size: 3rem;
   }
-  .mainDiscover .discoverMusic button {
-    width: 50px;
-    height: 50px;
+  .mainHome header .headerHome p {
+    font-size: 1.5rem;
   }
-  .mainDiscover .discoverMusic button span {
-    font-size: 2rem;
+  .mainHome a {
+    width: 60px;
+    height: 60px;
   }
-  .mainDiscover .discoverMusic .spinner {
-    width: 40px;
-    height: 40px;
+  .mainHome a .material-symbols-rounded {
+    font-size: 3rem;
   }
 } /* 992px end */
-/* ***************************************/
-/* KEYFRAMES *****************************/
-/* ***************************************/
-@keyframes spin {
+.mainDiscover {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  min-height: calc(100svh - 60px);
+  background-color: #191414;
+}
+.mainDiscover .headerDiscover {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 80px;
+}
+.mainDiscover .headerDiscover .shuffleButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 200px;
+  height: 40px;
+  padding: 0 20px;
+  border: 2px solid #1DB954;
+  border-radius: 10px;
+  color: #191414;
+  background-color: #1DB954;
+}
+.mainDiscover .headerDiscover .shuffleButton:hover {
+  color: #191414;
+  background-color: #3FE178;
+  border: 2px solid #3FE178;
+  transition-duration: 0.4s;
+  transition-timing-function: ease-in-out;
+}
+.mainDiscover .headerDiscover .shuffleButton:active {
+  color: #191414;
+  background-color: #1DB954;
+  border: 2px solid #1DB954;
+  transition-duration: 0.4s;
+  transition-timing-function: ease-in-out;
+}
+.mainDiscover .headerDiscover .shuffleButton .shuffleButtonText {
+  font-size: 1rem;
+  font-weight: 500;
+}
+.mainDiscover .headerDiscover .shuffleButton .spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-left-color: #191414;
+  animation: spinner 1s ease infinite;
+}
+@keyframes spinner {
   0% {
     transform: rotate(0deg);
   }
@@ -349,133 +379,275 @@ body {
     transform: rotate(360deg);
   }
 }
-/* COMPONENTS */
-:root {
-  --icon-fill-value: 0;
-}
-
-.trackContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  width: 80%;
-  max-width: 340px;
-  height: 100%;
-  text-align: center;
-  margin-bottom: 20px;
-  border-radius: 20px;
-  background-color: #3B3838;
-}
-.trackContainer .artwork {
-  display: flex;
-  width: 180px;
-  margin: 20px 0;
-}
-.trackContainer .trackInfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 90%;
-}
-.trackContainer .trackInfo .song {
-  font-size: 1.3rem;
-  font-weight: 500;
-  margin-bottom: 8px;
-}
-.trackContainer .trackInfo .artist {
-  font-size: 1rem;
-  font-weight: 400;
-}
-.trackContainer .trackInfo button {
-  margin-top: 20px;
-}
-.trackContainer .trackInfo button .material-symbols-rounded {
-  font-variation-settings: "FILL" var(--icon-fill-value);
-}
-.trackContainer .trackInfo .spotifyButtons {
+.mainDiscover .spinnerContainer {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
+  align-items: flex-start;
+  justify-content: center;
   width: 100%;
-  margin: 20px 0;
-  gap: 20px;
+  height: calc(100svh - 140px);
 }
-.trackContainer .trackInfo .spotifyButtons a {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  width: 120px;
-  height: 30px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  border-radius: 15px;
-  color: #191414;
-  background-color: #1db954;
-  gap: 3px;
+.mainDiscover .spinnerContainer .spinner {
+  margin-top: 100px;
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  border-left-color: #1DB954;
+  animation: spinner 1s ease infinite;
 }
-.trackContainer .trackInfo .spotifyButtons a .material-symbols-rounded {
-  font-variation-settings: "FILL" 1, "wght" 500;
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* ***************************************/
 /* MEDIA QUERIES *************************/
 /* ***************************************/
+/* 768px *************************/
+@media screen and (min-width: 768px) {
+  .mainDiscover .headerDiscover {
+    height: 90px;
+  }
+  .mainDiscover .headerDiscover button {
+    width: 240px;
+    padding: 0 30px;
+  }
+  .mainDiscover .headerDiscover .randomTrack {
+    font-size: 1.1rem;
+  }
+  .mainDiscover .spinnerContainer {
+    height: calc(100svh - 150px);
+  }
+} /* 768px end */
 /* 992px *************************/
 @media screen and (min-width: 992px) {
-  .trackContainer {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    width: 90%;
-    max-width: 992px;
-    height: 100%;
-    min-height: 300px;
-    margin-bottom: 40px;
+  .mainDiscover {
+    min-height: calc(100svh - 80px);
   }
-  .trackContainer .artwork {
+  .mainDiscover .headerDiscover {
+    height: 110px;
+  }
+  .mainDiscover .headerDiscover button {
     width: 250px;
-    margin: 0;
+    height: 50px;
+    padding: 0 30px;
   }
-  .trackContainer .trackInfo {
+  .mainDiscover .headerDiscover button .randomTrack {
+    font-size: 1.2rem;
+  }
+  .mainDiscover .spinnerContainer {
+    height: calc(100svh - 190px);
+  }
+} /* 992px end */
+/* COMPONENTS */
+:root {
+  --icon-fill-value: 0;
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  gap: 15px;
+  animation: transition 0.5s linear;
+}
+@keyframes transition {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+.cardContainer .cardItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 300px;
+  color: #FFFFFF;
+  gap: 10px;
+}
+.cardContainer .cardItem .artwork {
+  width: 100%;
+}
+.cardContainer .cardItem .trackInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border-radius: 10px;
+  background-color: #3B3838;
+}
+.cardContainer .cardItem .trackInfo .song {
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 300;
+  padding: 0 5px;
+  margin: 10px 0 8px;
+}
+.cardContainer .cardItem .trackInfo .artist {
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 200;
+  font-style: italic;
+  padding: 0 5px;
+}
+.cardContainer .cardItem .trackInfo button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 15px 0;
+  color: #1DB954;
+}
+.cardContainer .cardItem .trackInfo button .material-symbols-rounded {
+  font-variation-settings: "FILL" var(--icon-fill-value);
+}
+.cardContainer .cardFooter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 300px;
+  height: 80px;
+  margin-bottom: 10px;
+}
+.cardContainer .cardFooter .spotifyLogoContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+}
+.cardContainer .cardFooter .spotifyLogoContainer .spotifyLogo {
+  display: none;
+}
+.cardContainer .cardFooter .spotifyButtons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+.cardContainer .cardFooter .spotifyButtons a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 180px;
+  height: 30px;
+  font-size: 0.9rem;
+  border: 2px solid #1DB954;
+  border-radius: 25px;
+  color: #1DB954;
+  background-color: #191414;
+}
+.cardContainer .cardFooter .spotifyButtons a:hover {
+  color: #191414;
+  background-color: #3FE178;
+  border: 2px solid #3FE178;
+  transition-duration: 0.4s;
+  transition-timing-function: ease-in-out;
+}
+.cardContainer .cardFooter .spotifyButtons a:active {
+  color: #1DB954;
+  background-color: #191414;
+  border: 2px solid #1DB954;
+  transition-duration: 0.4s;
+  transition-timing-function: ease-in-out;
+}
+
+/* ***************************************/
+/* MEDIA QUERIES *************************/
+/* ***************************************/
+/* 768px *************************/
+@media screen and (min-width: 768px) {
+  .cardContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    max-width: 500px;
+    width: 90%;
+    max-width: 800px;
   }
-  .trackContainer .trackInfo .song {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-  }
-  .trackContainer .trackInfo .artist {
-    font-size: 1.1rem;
-  }
-  .trackContainer .trackInfo .spotifyButtons {
+  .cardContainer .cardItem {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
-    width: 100%;
-    margin: 40px 0 10px;
-    gap: 30px;
+    justify-content: space-between;
+    max-width: none;
+    gap: 0;
   }
-  .trackContainer .trackInfo .spotifyButtons a {
+  .cardContainer .cardItem .artwork {
+    width: 45%;
+  }
+  .cardContainer .cardItem .trackInfo {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 140px;
-    height: 40px;
-    padding: 0;
+    width: 50%;
+    min-height: 200px;
+  }
+  .cardContainer .cardItem .trackInfo .song {
+    font-size: 1.2rem;
+    padding: 0 10px;
+    margin: 10px 0 10px;
+  }
+  .cardContainer .cardItem .trackInfo .artist {
     font-size: 1rem;
-    font-weight: 500;
-    border-radius: 20px;
-    gap: 5px;
+    padding: 0 10px;
   }
-} /* 992px end *//*# sourceMappingURL=main.css.map */
+  .cardContainer .cardItem .trackInfo button {
+    margin: 30px 0 0;
+  }
+  .cardContainer .cardItem .trackInfo button .material-symbols-rounded {
+    font-size: 1.8rem;
+  }
+  .cardContainer .cardFooter {
+    max-width: none;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .cardContainer .cardFooter .spotifyLogoContainer {
+    width: 45%;
+    height: 100%;
+    -o-object-fit: contain;
+       object-fit: contain;
+  }
+  .cardContainer .cardFooter .spotifyLogoContainer .spotifyIcon {
+    display: none;
+  }
+  .cardContainer .cardFooter .spotifyLogoContainer .spotifyLogo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+  }
+  .cardContainer .cardFooter .spotifyButtons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 50%;
+    gap: 10px;
+  }
+  .cardContainer .cardFooter .spotifyButtons a {
+    width: 100%;
+    max-width: 180px;
+    height: 40px;
+    font-size: 1rem;
+  }
+} /* 768px end *//*# sourceMappingURL=main.css.map */

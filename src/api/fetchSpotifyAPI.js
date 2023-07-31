@@ -1,13 +1,13 @@
 /**
- * Fetch function that connects with Spotify's API and MongoDB.
- * @function fetchAPI
+ * Fetch function that connects with Spotify's Web API.
+ * @function fetchSpotifyAPI
  * @async
  * @param {String} url Spotify's endpoint.
  * @param {String} method HTTP verb for the request.
  * @param {String} token Authorization header's value that contains "token_type" (Bearer) and "access_token".
  * @returns {Promise}
  */
-export const fetchAPI = async (url, method, token) => {
+export const fetchSpotifyAPI = async (url, method, token) => {
 
     /**
      * Fetch options.
@@ -63,5 +63,5 @@ export const fetchAPI = async (url, method, token) => {
         return error;
 
     };
-    
-};
+
+}

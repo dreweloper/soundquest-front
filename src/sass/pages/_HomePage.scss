@@ -1,8 +1,8 @@
 .mainHome {
     @include displayFlex(column, center, center);
     width: 100%;
-    min-height: 100vh;
-    gap: 80px;
+    min-height: 100svh;
+    gap: 50px;
 
     header {
         @include displayFlex(column, center, center);
@@ -11,12 +11,22 @@
             font-size: 7rem;
             color: $accent;
         }
-    
-        h1 {
-            font-family: $font-prompt;
-            font-size: 2rem;
-            text-transform: uppercase;
-            color: $secondary;
+
+        .headerHome {
+            @include displayFlex(column, center, center);
+            gap: 8px;
+
+            h1 {
+                font-family: $font-prompt;
+                font-size: 2.1rem;
+                text-transform: uppercase;
+                color: $secondary;
+            }
+
+            p {
+                font-size: 1.05rem;
+                color: $secondary-20;
+            }
         }
     }
 
@@ -30,18 +40,99 @@
         background-color: $accent;
         
         &:hover {
-            border: 2px solid $accent;
-            color: $accent;
-            background-color: $primary;
+            @include buttonEffect($accent, $primary, $accent);
         }
 
-        button {
-            @include displayFlex(row, center, center);
+        &:active {
+            @include buttonEffect($primary, $accent, $primary);
+        }
 
-            span {
-                font-size: 2rem;
-                font-weight: 600;
-            }
+        .material-symbols-rounded {
+            font-size: 2rem;
+            font-weight: 600;
         }
     }
 }
+
+
+
+/* ***************************************/
+/* MEDIA QUERIES *************************/
+/* ***************************************/
+
+/* 768px *************************/
+
+@media screen and (min-width:768px) {
+
+    .mainHome {
+    
+        header {
+            gap: 10px;
+    
+            .equalizerIcon {
+                font-size: 8rem;
+            }
+    
+            .headerHome {
+                gap: 10px;
+    
+                h1 {
+                    font-size: 2.4rem;
+                }
+    
+                p {
+                    font-size: 1.2rem;
+                }
+            }
+        }
+    
+        a {
+            width: 48px;
+            height: 48px;
+    
+            .material-symbols-rounded {
+                font-size: 2.4rem;
+            }
+        }
+    }
+
+} /* 768px end */
+
+
+/* 992px *************************/
+  
+@media screen and (min-width:992px) {
+
+    .mainHome {
+    
+        header {
+            gap: 15px;
+    
+            .equalizerIcon {
+                font-size: 10rem;
+            }
+    
+            .headerHome {
+                gap: 10px;
+    
+                h1 {
+                    font-size: 3rem;
+                }
+    
+                p {
+                    font-size: 1.5rem;
+                }
+            }
+        }
+    
+        a {
+            width: 60px;
+            height: 60px;
+    
+            .material-symbols-rounded {
+                font-size: 3rem;
+            }
+        }
+    }
+
+} /* 992px end */

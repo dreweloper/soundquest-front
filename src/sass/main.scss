@@ -7,6 +7,10 @@
 @import './base/mixins';
 @import './base/globals';
 
+/* LAYOUTS */
+@import './layouts/NavBar';
+@import './layouts/Footer';
+
 /* PAGES */
 @import './pages/HomePage';
 @import './pages/DiscoverPage';
