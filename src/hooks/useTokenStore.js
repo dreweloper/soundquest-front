@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { setDislike, setToken, startLoading } from "../store/slices";
 import { getCookie, setCookie } from "../helpers/cookies";
-import { fetchAPI } from "../api";
+import { fetchSpotifyAPI } from "../api";
 
 /**
  * Custom hook for 'tokenSlice' to handle asynchronous functions.
@@ -35,7 +35,7 @@ export const useTokenStore = () => {
 
             const cookieToken = getCookie('token');
 
-            if(cookieToken){ // Conditional: if 'token' exists in cookie.
+            if(cookieToken){ // Conditional: if 'token' exists in cookies.
 
                 const { token_type, access_token } = cookieToken; // Destructuring of the properties "token_type" and "access_token" of "cookieToken" object.
                     
@@ -43,7 +43,7 @@ export const useTokenStore = () => {
 
             };
 
-            const response = await fetchAPI(url, 'POST'); // If "cookieToken" is undefined (because cookieToken doesn't exist or is expired).
+            const response = await fetchSpotifyAPI(url, 'POST'); // If "cookieToken" is undefined (because cookieToken doesn't exist or is expired).
             
             if(response.ok){
 

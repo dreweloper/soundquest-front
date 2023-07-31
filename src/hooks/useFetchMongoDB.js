@@ -4,7 +4,7 @@ import { useState } from "react";
 
 export const useFetchMongoDB = () => {
 
-    const [objectID, setObjectID] = useState(undefined); // MongoDB document's ID.
+    const [objectID, setObjectID] = useState(undefined); // MongoDB document's ID. It's used in 'addTrack' and 'deleteTrack'.
 
 
     const playlist = useSelector(state => state.playlist);

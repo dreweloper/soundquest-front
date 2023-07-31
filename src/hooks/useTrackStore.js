@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAPI } from "../api";
+import { fetchSpotifyAPI } from "../api";
 import { finishLoading, setTrack, setTrackID } from "../store/slices";
 import { randomTrack } from "../helpers";
 
@@ -36,7 +36,7 @@ export const useTrackStore = () => {
 
         try {
 
-            const response = await fetchAPI(url, 'GET', authorization);
+            const response = await fetchSpotifyAPI(url, 'GET', authorization);
 
             if (response.ok) {
 
@@ -85,7 +85,7 @@ export const useTrackStore = () => {
 
         try {
             
-            const response = await fetchAPI(url, 'GET', authorization);
+            const response = await fetchSpotifyAPI(url, 'GET', authorization);
 
             if(response.ok){
 

@@ -1,2 +1,2 @@
-export * from './fetchAPI';
 export * from './fetchMongoDB';
+export * from './fetchSpotifyAPI';

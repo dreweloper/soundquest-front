@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAPI } from "../api";
+import { fetchSpotifyAPI } from "../api";
 import { getPlaylistURL, randomPlaylist } from "../helpers";
 import { setPlaylist } from "../store/slices";
 
@@ -36,7 +36,7 @@ export const usePlaylistStore = () => {
 
         try {
             
-            const response = await fetchAPI(url, 'GET', authorization);
+            const response = await fetchSpotifyAPI(url, 'GET', authorization);
 
             if(response.ok){
 
