@@ -54,7 +54,7 @@ export const DiscoverPage = () => {
 
     useEffect(() => {
 
-        if(track_id){
+        if (track_id) {
 
             setTimeout(() => {
 
@@ -95,7 +95,9 @@ export const DiscoverPage = () => {
 
                 </header>
 
-                {track_url && <Card />}
+                {
+                    !isLoading ? ( track_url && <Card /> ) : ( <span class="loader"></span> )
+                }
 
             </main>
 

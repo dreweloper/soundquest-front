@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /* UTILITIES */ /* 
 html5doctor.com Reset Stylesheet
 v1.6.1
@@ -134,7 +133,7 @@ button {
 
 /* BASE */
 /* VARIABLES */
-/* LOADING SPINNER –HOMEPAGE– */
+/* GENERIC KEYFRAMES */
 body {
   font-family: "Poppins", sans-serif;
   background-color: #191414;
@@ -376,7 +375,62 @@ body {
   border: 3px solid rgba(0, 0, 0, 0.1);
   border-radius: 50%;
   border-left-color: #191414;
-  animation: spin 1s ease infinite;
+  animation: spinner 1s ease infinite;
+}
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.mainDiscover .loader {
+  width: 8px;
+  height: 40px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-left: 20px;
+  margin-top: 10px;
+  position: relative;
+  background: currentColor;
+  color: #1DB954;
+  box-sizing: border-box;
+  animation: animloader 0.3s 0.3s linear infinite alternate;
+}
+@keyframes animloader {
+  0% {
+    height: 40px;
+    transform: translateY(0);
+  }
+  100% {
+    height: 10px;
+    transform: translateY(30px);
+  }
+}
+.mainDiscover .loader::after, .mainDiscover .loader::before {
+  content: "";
+  box-sizing: border-box;
+  width: 8px;
+  height: 40px;
+  border-radius: 4px;
+  background: currentColor;
+  position: absolute;
+  bottom: 0;
+  left: 20px;
+  animation: animloader1 0.3s 0.45s linear infinite alternate;
+}
+@keyframes animloader1 {
+  0% {
+    height: 48px;
+  }
+  100% {
+    height: 4.8px;
+  }
+}
+.mainDiscover .loader::before {
+  left: -20px;
+  animation-delay: 0s;
 }
 
 /* ***************************************/
@@ -412,17 +466,6 @@ body {
     font-size: 1.2rem;
   }
 } /* 992px end */
-/* ***************************************/
-/* KEYFRAMES *****************************/
-/* ***************************************/
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
 /* COMPONENTS */
 :root {
   --icon-fill-value: 0;
@@ -436,6 +479,14 @@ body {
   width: 80%;
   gap: 15px;
   animation: transition 1s linear;
+}
+@keyframes transition {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100%;
+  }
 }
 .cardContainer .cardItem {
   display: flex;
@@ -621,17 +672,4 @@ body {
     height: 40px;
     font-size: 1rem;
   }
-} /* 768px end */
-/* 992px *************************/
-/* 992px end */
-/* ***************************************/
-/* KEYFRAMES *****************************/
-/* ***************************************/
-@keyframes transition {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 100%;
-  }
-}/*# sourceMappingURL=main.css.map */
+} /* 768px end *//*# sourceMappingURL=main.css.map */

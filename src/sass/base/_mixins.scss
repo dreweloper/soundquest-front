@@ -14,19 +14,10 @@
     transition-timing-function: ease-in-out;
 }
 
-/* LOADING SPINNER –HOMEPAGE– */
+/* GENERIC KEYFRAMES */
 
-// @mixin spinAnimation($name, $duration, $timing, $iteration) {
-//     animation: $name $duration $timing $iteration;
-// }
-
-// @mixin spinKeyframes($name) {
-//     @keyframes #{$name} {
-//         0% {
-//             transform: rotate(0deg);
-//         }
-//         100% {
-//             transform: rotate(360deg);
-//         }
-//     }
-// }
+@mixin keyframes($name) {
+    @keyframes #{$name} {
+        @content
+    }
+}

@@ -3,6 +3,14 @@
 }
 
 .cardContainer {
+    @include keyframes(transition){
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 100%;
+        }
+    }
     @include displayFlex(column, center, center);
     width: 80%;
     gap: 15px;
@@ -182,27 +190,3 @@
     }
 
 } /* 768px end */
-
-
-/* 992px *************************/
-  
-@media screen and (min-width:992px) {
-
-
-
-} /* 992px end */
-
-
-
-/* ***************************************/
-/* KEYFRAMES *****************************/
-/* ***************************************/
-
-@keyframes transition {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 100%;
-    }
-}
