@@ -14,6 +14,15 @@
     transition-timing-function: ease-in-out;
 }
 
+@mixin spinner($width, $height, $borderPX, $borderRGBA, $borderLeftColor){
+    width: $width;
+    height: $height;
+    border: $borderPX solid rgba($borderRGBA, $borderRGBA, $borderRGBA, .1);
+    border-radius: 50%;
+    border-left-color: $borderLeftColor;
+    animation: spinner 1s ease infinite;
+}
+
 /* GENERIC KEYFRAMES */
 
 @mixin keyframes($name) {

@@ -77,9 +77,13 @@ export const DiscoverPage = () => {
 
                 <header className='headerDiscover'>
 
-                    <button onClick={handleToken}>
+                    <button
+                        className='shuffleButton'
+                        onClick={handleToken}
+                        disabled={isLoading}
+                    >
 
-                        <span className='randomTrack'>Random track</span>
+                        <span className='shuffleButtonText'>Random track</span>
 
                         {
                             !isLoading ? (
@@ -87,7 +91,7 @@ export const DiscoverPage = () => {
                                     shuffle
                                 </span>
                             ) : (
-                                <div className='spinner'></div>
+                                <span className='spinner'></span>
                             )
                         }
 
@@ -96,7 +100,7 @@ export const DiscoverPage = () => {
                 </header>
 
                 {
-                    !isLoading && ( track_url && <Card /> )
+                    isLoading ? (<span className='spinner'></span>) : (track_url && <Card />)
                 }
 
             </main>
