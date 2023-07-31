@@ -327,7 +327,7 @@ body {
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-  min-height: calc(100svh - 160px);
+  min-height: calc(100svh - 60px);
   background-color: #191414;
 }
 .mainDiscover .headerDiscover {
@@ -385,7 +385,16 @@ body {
     transform: rotate(360deg);
   }
 }
-.mainDiscover .spinner {
+.mainDiscover .spinnerContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  height: calc(100svh - 140px);
+}
+.mainDiscover .spinnerContainer .spinner {
+  margin-top: 100px;
   width: 50px;
   height: 50px;
   border: 5px solid rgba(255, 255, 255, 0.1);
@@ -417,11 +426,14 @@ body {
   .mainDiscover .headerDiscover .randomTrack {
     font-size: 1.1rem;
   }
+  .mainDiscover .spinnerContainer {
+    height: calc(100svh - 150px);
+  }
 } /* 768px end */
 /* 992px *************************/
 @media screen and (min-width: 992px) {
   .mainDiscover {
-    min-height: calc(100svh - 180px);
+    min-height: calc(100svh - 80px);
   }
   .mainDiscover .headerDiscover {
     height: 110px;
@@ -433,6 +445,9 @@ body {
   }
   .mainDiscover .headerDiscover button .randomTrack {
     font-size: 1.2rem;
+  }
+  .mainDiscover .spinnerContainer {
+    height: calc(100svh - 190px);
   }
 } /* 992px end */
 /* COMPONENTS */
@@ -504,7 +519,7 @@ body {
 .cardContainer .cardItem .trackInfo button .material-symbols-rounded {
   font-variation-settings: "FILL" var(--icon-fill-value);
 }
-.cardContainer .cardNav {
+.cardContainer .cardFooter {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -514,24 +529,24 @@ body {
   height: 80px;
   margin-bottom: 10px;
 }
-.cardContainer .cardNav .spotifyLogoContainer {
+.cardContainer .cardFooter .spotifyLogoContainer {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   width: 70px;
 }
-.cardContainer .cardNav .spotifyLogoContainer .spotifyLogo {
+.cardContainer .cardFooter .spotifyLogoContainer .spotifyLogo {
   display: none;
 }
-.cardContainer .cardNav .spotifyButtons {
+.cardContainer .cardFooter .spotifyButtons {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   height: 100%;
 }
-.cardContainer .cardNav .spotifyButtons a {
+.cardContainer .cardFooter .spotifyButtons a {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -544,14 +559,14 @@ body {
   color: #1DB954;
   background-color: #191414;
 }
-.cardContainer .cardNav .spotifyButtons a:hover {
+.cardContainer .cardFooter .spotifyButtons a:hover {
   color: #191414;
   background-color: #3FE178;
   border: 2px solid #3FE178;
   transition-duration: 0.4s;
   transition-timing-function: ease-in-out;
 }
-.cardContainer .cardNav .spotifyButtons a:active {
+.cardContainer .cardFooter .spotifyButtons a:active {
   color: #1DB954;
   background-color: #191414;
   border: 2px solid #1DB954;
@@ -606,28 +621,28 @@ body {
   .cardContainer .cardItem .trackInfo button .material-symbols-rounded {
     font-size: 1.8rem;
   }
-  .cardContainer .cardNav {
+  .cardContainer .cardFooter {
     max-width: none;
     margin-bottom: 20px;
     overflow: hidden;
   }
-  .cardContainer .cardNav .spotifyLogoContainer {
+  .cardContainer .cardFooter .spotifyLogoContainer {
     width: 45%;
     height: 100%;
     -o-object-fit: contain;
        object-fit: contain;
   }
-  .cardContainer .cardNav .spotifyLogoContainer .spotifyIcon {
+  .cardContainer .cardFooter .spotifyLogoContainer .spotifyIcon {
     display: none;
   }
-  .cardContainer .cardNav .spotifyLogoContainer .spotifyLogo {
+  .cardContainer .cardFooter .spotifyLogoContainer .spotifyLogo {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     width: 200px;
   }
-  .cardContainer .cardNav .spotifyButtons {
+  .cardContainer .cardFooter .spotifyButtons {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -635,7 +650,7 @@ body {
     width: 50%;
     gap: 10px;
   }
-  .cardContainer .cardNav .spotifyButtons a {
+  .cardContainer .cardFooter .spotifyButtons a {
     width: 100%;
     max-width: 180px;
     height: 40px;

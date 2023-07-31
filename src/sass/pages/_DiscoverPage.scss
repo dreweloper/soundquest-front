@@ -1,7 +1,7 @@
 .mainDiscover {
     @include displayFlex(column, center, flex-start);
     width: 100%;
-    min-height: calc(100svh - (60px + 100px));
+    min-height: calc(100svh - 60px);
     background-color: $primary;
 
     .headerDiscover {
@@ -45,16 +45,24 @@
             }
         }
     }
-    .spinner {
-        @include keyframes(spinner){
-            0% {
-                transform: rotate(0deg);
+
+    .spinnerContainer {
+        @include displayFlex(row, flex-start, center);
+        width: 100%;
+        height: calc(100svh - (60px + 80px));
+
+        .spinner {
+            @include keyframes(spinner){
+                0% {
+                    transform: rotate(0deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
             }
-            100% {
-                transform: rotate(360deg);
-            }
+            margin-top: 100px;
+            @include spinner(50px, 50px, 5px, 255, $accent);
         }
-        @include spinner(50px, 50px, 5px, 255, $accent);
     }
 }
 
@@ -82,6 +90,9 @@
                 font-size: 1.1rem;
             }
         }
+        .spinnerContainer {
+            height: calc(100svh - (60px + 90px));
+        }
     }
 } /* 768px end */
 
@@ -91,7 +102,7 @@
 @media screen and (min-width:992px) {
     
     .mainDiscover {
-        min-height: calc(100svh - (80px + 100px));
+        min-height: calc(100svh - 80px);
 
         .headerDiscover {
             height: 110px;
@@ -105,6 +116,9 @@
                     font-size: 1.2rem;
                 }
             }
+        }
+        .spinnerContainer {
+            height: calc(100svh - (80px + 110px));
         }
     }
 } /* 992px end */

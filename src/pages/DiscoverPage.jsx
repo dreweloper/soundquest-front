@@ -100,7 +100,15 @@ export const DiscoverPage = () => {
                 </header>
 
                 {
-                    isLoading ? (<span className='spinner'></span>) : (track_url && <Card />)
+                    isLoading ? (
+                        <div className='spinnerContainer'>
+
+                            <span className='spinner'></span>
+                            
+                        </div>
+                    ) : (
+                        track_url && <Card />
+                    )
                 }
 
             </main>

@@ -58,7 +58,7 @@ export const Card = () => {
 
                     </div>
 
-                    <div className='trackInfo'>
+                    <section className='trackInfo'>
 
                         <p className='song'> {name} </p>
 
@@ -72,29 +72,29 @@ export const Card = () => {
 
                         </button>
 
-                    </div>
+                    </section>
 
                 </article>
 
-                <nav className='cardNav'>
+                <footer className='cardFooter'>
 
-                    <div className='spotifyLogoContainer'>
+                    <Link to='https://open.spotify.com/user/aleon88' className='spotifyLogoContainer'>
 
                         <img className='spotifyIcon' src='/assets/spotify/icons/Spotify_Icon_RGB_Green.png' alt='Spotify logo icon' title='Spotify logo icon' />
 
                         <img className='spotifyLogo' src='/assets/spotify/logos/Spotify_Logo_RGB_Green.png' alt='Spotify logo' title='Spotify logo' />
 
-                    </div>
+                    </Link>
 
-                    <div className='spotifyButtons'>
+                    <nav className='spotifyButtons'>
 
                         <Link to={track_url}> Play on Spotify </Link>
 
                         <Link to={playlist_url}> Open playlist </Link>
 
-                    </div>
+                    </nav>
 
-                </nav>
+                </footer>
 
             </section>
 

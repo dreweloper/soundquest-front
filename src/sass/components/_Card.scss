@@ -62,7 +62,7 @@
         }
     }
 
-    .cardNav {
+    .cardFooter {
         @include displayFlex(row, center, space-between);
         width: 100%;
         max-width: 300px;
@@ -154,7 +154,7 @@
             }
         }
     
-        .cardNav {
+        .cardFooter {
             max-width: none;
             margin-bottom: 20px;
             overflow: hidden;
