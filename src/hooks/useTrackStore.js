@@ -40,12 +40,15 @@ export const useTrackStore = () => {
 
             if (response.ok) {
 
+                /**
+                 * @type {Object} Spotify Web API's response (Promise fulfilled).
+                 */
                 const { tracks } = response.data; // Destructuring of the property 'tracks' of 'response.data' object.
 
                 /**
                  * @type {String} A random track ID.
                  */
-                const track_id = randomTrack(tracks.items);
+                const track_id = randomTrack(tracks.items); // 'tracks.items' is an Array of Objects with the playlist's tracks information.
 
                 dispatch(setTrackID({ track_id }));
 
@@ -111,7 +114,7 @@ export const useTrackStore = () => {
 
                 dispatch(setTrack({ album, artwork, artist, name, track_url }));
 
-                setTimeout(() => {
+                setTimeout(() => { // This way the loader spinner effect lasts longer and allows the Card component to be rendered better.
 
                     dispatch(finishLoading());
     

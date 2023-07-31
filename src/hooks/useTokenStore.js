@@ -1,5 +1,5 @@
-import { useDispatch, useSelector } from "react-redux";
-import { setDislike, setToken, startLoading } from "../store/slices";
+import { useDispatch } from "react-redux";
+import { setToken, startLoading } from "../store/slices";
 import { getCookie, setCookie } from "../helpers/cookies";
 import { fetchSpotifyAPI } from "../api";
 
@@ -10,8 +10,6 @@ import { fetchSpotifyAPI } from "../api";
  */
 export const useTokenStore = () => {
 
-    const { like } = useSelector(state => state.like); // Destructuring the property 'like' of the state.
-
     const dispatch = useDispatch();
 
     /**
@@ -20,8 +18,6 @@ export const useTokenStore = () => {
      * @async
      */
     const getToken = async () => {
-
-        like && dispatch(setDislike()); // If the state prop 'like' is 'true', the dispatch will restart the state to its initial value ('false') and the like icon won't have any fill.
 
         dispatch(startLoading());
 

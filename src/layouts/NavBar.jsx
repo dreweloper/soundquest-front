@@ -1,29 +1,16 @@
-import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { clearPlaylist, clearToken, clearTrack, finishLoading } from '../store/slices';
+import { useResetStates } from '../hooks';
 
 export const NavBar = () => {
 
-    const dispatch = useDispatch();
-
-    const handleReset = () => {
-
-        dispatch(clearToken());
-
-        dispatch(clearPlaylist());
-
-        dispatch(clearTrack());
-
-        dispatch(finishLoading());
-
-    };
+    const { resetStates } = useResetStates();
 
 
     return (
 
         <nav className='navBar'>
 
-            <Link to='/' onClick={handleReset}>
+            <Link to='/' onClick={resetStates}>
 
                 <span className="material-symbols-rounded">
                     equalizer
