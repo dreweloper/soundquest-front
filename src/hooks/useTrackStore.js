@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAPI } from "../api";
+import { fetchSpotifyAPI } from "../api";
 import { finishLoading, setTrack, setTrackID } from "../store/slices";
 import { randomTrack } from "../helpers";
 
@@ -36,16 +36,19 @@ export const useTrackStore = () => {
 
         try {
 
-            const response = await fetchAPI(url, 'GET', authorization);
+            const response = await fetchSpotifyAPI(url, 'GET', authorization);
 
             if (response.ok) {
 
+                /**
+                 * @type {Object} Spotify Web API's response (Promise fulfilled).
+                 */
                 const { tracks } = response.data; // Destructuring of the property 'tracks' of 'response.data' object.
 
                 /**
                  * @type {String} A random track ID.
                  */
-                const track_id = randomTrack(tracks.items);
+                const track_id = randomTrack(tracks.items); // 'tracks.items' is an Array of Objects with the playlist's tracks information.
 
                 dispatch(setTrackID({ track_id }));
 
@@ -85,7 +88,7 @@ export const useTrackStore = () => {
 
         try {
             
-            const response = await fetchAPI(url, 'GET', authorization);
+            const response = await fetchSpotifyAPI(url, 'GET', authorization);
 
             if(response.ok){
 
@@ -111,7 +114,11 @@ export const useTrackStore = () => {
 
                 dispatch(setTrack({ album, artwork, artist, name, track_url }));
 
-                dispatch(finishLoading());
+                setTimeout(() => { // This way the loader spinner effect lasts longer and allows the Card component to be rendered better.
+
+                    dispatch(finishLoading());
+    
+                }, 1500);
 
             } else {
 

@@ -1,35 +1,19 @@
-import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { clearPlaylist, clearToken, clearTrack, finishLoading } from '../store/slices';
 import { useEffect } from 'react';
 import { useFetchMongoDB } from '../hooks';
 
 export const HomePage = () => {
 
-    const dispatch = useDispatch();
-
+    // HOOKS
     const { getTracks } = useFetchMongoDB();
 
 
-    const handleButton = () => {
-
-        dispatch(clearToken());
-
-        dispatch(clearPlaylist());
-
-        dispatch(clearTrack());
-
-        dispatch(finishLoading());
-
-    };
-
-
+    // USEEFFECTS
     useEffect(() => {
 
-        getTracks();
+        getTracks(); // To wake up back-end's server (Render).
 
     }, []);
-
 
 
     return (
@@ -56,13 +40,9 @@ export const HomePage = () => {
 
                 <Link to='/discover'>
 
-                    <button onClick={handleButton}>
-
-                        <span className="material-symbols-rounded">
-                            arrow_forward
-                        </span>
-
-                    </button>
+                    <span className="material-symbols-rounded">
+                        arrow_forward
+                    </span>
 
                 </Link>
 

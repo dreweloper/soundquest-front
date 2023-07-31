@@ -1,7 +1,7 @@
-import { useDispatch, useSelector } from "react-redux";
-import { setDislike, setToken, startLoading } from "../store/slices";
+import { useDispatch } from "react-redux";
+import { setToken, startLoading } from "../store/slices";
 import { getCookie, setCookie } from "../helpers/cookies";
-import { fetchAPI } from "../api";
+import { fetchSpotifyAPI } from "../api";
 
 /**
  * Custom hook for 'tokenSlice' to handle asynchronous functions.
@@ -9,8 +9,6 @@ import { fetchAPI } from "../api";
  * @returns {Function}
  */
 export const useTokenStore = () => {
-
-    const { like } = useSelector(state => state.like); // Destructuring the property 'like' of the state.
 
     const dispatch = useDispatch();
 
@@ -20,8 +18,6 @@ export const useTokenStore = () => {
      * @async
      */
     const getToken = async () => {
-
-        like && dispatch(setDislike()); // If the state prop 'like' is 'true', the dispatch will restart the state to its initial value ('false') and the like icon won't have any fill.
 
         dispatch(startLoading());
 
@@ -35,7 +31,7 @@ export const useTokenStore = () => {
 
             const cookieToken = getCookie('token');
 
-            if(cookieToken){ // Conditional: if "cookieToken" is not undefined.
+            if(cookieToken){ // Conditional: if 'token' exists in cookies.
 
                 const { token_type, access_token } = cookieToken; // Destructuring of the properties "token_type" and "access_token" of "cookieToken" object.
                     
@@ -43,7 +39,7 @@ export const useTokenStore = () => {
 
             };
 
-            const response = await fetchAPI(url, 'POST'); // If "cookieToken" is undefined (because cookieToken doesn't exist or is expired).
+            const response = await fetchSpotifyAPI(url, 'POST'); // If "cookieToken" is undefined (because cookieToken doesn't exist or is expired).
             
             if(response.ok){
 
@@ -51,7 +47,7 @@ export const useTokenStore = () => {
 
                 dispatch(setToken({ token_type, access_token }));
 
-                setCookie('token', response.data);
+                setCookie('token', response.data); // 'response.data' is the token object returned by Spotify.
 
             } else {
 
