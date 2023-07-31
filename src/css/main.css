@@ -404,6 +404,20 @@ body {
     transform: rotate(360deg);
   }
 }
+.mainDiscover .errorContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  height: 50px;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: red;
+}
+.mainDiscover .errorContainer p {
+  color: #FFFFFF;
+}
 
 /* ***************************************/
 /* MEDIA QUERIES *************************/

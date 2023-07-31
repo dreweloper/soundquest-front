@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSpotifyAPI } from "../api";
-import { finishLoading, setTrack, setTrackID } from "../store/slices";
+import { finishLoading, setError, setTrack, setTrackID } from "../store/slices";
 import { randomTrack } from "../helpers";
 
 /**
@@ -53,6 +53,8 @@ export const useTrackStore = () => {
                 dispatch(setTrackID({ track_id }));
 
             } else {
+
+                dispatch(setError());
 
                 dispatch(finishLoading());
 
@@ -123,6 +125,8 @@ export const useTrackStore = () => {
                 }, 1500);
 
             } else {
+
+                dispatch(setError());
 
                 dispatch(finishLoading());
 

@@ -3,3 +3,4 @@ export * from './playlistSlice';
 export * from './trackSlice';
 export * from './loadingSlice';
 export * from './likeSlice';
+export * from './errorSlice';

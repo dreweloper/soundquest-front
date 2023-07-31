@@ -1,22 +1,21 @@
 import { useSelector } from 'react-redux';
 import { usePlaylistStore, useResetStates, useTokenStore, useTrackStore } from "../hooks";
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Card } from '../components';
-import { Footer, NavBar } from '../layouts';
+import { NavBar } from '../layouts';
 
 export const DiscoverPage = () => {
 
-    // USESTATE
-    const [error, setError] = useState(false);
-
     // REDUX STATES
     const { isLoading } = useSelector(state => state.loading);
+
+    const { error } = useSelector(state => state.errors);
 
     const token = useSelector(state => state.token);
 
     const { playlist_id } = useSelector(state => state.playlist); // Destructuring of the property 'playlist_id' of 'playlist' state object.
 
-    const { track_id, isTrackStateComplete } = useSelector(state => state.track); // Destructuring of the properties 'track_id' and 'track_url' of 'track' state object.
+    const { track_id, isTrackStateComplete } = useSelector(state => state.track); // Destructuring of the properties 'track_id' and 'isTrackStateComplete' of 'track' state object.
 
 
     // REDUX MIDDLEWARES (HOOKS)
@@ -100,20 +99,30 @@ export const DiscoverPage = () => {
                 </header>
 
                 {
-                    isLoading ? (
+                    isLoading && (
                         <div className='spinnerContainer'>
 
                             <span className='spinner'></span>
-                            
+
                         </div>
-                    ) : (
-                        isTrackStateComplete && <Card />
                     )
                 }
 
-            </main>
+                {
+                    !isLoading && error && (
+                        <div className='errorContainer'>
 
-            {/* <Footer /> */}
+                            <p> Oops! Try again, please… <span role="img" aria-label="Face with a wide smile, squinting eyes and a bead of sweat."> 😅 </span></p>
+
+                        </div>
+                    )
+                }
+
+                {
+                    !isLoading && !error && (isTrackStateComplete && <Card />)
+                }
+
+            </main>
 
         </>
 

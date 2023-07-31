@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { finishLoading, setToken, startLoading } from "../store/slices";
+import { finishLoading, setError, setToken, startLoading } from "../store/slices";
 import { getCookie, setCookie } from "../helpers/cookies";
 import { fetchSpotifyAPI } from "../api";
 
@@ -51,9 +51,11 @@ export const useTokenStore = () => {
 
             } else {
 
+                dispatch(setError());
+
                 dispatch(finishLoading());
 
-                throw response; 
+                throw response;
 
             };
 
