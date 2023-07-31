@@ -435,6 +435,7 @@ body {
   justify-content: center;
   width: 80%;
   gap: 15px;
+  animation: transition 1s linear;
 }
 .cardContainer .cardItem {
   display: flex;
@@ -622,4 +623,15 @@ body {
   }
 } /* 768px end */
 /* 992px *************************/
-/* 992px end *//*# sourceMappingURL=main.css.map */
+/* 992px end */
+/* ***************************************/
+/* KEYFRAMES *****************************/
+/* ***************************************/
+@keyframes transition {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100%;
+  }
+}/*# sourceMappingURL=main.css.map */
