@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { setToken, startLoading } from "../store/slices";
+import { finishLoading, setToken, startLoading } from "../store/slices";
 import { getCookie, setCookie } from "../helpers/cookies";
 import { fetchSpotifyAPI } from "../api";
 
@@ -50,6 +50,8 @@ export const useTokenStore = () => {
                 setCookie('token', response.data); // 'response.data' is the token object returned by Spotify.
 
             } else {
+
+                dispatch(finishLoading());
 
                 throw response; 
 

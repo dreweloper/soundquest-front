@@ -1,10 +1,13 @@
 import { useSelector } from 'react-redux';
 import { usePlaylistStore, useResetStates, useTokenStore, useTrackStore } from "../hooks";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Card } from '../components';
 import { Footer, NavBar } from '../layouts';
 
 export const DiscoverPage = () => {
+
+    // USESTATE
+    const [error, setError] = useState(false);
 
     // REDUX STATES
     const { isLoading } = useSelector(state => state.loading);
@@ -13,7 +16,7 @@ export const DiscoverPage = () => {
 
     const { playlist_id } = useSelector(state => state.playlist); // Destructuring of the property 'playlist_id' of 'playlist' state object.
 
-    const { track_id, track_url } = useSelector(state => state.track); // Destructuring of the properties 'track_id' and 'track_url' of 'track' state object.
+    const { track_id, isTrackStateComplete } = useSelector(state => state.track); // Destructuring of the properties 'track_id' and 'track_url' of 'track' state object.
 
 
     // REDUX MIDDLEWARES (HOOKS)
@@ -104,7 +107,7 @@ export const DiscoverPage = () => {
                             
                         </div>
                     ) : (
-                        track_url && <Card />
+                        isTrackStateComplete && <Card />
                     )
                 }
 

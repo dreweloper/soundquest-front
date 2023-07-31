@@ -10,7 +10,8 @@ export const trackSlice = createSlice({
         artwork: undefined,
         artist: undefined,
         name: undefined,
-        track_url: undefined
+        track_url: undefined,
+        isTrackStateComplete: false
     },
 
     reducers: {
@@ -23,6 +24,7 @@ export const trackSlice = createSlice({
             state.artist = payload.artist;
             state.name = payload.name;
             state.track_url = payload.track_url;
+            state.isTrackStateComplete = true;
         },
         clearTrack: (state) => {
             state.track_id = undefined;
@@ -31,6 +33,7 @@ export const trackSlice = createSlice({
             state.artist = undefined;
             state.name = undefined;
             state.track_url = undefined;
+            state.isTrackStateComplete = false;
         }
     }
 

@@ -54,6 +54,8 @@ export const useTrackStore = () => {
 
             } else {
 
+                dispatch(finishLoading());
+
                 throw response;
 
             };
@@ -121,6 +123,8 @@ export const useTrackStore = () => {
                 }, 1500);
 
             } else {
+
+                dispatch(finishLoading());
 
                 throw response;
 
