@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAPI } from "../api";
 import { getPlaylistURL, randomPlaylist } from "../helpers";
-import { setPlaylist } from "../store/slices";
+import { clearPlaylist, setPlaylist } from "../store/slices";
 
 /**
  * Custom hook for 'playlistSlice' to handle asynchronous functions.

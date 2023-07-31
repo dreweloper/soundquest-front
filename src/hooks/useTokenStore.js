@@ -35,7 +35,7 @@ export const useTokenStore = () => {
 
             const cookieToken = getCookie('token');
 
-            if(cookieToken){ // Conditional: if "cookieToken" is not undefined.
+            if(cookieToken){ // Conditional: if 'token' exists in cookie.
 
                 const { token_type, access_token } = cookieToken; // Destructuring of the properties "token_type" and "access_token" of "cookieToken" object.
                     
@@ -51,7 +51,7 @@ export const useTokenStore = () => {
 
                 dispatch(setToken({ token_type, access_token }));
 
-                setCookie('token', response.data);
+                setCookie('token', response.data); // 'response.data' is the token object returned by Spotify.
 
             } else {
 

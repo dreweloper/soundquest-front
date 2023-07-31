@@ -1,11 +1,14 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { usePlaylistStore, useTokenStore, useTrackStore } from "../hooks";
 import { useEffect } from 'react';
 import { Card } from '../components';
 import { setIconFill } from '../helpers';
 import { Footer, NavBar } from '../layouts';
+import { clearPlaylist, clearTrack } from '../store/slices';
 
 export const DiscoverPage = () => {
+
+    const dispatch = useDispatch();
 
     // LOADING
     const { isLoading } = useSelector(state => state.loading);
@@ -19,6 +22,10 @@ export const DiscoverPage = () => {
     const handleToken = () => {
 
         token.access_token && setIconFill(0); // Avoid pre-rendering Card error.
+
+        dispatch(clearPlaylist());
+
+        dispatch(clearTrack());
 
         getToken();
 
@@ -47,7 +54,7 @@ export const DiscoverPage = () => {
 
     useEffect(() => {
 
-        playlist_id && getPlaylist(playlist_id);
+        playlist_id && getPlaylist(playlist_id); // If 'playlist_id' is not undefined.
 
     }, [playlist_id]);
 
@@ -60,7 +67,7 @@ export const DiscoverPage = () => {
 
                 getTrack(track_id);
 
-            }, 1000);
+            }, 1500);
         };
 
     }, [track_id]);
