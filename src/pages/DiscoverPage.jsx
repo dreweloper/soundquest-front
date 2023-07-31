@@ -10,6 +10,7 @@ export const DiscoverPage = () => {
 
     const dispatch = useDispatch();
 
+    
     // LOADING
     const { isLoading } = useSelector(state => state.loading);
 
@@ -21,11 +22,11 @@ export const DiscoverPage = () => {
 
     const handleToken = () => {
 
-        token.access_token && setIconFill(0); // Avoid pre-rendering Card error.
+        token.access_token && setIconFill(0); // Avoid pre-rendering Card error: it works if 'access_token' property of 'token' state isn't 'undefined'.
 
-        dispatch(clearPlaylist());
+        dispatch(clearPlaylist()); // Avoid infinite loading because of 'playlist_id' property doesn't change and useEffect doesn't work.
 
-        dispatch(clearTrack());
+        dispatch(clearTrack()); // Avoid infinite loading because of 'track_id' property doesn't change and useEffect doesn't work.
 
         getToken();
 

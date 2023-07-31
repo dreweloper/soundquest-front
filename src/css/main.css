@@ -257,13 +257,7 @@ body {
   transition-duration: 0.4s;
   transition-timing-function: ease-in-out;
 }
-.mainHome a button {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-.mainHome a button span {
+.mainHome a .material-symbols-rounded {
   font-size: 2rem;
   font-weight: 600;
 }
@@ -292,7 +286,7 @@ body {
     width: 48px;
     height: 48px;
   }
-  .mainHome a button span {
+  .mainHome a .material-symbols-rounded {
     font-size: 2.4rem;
   }
 } /* 768px end */
@@ -317,7 +311,7 @@ body {
     width: 60px;
     height: 60px;
   }
-  .mainHome a button span {
+  .mainHome a .material-symbols-rounded {
     font-size: 3rem;
   }
 } /* 992px end */
