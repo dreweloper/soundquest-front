@@ -14,7 +14,7 @@
     @include displayFlex(column, center, center);
     width: 80%;
     gap: 15px;
-    animation: transition 1s linear;
+    animation: transition 0.5s linear;
 
     .cardItem {
         @include displayFlex(column, center, center);

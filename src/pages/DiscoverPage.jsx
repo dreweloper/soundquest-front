@@ -96,7 +96,7 @@ export const DiscoverPage = () => {
                 </header>
 
                 {
-                    !isLoading ? ( track_url && <Card /> ) : ( <span class="loader"></span> )
+                    !isLoading && ( track_url && <Card /> )
                 }
 
             </main>
