@@ -62,14 +62,7 @@ export const DiscoverPage = () => {
 
     useEffect(() => {
 
-        if (track_id) {
-
-            setTimeout(() => {
-
-                getTrack(track_id);
-
-            }, 1500);
-        };
+        track_id && getTrack(track_id);
 
     }, [track_id]);
 

@@ -111,7 +111,11 @@ export const useTrackStore = () => {
 
                 dispatch(setTrack({ album, artwork, artist, name, track_url }));
 
-                dispatch(finishLoading());
+                setTimeout(() => {
+
+                    dispatch(finishLoading());
+    
+                }, 1500);
 
             } else {
 
