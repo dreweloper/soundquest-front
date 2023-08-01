@@ -53,7 +53,10 @@ export const usePlaylistStore = () => {
 
 
         try {
-
+            /**
+             * The API response received from Spotify API.
+             * @type {Object}
+             */
             const request = await fetchSpotifyAPI(url, 'GET', authorization);
 
             if (request.ok) {

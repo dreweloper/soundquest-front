@@ -66,8 +66,11 @@ export const useTokenStore = () => {
 
             };
 
-            // If "cookieToken" is undefined (because cookieToken doesn't exist or is expired).
-            const response = await fetchSpotifyAPI(url, 'POST'); 
+            /**
+             * The API response received from Spotify API.
+             * @type {Object}
+             */
+            const response = await fetchSpotifyAPI(url, 'POST'); // If "cookieToken" is undefined (because cookieToken doesn't exist or is expired).
             
             if(response.ok){
                 /**
