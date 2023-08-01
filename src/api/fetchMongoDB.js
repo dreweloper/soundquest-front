@@ -1,12 +1,19 @@
-
+/**
+ * @function fetchMongoDB
+ * @async
+ * @param {String} url 
+ * @param {String} method 
+ * @param {Object} body 
+ * @returns {Promise}
+ */
 export const fetchMongoDB = async (url, method, body = {}) => {
 
     let options = {};
 
 
-    if(method == 'POST'){
+    if (method == 'POST') {
 
-        const data = {...body};
+        const data = { ...body };
 
         options = {
             method,
@@ -18,20 +25,21 @@ export const fetchMongoDB = async (url, method, body = {}) => {
             }
         };
     };
-    
-    if(method == 'DELETE') options = { method };
+
+
+    if (method == 'DELETE') options = { method };
 
 
     try {
-        
+
         const request = await fetch(url, options);
 
-        if(request.ok) return await request.json();
+        if (request.ok) return await request.json(); // Returns an object with properties 'ok' ('true') and 'data' (array of objects).
 
         else throw request;
 
     } catch (error) {
-        
+
         return error;
 
     };

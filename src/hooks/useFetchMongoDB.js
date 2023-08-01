@@ -26,9 +26,11 @@ export const useFetchMongoDB = () => {
 
         try {
             
-            await fetchMongoDB(url, 'GET');
+            const response = await fetchMongoDB(url, 'GET');
 
             console.log('Wake up, Render!');
+
+            return response;
 
         } catch (error) {
             
@@ -37,6 +39,35 @@ export const useFetchMongoDB = () => {
         };
 
     }; //!GETTRACK
+
+    
+    const getTrackByID = async (id) => {
+
+        const url = `https://soundquest-xf5r.onrender.com/api/v1/tracks/${id}`;
+
+
+        try {
+            
+            const response = await fetchMongoDB(url, 'GET');
+
+            if(response.ok){
+
+                console.log('OK')
+                
+
+            } else {
+
+                return response.ok; // Returns 'false'.
+
+            };
+
+        } catch (error) {
+
+            console.log(error);
+            
+        };
+
+    }; //!GETTRACKBYID
 
     /**
      * The function adds a new document to the "tracks" collection of the MongoDB "soundquest" database.
@@ -121,6 +152,7 @@ export const useFetchMongoDB = () => {
 
     return {
         getTracks,
+        getTrackByID,
         addTrack,
         deleteTrack
     };

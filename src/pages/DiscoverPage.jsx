@@ -16,7 +16,6 @@ export const DiscoverPage = () => {
     const { access_token } = token;
     const { track_id, isTrackStateComplete } = track;
 
-
     // REDUX MIDDLEWARES (CUSTOM HOOKS)
     const { getToken } = useTokenStore();
     const { getUserPlaylists } = usePlaylistStore();
@@ -26,7 +25,7 @@ export const DiscoverPage = () => {
     // USEEFFECTS
     useEffect(() => {
 
-        access_token && getUserPlaylists('aleon88');
+        access_token && getUserPlaylists('aleon88'); // If 'access_token' isn't 'undefined'.
 
     }, [token]);
 
