@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { clearPlaylist, clearToken, clearTrack, finishLoading, setDislike } from "../store/slices";
+import { clearError, clearPlaylist, clearToken, clearTrack, finishLoading, setDislike } from "../store/slices";
 
 export const useResetStates = () => {
 
@@ -7,6 +7,8 @@ export const useResetStates = () => {
 
 
     const resetStates = () => {
+
+        dispatch(clearError());
 
         dispatch(setDislike());
 

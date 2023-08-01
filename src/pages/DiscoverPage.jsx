@@ -112,7 +112,7 @@ export const DiscoverPage = () => {
                     !isLoading && error && (
                         <div className='errorContainer'>
 
-                            <p> Oops! Try again, please… <span role="img" aria-label="Face with a wide smile, squinting eyes and a bead of sweat."> 😅 </span></p>
+                            <p> Oops! <span role="img" aria-label="Face with a wide smile, squinting eyes and a bead of sweat.">😅</span> Try again, please… </p>
 
                         </div>
                     )
