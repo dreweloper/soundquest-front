@@ -3,31 +3,39 @@ import { clearError, clearPlaylist, clearToken, clearTrack, finishLoading, setDi
 
 /**
  * Custom hook that resets all Redux states.
+ * This hook provides a function 'resetStates' that clears/reset all the Redux states used in the application. It dispatches actions to set the 'error', 'like', 'token', 'playlist', 'track', and 'loading' states to their initial values or clears their data.
+ * 
  * @function useResetStates
- * @returns {Function}
+ * @returns {Object} An object containing the following function:
+ * - resetStates: A function that clears/reset all Redux states.
  */
 export const useResetStates = () => {
 
     // REDUX HOOKS
+    /**
+     * The dispatch function from Redux to dispatch actions.
+     * @type {Function}
+     */
     const dispatch = useDispatch();
 
     /**
      * The function clears all Redux states.
      * @function resetStates
+     * @returns {void}
      */
     const resetStates = () => {
 
-        dispatch(clearError());
+        dispatch(clearError()); // Sets the 'error' state to false.
 
-        dispatch(setDislike());
+        dispatch(setDislike()); // Sets the 'like' state to false.
 
-        dispatch(clearToken());
+        dispatch(clearToken()); // Clears the 'token' state.
 
-        dispatch(clearPlaylist());
+        dispatch(clearPlaylist()); // Clears the 'playlist' state.
 
-        dispatch(clearTrack());
+        dispatch(clearTrack()); // Clears the 'track' state.
 
-        dispatch(finishLoading());
+        dispatch(finishLoading()); // Sets the 'isLoading' state to false.
 
     };
 

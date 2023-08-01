@@ -58,7 +58,7 @@ export const DiscoverPage = () => {
                     <button
                         className='shuffleButton'
                         onClick={getToken}
-                        disabled={isLoading} // Button is disabled while the requests to Spotify Web API are loading.
+                        disabled={isLoading} // The button is disabled while the requests to the Spotify Web API are loading.
                     >
 
                         <span className='shuffleButtonText'>Random track</span>

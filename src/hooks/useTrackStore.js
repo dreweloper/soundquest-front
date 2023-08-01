@@ -5,62 +5,75 @@ import { mapTrackData, randomTrack } from "../helpers";
 
 /**
  * Custom hook for 'trackSlice' to handle asynchronous functions.
+ * 
  * @function useTrackStore
- * @returns {Function}
+ * @returns {Object} An object containing the following functions:
+ * - getPlaylist: Retrieve playlist information owned by a user from Spotify API.
+ * - Retrieve track information from Spotify API and dispatch it to the Redux store.
  */
 export const useTrackStore = () => {
 
     // REDUX HOOKS
+    /**
+     * The 'token' state object from Redux store.
+     * @type {Object}
+     * @property {String} token_type - The token type ('Bearer').
+     * @property {String} access_token - The access token provided by Spotify.
+     */
     const { token_type, access_token } = useSelector(state => state.token); // Destructuring of the properties 'token_type' and 'access_token' of 'token' state's object.
-
+    /**
+     * The dispatch function from Redux to dispatch actions.
+     * @type {Function}
+     */
     const dispatch = useDispatch();
 
 
     /**
-     * Get a playlist owned by a Spotify user.
+     * Retrieve playlist information owned by a user from Spotify API.
+     * 
      * @function getPlaylist
      * @async
-     * @param {String} id The user's playlist ID.
-     * @returns A random track ID.
+     * @param {String} id The ID of the playlist to retrieve from Spotify API.
+     * @returns {void}
+     * @throws {Error} If there is an error during the API request or if the response status is not OK.
      */
     const getPlaylist = async (id) => {
 
         /**
-         * @type {String} Authorization fetch header that contains "token_type" (Bearer) and "access_token".
+         * The Authorization header that contains "token_type" (Bearer) and "access_token".
+         * @type {String}
          */
         const authorization = `${token_type} ${access_token}`;
 
         /**
-         * @type {String} Get playlist Spotify endpoint.
+         * The endpoint URL to retrieve the playlist from Spotify API.
+         * @type {String}
          */
         const url = `https://api.spotify.com/v1/playlists/${id}?offset=0&limit=50`;
 
 
         try {
-
+            /**
+             * The API response received from Spotify API.
+             * @type {Object}
+             */
             const response = await fetchSpotifyAPI(url, 'GET', authorization);
 
             if (response.ok) {
 
                 /**
-                 * @type {Object} Spotify Web API's response (Promise fulfilled).
+                 * Spotify Web API's response (Promise fulfilled).
+                 * @type {Object}
                  */
                 const { tracks } = response.data; // Destructuring of the property 'tracks' of 'response.data' object.
 
                 /**
-                 * @type {String} A random track ID.
+                 * A random track ID.
+                 * @type {String}
                  */
                 const track_id = randomTrack(tracks.items); // 'tracks.items' is an Array of Objects with the playlist's tracks information.
 
                 dispatch(setTrackID({ track_id }));
-
-            } else {
-
-                dispatch(setError());
-
-                dispatch(finishLoading());
-
-                throw response;
 
             };
 
@@ -68,15 +81,26 @@ export const useTrackStore = () => {
 
             console.log(error);
 
+            dispatch(setError());
+
+            // Ensure the loading effect lasts longer.
+            setTimeout(() => {
+
+                dispatch(finishLoading());
+
+            }, 1500);
+
         };
 
     };
 
     /**
      * Retrieve track information from Spotify API and dispatch it to the Redux store.
+     * 
      * @function getTrack
      * @async
      * @param {String} id - The ID of the track to retrieve from Spotify API.
+     * @returns {void}
      * @throws {Error} If there is an error during the API request or if the response status is not OK.
      */
     const getTrack = async (id) => {
@@ -115,15 +139,7 @@ export const useTrackStore = () => {
                  */
                 const { album, artwork, artist, name, track_url } = mapTrackData('spotify', response.data);
 
-                // Dispatch the track data to the Redux store
                 dispatch(setTrack({ album, artwork, artist, name, track_url }));
-
-            } else {
-
-                // Handle error when API request fails
-                dispatch(setError());
-
-                throw response;
 
             };
 
@@ -131,9 +147,11 @@ export const useTrackStore = () => {
 
             console.log(error);
 
+            dispatch(setError());
+
         } finally {
 
-            // Ensure the loading effect lasts longer
+            // Ensure the loading effect lasts longer.
             setTimeout(() => {
 
                 dispatch(finishLoading());

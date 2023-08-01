@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { useLikeStore } from '../hooks/useLikeStore';
+import { useLikeStore } from '../hooks';
+
 
 export const Card = () => {
 

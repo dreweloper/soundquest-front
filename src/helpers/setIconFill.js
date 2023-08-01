@@ -1,8 +1,9 @@
 /**
- * The function changes the value of the CSS variable '--icon-fill-value'.
+ * Changes the value of the CSS variable '--icon-fill-value' to update the icon fill.
+ * 
  * @function setIconFill
- * @param {Number} value The value of the icon fill which can be 1 or 0.
- * @returns The CSS variable with the new value.
+ * @param {Number} value - The value of the icon fill, which can be either 1 or 0.
+ * @returns {String} - The CSS variable with the new value.
  */
 export const setIconFill = (value) => {
 
