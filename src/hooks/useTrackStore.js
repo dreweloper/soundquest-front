@@ -10,9 +10,11 @@ import { randomTrack } from "../helpers";
  */
 export const useTrackStore = () => {
 
+    // REDUX HOOKS
     const { token_type, access_token } = useSelector(state => state.token); // Destructuring of the properties 'token_type' and 'access_token' of 'token' state's object.
 
     const dispatch = useDispatch();
+
 
     /**
      * Get a playlist owned by a Spotify user.
@@ -91,7 +93,7 @@ export const useTrackStore = () => {
 
 
         try {
-            
+
             const response = await fetchSpotifyAPI(url, 'GET', authorization);
 
             if(response.ok){
@@ -118,17 +120,9 @@ export const useTrackStore = () => {
 
                 dispatch(setTrack({ album, artwork, artist, name, track_url }));
 
-                setTimeout(() => { // This way the loader spinner effect lasts longer and allows the Card component to be better rendered.
-
-                    dispatch(finishLoading());
-    
-                }, 1500);
-
             } else {
 
                 dispatch(setError());
-
-                dispatch(finishLoading());
 
                 throw response;
 
@@ -137,6 +131,14 @@ export const useTrackStore = () => {
         } catch (error) {
             
             console.log(error);
+
+        } finally {
+
+            setTimeout(() => { // This way the loader spinner effect lasts longer and allows the Card component to be better rendered.
+
+                dispatch(finishLoading());
+
+            }, 1500);
 
         };
 
