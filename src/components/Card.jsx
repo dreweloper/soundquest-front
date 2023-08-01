@@ -1,48 +1,19 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { useFetchMongoDB } from '../hooks';
-import { setDislike, setLike } from '../store/slices';
-import { setIconFill } from '../helpers';
+import { useLikeStore } from '../hooks/useLikeStore';
 
 export const Card = () => {
 
-    const { like } = useSelector(state => state.like);
+    // REDUX STATES
+    const { playlist, track } = useSelector(state => state);
 
-    const dispatch = useDispatch();
-
-
-    const { playlist_url } = useSelector(state => state.playlist);
-
-    const { artwork, artist, name, track_url } = useSelector(state => state.track);
+    // REDUX STATES DESTRUCTURING
+    const { playlist_url } = playlist;
+    const { artwork, artist, name, track_url } = track;
 
 
-
-    // CUSTOM HOOKS
-    const { addTrack, deleteTrack } = useFetchMongoDB();
-    
-
-    // EVENTS
-    const handleLike = () => {
-
-        if (!like) {
-
-            dispatch(setLike()); // Changes the 'like' state's value to 'true'.
-
-            addTrack(); // Adds the track to MongoDB.
-
-            setIconFill(1); // Changes the icon 'favorite' fill's value to '1'.
-
-        } else {
-
-            dispatch(setDislike()); // Changes the 'like' state's value to 'false'.
-
-            deleteTrack(); // Deletes the track of MongoDB.
-
-            setIconFill(0); // Changes the icon 'favorite' fill's value to '0'.
-
-        };
-
-    };
+    // CUSTOM HOOKS - EVENT
+    const { handleLike } = useLikeStore();
 
 
     return (

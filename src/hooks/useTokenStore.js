@@ -11,7 +11,7 @@ import { useResetStates } from "./useResetStates";
  */
 export const useTokenStore = () => {
 
-    // HOOKS
+    // REDUX HOOKS
     const dispatch = useDispatch();
     
     // CUSTOM HOOKS
