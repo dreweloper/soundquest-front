@@ -17,10 +17,11 @@ export const Card = () => {
 
 
 
-    // MONGODB
+    // CUSTOM HOOKS
     const { addTrack, deleteTrack } = useFetchMongoDB();
+    
 
-
+    // EVENTS
     const handleLike = () => {
 
         if (!like) {

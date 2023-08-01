@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { usePlaylistStore, useResetStates, useTokenStore, useTrackStore } from "../hooks";
+import { usePlaylistStore, useTokenStore, useTrackStore } from "../hooks";
 import { useEffect } from 'react';
 import { Card } from '../components';
 import { NavBar } from '../layouts';
@@ -7,61 +7,42 @@ import { NavBar } from '../layouts';
 export const DiscoverPage = () => {
 
     // REDUX STATES
-    const { isLoading } = useSelector(state => state.loading);
+    const { errors, loading, playlist, token, track } = useSelector(state => state);
+    
+    // REDUX STATES DESTRUCTURING
+    const { error } = errors;
+    const { isLoading } = loading;
+    const { playlist_id } = playlist;
+    const { access_token } = token;
+    const { track_id, isTrackStateComplete } = track;
 
-    const { error } = useSelector(state => state.errors);
 
-    const token = useSelector(state => state.token);
-
-    const { playlist_id } = useSelector(state => state.playlist); // Destructuring of the property 'playlist_id' of 'playlist' state object.
-
-    const { track_id, isTrackStateComplete } = useSelector(state => state.track); // Destructuring of the properties 'track_id' and 'isTrackStateComplete' of 'track' state object.
-
-
-    // REDUX MIDDLEWARES (HOOKS)
+    // REDUX MIDDLEWARES (CUSTOM HOOKS)
     const { getToken } = useTokenStore();
-
     const { getUserPlaylists } = usePlaylistStore();
-
     const { getPlaylist, getTrack } = useTrackStore();
-
-
-    // CUSTOM HOOKS
-    const { resetStates } = useResetStates();
-
-
-    // EVENTS
-    const handleToken = () => {
-
-        //token.access_token && setIconFill(0); // Avoid pre-rendering Card error: it works if 'access_token' property of 'token' state isn't 'undefined'. //! No hace falta si el componente se vuelve a renderizar (en este caso, por la condicional del spinner en el JSX).
-
-        resetStates();
-
-        getToken();
-
-    };
 
 
     // USEEFFECTS
     useEffect(() => {
 
-        token.access_token && getUserPlaylists('aleon88');
+        access_token && getUserPlaylists('aleon88');
 
     }, [token]);
 
 
     useEffect(() => {
 
-        playlist_id && getPlaylist(playlist_id); // If 'playlist_id' is not 'undefined'.
+        playlist_id && getPlaylist(playlist_id); // If 'playlist_id' isn't 'undefined'.
 
-    }, [playlist_id]);
+    }, [playlist]);
 
 
     useEffect(() => {
 
         track_id && getTrack(track_id); // If 'track_id' isn't 'undefined'.
 
-    }, [track_id]);
+    }, [track]);
 
 
 
@@ -77,7 +58,7 @@ export const DiscoverPage = () => {
 
                     <button
                         className='shuffleButton'
-                        onClick={handleToken}
+                        onClick={getToken}
                         disabled={isLoading} // Button is disabled while the requests to Spotify Web API are loading.
                     >
 

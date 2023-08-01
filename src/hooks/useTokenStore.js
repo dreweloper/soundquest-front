@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { finishLoading, setError, setToken, startLoading } from "../store/slices";
 import { getCookie, setCookie } from "../helpers/cookies";
 import { fetchSpotifyAPI } from "../api";
+import { useResetStates } from "./useResetStates";
 
 /**
  * Custom hook for 'tokenSlice' to handle asynchronous functions.
@@ -10,7 +11,12 @@ import { fetchSpotifyAPI } from "../api";
  */
 export const useTokenStore = () => {
 
+    // HOOKS
     const dispatch = useDispatch();
+    
+    // CUSTOM HOOKS
+    const { resetStates } = useResetStates();
+
 
     /**
      * This function request an access token to Spotify and stores it in the 'token' state and in cookies.
@@ -18,6 +24,8 @@ export const useTokenStore = () => {
      * @async
      */
     const getToken = async () => {
+
+        resetStates();
 
         dispatch(startLoading());
 
