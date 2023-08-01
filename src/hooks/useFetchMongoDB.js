@@ -2,123 +2,135 @@ import { useSelector } from "react-redux";
 import { fetchMongoDB } from "../api";
 import { useState } from "react";
 
+/**
+ * Custom hook to interact with the MongoDB API in SoundQuest.
+ * This hook provides functions to fetch, add, and delete tracks from the "tracks" collection in the MongoDB "soundquest" database. It utilizes the fetchMongoDB function from the "api" module.
+ * 
+ * @function useFetchMongoDB
+ * @returns {Object} An object containing the following functions:
+ * - getTracks: Fetches all documents in the "tracks" collection from the MongoDB API.
+ * - getTrackByID: Fetches a specific track document by its ID from the MongoDB API.
+ * - addTrack: Adds a new track document to the "tracks" collection in the MongoDB API.
+ * - deleteTrack: Deletes a track document by its ID from the "tracks" collection in the MongoDB API.
+ */
 export const useFetchMongoDB = () => {
 
-    const [objectID, setObjectID] = useState(undefined); // MongoDB document's ID. It's used in 'addTrack' and 'deleteTrack'.
+    // REACT HOOKS
+    const [objectID, setObjectID] = useState(undefined);
+
+    // REDUX HOOKS
+    const { playlist, track } = useSelector(state => state);
 
 
-    const playlist = useSelector(state => state.playlist);
-
-    const track = useSelector(state => state.track);
-
-    /**
-     * The function fetches all documents in the 'tracks' collection from the MongoDB 'soundquest' database.
-     * @function getTrack
-     * @async
-     */
+    //! pending: error handling
     const getTracks = async () => {
 
         /**
-         * @type {String} Get tracks MongoDB API endpoint.
+         * The URL of the MongoDB API endpoint to fetch all tracks.
+         * @type {String}
          */
         const url = 'https://soundquest-xf5r.onrender.com/api/v1/tracks';
 
 
         try {
-            
-            const response = await fetchMongoDB(url, 'GET');
 
-            console.log('Wake up, Render!');
+            /**
+             * The request object received from the fetchMongoDB function.
+             * @type {Object}
+             */
+            const request = await fetchMongoDB(url, 'GET');
 
-            return response;
+            if (request.ok) console.log('Wake up, Render!');
 
         } catch (error) {
-            
+
             console.log(error);
 
         };
 
-    }; //!GETTRACK
+    }; //GETTRACK
 
-    
+    //! pending: error handling
     const getTrackByID = async (id) => {
 
+        /**
+         * @type {String} The URL of the MongoDB API endpoint to fetch the track by ID.
+         */ 
         const url = `https://soundquest-xf5r.onrender.com/api/v1/tracks/${id}`;
 
 
         try {
-            
+            /**
+             * @type {Object} The response received from the fetchMongoDB function.
+             */
             const response = await fetchMongoDB(url, 'GET');
 
             if(response.ok){
 
-                console.log('OK')
-                
+                console.log('OK'); //! PENDING
 
             } else {
 
-                return response.ok; // Returns 'false'.
+                /**
+                 * @type {Boolean} The value representing the success of the request (false in case of failure).
+                 */
+                return false;
 
             };
 
         } catch (error) {
 
             console.log(error);
-            
+
         };
 
-    }; //!GETTRACKBYID
+    }; //GETTRACKBYID
 
-    /**
-     * The function adds a new document to the "tracks" collection of the MongoDB "soundquest" database.
-     * @function addTrack
-     * @async
-     */
+    //! pending: error handling
     const addTrack = async () => {
 
         /**
-         * @type {String} Add track MongoDB API endpoint.
+         * The URL of the MongoDB API endpoint to add a new track.
+         * @type {String}
          */
         const url = 'https://soundquest-xf5r.onrender.com/api/v1/tracks';
 
         /**
-         * @typedef {Object} body
-         * @property {Object} playlist
-         * @property {Object} track
+         * Data to be sent in the request body.
+         * @type {Object}
+         * @property {Object} playlist - The playlist object to be added.
+         * @property {Object} track - The track object to be added.
          */
         const body = { playlist, track };
 
 
         try {
-            
-            const response = await fetchMongoDB(url, 'POST', body);
+            /**
+             * The response received from the fetchMongoDB function.
+             * @type {Object}
+             */
+            const request = await fetchMongoDB(url, 'POST', body);
 
-            if(response.ok){
-
-                const { _id } = response.data;
+            if (request.ok) {
+                /**
+                 * The ID of the newly added track document.
+                 * @type {string}
+                 */
+                const { _id } = request.data;
 
                 setObjectID(_id);
-
-            } else {
-
-                throw response;
 
             };
 
         } catch (error) {
-            
+
             console.log(error);
 
         };
-        
-    }; //!ADDTRACK
 
-    /**
-     * The function deletes by ID a document from the "tracks" collection of the MongoDB "soundquest" database.
-     * @function deleteTrack
-     * @async
-     * @returns {Object}
-     */
+    }; //ADDTRACK
+
+    //! pending: error handling
     const deleteTrack = async () => {
 
         /**
@@ -128,10 +140,10 @@ export const useFetchMongoDB = () => {
 
 
         try {
-            
+
             const request = await fetchMongoDB(url, 'DELETE');
 
-            if(request.ok){
+            if (request.ok) {
 
                 return request;
 
@@ -140,14 +152,14 @@ export const useFetchMongoDB = () => {
                 throw request;
 
             };
-            
+
         } catch (error) {
-            
+
             console.log(error);
 
         };
 
-    }; //!DELETETRACK
+    }; //DELETETRACK
 
 
     return {

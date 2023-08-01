@@ -5,21 +5,37 @@ import { finishLoading, setError, setPlaylist } from "../store/slices";
 
 /**
  * Custom hook for 'playlistSlice' to handle asynchronous functions.
+ * 
+ * This hook provides a function 'getUserPlaylists' to get a list of playlists owned by a Spotify user. The function uses the Spotify Web API to fetch the user's playlists and then retrieves a random playlist ID and its URL to set the 'playlist' state in Redux.
+ *
  * @function usePlaylistStore
- * @returns {Function}
+ * @returns {Object} An object containing the following function:
+ * - getUserPlaylists: A function to get a list of playlists owned by a Spotify user.
  */
 export const usePlaylistStore = () => {
 
-    const { token_type, access_token } = useSelector(state => state.token); // Destructuring of the properties 'token_type' and 'access_token' of 'token' state's object.
-
+    // REDUX HOOKS
+    /**
+     * The 'token' state object from Redux store.
+     * @type {Object}
+     * @property {String} token_type - The token type ('Bearer').
+     * @property {String} access_token - The access token provided by Spotify.
+     */
+    const { token_type, access_token } = useSelector(state => state.token);
+    /**
+     * The dispatch function from Redux to dispatch actions.
+     * @type {Function}
+     */
     const dispatch = useDispatch();
 
     /**
-     * Get a list of the playlists owned or followed by a Spotify user.
+     * Get a list of the playlists owned by a Spotify user.
+     * 
      * @function getPlaylist
      * @async
-     * @param {String} id The user's Spotify user ID.
-     * @returns A random Playlist ID and it's URL.
+     * @param {String} id - The user's Spotify user ID.
+     * @returns {void}
+     * @throws {Error} If the request to the Spotify Web API fails, it throws an error.
      */
     const getUserPlaylists = async (id) => {
 
