@@ -2,7 +2,7 @@
  * Performs an HTTP request to a MongoDB API endpoint.
  * 
  * @async
- * @function
+ * @function fetchMongoDB
  * @param {String} url - The URL of the MongoDB API endpoint.
  * @param {String} method - The HTTP method to be used in the request ('POST' or 'DELETE' –optional, default is 'GET').
  * @param {Object} [body={}] - The request body data to be sent in the 'POST' request (optional, default is an empty object).
@@ -12,7 +12,7 @@ export const fetchMongoDB = async (url, method, body = {}) => {
 
     /**
      * The options object used for the HTTP request.
-     * @typedef {Object} options
+     * @typedef {Object} FetchOptions
      * @property {String} method - The HTTP method for the request ('POST' or 'DELETE').
      * @property {String} [body] - The request body data as a JSON string (only present in 'POST' requests, default is an empty object).
      * @property {String} mode - The request mode ('cors' indicates a cross-origin request).
@@ -24,13 +24,14 @@ export const fetchMongoDB = async (url, method, body = {}) => {
 
 
     if (method == 'POST') {
-
         /**
          * The data object created by spreading the contents of the 'body' object.
          * @type {Object}
          */
         const data = { ...body };
-
+        /**
+         * @type {FetchOptions}
+         */
         options = {
             method,
             body: JSON.stringify(data),
@@ -62,15 +63,11 @@ export const fetchMongoDB = async (url, method, body = {}) => {
          */
         if (request.ok) return await request.json();
 
-        else throw request;
+        else throw new Error(`HTTP request failed with status: ${request.status}`);
 
     } catch (error) {
 
-        /**
-         * Represents an error occurred during the HTTP request.
-         * @type {Error}
-         */
-        return error;
+        throw new Error(`Error occurred during the HTTP request: ${error.message}`);
 
     };
 
