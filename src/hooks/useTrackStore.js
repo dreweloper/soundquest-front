@@ -133,7 +133,7 @@ export const useTrackStore = () => {
 
         } finally {
 
-            // Ensure the loading effect lasts longer
+            // Ensure the loading effect lasts longer.
             setTimeout(() => {
 
                 dispatch(finishLoading());

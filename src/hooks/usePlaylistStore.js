@@ -35,54 +35,76 @@ export const usePlaylistStore = () => {
      * @async
      * @param {String} id - The user's Spotify user ID.
      * @returns {void}
-     * @throws {Error} If the request to the Spotify Web API fails, it throws an error.
+     * @throws {Error} If the user ID doesn't exist or the user hasn't created any playlists yet, an error is thrown.
      */
     const getUserPlaylists = async (id) => {
 
         /**
-         * @type {String} Authorization fetch header that contains "token_type" (Bearer) and "access_token".
+         * Authorization header value that contains the token type (Bearer) and the access token.
+         * @type {String}
          */
         const authorization = `${token_type} ${access_token}`;
 
         /**
-         * @type {String} Get user's playlists Spotify endpoint.
+         * The URL for the Spotify API endpoint that fetches playlists owned by a user.
+         * @type {String}
          */
         const url = `https://api.spotify.com/v1/users/${id}/playlists?offset=0&limit=50`;
 
 
         try {
-            
-            const response = await fetchSpotifyAPI(url, 'GET', authorization);
 
-            if(response.ok){
+            const request = await fetchSpotifyAPI(url, 'GET', authorization);
 
-                const { data } = response; // Destructuring of the property 'data' of the 'response' object.
+            if (request.ok) {
+               /**
+                * Destructured object property from the 'data' object of the 'request'.
+                * @type {Array}
+                */
+                const { items } = request.data;
 
-                /**
-                 * @type {String} A random playlist ID.
-                 */
-                const playlist_id = randomPlaylist(data.items);
+                // Error handling: This error occurs when the provided user ID doesn't exist or the user hasn't created any playlists yet.
+                if (items.length == 0) {
 
-                /**
-                 * @type {String} The Spotify's playlist URL for 'playlist_id'.
-                 */
-                const playlist_url = getPlaylistURL(data.items, playlist_id);
+                    dispatch(setError());
 
-                dispatch(setPlaylist({ playlist_id, playlist_url }));
+                    // Ensure the loading effect lasts longer.
+                    setTimeout(() => {
 
-            } else {
-                
-                dispatch(setError());
+                        dispatch(finishLoading());
 
-                dispatch(finishLoading());
+                    }, 1500);
 
-                throw response;
+                } else {
+
+                    /**
+                     * @type {String} A random playlist ID.
+                     */
+                    const playlist_id = randomPlaylist(items);
+
+                    /**
+                     * @type {String} The Spotify's playlist URL for 'playlist_id'.
+                     */
+                    const playlist_url = getPlaylistURL(items, playlist_id);
+
+                    dispatch(setPlaylist({ playlist_id, playlist_url }));
+
+                };
 
             };
 
         } catch (error) {
-            
+
             console.log(error);
+
+            dispatch(setError());
+
+            // Ensure the loading effect lasts longer.
+            setTimeout(() => {
+
+                dispatch(finishLoading());
+
+            }, 1500);
 
         };
 
