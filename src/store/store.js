@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { likeSlice, loadingSlice, playlistSlice, tokenSlice, trackSlice } from './slices';
+import { errorSlice, likeSlice, loadingSlice, playlistSlice, tokenSlice, trackSlice } from './slices';
 
 export const store = configureStore({
 
@@ -8,7 +8,8 @@ export const store = configureStore({
         playlist: playlistSlice.reducer,
         track: trackSlice.reducer,
         loading: loadingSlice.reducer,
-        like: likeSlice.reducer
+        like: likeSlice.reducer,
+        errors: errorSlice.reducer
     }
 
 });

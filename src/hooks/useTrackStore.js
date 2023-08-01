@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSpotifyAPI } from "../api";
-import { finishLoading, setTrack, setTrackID } from "../store/slices";
+import { finishLoading, setError, setTrack, setTrackID } from "../store/slices";
 import { randomTrack } from "../helpers";
 
 /**
@@ -53,6 +53,10 @@ export const useTrackStore = () => {
                 dispatch(setTrackID({ track_id }));
 
             } else {
+
+                dispatch(setError());
+
+                dispatch(finishLoading());
 
                 throw response;
 
@@ -114,13 +118,17 @@ export const useTrackStore = () => {
 
                 dispatch(setTrack({ album, artwork, artist, name, track_url }));
 
-                setTimeout(() => { // This way the loader spinner effect lasts longer and allows the Card component to be rendered better.
+                setTimeout(() => { // This way the loader spinner effect lasts longer and allows the Card component to be better rendered.
 
                     dispatch(finishLoading());
     
                 }, 1500);
 
             } else {
+
+                dispatch(setError());
+
+                dispatch(finishLoading());
 
                 throw response;
 

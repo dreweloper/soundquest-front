@@ -329,16 +329,17 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 80px;
+  width: 80%;
+  min-height: 80px;
 }
 .mainDiscover .headerDiscover .shuffleButton {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 200px;
-  height: 40px;
+  width: 100%;
+  max-width: 210px;
+  min-height: 40px;
   padding: 0 20px;
   border: 2px solid #1DB954;
   border-radius: 10px;
@@ -362,6 +363,10 @@ body {
 .mainDiscover .headerDiscover .shuffleButton .shuffleButtonText {
   font-size: 1rem;
   font-weight: 500;
+  padding: 0 5px;
+}
+.mainDiscover .headerDiscover .shuffleButton .material-symbols-rounded {
+  padding: 0 5px;
 }
 .mainDiscover .headerDiscover .shuffleButton .spinner {
   width: 20px;
@@ -384,7 +389,7 @@ body {
   flex-direction: row;
   align-items: flex-start;
   justify-content: center;
-  width: 100%;
+  width: 80%;
   height: calc(100svh - 140px);
 }
 .mainDiscover .spinnerContainer .spinner {
@@ -404,6 +409,33 @@ body {
     transform: rotate(360deg);
   }
 }
+.mainDiscover .errorContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  max-width: 350px;
+  min-height: 50px;
+  margin-top: 100px;
+  border: 2px solid #ec2206;
+  border-radius: 5px;
+  background-color: #f69183;
+  animation: transition 0.5s linear;
+}
+@keyframes transition {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+.mainDiscover .errorContainer p {
+  text-align: center;
+  padding: 5px;
+  color: #761103;
+}
 
 /* ***************************************/
 /* MEDIA QUERIES *************************/
@@ -413,15 +445,21 @@ body {
   .mainDiscover .headerDiscover {
     height: 90px;
   }
-  .mainDiscover .headerDiscover button {
-    width: 240px;
-    padding: 0 30px;
+  .mainDiscover .headerDiscover .shuffleButton {
+    max-width: 230px;
+    min-height: 45px;
   }
-  .mainDiscover .headerDiscover .randomTrack {
+  .mainDiscover .headerDiscover .shuffleButton .shuffleButtonText {
     font-size: 1.1rem;
   }
   .mainDiscover .spinnerContainer {
     height: calc(100svh - 150px);
+  }
+  .mainDiscover .errorContainer {
+    max-width: 400px;
+  }
+  .mainDiscover .errorContainer p {
+    font-size: 1.1rem;
   }
 } /* 768px end */
 /* 992px *************************/
@@ -432,16 +470,23 @@ body {
   .mainDiscover .headerDiscover {
     height: 110px;
   }
-  .mainDiscover .headerDiscover button {
-    width: 250px;
+  .mainDiscover .headerDiscover .shuffleButton {
+    max-width: 250px;
     height: 50px;
     padding: 0 30px;
   }
-  .mainDiscover .headerDiscover button .randomTrack {
+  .mainDiscover .headerDiscover .shuffleButton .shuffleButtonText {
     font-size: 1.2rem;
   }
   .mainDiscover .spinnerContainer {
     height: calc(100svh - 190px);
+  }
+  .mainDiscover .errorContainer {
+    max-width: 500px;
+    min-height: 60px;
+  }
+  .mainDiscover .errorContainer p {
+    font-size: 1.2rem;
   }
 } /* 992px end */
 /* COMPONENTS */

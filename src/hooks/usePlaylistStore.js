@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSpotifyAPI } from "../api";
 import { getPlaylistURL, randomPlaylist } from "../helpers";
-import { setPlaylist } from "../store/slices";
+import { finishLoading, setError, setPlaylist } from "../store/slices";
 
 /**
  * Custom hook for 'playlistSlice' to handle asynchronous functions.
@@ -55,6 +55,10 @@ export const usePlaylistStore = () => {
                 dispatch(setPlaylist({ playlist_id, playlist_url }));
 
             } else {
+                
+                dispatch(setError());
+
+                dispatch(finishLoading());
 
                 throw response;
 
