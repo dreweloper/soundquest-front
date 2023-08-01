@@ -2,16 +2,34 @@ import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useFetchMongoDB } from '../hooks';
 
+/**
+ * The home page component that displays a header and a link to the discover page.
+ * It wakes up the back-end's server on Render.
+ *
+ * @component
+ * @example
+ * return (
+ *     <HomePage />
+ * );
+ */
 export const HomePage = () => {
 
-    // HOOKS
+    // CUSTOM HOOKS
     const { getTracks } = useFetchMongoDB();
 
 
-    // USEEFFECTS
+    /**
+     * React useEffect hook to fetch tracks when the component is mounted.
+     * It wakes up the back-end's server (Render).
+     *
+     * @memberof HomePage
+     * @function useEffect
+     * @param {function} getTracks - A function to fetch tracks from MongoDB.
+     * @param {Array} dependencies - An empty array, indicating this effect runs only once on component mount.
+     */
     useEffect(() => {
 
-        getTracks(); // To wake up back-end's server (Render).
+        getTracks();
 
     }, []);
 
