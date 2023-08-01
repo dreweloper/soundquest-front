@@ -118,7 +118,7 @@ export const useTrackStore = () => {
 
                 dispatch(setTrack({ album, artwork, artist, name, track_url }));
 
-                setTimeout(() => { // This way the loader spinner effect lasts longer and allows the Card component to be rendered better.
+                setTimeout(() => { // This way the loader spinner effect lasts longer and allows the Card component to be better rendered.
 
                     dispatch(finishLoading());
     

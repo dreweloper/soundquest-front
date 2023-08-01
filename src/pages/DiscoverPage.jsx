@@ -33,8 +33,7 @@ export const DiscoverPage = () => {
     // EVENTS
     const handleToken = () => {
 
-        //! No hace falta si el componente se renderiza nuevamente (en este caso, por la condicional del spinner)
-        //token.access_token && setIconFill(0); // Avoid pre-rendering Card error: it works if 'access_token' property of 'token' state isn't 'undefined'.
+        //token.access_token && setIconFill(0); // Avoid pre-rendering Card error: it works if 'access_token' property of 'token' state isn't 'undefined'. //! No hace falta si el componente se vuelve a renderizar (en este caso, por la condicional del spinner en el JSX).
 
         resetStates();
 
@@ -79,7 +78,7 @@ export const DiscoverPage = () => {
                     <button
                         className='shuffleButton'
                         onClick={handleToken}
-                        disabled={isLoading}
+                        disabled={isLoading} // Button is disabled while the requests to Spotify Web API are loading.
                     >
 
                         <span className='shuffleButtonText'>Random track</span>

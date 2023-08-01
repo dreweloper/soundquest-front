@@ -55,6 +55,7 @@ export const usePlaylistStore = () => {
                 dispatch(setPlaylist({ playlist_id, playlist_url }));
 
             } else {
+                
                 dispatch(setError());
 
                 dispatch(finishLoading());
