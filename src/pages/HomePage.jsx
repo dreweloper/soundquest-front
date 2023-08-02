@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
-import { useFetchMongoDB } from '../hooks';
+import { useFetchMongoDB, useTokenStore } from '../hooks';
 
 /**
  * The home page component that displays a header and a link to the discover page.
@@ -16,7 +16,7 @@ export const HomePage = () => {
 
     // CUSTOM HOOKS
     const { getTracks } = useFetchMongoDB();
-
+    const { getToken } = useTokenStore();
 
     /**
      * React useEffect hook to fetch tracks when the component is mounted.
@@ -56,7 +56,10 @@ export const HomePage = () => {
 
                 </header>
 
-                <Link to='/discover'>
+                <Link
+                    to='/discover'
+                    onClick={getToken}
+                >
 
                     <span className="material-symbols-rounded">
                         arrow_forward
