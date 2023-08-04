@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSpotifyAPI } from "../api";
-import { finishLoading, setError, setTrack, setTrackID } from "../store/slices";
+import { clearTrack, finishLoading, setError, setTrack, setTrackID } from "../store/slices";
 import { mapTrackData, shuffleArray } from "../helpers";
 
 /**
@@ -20,13 +20,19 @@ export const useTrackStore = () => {
      * @property {String} token_type - The token type ('Bearer').
      * @property {String} access_token - The access token provided by Spotify.
      */
-    const { token_type, access_token } = useSelector(state => state.token); // Destructuring of the properties 'token_type' and 'access_token' of 'token' state's object.
+    const { token_type, access_token } = useSelector(state => state.token);
+    /**
+     * Holds the value of the 'track_id' property extracted from the 'track' state.
+     * The name has been changed to prevent conflicts with the constant name.
+     * @type {String}
+     * @property
+     */
+    const { track_id: stateTrackID } = useSelector(state => state.track);
     /**
      * The dispatch function from Redux to dispatch actions.
      * @type {Function}
      */
     const dispatch = useDispatch();
-
 
     /**
      * Retrieve playlist information owned by a user from Spotify API.
@@ -89,6 +95,9 @@ export const useTrackStore = () => {
                      */
                     const track_id = shuffleArray(arrTracksID);
 
+                    // By doing this, the state will always update, ensuring that the `useEffect` in DiscoverPage works consistently.
+                    if(track_id == stateTrackID) dispatch(clearTrack());
+
                     dispatch(setTrackID({ track_id }));
 
                 };
@@ -139,7 +148,7 @@ export const useTrackStore = () => {
         try {
 
             /**
-             * The API response received from Spotify API.
+             * The response received from Spotify API.
              * @type {Object}
              */
             const response = await fetchSpotifyAPI(url, 'GET', authorization);
