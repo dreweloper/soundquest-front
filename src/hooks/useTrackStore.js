@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSpotifyAPI } from "../api";
 import { finishLoading, setError, setTrack, setTrackID } from "../store/slices";
-import { mapTrackData, randomTrack } from "../helpers";
+import { mapTrackData, shuffleArray } from "../helpers";
 
 /**
  * Custom hook for 'trackSlice' to handle asynchronous functions.
@@ -51,29 +51,47 @@ export const useTrackStore = () => {
          */
         const url = `https://api.spotify.com/v1/playlists/${id}?offset=0&limit=50`;
 
-
         try {
             /**
-             * The API response received from Spotify API.
+             * The response received from Spotify API.
              * @type {Object}
              */
             const response = await fetchSpotifyAPI(url, 'GET', authorization);
 
             if (response.ok) {
-
                 /**
-                 * Spotify Web API's response (Promise fulfilled).
-                 * @type {Object}
+                 * Information about the playlist's tracks.
+                 * @type {Array<Object>}
                  */
-                const { tracks } = response.data; // Destructuring of the property 'tracks' of 'response.data' object.
+                const { items } = response.data.tracks;
 
-                /**
-                 * A random track ID.
-                 * @type {String}
-                 */
-                const track_id = randomTrack(tracks.items); // 'tracks.items' is an Array of Objects with the playlist's tracks information.
+                // This error occurs when the provided ID corresponds to an empty playlist.
+                if (items.length == 0) {
 
-                dispatch(setTrackID({ track_id }));
+                    dispatch(setError());
+
+                    // Ensure the loading effect lasts longer.
+                    setTimeout(() => {
+
+                        dispatch(finishLoading());
+
+                    }, 1500);
+
+                } else {
+                    /**
+                     * Track IDs extracted from the playlist's tracks information.
+                     * @type {Array<String>}
+                     */
+                    const arrTracksID = items.map(item => item.track.id);
+                    /**
+                     * A random track ID.
+                     * @type {String}
+                     */
+                    const track_id = shuffleArray(arrTracksID);
+
+                    dispatch(setTrackID({ track_id }));
+
+                };
 
             };
 
@@ -92,7 +110,7 @@ export const useTrackStore = () => {
 
         };
 
-    };
+    }; //!GETPLAYLIST
 
     /**
      * Retrieve track information from Spotify API and dispatch it to the Redux store.
@@ -160,7 +178,7 @@ export const useTrackStore = () => {
 
         };
 
-    };
+    }; //!GETTRACK
 
 
     return { getPlaylist, getTrack };
