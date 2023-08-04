@@ -10,7 +10,7 @@ export const Card = () => {
 
     // REDUX STATES DESTRUCTURING
     const { playlist_url } = playlist;
-    const { artwork, artist, name, track_url } = track;
+    const { album, artwork, artist, name, track_url } = track;
 
 
     // CUSTOM HOOKS - EVENT
@@ -27,7 +27,7 @@ export const Card = () => {
 
                     <div className='artwork'>
 
-                        <img src={artwork} alt="Album cover" title="Album cover" />
+                        <img src={artwork} alt={`Cover of the album "${album}"`} title={`Cover of the album "${album}"`} />
 
                     </div>
 

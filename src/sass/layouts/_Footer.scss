@@ -1,0 +1,50 @@
+footer {
+    @include displayFlex(row, center, center);
+    width: 100%;
+    height: 30px;
+
+    .spotifyContainer {
+        @include displayFlex(row, center, center);
+        width: 100%;
+        height: 100%;
+        gap: 4px;
+
+        .spotifyLogo {
+            width: 70px;
+        }
+
+        span {
+            font-size: 0.7rem;
+            font-weight: 100;
+            color: $secondary
+        }
+    }
+}
+
+
+
+/* ***************************************/
+/* MEDIA QUERIES *************************/
+/* ***************************************/
+
+/* 768px *************************/
+  
+@media screen and (min-width:768px) {
+
+    footer {
+        height: 50px;
+    
+        .spotifyContainer {
+            gap: 6px;
+    
+            .spotifyLogo {
+                width: 100px;
+            }
+    
+            span {
+                font-size: 1rem;
+            }
+        }
+    }
+
+} /* 768px end */

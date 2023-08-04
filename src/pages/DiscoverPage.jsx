@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { usePlaylistStore, useTokenStore, useTrackStore } from "../hooks";
 import { useEffect } from 'react';
 import { Card } from '../components';
-import { NavBar } from '../layouts';
+import { Footer, NavBar } from '../layouts';
 
 export const DiscoverPage = () => {
 
@@ -102,6 +102,8 @@ export const DiscoverPage = () => {
                 }
 
             </main>
+
+            <Footer />
 
         </>
 
