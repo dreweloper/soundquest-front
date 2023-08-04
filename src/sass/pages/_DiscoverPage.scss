@@ -1,7 +1,7 @@
 .mainDiscover {
     @include displayFlex(column, center, flex-start);
     width: 100%;
-    min-height: calc(100svh - 60px);
+    min-height: calc(100svh - (60px + 30px));
     background-color: $primary;
 
     .headerDiscover {
@@ -55,7 +55,7 @@
     .spinnerContainer {
         @include displayFlex(row, flex-start, center);
         width: 80%;
-        height: calc(100svh - (60px + 80px));
+        height: calc(100svh - (60px + 80px + 30px));
 
         .spinner {
             @include keyframes(spinner){
@@ -109,6 +109,7 @@
 @media screen and (min-width:768px) {
     
     .mainDiscover {
+        min-height: calc(100svh - (60px + 50px));
     
         .headerDiscover {
             height: 90px;
@@ -124,7 +125,7 @@
         }
 
         .spinnerContainer {
-            height: calc(100svh - (60px + 90px));
+            height: calc(100svh - (60px + 90px + 50px));
         }
 
         .errorContainer {
@@ -143,7 +144,7 @@
 @media screen and (min-width:992px) {
     
     .mainDiscover {
-        min-height: calc(100svh - 80px);
+        min-height: calc(100svh - (80px + 50px));
 
         .headerDiscover {
             height: 110px;
@@ -160,7 +161,7 @@
         }
 
         .spinnerContainer {
-            height: calc(100svh - (80px + 110px));
+            height: calc(100svh - (80px + 110px + 50px));
         }
 
         .errorContainer {
