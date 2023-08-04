@@ -41,7 +41,7 @@ export const DiscoverPage = () => {
 
         track_id && getTrack(track_id); // If 'track_id' isn't 'undefined'.
 
-    }, [track]);
+    }, [track_id]); // If I only specify 'track', it triggers twice due to the state change caused by the previous `useEffect` with the `setTrackID` dispatch from the `getPlaylist` function of the `useTrackStore` hook.
 
 
 

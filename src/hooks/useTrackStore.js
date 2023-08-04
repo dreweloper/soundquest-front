@@ -34,7 +34,6 @@ export const useTrackStore = () => {
      */
     const dispatch = useDispatch();
 
-
     /**
      * Retrieve playlist information owned by a user from Spotify API.
      * 
@@ -149,7 +148,7 @@ export const useTrackStore = () => {
         try {
 
             /**
-             * The API response received from Spotify API.
+             * The response received from Spotify API.
              * @type {Object}
              */
             const response = await fetchSpotifyAPI(url, 'GET', authorization);
