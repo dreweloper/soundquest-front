@@ -3,7 +3,7 @@
  * 
  * @function getPlaylistURL
  * @param {Array.<Object>} arr - An array containing objects for each user's playlist.
- * @param {String} id - The random playlist ID returned by the function 'randomPlaylist'.
+ * @param {String} id - The random playlist ID returned by the function 'shuffleArray'.
  * @returns {String} - The Spotify URL of the playlist.
  */
 export const getPlaylistURL = (arr, id) => {

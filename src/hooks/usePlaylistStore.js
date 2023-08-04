@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSpotifyAPI } from "../api";
-import { getPlaylistURL, randomPlaylist } from "../helpers";
+import { getPlaylistURL, shuffleArray } from "../helpers";
 import { finishLoading, setError, setPlaylist } from "../store/slices";
 
 /**
@@ -54,19 +54,19 @@ export const usePlaylistStore = () => {
 
         try {
             /**
-             * The API response received from Spotify API.
+             * The response received from Spotify API.
              * @type {Object}
              */
-            const request = await fetchSpotifyAPI(url, 'GET', authorization);
+            const response = await fetchSpotifyAPI(url, 'GET', authorization);
 
-            if (request.ok) {
+            if (response.ok) {
                /**
-                * Destructured object property from the 'data' object of the 'request'.
-                * @type {Array}
+                * Information about the user's playlists.
+                * @type {Array<Object>}
                 */
-                const { items } = request.data;
+                const { items } = response.data;
 
-                // Error handling: This error occurs when the provided user ID doesn't exist or the user hasn't created any playlists yet.
+                // This error occurs when the provided user ID does not exist, or the user has not created any playlists yet.
                 if (items.length == 0) {
 
                     dispatch(setError());
@@ -79,14 +79,19 @@ export const usePlaylistStore = () => {
                     }, 1500);
 
                 } else {
-
                     /**
-                     * @type {String} A random playlist ID.
+                     * Playlist IDs extracted from the user's playlists information.
+                     * @type {Array<String>} 
                      */
-                    const playlist_id = randomPlaylist(items);
-
+                    const arrPlaylistsID = items.map(playlist => playlist.id);
                     /**
-                     * @type {String} The Spotify's playlist URL for 'playlist_id'.
+                     * A random playlist ID.
+                     * @type {String}
+                     */
+                    const playlist_id = shuffleArray(arrPlaylistsID);
+                    /**
+                     * The URL for the Spotify playlist with the given 'playlist_id'.
+                     * @type {String}
                      */
                     const playlist_url = getPlaylistURL(items, playlist_id);
 
@@ -111,7 +116,7 @@ export const usePlaylistStore = () => {
 
         };
 
-    }; //!GETPLAYLIST
+    }; //!GETUSERPLAYLISTS
 
 
     return { getUserPlaylists };
