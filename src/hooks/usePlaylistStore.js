@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSpotifyAPI } from "../api";
 import { getPlaylistURL, shuffleArray } from "../helpers";
-import { finishLoading, setError, setPlaylist } from "../store/slices";
+import { clearPlaylist, finishLoading, setError, setPlaylist } from "../store/slices";
 
 /**
  * Custom hook for 'playlistSlice' to handle asynchronous functions.
@@ -22,6 +22,13 @@ export const usePlaylistStore = () => {
      * @property {String} access_token - The access token provided by Spotify.
      */
     const { token_type, access_token } = useSelector(state => state.token);
+    /**
+     * Holds the value of the 'playlist_id' property extracted from the 'playlist' state.
+     * The name has been changed to prevent conflicts with the constant name.
+     * @type {String}
+     * @property
+     */
+    const { playlist_id: statePlaylistID } = useSelector(state => state.playlist); // To prevent conflicts with the constant name.
     /**
      * The dispatch function from Redux to dispatch actions.
      * @type {Function}
@@ -94,6 +101,9 @@ export const usePlaylistStore = () => {
                      * @type {String}
                      */
                     const playlist_url = getPlaylistURL(items, playlist_id);
+
+                    // By doing this, the state will always update, ensuring that the `useEffect` in DiscoverPage works consistently.
+                    if(playlist_id == statePlaylistID) dispatch(clearPlaylist());
 
                     dispatch(setPlaylist({ playlist_id, playlist_url }));
 
