@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { useLikeStore } from '../hooks';
+import { useLikeStore, useTokenStore } from '../hooks';
 
 
 export const Card = () => {
@@ -12,6 +12,8 @@ export const Card = () => {
     const { playlist_url } = playlist;
     const { album, artwork, artist, name, track_url } = track;
 
+    // REDUX MIDDLEWARES (CUSTOM HOOKS)
+    const { getToken } = useTokenStore();
 
     // CUSTOM HOOKS - EVENT
     const { handleLike } = useLikeStore();
@@ -21,23 +23,38 @@ export const Card = () => {
 
         <>
 
-            <section className='cardContainer'>
+            <button
+                className='card-shuffle-button'
+                onClick={getToken}
+            // disabled={isLoading} // The button is disabled while the requests to the Spotify Web API are loading.
+            >
 
-                <article className='cardItem'>
+                <span className="material-symbols-rounded">
+                    shuffle
+                </span>
 
-                    <div className='artwork'>
+            </button>
 
-                        <img src={artwork} alt={`Cover of the album "${album}"`} title={`Cover of the album "${album}"`} />
+            <section className='card-container'>
 
-                    </div>
+                <div className='artwork'>
 
-                    <section className='trackInfo'>
+                    <img src={artwork} alt={`Cover of the album "${album}"`} title={`Cover of the album "${album}"`} />
+
+                </div>
+
+                <div className='card-item'>
+
+                    <article className='track-info'>
 
                         <p className='song'> {name} </p>
 
                         <p className='artist'> {artist} </p>
 
-                        <button onClick={handleLike}>
+                        <button
+                            className='like-button'
+                            onClick={handleLike}
+                        >
 
                             <span id='like' className="material-symbols-rounded">
                                 favorite
@@ -45,29 +62,19 @@ export const Card = () => {
 
                         </button>
 
-                    </section>
+                    </article>
 
-                </article>
+                    <nav className='card-nav'>
 
-                <footer className='cardFooter'>
+                        <Link className='spotify-button' to={track_url}> Play on Spotify </Link>
 
-                    <Link to='https://open.spotify.com/user/aleon88' className='spotifyLogoContainer'>
+                        <Link className='spotify-button' to={playlist_url}> Open playlist </Link>
 
-                        <img className='spotifyIcon' src='/assets/spotify/icons/Spotify_Icon_RGB_Green.png' alt='Spotify logo icon' title='Spotify logo icon' />
-
-                        <img className='spotifyLogo' src='/assets/spotify/logos/Spotify_Logo_RGB_Green.png' alt='Spotify logo' title='Spotify logo' />
-
-                    </Link>
-
-                    <nav className='spotifyButtons'>
-
-                        <Link to={track_url}> Play on Spotify </Link>
-
-                        <Link to={playlist_url}> Open playlist </Link>
+                        <Link className='host-button' to='#'> Become a Host </Link>
 
                     </nav>
 
-                </footer>
+                </div>
 
             </section>
 

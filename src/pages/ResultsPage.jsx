@@ -54,25 +54,13 @@ export const ResultsPage = () => {
 
             <main className='main-results'>
 
-                {/* <button
-                    className='shuffleButton'
-                    onClick={getToken}
-                    disabled={isLoading} // The button is disabled while the requests to the Spotify Web API are loading.
-                >
-
-                    <span className="material-symbols-rounded">
-                        shuffle
-                    </span>
-
-                </button> */}
-
                 {
                     !isLoading && !access_token && (
 
                         <button
                             className='shuffle-button'
                             onClick={getToken}
-                            disabled={isLoading} // The button is disabled while the requests to the Spotify Web API are loading.
+                            // disabled={isLoading} // The button is disabled while the requests to the Spotify Web API are loading.
                         >
 
                             <span className="material-symbols-rounded">
