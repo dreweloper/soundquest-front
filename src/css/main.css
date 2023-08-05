@@ -239,7 +239,7 @@ footer .spotifyContainer span {
   }
 } /* 992px end */
 /* PAGES */
-.mainHome {
+.main-home {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -248,34 +248,37 @@ footer .spotifyContainer span {
   min-height: 100svh;
   gap: 50px;
 }
-.mainHome header {
+.main-home .section-home {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 90%;
 }
-.mainHome header .equalizerIcon {
-  font-size: 7rem;
+.main-home .section-home .sq-logo {
+  font-size: 8rem;
   color: #1DB954;
 }
-.mainHome header .headerHome {
+.main-home .section-home .headline {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 5px;
 }
-.mainHome header .headerHome h1 {
+.main-home .section-home .headline h1 {
   font-family: "Prompt", sans-serif;
-  font-size: 2.1rem;
+  font-size: 3rem;
   text-transform: uppercase;
   color: #FFFFFF;
 }
-.mainHome header .headerHome p {
-  font-size: 1.05rem;
+.main-home .section-home .headline p {
+  font-size: 1rem;
+  font-weight: 200;
+  letter-spacing: 0.3px;
   color: #CCCCCC;
 }
-.mainHome a {
+.main-home a {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -287,23 +290,16 @@ footer .spotifyContainer span {
   color: #191414;
   background-color: #1DB954;
 }
-.mainHome a:hover {
+.main-home a:hover {
   color: #1DB954;
   background-color: #191414;
   border: 2px solid #1DB954;
   transition-duration: 0.4s;
   transition-timing-function: ease-in-out;
 }
-.mainHome a:active {
-  color: #191414;
-  background-color: #1DB954;
-  border: 2px solid #191414;
-  transition-duration: 0.4s;
-  transition-timing-function: ease-in-out;
-}
-.mainHome a .material-symbols-rounded {
+.main-home a .material-symbols-rounded {
   font-size: 2rem;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 /* ***************************************/
@@ -311,51 +307,49 @@ footer .spotifyContainer span {
 /* ***************************************/
 /* 768px *************************/
 @media screen and (min-width: 768px) {
-  .mainHome header {
-    gap: 10px;
+  .main-home {
+    gap: 75px;
   }
-  .mainHome header .equalizerIcon {
-    font-size: 8rem;
+  .main-home .section-home .sq-logo {
+    font-size: 9rem;
   }
-  .mainHome header .headerHome {
-    gap: 10px;
+  .main-home .section-home .headline h1 {
+    font-size: 4rem;
+    letter-spacing: -0.5px;
   }
-  .mainHome header .headerHome h1 {
-    font-size: 2.4rem;
+  .main-home .section-home .headline p {
+    font-size: 1.1rem;
+    letter-spacing: 0.2px;
   }
-  .mainHome header .headerHome p {
-    font-size: 1.2rem;
+  .main-home a {
+    width: 50px;
+    height: 50px;
   }
-  .mainHome a {
-    width: 48px;
-    height: 48px;
-  }
-  .mainHome a .material-symbols-rounded {
-    font-size: 2.4rem;
+  .main-home a .material-symbols-rounded {
+    font-size: 2.5rem;
   }
 } /* 768px end */
 /* 992px *************************/
 @media screen and (min-width: 992px) {
-  .mainHome header {
-    gap: 15px;
+  .main-home {
+    gap: 80px;
   }
-  .mainHome header .equalizerIcon {
+  .main-home .section-home .sq-logo {
     font-size: 10rem;
   }
-  .mainHome header .headerHome {
-    gap: 10px;
+  .main-home .section-home .headline h1 {
+    font-size: 5rem;
+    letter-spacing: -1.5px;
   }
-  .mainHome header .headerHome h1 {
-    font-size: 3rem;
+  .main-home .section-home .headline p {
+    font-size: 1.2rem;
+    letter-spacing: 0;
   }
-  .mainHome header .headerHome p {
-    font-size: 1.5rem;
-  }
-  .mainHome a {
+  .main-home a {
     width: 60px;
     height: 60px;
   }
-  .mainHome a .material-symbols-rounded {
+  .main-home a .material-symbols-rounded {
     font-size: 3rem;
   }
 } /* 992px end */
