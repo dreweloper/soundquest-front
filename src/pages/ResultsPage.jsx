@@ -4,11 +4,11 @@ import { useEffect } from 'react';
 import { Card } from '../components';
 import { Footer, NavBar } from '../layouts';
 
-export const DiscoverPage = () => {
+export const ResultsPage = () => {
 
     // REDUX STATES
     const { errors, loading, playlist, token, track } = useSelector(state => state);
-    
+
     // REDUX STATES DESTRUCTURING
     const { error } = errors;
     const { isLoading } = loading;

@@ -57,7 +57,7 @@ export const HomePage = () => {
                 </header>
 
                 <Link
-                    to='/discover'
+                    to='/results'
                     onClick={getToken}
                 >
 
