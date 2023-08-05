@@ -410,18 +410,16 @@ footer .spotifyContainer span {
     transform: rotate(360deg);
   }
 }
-.main-results .errorContainer {
+.main-results .error-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  width: 80%;
-  max-width: 350px;
-  min-height: 50px;
-  margin-top: 100px;
-  border: 2px solid #ec2206;
-  border-radius: 5px;
-  background-color: #f69183;
+  width: 90%;
   animation: transition 0.5s linear;
 }
 @keyframes transition {
@@ -432,10 +430,13 @@ footer .spotifyContainer span {
     opacity: 100%;
   }
 }
-.main-results .errorContainer p {
-  text-align: center;
-  padding: 5px;
-  color: #761103;
+.main-results .error-container p {
+  font-size: 1rem;
+  font-weight: 300;
+  color: #f69183;
+}
+.main-results .error-container p span {
+  font-size: 1rem;
 }
 
 /* ***************************************/
@@ -457,11 +458,11 @@ footer .spotifyContainer span {
   .main-results .shuffle-button span {
     font-size: 2.5rem;
   }
-  .main-results .errorContainer {
-    max-width: 400px;
+  .main-results .error-container p {
+    font-size: 1.2rem;
   }
-  .main-results .errorContainer p {
-    font-size: 1.1rem;
+  .main-results .error-container p span {
+    font-size: 1.2rem;
   }
 } /* 768px end */
 /* 992px *************************/
@@ -480,12 +481,11 @@ footer .spotifyContainer span {
   .main-results .shuffle-button span {
     font-size: 3rem;
   }
-  .main-results .errorContainer {
-    max-width: 500px;
-    min-height: 60px;
+  .main-results .error-container p {
+    font-size: 1.5rem;
   }
-  .main-results .errorContainer p {
-    font-size: 1.2rem;
+  .main-results .error-container p span {
+    font-size: 1.5rem;
   }
 } /* 992px end */
 /* COMPONENTS */

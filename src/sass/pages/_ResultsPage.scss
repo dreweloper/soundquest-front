@@ -41,7 +41,8 @@
         @include spinner(50px, 50px, 5px, 255, $accent);
     }
 
-    .errorContainer {
+    .error-container {
+        @include positionAbsoluteCenter();
         @include keyframes(transition){
             0% {
                 opacity: 0;
@@ -51,19 +52,17 @@
             }
         }
         @include displayFlex(row, center, center);
-        width: 80%;
-        max-width: 350px;
-        min-height: 50px;
-        margin-top: 100px;
-        border: 2px solid $danger;
-        border-radius: 5px;
-        background-color: $danger-ligth;
+        width: 90%;
         animation: transition 0.5s linear;
 
         p {
-            text-align: center;
-            padding: 5px;
-            color: $danger-dark;
+            font-size: 1rem;
+            font-weight: 300;
+            color: $danger-ligth;
+
+            span {
+                font-size: 1rem;
+            }
         }
     }
 }
@@ -91,11 +90,14 @@
             }
         }
 
-        .errorContainer {
-            max-width: 400px;
-
+        .error-container {
+    
             p {
-                font-size: 1.1rem;
+                font-size: 1.2rem;
+    
+                span {
+                    font-size: 1.2rem;
+                }
             }
         }
     }
@@ -119,12 +121,14 @@
             }
         }
 
-        .errorContainer {
-            max-width: 500px;
-            min-height: 60px;
-
+        .error-container {
+    
             p {
-                font-size: 1.2rem;
+                font-size: 1.5rem;
+    
+                span {
+                    font-size: 1.5rem;
+                }
             }
         }
     }

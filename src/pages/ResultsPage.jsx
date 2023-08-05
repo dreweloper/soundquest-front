@@ -75,10 +75,10 @@ export const ResultsPage = () => {
                             disabled={isLoading} // The button is disabled while the requests to the Spotify Web API are loading.
                         >
 
-                            <span class="material-symbols-rounded">
+                            <span className="material-symbols-rounded">
                                 shuffle
                             </span>
-                            
+
                         </button>
 
                     )
@@ -90,9 +90,9 @@ export const ResultsPage = () => {
 
                 {
                     !isLoading && error && (
-                        <div className='errorContainer'>
+                        <div className='error-container'>
 
-                            <p> Oops! <span role="img" aria-label="Face with a wide smile, squinting eyes and a bead of sweat.">😅</span> Try again, please… </p>
+                            <p>Oops! <span role="img" aria-label="Face with a wide smile, squinting eyes and a bead of sweat.">😅</span> Try again, please…</p>
 
                         </div>
                     )
