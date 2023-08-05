@@ -1,74 +1,44 @@
-.mainDiscover {
+.main-results {
+    position: relative;
     @include displayFlex(column, center, flex-start);
     width: 100%;
     min-height: calc(100svh - (60px + 30px));
     background-color: $primary;
 
-    .headerDiscover {
+    .shuffle-button {
+        @include positionAbsoluteCenter();
         @include displayFlex(row, center, center);
-        width: 80%;
-        min-height: 80px;
+        width: 90%;
+        max-width: 250px;
+        min-height: 40px;
+        padding: 0 10px;
+        border: 2px solid $accent;
+        border-radius: 5px;
+        color: $primary;
+        background-color: $accent;
 
-        .shuffleButton {
-            @include displayFlex(row, center, space-between);
-            width: 100%;
-            max-width: 210px;
-            min-height: 40px;
-            padding: 0 20px;
-            border: 2px solid $accent;
-            border-radius: 10px;
-            color: $primary;
-            background-color: $accent;
+        &:hover {
+            @include buttonEffect($accent, $primary, $accent);
+        }
 
-            &:hover {
-                @include buttonEffect($primary, $accent-dark, $accent-dark);
-            }
-
-            &:active {
-                @include buttonEffect($primary, $accent, $accent);
-            }
-
-            .shuffleButtonText {
-                font-size: 1rem;
-                font-weight: 500;
-                padding: 0 5px;
-            }
-
-            .material-symbols-rounded {
-                padding: 0 5px;
-            }
-
-            .spinner {
-                @include keyframes(spinner){
-                    0% {
-                        transform: rotate(0deg);
-                    }
-                    100% {
-                        transform: rotate(360deg);
-                    }
-                }
-                @include spinner(20px, 20px, 3px, 0, $primary);
-            }
+        span {
+            font-size: 2rem;
+            font-weight: 400;
         }
     }
 
-    .spinnerContainer {
-        @include displayFlex(row, flex-start, center);
-        width: 80%;
-        height: calc(100svh - (60px + 80px + 30px));
-
-        .spinner {
-            @include keyframes(spinner){
-                0% {
-                    transform: rotate(0deg);
-                }
-                100% {
-                    transform: rotate(360deg);
-                }
+    .spinner {
+        position: absolute;
+        top: 20%;
+        @include keyframes(spinner){
+            0% {
+                transform: rotate(0deg);
             }
-            margin-top: 100px;
-            @include spinner(50px, 50px, 5px, 255, $accent);
+            100% {
+                transform: rotate(360deg);
+            }
         }
+        @include spinner(50px, 50px, 5px, 255, $accent);
     }
 
     .errorContainer {
@@ -108,24 +78,17 @@
   
 @media screen and (min-width:768px) {
     
-    .mainDiscover {
+    .main-results {
         min-height: calc(100svh - (60px + 50px));
     
-        .headerDiscover {
-            height: 90px;
-    
-            .shuffleButton {
-                max-width: 230px;
-                min-height: 45px;
+        .shuffle-button {
+            @include positionAbsoluteCenter();
+            max-width: 300px;
+            min-height: 50px;
 
-                .shuffleButtonText {
-                    font-size: 1.1rem;
-                }
+            span {
+                font-size: 2.5rem;
             }
-        }
-
-        .spinnerContainer {
-            height: calc(100svh - (60px + 90px + 50px));
         }
 
         .errorContainer {
@@ -143,25 +106,17 @@
   
 @media screen and (min-width:992px) {
     
-    .mainDiscover {
+    .main-results {
         min-height: calc(100svh - (80px + 50px));
 
-        .headerDiscover {
-            height: 110px;
-
-            .shuffleButton {
-                max-width: 250px;
-                height: 50px;
-                padding: 0 30px;
-
-                .shuffleButtonText {
-                    font-size: 1.2rem;
-                }
+        .shuffle-button {
+            @include positionAbsoluteCenter();
+            max-width: 350px;
+            min-height: 60px;
+            
+            span {
+                font-size: 3rem;
             }
-        }
-
-        .spinnerContainer {
-            height: calc(100svh - (80px + 110px + 50px));
         }
 
         .errorContainer {
@@ -174,3 +129,48 @@
         }
     }
 } /* 992px end */
+
+
+
+
+        // .shuffleButton {
+        //     @include displayFlex(row, center, space-between);
+        //     width: 100%;
+        //     max-width: 210px;
+        //     min-height: 40px;
+        //     padding: 0 20px;
+        //     border: 2px solid $accent;
+        //     border-radius: 10px;
+        //     color: $primary;
+        //     background-color: $accent;
+
+        //     &:hover {
+        //         @include buttonEffect($primary, $accent-dark, $accent-dark);
+        //     }
+
+        //     &:active {
+        //         @include buttonEffect($primary, $accent, $accent);
+        //     }
+
+        //     .shuffleButtonText {
+        //         font-size: 1rem;
+        //         font-weight: 500;
+        //         padding: 0 5px;
+        //     }
+
+        //     .material-symbols-rounded {
+        //         padding: 0 5px;
+        //     }
+
+        //     .spinner {
+        //         @include keyframes(spinner){
+        //             0% {
+        //                 transform: rotate(0deg);
+        //             }
+        //             100% {
+        //                 transform: rotate(360deg);
+        //             }
+        //         }
+        //         @include spinner(20px, 20px, 3px, 0, $primary);
+        //     }
+        // }

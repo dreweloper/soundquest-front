@@ -23,6 +23,7 @@ export const ResultsPage = () => {
 
 
     // USEEFFECTS
+
     useEffect(() => {
 
         access_token && getUserPlaylists('aleon88'); // If 'access_token' isn't 'undefined'.
@@ -51,40 +52,40 @@ export const ResultsPage = () => {
 
             <NavBar />
 
-            <main className='mainDiscover'>
+            <main className='main-results'>
 
-                <header className='headerDiscover'>
+                {/* <button
+                    className='shuffleButton'
+                    onClick={getToken}
+                    disabled={isLoading} // The button is disabled while the requests to the Spotify Web API are loading.
+                >
 
-                    <button
-                        className='shuffleButton'
-                        onClick={getToken}
-                        disabled={isLoading} // The button is disabled while the requests to the Spotify Web API are loading.
-                    >
+                    <span className="material-symbols-rounded">
+                        shuffle
+                    </span>
 
-                        <span className='shuffleButtonText'>Random track</span>
-
-                        {
-                            !isLoading ? (
-                                <span className="material-symbols-rounded">
-                                    shuffle
-                                </span>
-                            ) : (
-                                <span className='spinner'></span>
-                            )
-                        }
-
-                    </button>
-
-                </header>
+                </button> */}
 
                 {
-                    isLoading && (
-                        <div className='spinnerContainer'>
+                    !isLoading && !access_token && (
 
-                            <span className='spinner'></span>
+                        <button
+                            className='shuffle-button'
+                            onClick={getToken}
+                            disabled={isLoading} // The button is disabled while the requests to the Spotify Web API are loading.
+                        >
 
-                        </div>
+                            <span class="material-symbols-rounded">
+                                shuffle
+                            </span>
+                            
+                        </button>
+
                     )
+                }
+
+                {
+                    isLoading && (<span className='spinner'></span>)
                 }
 
                 {
@@ -101,7 +102,7 @@ export const ResultsPage = () => {
                     !isLoading && !error && (isTrackStateComplete && <Card />)
                 }
 
-            </main>
+            </main >
 
             <Footer />
 
