@@ -8,7 +8,7 @@
     max-width: 300px;
     min-height: 30px;
     padding: 0 10px;
-    margin: 20px 0;
+    margin-top: 20px;
     border: 2px solid $accent;
     border-radius: 5px;
     color: $primary;
@@ -35,13 +35,14 @@
     }
     @include displayFlex(column, center, center);
     width: 90%;
+    max-width: 300px;
+    margin-bottom: 30px;
     gap: 10px;
     animation: transition 0.5s linear;
 
     .artwork {
         @include displayFlex(row, center, center);
         width: 100%;
-        max-width: 300px;
         overflow: hidden;
 
         img {
@@ -52,12 +53,12 @@
     .card-item {
         @include displayFlex(column, center, center);
         width: 100%;
-        max-width: 300px;
         gap: 20px;
 
         .track-info {
             @include displayFlex(column, center, center);
             width: 100%;
+            min-height: fit-content;
             border-radius: 5px;
             background-color: $primary-dark;
 
@@ -81,7 +82,7 @@
     
             .like-button {
                 @include displayFlex(row, center, center);
-                margin: 15px 0;
+                margin: 20px 0 10px;
                 color: $accent;
 
                 .material-symbols-rounded {
@@ -99,7 +100,6 @@
             a {
                 @include displayFlex(row, center, center);
                 width: 100%;
-                max-width: 300px;
                 min-height: 30px;
                 font-size: 0.9rem;
                 font-weight: 300;
@@ -126,6 +126,60 @@
   
 @media screen and (min-width:768px) {
 
+    .card-shuffle-button {
+        max-width: 400px;
+        min-height: 40px;
+        margin-top: 30px;
     
-
+        span {
+            font-size: 2rem;
+        }
+    }
+    
+    .card-container {
+        @include displayFlex(row, center, space-between);
+        max-width: 800px;
+        min-height: 350px;
+        gap: 30px;
+    
+        .artwork {
+            max-width: 350px;
+        }
+    
+        .card-item {
+            @include displayFlex(column, flex-end, space-between);
+            width: 80%;
+            max-width: 400px;
+            height: 100%;
+            min-height: 350px;
+            gap: 30px;
+    
+            .track-info {
+                min-height: 150px;
+    
+                .song {
+                    font-size: 1.2rem;
+                    margin: 10px 0 10px;
+                }
+        
+                .artist {
+                    font-size: 1rem;
+                }
+        
+                .like-button {
+                    margin: 30px 0 0;
+                }
+            }
+    
+            .card-nav {
+                gap: 15px;
+    
+                a {
+                    width: 100%;
+                    min-height: 40px;
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
 } /* 768px end */

@@ -2,7 +2,8 @@
     position: relative;
     @include displayFlex(column, center, flex-start);
     width: 100%;
-    min-height: calc(100svh - (60px + 30px));
+    min-height: calc(100svh - (60px + 40px));
+    gap: 20px;
     background-color: $primary;
 
     .shuffle-button {
@@ -79,6 +80,7 @@
     
     .main-results {
         min-height: calc(100svh - (60px + 50px));
+        gap: 30px;
     
         .shuffle-button {
             @include positionAbsoluteCenter();
@@ -133,48 +135,3 @@
         }
     }
 } /* 992px end */
-
-
-
-
-        // .shuffleButton {
-        //     @include displayFlex(row, center, space-between);
-        //     width: 100%;
-        //     max-width: 210px;
-        //     min-height: 40px;
-        //     padding: 0 20px;
-        //     border: 2px solid $accent;
-        //     border-radius: 10px;
-        //     color: $primary;
-        //     background-color: $accent;
-
-        //     &:hover {
-        //         @include buttonEffect($primary, $accent-dark, $accent-dark);
-        //     }
-
-        //     &:active {
-        //         @include buttonEffect($primary, $accent, $accent);
-        //     }
-
-        //     .shuffleButtonText {
-        //         font-size: 1rem;
-        //         font-weight: 500;
-        //         padding: 0 5px;
-        //     }
-
-        //     .material-symbols-rounded {
-        //         padding: 0 5px;
-        //     }
-
-        //     .spinner {
-        //         @include keyframes(spinner){
-        //             0% {
-        //                 transform: rotate(0deg);
-        //             }
-        //             100% {
-        //                 transform: rotate(360deg);
-        //             }
-        //         }
-        //         @include spinner(20px, 20px, 3px, 0, $primary);
-        //     }
-        // }
