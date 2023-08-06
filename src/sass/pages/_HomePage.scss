@@ -1,30 +1,33 @@
-.mainHome {
+.main-home {
     @include displayFlex(column, center, center);
     width: 100%;
     min-height: 100svh;
     gap: 50px;
 
-    header {
+    .section-home {
         @include displayFlex(column, center, center);
+        width: 90%;
 
-        .equalizerIcon {
-            font-size: 7rem;
+        .sq-logo {
+            font-size: 8rem;
             color: $accent;
         }
 
-        .headerHome {
+        .headline {
             @include displayFlex(column, center, center);
-            gap: 8px;
+            gap: 5px;
 
             h1 {
                 font-family: $font-prompt;
-                font-size: 2.1rem;
+                font-size: 3rem;
                 text-transform: uppercase;
                 color: $secondary;
             }
 
             p {
-                font-size: 1.05rem;
+                font-size: 1rem;
+                font-weight: 200;
+                letter-spacing: 0.3px;
                 color: $secondary-20;
             }
         }
@@ -43,13 +46,9 @@
             @include buttonEffect($accent, $primary, $accent);
         }
 
-        &:active {
-            @include buttonEffect($primary, $accent, $primary);
-        }
-
         .material-symbols-rounded {
             font-size: 2rem;
-            font-weight: 600;
+            font-weight: 500;
         }
     }
 }
@@ -64,34 +63,35 @@
 
 @media screen and (min-width:768px) {
 
-    .mainHome {
+    .main-home {
+        gap: 75px;
     
-        header {
-            gap: 10px;
+        .section-home {
     
-            .equalizerIcon {
-                font-size: 8rem;
+            .sq-logo {
+                font-size: 9rem;
             }
     
-            .headerHome {
-                gap: 10px;
+            .headline {
     
                 h1 {
-                    font-size: 2.4rem;
+                    font-size: 4rem;
+                    letter-spacing: -0.5px;
                 }
     
                 p {
-                    font-size: 1.2rem;
+                    font-size: 1.1rem;
+                    letter-spacing: 0.2px;
                 }
             }
         }
     
         a {
-            width: 48px;
-            height: 48px;
+            width: 50px;
+            height: 50px;
     
             .material-symbols-rounded {
-                font-size: 2.4rem;
+                font-size: 2.5rem;
             }
         }
     }
@@ -103,24 +103,25 @@
   
 @media screen and (min-width:992px) {
 
-    .mainHome {
+    .main-home {
+        gap: 80px;
     
-        header {
-            gap: 15px;
+        .section-home {
     
-            .equalizerIcon {
+            .sq-logo {
                 font-size: 10rem;
             }
     
-            .headerHome {
-                gap: 10px;
+            .headline {
     
                 h1 {
-                    font-size: 3rem;
+                    font-size: 5rem;
+                    letter-spacing: -1.5px;
                 }
     
                 p {
-                    font-size: 1.5rem;
+                    font-size: 1.2rem;
+                    letter-spacing: 0;
                 }
             }
         }

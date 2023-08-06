@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { DiscoverPage, HomePage } from '../pages';
+import { HomePage, ResultsPage } from '../pages';
 
 export const AppRouter = () => {
 
@@ -9,7 +9,7 @@ export const AppRouter = () => {
         <Routes>
 
             <Route path='/' element={<HomePage />} />
-            <Route path='/discover' element={<DiscoverPage />} />
+            <Route path='/results' element={<ResultsPage />} />
 
             <Route path={'/*'} element={<Navigate to='/' />} />
 

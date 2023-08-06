@@ -1,0 +1,137 @@
+.main-results {
+    position: relative;
+    @include displayFlex(column, center, flex-start);
+    width: 100%;
+    min-height: calc(100svh - (60px + 40px));
+    gap: 20px;
+    background-color: $primary;
+
+    .shuffle-button {
+        @include positionAbsoluteCenter();
+        @include displayFlex(row, center, center);
+        width: 90%;
+        max-width: 250px;
+        min-height: 40px;
+        padding: 0 10px;
+        border: 2px solid $accent;
+        border-radius: 5px;
+        color: $primary;
+        background-color: $accent;
+
+        &:hover {
+            @include buttonEffect($accent, $primary, $accent);
+        }
+
+        span {
+            font-size: 2rem;
+            font-weight: 400;
+        }
+    }
+
+    .spinner {
+        position: absolute;
+        top: 20%;
+        @include keyframes(spinner){
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        @include spinner(50px, 50px, 5px, 255, $accent);
+    }
+
+    .error-container {
+        @include positionAbsoluteCenter();
+        @include keyframes(transition){
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 100%;
+            }
+        }
+        @include displayFlex(row, center, center);
+        width: 90%;
+        animation: transition 0.5s linear;
+
+        p {
+            font-size: 1rem;
+            font-weight: 300;
+            color: $danger-ligth;
+
+            span {
+                font-size: 1rem;
+            }
+        }
+    }
+}
+
+
+
+/* ***************************************/
+/* MEDIA QUERIES *************************/
+/* ***************************************/
+
+/* 768px *************************/
+  
+@media screen and (min-width:768px) {
+    
+    .main-results {
+        min-height: calc(100svh - (60px + 50px));
+        gap: 30px;
+    
+        .shuffle-button {
+            @include positionAbsoluteCenter();
+            max-width: 300px;
+            min-height: 50px;
+
+            span {
+                font-size: 2.5rem;
+            }
+        }
+
+        .error-container {
+    
+            p {
+                font-size: 1.2rem;
+    
+                span {
+                    font-size: 1.2rem;
+                }
+            }
+        }
+    }
+} /* 768px end */
+
+
+/* 992px *************************/
+  
+@media screen and (min-width:992px) {
+    
+    .main-results {
+        min-height: calc(100svh - (80px + 50px));
+
+        .shuffle-button {
+            @include positionAbsoluteCenter();
+            max-width: 350px;
+            min-height: 60px;
+            
+            span {
+                font-size: 3rem;
+            }
+        }
+
+        .error-container {
+    
+            p {
+                font-size: 1.5rem;
+    
+                span {
+                    font-size: 1.5rem;
+                }
+            }
+        }
+    }
+} /* 992px end */

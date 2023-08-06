@@ -2,8 +2,30 @@
     --icon-fill-value: 0;
 }
 
-.cardContainer {
-    @include keyframes(transition){
+.card-shuffle-button {
+    @include displayFlex(row, center, center);
+    width: 90%;
+    max-width: 300px;
+    min-height: 30px;
+    padding: 0 10px;
+    margin-top: 20px;
+    border: 2px solid $accent;
+    border-radius: 5px;
+    color: $primary;
+    background-color: $accent;
+
+    &:hover {
+        @include buttonEffect($accent, $primary, $accent);
+    }
+
+    span {
+        font-size: 1.5rem;
+        font-weight: 400;
+    }
+}
+
+.card-container {
+    @include keyframes(transition) {
         0% {
             opacity: 0;
         }
@@ -12,46 +34,55 @@
         }
     }
     @include displayFlex(column, center, center);
-    width: 80%;
-    gap: 15px;
+    width: 90%;
+    max-width: 300px;
+    margin-bottom: 30px;
+    gap: 10px;
     animation: transition 0.5s linear;
 
-    .cardItem {
+    .artwork {
+        @include displayFlex(row, center, center);
+        width: 100%;
+        overflow: hidden;
+
+        img {
+            object-fit: contain;
+        }
+    }
+
+    .card-item {
         @include displayFlex(column, center, center);
         width: 100%;
-        max-width: 300px;
-        color: $secondary;
-        gap: 10px;
+        gap: 20px;
 
-        .artwork {
-            width: 100%;
-        }
-
-        .trackInfo {
+        .track-info {
             @include displayFlex(column, center, center);
             width: 100%;
-            border-radius: 10px;
+            min-height: fit-content;
+            border-radius: 5px;
             background-color: $primary-dark;
 
             .song {
-                text-align: center;
                 font-size: 1.1rem;
                 font-weight: 300;
-                padding: 0 5px;
+                text-align: center;
+                padding: 0 10px;
                 margin: 10px 0 8px;
+                color: $secondary;
             }
     
             .artist {
-                text-align: center;
                 font-size: 0.9rem;
                 font-weight: 200;
                 font-style: italic;
+                text-align: center;
                 padding: 0 5px;
+                color: $secondary;
             }
     
-            button {
+            .like-button {
                 @include displayFlex(row, center, center);
-                margin: 15px 0;
+                margin: 20px 0 10px;
                 color: $accent;
 
                 .material-symbols-rounded {
@@ -60,44 +91,25 @@
                 }
             }
         }
-    }
 
-    .cardFooter {
-        @include displayFlex(row, center, space-between);
-        width: 100%;
-        max-width: 300px;
-        height: 80px;
-        margin-bottom: 10px;
-
-        .spotifyLogoContainer {
-            @include displayFlex(row, center, center);
-            width: 70px;
-
-            .spotifyLogo {
-                display: none;
-            }
-        }
-
-        .spotifyButtons {
-            @include displayFlex(column, center, space-between);
-            height: 100%;
+        .card-nav {
+            @include displayFlex(column, center, center);
+            width: 100%;
+            gap: 10px;
 
             a {
                 @include displayFlex(row, center, center);
-                width: 180px;
-                height: 30px;
+                width: 100%;
+                min-height: 30px;
                 font-size: 0.9rem;
+                font-weight: 300;
                 border: 2px solid $accent;
-                border-radius: 25px;
+                border-radius: 5px;
                 color: $accent;
                 background-color: $primary;
 
                 &:hover {
-                    @include buttonEffect($primary, $accent-dark, $accent-dark);
-                }
-
-                &:active {
-                    @include buttonEffect($accent, $primary, $accent);
+                    @include buttonEffect($primary, $accent, $accent);
                 }
             }
         }
@@ -114,79 +126,60 @@
   
 @media screen and (min-width:768px) {
 
-    .cardContainer {
-        @include displayFlex(column, center, center);
-        width: 90%;
+    .card-shuffle-button {
+        max-width: 400px;
+        min-height: 40px;
+        margin-top: 30px;
+    
+        span {
+            font-size: 2rem;
+        }
+    }
+    
+    .card-container {
+        @include displayFlex(row, center, space-between);
         max-width: 800px;
+        min-height: 350px;
+        gap: 30px;
     
-        .cardItem {
-            @include displayFlex(row, center, space-between);
-            max-width: none;
-            gap: 0;
+        .artwork {
+            max-width: 350px;
+        }
     
-            .artwork {
-                width: 45%;
-            }
+        .card-item {
+            @include displayFlex(column, flex-end, space-between);
+            width: 80%;
+            max-width: 400px;
+            height: 100%;
+            min-height: 350px;
+            gap: 30px;
     
-            .trackInfo {
-                @include displayFlex(column, center, center);
-                width: 50%;
-                min-height: 200px;
+            .track-info {
+                min-height: 150px;
     
                 .song {
                     font-size: 1.2rem;
-                    padding: 0 10px;
                     margin: 10px 0 10px;
                 }
         
                 .artist {
                     font-size: 1rem;
-                    padding: 0 10px;
                 }
         
-                button {
+                .like-button {
                     margin: 30px 0 0;
-    
-                    .material-symbols-rounded {
-                        font-size: 1.8rem;
-                    }
-                }
-            }
-        }
-    
-        .cardFooter {
-            max-width: none;
-            margin-bottom: 20px;
-            overflow: hidden;
-    
-            .spotifyLogoContainer {
-                width: 45%;
-                height: 100%;
-                object-fit: contain;
-
-                .spotifyIcon {
-                    display: none;
-                }
-    
-                .spotifyLogo {
-                    @include displayFlex(row, center, center);
-                    width: 200px;
                 }
             }
     
-            .spotifyButtons {
-                @include displayFlex(row, center, space-between);
-                width: 50%;
-                gap: 10px;
+            .card-nav {
+                gap: 15px;
     
                 a {
                     width: 100%;
-                    max-width: 180px;
-                    height: 40px;
+                    min-height: 40px;
                     font-size: 1rem;
                 }
             }
         }
     }
-
 } /* 768px end */

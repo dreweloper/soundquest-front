@@ -38,26 +38,26 @@ export const HomePage = () => {
 
         <>
 
-            <main className="mainHome">
+            <main className='main-home'>
 
-                <header>
+                <section className='section-home'>
 
-                    <span className="material-symbols-rounded equalizerIcon">
+                    <span className='material-symbols-rounded sq-logo'>
                         equalizer
                     </span>
 
-                    <div className='headerHome'>
+                    <div className='headline'>
 
-                        <h1> SoundQuest </h1>
+                        <h1>SoundQuest</h1>
 
-                        <p> Let's discover new music! </p>
+                        <p>Find your next favorite song.</p>
 
                     </div>
 
-                </header>
+                </section>
 
                 <Link
-                    to='/discover'
+                    to='/results'
                     onClick={getToken}
                 >
 
