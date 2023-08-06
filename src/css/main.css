@@ -686,4 +686,95 @@ footer .spotifyContainer span {
     min-height: 40px;
     font-size: 1rem;
   }
+} /* 768px end */
+.main-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: calc(100svh - 100px);
+}
+.main-error .error-toast {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 90%;
+  max-width: 300px;
+  min-height: 100px;
+  border-radius: 5px;
+  background-color: #180301;
+  box-shadow: rgba(236, 34, 6, 0.1) 0px 10px 10px -10px;
+  animation: transition 0.5s linear;
+}
+@keyframes transition {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+.main-error .error-toast .material-symbols-rounded {
+  color: #ec2206;
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48;
+}
+.main-error .error-toast .error-icon {
+  font-size: 1.5rem;
+  padding: 15px;
+}
+.main-error .error-toast .text-error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  color: #FFFFFF;
+  padding: 15px;
+  gap: 10px;
+}
+.main-error .error-toast .text-error-container .error-title {
+  font-size: 1.1rem;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+.main-error .error-toast .text-error-container .error-subtitle {
+  font-size: 0.9rem;
+  font-weight: 200;
+  letter-spacing: 0.5px;
+}
+.main-error .error-toast .close-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 1.5rem;
+  padding: 5px;
+}
+
+/* ***************************************/
+/* MEDIA QUERIES *************************/
+/* ***************************************/
+/* 768px *************************/
+@media screen and (min-width: 768px) {
+  .main-error {
+    min-height: calc(100svh - 110px);
+  }
+  .main-error .error-toast {
+    max-width: 400px;
+  }
+  .main-error .error-toast .error-icon {
+    font-size: 2rem;
+  }
+  .main-error .error-toast .text-error-container .error-title {
+    font-size: 1.2rem;
+    letter-spacing: 0;
+  }
+  .main-error .error-toast .text-error-container .error-subtitle {
+    font-size: 1rem;
+    letter-spacing: 0;
+  }
+  .main-error .error-toast .close-icon {
+    font-size: 2rem;
+  }
 } /* 768px end *//*# sourceMappingURL=main.css.map */
