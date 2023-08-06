@@ -1,17 +1,16 @@
-import { Footer, NavBar } from "../layouts";
 
 export const Error = () => {
+
+
     return (
 
         <>
 
-            <NavBar />
+            <section className="error-toast">
 
-            <main className="main-error">
+                <div className="error-toast-container">
 
-                <div className="error-toast">
-
-                    <span class="material-symbols-rounded error-icon">
+                    <span className="material-symbols-rounded error-icon">
                         error
                     </span>
 
@@ -23,15 +22,17 @@ export const Error = () => {
 
                     </div>
 
-                    <span class="material-symbols-rounded close-icon">
-                        close
-                    </span>
+                    <button>
+
+                        <span className="material-symbols-rounded close-icon">
+                            close
+                        </span>
+
+                    </button>
 
                 </div>
 
-            </main>
-
-            <Footer />
+            </section>
 
         </>
 
