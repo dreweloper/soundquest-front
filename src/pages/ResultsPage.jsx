@@ -52,7 +52,7 @@ export const ResultsPage = () => {
 
             <NavBar />
 
-            <main className='main-results'>
+            <main className='main-results fade-in-transition'>
 
                 {
                     !isLoading && !access_token && (!error &&

@@ -166,9 +166,7 @@ export const useTrackStore = () => {
                  */
                 const { album, artwork, artist, name, track_url } = mapTrackData('spotify', response.data);
 
-                dispatch(setError());
-
-                // dispatch(setTrack({ album, artwork, artist, name, track_url }));
+                dispatch(setTrack({ album, artwork, artist, name, track_url }));
 
             };
 

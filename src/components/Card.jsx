@@ -6,16 +6,13 @@ import { useLikeStore, useTokenStore } from '../hooks';
 export const Card = () => {
 
     // REDUX STATES
-    const { playlist, track } = useSelector(state => state);
+    const { playlist_url } = useSelector(state => state.playlist);
+    const { album, artwork, artist, name, track_url } = useSelector(state => state.track);
 
-    // REDUX STATES DESTRUCTURING
-    const { playlist_url } = playlist;
-    const { album, artwork, artist, name, track_url } = track;
-
-    // REDUX MIDDLEWARES (CUSTOM HOOKS)
+    // REDUX MIDDLEWARES (CUSTOM HOOK)
     const { getToken } = useTokenStore();
 
-    // CUSTOM HOOKS - EVENT
+    // EVENT - CUSTOM HOOK
     const { handleLike } = useLikeStore();
 
 
@@ -24,9 +21,8 @@ export const Card = () => {
         <>
 
             <button
-                className='card-shuffle-button'
+                className='card-shuffle-button fade-in-transition'
                 onClick={getToken}
-            // disabled={isLoading} // The button is disabled while the requests to the Spotify Web API are loading.
             >
 
                 <span className="material-symbols-rounded">
@@ -35,7 +31,7 @@ export const Card = () => {
 
             </button>
 
-            <section className='card-container'>
+            <section className='card-container fade-in-transition'>
 
                 <div className='artwork'>
 

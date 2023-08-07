@@ -8,7 +8,7 @@ export const NavBar = () => {
 
     return (
 
-        <nav className='navBar'>
+        <nav className='nav-bar fade-in-transition'>
 
             <Link to='/' onClick={resetStates}>
 
@@ -16,7 +16,7 @@ export const NavBar = () => {
                     equalizer
                 </span>
 
-                <span className='titleNav'>SoundQuest</span>
+                <span className='title-nav'>SoundQuest</span>
 
             </Link>
 

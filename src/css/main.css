@@ -139,6 +139,18 @@ body {
   background-color: #191414;
 }
 
+.fade-in-transition {
+  animation: transition 0.5s linear;
+}
+@keyframes transition {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
 /* LAYOUTS */
 footer {
   display: flex;
@@ -148,7 +160,7 @@ footer {
   width: 100%;
   height: 40px;
 }
-footer .spotifyContainer {
+footer .spotify-container {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -157,10 +169,10 @@ footer .spotifyContainer {
   height: 100%;
   gap: 4px;
 }
-footer .spotifyContainer .spotifyLogo {
+footer .spotify-container .spotify-logo {
   width: 70px;
 }
-footer .spotifyContainer span {
+footer .spotify-container span {
   font-size: 0.7rem;
   font-weight: 100;
   color: #FFFFFF;
@@ -174,17 +186,17 @@ footer .spotifyContainer span {
   footer {
     height: 50px;
   }
-  footer .spotifyContainer {
+  footer .spotify-container {
     gap: 6px;
   }
-  footer .spotifyContainer .spotifyLogo {
+  footer .spotify-container .spotify-logo {
     width: 100px;
   }
-  footer .spotifyContainer span {
+  footer .spotify-container span {
     font-size: 1rem;
   }
 } /* 768px end */
-.navBar {
+.nav-bar {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -196,7 +208,7 @@ footer .spotifyContainer span {
   color: #FFFFFF;
   background-color: #191414;
 }
-.navBar a {
+.nav-bar a {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -206,12 +218,12 @@ footer .spotifyContainer span {
   min-height: 100%;
   gap: 10px;
 }
-.navBar a .material-symbols-rounded {
+.nav-bar a .material-symbols-rounded {
   font-size: 1.8rem;
   margin-left: 10px;
   color: #1DB954;
 }
-.navBar a .titleNav {
+.nav-bar a .title-nav {
   font-family: "Prompt", sans-serif;
   font-size: 1.8rem;
   text-transform: uppercase;
@@ -223,17 +235,17 @@ footer .spotifyContainer span {
 /* ***************************************/
 /* 992px *************************/
 @media screen and (min-width: 992px) {
-  .navBar {
+  .nav-bar {
     height: 80px;
   }
-  .navBar a {
+  .nav-bar a {
     gap: 15px;
   }
-  .navBar a .material-symbols-rounded {
+  .nav-bar a .material-symbols-rounded {
     font-size: 2rem;
     margin-left: 15px;
   }
-  .navBar a .titleNav {
+  .nav-bar a .title-nav {
     font-size: 2rem;
     margin-right: 15px;
   }
@@ -381,6 +393,15 @@ footer .spotifyContainer span {
   border-radius: 5px;
   color: #191414;
   background-color: #1DB954;
+  animation: transition 0.5s linear;
+}
+@keyframes transition {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100%;
+  }
 }
 .main-results .shuffle-button:hover {
   color: #1DB954;
@@ -491,15 +512,6 @@ footer .spotifyContainer span {
   max-width: 300px;
   margin-bottom: 30px;
   gap: 10px;
-  animation: transition 0.5s linear;
-}
-@keyframes transition {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 100%;
-  }
 }
 .card-container .artwork {
   display: flex;

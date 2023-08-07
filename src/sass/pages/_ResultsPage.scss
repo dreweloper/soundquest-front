@@ -7,6 +7,14 @@
     background-color: $primary;
 
     .shuffle-button {
+        @include keyframes(transition) {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 100%;
+            }
+        }
         @include positionAbsoluteCenter();
         @include displayFlex(row, center, center);
         width: 90%;
@@ -17,6 +25,7 @@
         border-radius: 5px;
         color: $primary;
         background-color: $accent;
+        animation: transition 0.5s linear;
 
         &:hover {
             @include buttonEffect($accent, $primary, $accent);
