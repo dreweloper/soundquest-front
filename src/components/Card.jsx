@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { useLikeStore, useTokenStore } from '../hooks';
+import { useForm, useLikeStore, useTokenStore } from '../hooks';
 import { useState } from 'react';
 
 
@@ -16,8 +16,9 @@ export const Card = () => {
     // REDUX MIDDLEWARES (CUSTOM HOOK)
     const { getToken } = useTokenStore();
 
-    // EVENT - CUSTOM HOOK
+    // CUSTOM HOOKS
     const { handleLike } = useLikeStore();
+    const { form, handleSubmit } = useForm();
 
 
     return (
@@ -85,11 +86,14 @@ export const Card = () => {
 
             {
                 isHostFormOpen && (
-                    <form className='host-form' action=''>
+                    <form
+                        className='host-form'
+                        onSubmit={handleSubmit}
+                    >
 
-                        <label htmlFor='spotify-username'>Please enter a Spotify username:</label>
+                        <label htmlFor='username'>Please enter a Spotify username:</label>
 
-                        <input type='text' name='spotify-username' id='spotify-username' />
+                        <input type='text' name='username' id='username' />
 
                         <input type='submit' value='Send' />
 
