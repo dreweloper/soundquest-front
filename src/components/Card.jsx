@@ -1,7 +1,8 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { useForm, useLikeStore, useTokenStore } from '../hooks';
+import { useLikeStore, useTokenStore } from '../hooks';
 import { useState } from 'react';
+import { HostForm } from './HostForm';
 
 
 export const Card = () => {
@@ -18,7 +19,6 @@ export const Card = () => {
 
     // CUSTOM HOOKS
     const { handleLike } = useLikeStore();
-    const { form, handleSubmit } = useForm();
 
 
     return (
@@ -85,20 +85,7 @@ export const Card = () => {
             </section>
 
             {
-                isHostFormOpen && (
-                    <form
-                        className='host-form'
-                        onSubmit={handleSubmit}
-                    >
-
-                        <label htmlFor='username'>Please enter a Spotify username:</label>
-
-                        <input type='text' name='username' id='username' />
-
-                        <input type='submit' value='Send' />
-
-                    </form>
-                )
+                isHostFormOpen && <HostForm />
             }
 
         </>

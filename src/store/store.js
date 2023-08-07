@@ -1,15 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { errorSlice, likeSlice, loadingSlice, playlistSlice, tokenSlice, trackSlice } from './slices';
+import { errorSlice, hostSlice, likeSlice, loadingSlice, playlistSlice, tokenSlice, trackSlice } from './slices';
 
 export const store = configureStore({
 
     reducer: {
-        token: tokenSlice.reducer,
-        playlist: playlistSlice.reducer,
-        track: trackSlice.reducer,
-        loading: loadingSlice.reducer,
+        errors: errorSlice.reducer,
+        host: hostSlice.reducer,
         like: likeSlice.reducer,
-        errors: errorSlice.reducer
+        loading: loadingSlice.reducer,
+        playlist: playlistSlice.reducer,
+        token: tokenSlice.reducer,
+        track: trackSlice.reducer
     }
 
 });
