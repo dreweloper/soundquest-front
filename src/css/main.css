@@ -139,6 +139,18 @@ body {
   background-color: #191414;
 }
 
+.fade-in-transition {
+  animation: transition 0.5s linear;
+}
+@keyframes transition {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
 /* LAYOUTS */
 footer {
   display: flex;
@@ -148,7 +160,7 @@ footer {
   width: 100%;
   height: 40px;
 }
-footer .spotifyContainer {
+footer .spotify-container {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -157,10 +169,10 @@ footer .spotifyContainer {
   height: 100%;
   gap: 4px;
 }
-footer .spotifyContainer .spotifyLogo {
+footer .spotify-container .spotify-logo {
   width: 70px;
 }
-footer .spotifyContainer span {
+footer .spotify-container span {
   font-size: 0.7rem;
   font-weight: 100;
   color: #FFFFFF;
@@ -174,17 +186,17 @@ footer .spotifyContainer span {
   footer {
     height: 50px;
   }
-  footer .spotifyContainer {
+  footer .spotify-container {
     gap: 6px;
   }
-  footer .spotifyContainer .spotifyLogo {
+  footer .spotify-container .spotify-logo {
     width: 100px;
   }
-  footer .spotifyContainer span {
+  footer .spotify-container span {
     font-size: 1rem;
   }
 } /* 768px end */
-.navBar {
+.nav-bar {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -196,7 +208,7 @@ footer .spotifyContainer span {
   color: #FFFFFF;
   background-color: #191414;
 }
-.navBar a {
+.nav-bar a {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -206,12 +218,12 @@ footer .spotifyContainer span {
   min-height: 100%;
   gap: 10px;
 }
-.navBar a .material-symbols-rounded {
+.nav-bar a .material-symbols-rounded {
   font-size: 1.8rem;
   margin-left: 10px;
   color: #1DB954;
 }
-.navBar a .titleNav {
+.nav-bar a .title-nav {
   font-family: "Prompt", sans-serif;
   font-size: 1.8rem;
   text-transform: uppercase;
@@ -223,17 +235,17 @@ footer .spotifyContainer span {
 /* ***************************************/
 /* 992px *************************/
 @media screen and (min-width: 992px) {
-  .navBar {
+  .nav-bar {
     height: 80px;
   }
-  .navBar a {
+  .nav-bar a {
     gap: 15px;
   }
-  .navBar a .material-symbols-rounded {
+  .nav-bar a .material-symbols-rounded {
     font-size: 2rem;
     margin-left: 15px;
   }
-  .navBar a .titleNav {
+  .nav-bar a .title-nav {
     font-size: 2rem;
     margin-right: 15px;
   }
@@ -381,6 +393,15 @@ footer .spotifyContainer span {
   border-radius: 5px;
   color: #191414;
   background-color: #1DB954;
+  animation: transition 0.5s linear;
+}
+@keyframes transition {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100%;
+  }
 }
 .main-results .shuffle-button:hover {
   color: #1DB954;
@@ -411,34 +432,6 @@ footer .spotifyContainer span {
     transform: rotate(360deg);
   }
 }
-.main-results .error-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  width: 90%;
-  animation: transition 0.5s linear;
-}
-@keyframes transition {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 100%;
-  }
-}
-.main-results .error-container p {
-  font-size: 1rem;
-  font-weight: 300;
-  color: #f69183;
-}
-.main-results .error-container p span {
-  font-size: 1rem;
-}
 
 /* ***************************************/
 /* MEDIA QUERIES *************************/
@@ -460,12 +453,6 @@ footer .spotifyContainer span {
   .main-results .shuffle-button span {
     font-size: 2.5rem;
   }
-  .main-results .error-container p {
-    font-size: 1.2rem;
-  }
-  .main-results .error-container p span {
-    font-size: 1.2rem;
-  }
 } /* 768px end */
 /* 992px *************************/
 @media screen and (min-width: 992px) {
@@ -482,12 +469,6 @@ footer .spotifyContainer span {
   }
   .main-results .shuffle-button span {
     font-size: 3rem;
-  }
-  .main-results .error-container p {
-    font-size: 1.5rem;
-  }
-  .main-results .error-container p span {
-    font-size: 1.5rem;
   }
 } /* 992px end */
 /* COMPONENTS */
@@ -531,15 +512,6 @@ footer .spotifyContainer span {
   max-width: 300px;
   margin-bottom: 30px;
   gap: 10px;
-  animation: transition 0.5s linear;
-}
-@keyframes transition {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 100%;
-  }
 }
 .card-container .artwork {
   display: flex;
@@ -685,5 +657,96 @@ footer .spotifyContainer span {
     width: 100%;
     min-height: 40px;
     font-size: 1rem;
+  }
+} /* 768px end */
+.error-toast {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+}
+.error-toast .error-toast-container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 300px;
+  min-height: 100px;
+  border-radius: 5px;
+  background-color: #180301;
+  box-shadow: rgba(236, 34, 6, 0.1) 0px 10px 10px -10px;
+  animation: transition 0.5s linear;
+}
+@keyframes transition {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+.error-toast .error-toast-container .material-symbols-rounded {
+  color: #ec2206;
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48;
+}
+.error-toast .error-toast-container .error-icon {
+  font-size: 1.5rem;
+  padding: 15px;
+}
+.error-toast .error-toast-container .text-error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  color: #FFFFFF;
+  padding: 15px;
+  gap: 10px;
+}
+.error-toast .error-toast-container .text-error-container .error-title {
+  font-size: 1.1rem;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+.error-toast .error-toast-container .text-error-container .error-subtitle {
+  font-size: 0.9rem;
+  font-weight: 200;
+  letter-spacing: 0.5px;
+}
+.error-toast .error-toast-container .close-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 1.5rem;
+  padding: 5px;
+}
+
+/* ***************************************/
+/* MEDIA QUERIES *************************/
+/* ***************************************/
+/* 768px *************************/
+@media screen and (min-width: 768px) {
+  .error-toast .error-toast-container {
+    max-width: 400px;
+  }
+  .error-toast .error-toast-container .error-icon {
+    font-size: 2rem;
+  }
+  .error-toast .error-toast-container .text-error-container .error-title {
+    font-size: 1.2rem;
+    letter-spacing: 0;
+  }
+  .error-toast .error-toast-container .text-error-container .error-subtitle {
+    font-size: 1rem;
+    letter-spacing: 0;
+  }
+  .error-toast .error-toast-container .close-icon {
+    font-size: 2rem;
   }
 } /* 768px end *//*# sourceMappingURL=main.css.map */

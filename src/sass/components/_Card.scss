@@ -25,20 +25,11 @@
 }
 
 .card-container {
-    @include keyframes(transition) {
-        0% {
-            opacity: 0;
-        }
-        100% {
-            opacity: 100%;
-        }
-    }
     @include displayFlex(column, center, center);
     width: 90%;
     max-width: 300px;
     margin-bottom: 30px;
     gap: 10px;
-    animation: transition 0.5s linear;
 
     .artwork {
         @include displayFlex(row, center, center);

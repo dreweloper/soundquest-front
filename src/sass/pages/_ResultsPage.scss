@@ -7,6 +7,14 @@
     background-color: $primary;
 
     .shuffle-button {
+        @include keyframes(transition) {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 100%;
+            }
+        }
         @include positionAbsoluteCenter();
         @include displayFlex(row, center, center);
         width: 90%;
@@ -17,6 +25,7 @@
         border-radius: 5px;
         color: $primary;
         background-color: $accent;
+        animation: transition 0.5s linear;
 
         &:hover {
             @include buttonEffect($accent, $primary, $accent);
@@ -40,31 +49,6 @@
             }
         }
         @include spinner(50px, 50px, 5px, 255, $accent);
-    }
-
-    .error-container {
-        @include positionAbsoluteCenter();
-        @include keyframes(transition){
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 100%;
-            }
-        }
-        @include displayFlex(row, center, center);
-        width: 90%;
-        animation: transition 0.5s linear;
-
-        p {
-            font-size: 1rem;
-            font-weight: 300;
-            color: $danger-ligth;
-
-            span {
-                font-size: 1rem;
-            }
-        }
     }
 }
 
@@ -91,17 +75,6 @@
                 font-size: 2.5rem;
             }
         }
-
-        .error-container {
-    
-            p {
-                font-size: 1.2rem;
-    
-                span {
-                    font-size: 1.2rem;
-                }
-            }
-        }
     }
 } /* 768px end */
 
@@ -120,17 +93,6 @@
             
             span {
                 font-size: 3rem;
-            }
-        }
-
-        .error-container {
-    
-            p {
-                font-size: 1.5rem;
-    
-                span {
-                    font-size: 1.5rem;
-                }
             }
         }
     }

@@ -1,11 +1,11 @@
-.navBar {
+.nav-bar {
     @include displayFlex(row, center, flex-start);
     width: 100%;
     max-width: 1200px;
     height: 60px;
     margin: 0 auto;
     color: $secondary;
-    background-color: $primary;
+    background-color: $primary;    
 
     a {
         @include displayFlex(row, center, space-between);
@@ -19,7 +19,7 @@
             color: $accent;
         }
 
-        .titleNav {
+        .title-nav {
             font-family: $font-prompt;
             font-size: 1.8rem;
             text-transform: uppercase;
@@ -38,7 +38,7 @@
   
 @media screen and (min-width:992px) {
 
-    .navBar {
+    .nav-bar {
         height: 80px;
     
         a {
@@ -49,7 +49,7 @@
                 margin-left: 15px;
             }
     
-            .titleNav {
+            .title-nav {
                 font-size: 2rem;
                 margin-right: 15px;
             }

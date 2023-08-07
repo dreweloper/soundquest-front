@@ -38,7 +38,7 @@ export const HomePage = () => {
 
         <>
 
-            <main className='main-home'>
+            <main className='main-home fade-in-transition'>
 
                 <section className='section-home'>
 

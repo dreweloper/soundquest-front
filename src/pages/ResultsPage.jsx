@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { usePlaylistStore, useTokenStore, useTrackStore } from "../hooks";
 import { useEffect } from 'react';
-import { Card } from '../components';
+import { Card, Error } from '../components';
 import { Footer, NavBar } from '../layouts';
 
 export const ResultsPage = () => {
@@ -52,15 +52,14 @@ export const ResultsPage = () => {
 
             <NavBar />
 
-            <main className='main-results'>
+            <main className='main-results fade-in-transition'>
 
                 {
-                    !isLoading && !access_token && (
+                    !isLoading && !access_token && (!error &&
 
                         <button
                             className='shuffle-button'
                             onClick={getToken}
-                            // disabled={isLoading} // The button is disabled while the requests to the Spotify Web API are loading.
                         >
 
                             <span className="material-symbols-rounded">
@@ -77,13 +76,7 @@ export const ResultsPage = () => {
                 }
 
                 {
-                    !isLoading && error && (
-                        <div className='error-container'>
-
-                            <p>Oops! <span role="img" aria-label="Face with a wide smile, squinting eyes and a bead of sweat.">😅</span> Try again, please…</p>
-
-                        </div>
-                    )
+                    !isLoading && error && (<Error />)
                 }
 
                 {

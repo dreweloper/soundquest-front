@@ -1,4 +1,18 @@
+// TYPE SELECTORS
 body {
     font-family: $font-poppins;
     background-color: $primary;
+}
+
+// CLASS SELECTORS
+.fade-in-transition {
+    @include keyframes(transition) {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 100%;
+        }
+    }
+    animation: transition 0.5s linear;
 }
