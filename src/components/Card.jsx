@@ -1,9 +1,13 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useLikeStore, useTokenStore } from '../hooks';
+import { useState } from 'react';
 
 
 export const Card = () => {
+
+    // REACT HOOKS
+    const [isHostFormOpen, setIsHostFormOpen] = useState(false);
 
     // REDUX STATES
     const { playlist_url } = useSelector(state => state.playlist);
@@ -62,17 +66,36 @@ export const Card = () => {
 
                     <nav className='card-nav'>
 
-                        <Link className='spotify-button' to={track_url}> Play on Spotify </Link>
+                        <Link className='card-nav-button' to={track_url}> Play on Spotify </Link>
 
-                        <Link className='spotify-button' to={playlist_url}> Open playlist </Link>
+                        <Link className='card-nav-button' to={playlist_url}> Open playlist </Link>
 
-                        <Link className='host-button' to='#'> Become a Host </Link>
+                        <button
+                            className='card-nav-button'
+                            onClick={() => { setIsHostFormOpen(!isHostFormOpen) }}
+                        >
+                            Become a Host
+                        </button>
 
                     </nav>
 
                 </div>
 
             </section>
+
+            {
+                isHostFormOpen && (
+                    <form className='host-form' action=''>
+
+                        <label htmlFor='spotify-username'>Please enter a Spotify username:</label>
+
+                        <input type='text' name='spotify-username' id='spotify-username' />
+
+                        <input type='submit' value='Send' />
+
+                    </form>
+                )
+            }
 
         </>
 

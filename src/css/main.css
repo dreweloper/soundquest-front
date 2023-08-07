@@ -151,6 +151,10 @@ body {
   }
 }
 
+.host-form {
+  background-color: red;
+}
+
 /* LAYOUTS */
 footer {
   display: flex;
@@ -579,7 +583,7 @@ footer .spotify-container span {
   width: 100%;
   gap: 10px;
 }
-.card-container .card-item .card-nav a {
+.card-container .card-item .card-nav .card-nav-button {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -593,7 +597,7 @@ footer .spotify-container span {
   color: #1DB954;
   background-color: #191414;
 }
-.card-container .card-item .card-nav a:hover {
+.card-container .card-item .card-nav .card-nav-button:hover {
   color: #191414;
   background-color: #1DB954;
   border: 2px solid #1DB954;

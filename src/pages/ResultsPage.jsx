@@ -24,25 +24,25 @@ export const ResultsPage = () => {
 
     // USEEFFECTS
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        access_token && getUserPlaylists('aleon88'); // If 'access_token' isn't 'undefined'.
+    //     access_token && getUserPlaylists('aleon88'); // If 'access_token' isn't 'undefined'.
 
-    }, [token]);
-
-
-    useEffect(() => {
-
-        playlist_id && getPlaylist(playlist_id); // If 'playlist_id' isn't 'undefined'.
-
-    }, [playlist]);
+    // }, [token]);
 
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        track_id && getTrack(track_id); // If 'track_id' isn't 'undefined'.
+    //     playlist_id && getPlaylist(playlist_id); // If 'playlist_id' isn't 'undefined'.
 
-    }, [track_id]); // If I only specify 'track', it triggers twice due to the state change caused by the previous `useEffect` with the `setTrackID` dispatch from the `getPlaylist` function of the `useTrackStore` hook.
+    // }, [playlist]);
+
+
+    // useEffect(() => {
+
+    //     track_id && getTrack(track_id); // If 'track_id' isn't 'undefined'.
+
+    // }, [track_id]); // If I only specify 'track', it triggers twice due to the state change caused by the previous `useEffect` with the `setTrackID` dispatch from the `getPlaylist` function of the `useTrackStore` hook.
 
 
 
