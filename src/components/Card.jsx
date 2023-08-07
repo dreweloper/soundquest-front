@@ -1,18 +1,18 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useLikeStore, useTokenStore } from '../hooks';
-import { useState } from 'react';
 import { HostForm } from './HostForm';
+import { openHostForm } from '../store/slices';
 
 
 export const Card = () => {
 
-    // REACT HOOKS
-    const [isHostFormOpen, setIsHostFormOpen] = useState(false);
-
-    // REDUX STATES
+    // REDUX HOOKS
     const { playlist_url } = useSelector(state => state.playlist);
     const { album, artwork, artist, name, track_url } = useSelector(state => state.track);
+    const { isHostFormOpen } = useSelector(state => state.host);
+
+    const dispatch = useDispatch();
 
     // REDUX MIDDLEWARES (CUSTOM HOOK)
     const { getToken } = useTokenStore();
@@ -73,7 +73,7 @@ export const Card = () => {
 
                         <button
                             className='card-nav-button'
-                            onClick={() => { setIsHostFormOpen(!isHostFormOpen) }}
+                            onClick={() => { dispatch(openHostForm()) }}
                         >
                             Become a Host
                         </button>

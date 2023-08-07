@@ -1,7 +1,11 @@
 import { useEffect } from "react";
 import { useForm, useHostStore } from "../hooks";
+import { useSelector } from "react-redux";
 
 export const HostForm = () => {
+
+    // REDUX STATE
+    const { errorHost } = useSelector(state => state.host);
 
     // REDUX MIDDLEWARE (CUSTOM HOOK)
     const { getUserProfile } = useHostStore();
@@ -32,6 +36,10 @@ export const HostForm = () => {
                 <input type='submit' value='Send' />
 
             </form>
+
+            {
+                errorHost && (<p>¡ERROR!</p>)
+            }
 
         </>
 
