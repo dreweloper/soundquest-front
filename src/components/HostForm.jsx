@@ -1,9 +1,19 @@
-import { useForm } from "../hooks";
+import { useEffect } from "react";
+import { useForm, useHostStore } from "../hooks";
 
 export const HostForm = () => {
 
+    // REDUX MIDDLEWARE (CUSTOM HOOK)
+    const { getUserProfile } = useHostStore();
+
     // CUSTOM HOOKS
     const { form, handleSubmit } = useForm();
+
+    useEffect(() => {
+
+        form && getUserProfile(form);
+
+    }, [form]);
 
 
     return (
