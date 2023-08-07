@@ -7,6 +7,7 @@ export const hostSlice = createSlice({
     initialState: {
         host: 'aleon88',
         errorHost: false,
+        errorMessage: undefined,
         isHostFormOpen: false
     },
 
@@ -14,8 +15,9 @@ export const hostSlice = createSlice({
         setHost: (state , { payload }) => {
             state.host = payload;
         },
-        setErrorHost: (state) => {
+        setErrorHost: (state, { payload }) => {
             state.errorHost = true;
+            state.errorMessage = payload;
         },
         openHostForm: (state) => {
             state.isHostFormOpen = true;
@@ -25,6 +27,7 @@ export const hostSlice = createSlice({
         },
         clearErrorHost: (state) => {
             state.errorHost = false;
+            state.errorMessage = undefined;
         },
         closeHostForm: (state) => {
             state.isHostFormOpen = false;

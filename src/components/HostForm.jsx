@@ -5,14 +5,15 @@ import { useSelector } from "react-redux";
 export const HostForm = () => {
 
     // REDUX STATE
-    const { errorHost } = useSelector(state => state.host);
+    const { errorHost, errorMessage } = useSelector(state => state.host);
 
-    // REDUX MIDDLEWARE (CUSTOM HOOK)
+    // REDUX MIDDLEWARE (CUSTOM HOOKS)
     const { getUserProfile } = useHostStore();
 
     // CUSTOM HOOKS
     const { form, handleSubmit } = useForm();
 
+    // REACT HOOKS
     useEffect(() => {
 
         form && getUserProfile(form);
@@ -38,7 +39,7 @@ export const HostForm = () => {
             </form>
 
             {
-                errorHost && (<p>¡ERROR!</p>)
+                errorHost && (<p>{errorMessage}</p>)
             }
 
         </>

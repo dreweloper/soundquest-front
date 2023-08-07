@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchSpotifyAPI } from "../api";
 import { clearErrorHost, closeHostForm, setErrorHost, setHost } from "../store/slices";
 
-export const useHostStore = (props) => {
+export const useHostStore = () => {
 
     // REDUX HOOKS
     /**
@@ -12,7 +12,7 @@ export const useHostStore = (props) => {
      * @property {String} access_token - The access token provided by Spotify.
      */
     const { token_type, access_token } = useSelector(state => state.token);
-    const { errorHost } = useSelector(state => state.host);
+    const { errorHost, errorMessage } = useSelector(state => state.host);
     /**
      * The dispatch function from Redux to dispatch actions.
      * @type {Function}
@@ -30,39 +30,47 @@ export const useHostStore = (props) => {
          */
         const authorization = `${token_type} ${access_token}`;
         /**
-         * The URL for the Spotify API endpoint that fetches information about a user.
+         * The URL base for the Spotify API endpoints.
          * @type {String}
          */
-        const url = `https://api.spotify.com/v1/users/${uid}`;
+        const urlBase = `https://api.spotify.com/v1/users`;
 
         try {
-            
-            const response = await fetchSpotifyAPI(url, 'GET', authorization);
 
-            if(response.ok) {
+            const response = await fetchSpotifyAPI(`${urlBase}/${uid}`, 'GET', authorization);
 
-                //! llamada para comprobar si tiene o no playlists
+            if (response.ok) {
 
-                const host = response.data.id;
-                
-                dispatch(setHost(host));
+                const { data } = await fetchSpotifyAPI(`${urlBase}/${uid}/playlists`, 'GET', authorization);
 
-                dispatch(closeHostForm());
+                const { items } = data;
+
+                if (items.length > 0) { // The user exists and has public playlists.
+
+                    dispatch(setHost(uid));
+
+                    dispatch(closeHostForm());
+
+                } else { // The user doesn't have any public playlists.
+                    
+                    dispatch(setErrorHost(`The user doesn't have any public playlists.`));
+
+                };
 
             } else {
 
                 // Status 400: invalid username
-                if(response.status == 400) dispatch(setErrorHost());
+                if (response.status == 400) dispatch(setErrorHost('Invalid username.'));
                 // Status 500: username doesn't exist.
-                if(response.status == 500) dispatch(setErrorHost());
+                if (response.status == 500) dispatch(setErrorHost(`The username doesn't exist.`));
 
             };
 
         } catch (error) {
-            
+
             console.log(error);
 
-            dispatch(setErrorHost());
+            dispatch(setErrorHost(`Internal server error.`));
 
         };
 
