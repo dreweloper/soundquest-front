@@ -40,7 +40,7 @@ export const usePlaylistStore = () => {
      * 
      * @function getPlaylist
      * @async
-     * @param {String} uid - The user's Spotify user ID.
+     * @param {String} uid - The user's Spotify ID.
      * @returns {void}
      * @throws {Error} If the user ID doesn't exist or the user hasn't created any playlists yet, an error is thrown.
      */

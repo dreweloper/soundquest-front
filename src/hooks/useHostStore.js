@@ -2,9 +2,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchSpotifyAPI } from "../api";
 import { clearErrorHost, closeHostForm, setErrorHost, setHost } from "../store/slices";
 
+/**
+ * Custom hook for 'hostSlice' to handle asynchronous functions.
+ * @function useHostStore
+ * @returns {Object} An object containing the following function:
+ * - getUserProfile: The function checks the user's Spotify account existence and the presence of public playlists using the provided ID.
+ */
 export const useHostStore = () => {
 
-    // REDUX HOOKS
     /**
      * The 'token' state object from Redux store.
      * @type {Object}
@@ -12,14 +17,25 @@ export const useHostStore = () => {
      * @property {String} access_token - The access token provided by Spotify.
      */
     const { token_type, access_token } = useSelector(state => state.token);
-    const { errorHost, errorMessage } = useSelector(state => state.host);
+    /**
+     * The 'host' state object from Redux store.
+     * @type {Object}
+     * @property {Boolean} errorHost - Indicates whether there has been an error or not while attempting to modify the host.
+     */
+    const { errorHost } = useSelector(state => state.host);
     /**
      * The dispatch function from Redux to dispatch actions.
      * @type {Function}
      */
     const dispatch = useDispatch();
 
-    // FUNCTIONS
+    /**
+     * The function checks the user's Spotify account existence and the presence of public playlists using the provided ID.
+     * @function getUserProfile
+     * @async
+     * @param {String} uid - The user's Spotify ID.
+     * @returns {void}
+     */
     const getUserProfile = async (uid) => {
 
         errorHost && dispatch(clearErrorHost()); // To clear the error message in case of a successful retry.
@@ -37,12 +53,24 @@ export const useHostStore = () => {
 
         try {
 
+            /**
+             * The response received from Spotify API.
+             * @type {Object}
+             */
             const response = await fetchSpotifyAPI(`${urlBase}/${uid}`, 'GET', authorization);
 
             if (response.ok) {
 
+                /**
+                 * The response received from Spotify API.
+                 * @type {Object}
+                 * @property {Object} data - The public profile information about a Spotify user.
+                 */
                 const { data } = await fetchSpotifyAPI(`${urlBase}/${uid}/playlists`, 'GET', authorization);
-
+                /**
+                 * A list of the playlists owned or followed by a Spotify user.
+                 * @type {Array}
+                 */
                 const { items } = data;
 
                 if (items.length > 0) { // The user exists and has public playlists.
@@ -68,9 +96,7 @@ export const useHostStore = () => {
 
         } catch (error) {
 
-            console.log(error);
-
-            dispatch(setErrorHost(`Internal server error.`));
+            dispatch(setErrorHost(`Internal server error. Try again later.`));
 
         };
 
