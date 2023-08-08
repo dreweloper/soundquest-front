@@ -1,11 +1,14 @@
 import { useEffect } from "react";
 import { useForm, useHostStore } from "../hooks";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { closeHostForm } from "../store/slices";
 
-export const HostForm = ({ onClick }) => {
+export const HostForm = () => {
 
-    // REDUX STATE
+    // REDUX HOOKS
     const { errorHost, errorMessage } = useSelector(state => state.host);
+
+    const dispatch = useDispatch();
 
     // REDUX MIDDLEWARE (CUSTOM HOOKS)
     const { getUserProfile } = useHostStore();
@@ -31,7 +34,7 @@ export const HostForm = ({ onClick }) => {
 
                     <button
                         className="close-button"
-                        onClick={onClick}
+                        onClick={() => { dispatch(closeHostForm()) }}
                     >
 
                         <span className='material-symbols-rounded'>

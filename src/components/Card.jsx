@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useLikeStore, useTokenStore } from '../hooks';
 import { HostForm } from './HostForm';
-import { closeHostForm, openHostForm } from '../store/slices';
+import { openHostForm } from '../store/slices';
 
 
 export const Card = () => {
@@ -19,9 +19,6 @@ export const Card = () => {
 
     // CUSTOM HOOKS
     const { handleLike } = useLikeStore();
-
-    // EVENT
-    const handleHostForm = () => isHostFormOpen ? dispatch(closeHostForm()) : dispatch(openHostForm());
 
 
     return (
@@ -76,7 +73,7 @@ export const Card = () => {
 
                         <button
                             className='card-nav-button'
-                            onClick={handleHostForm}
+                            onClick={() => { dispatch(openHostForm()) }}
                         >
                             Become a Host
                         </button>
@@ -88,7 +85,7 @@ export const Card = () => {
             </section>
 
             {
-                isHostFormOpen && <HostForm onClick={handleHostForm} />
+                isHostFormOpen && <HostForm />
             }
 
         </>
