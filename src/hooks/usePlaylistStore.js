@@ -40,11 +40,11 @@ export const usePlaylistStore = () => {
      * 
      * @function getPlaylist
      * @async
-     * @param {String} id - The user's Spotify user ID.
+     * @param {String} uid - The user's Spotify ID.
      * @returns {void}
      * @throws {Error} If the user ID doesn't exist or the user hasn't created any playlists yet, an error is thrown.
      */
-    const getUserPlaylists = async (id) => {
+    const getUserPlaylists = async (uid) => {
 
         /**
          * Authorization header value that contains the token type (Bearer) and the access token.
@@ -56,7 +56,7 @@ export const usePlaylistStore = () => {
          * The URL for the Spotify API endpoint that fetches playlists owned by a user.
          * @type {String}
          */
-        const url = `https://api.spotify.com/v1/users/${id}/playlists?offset=0&limit=50`;
+        const url = `https://api.spotify.com/v1/users/${uid}/playlists?offset=0&limit=50`;
 
 
         try {

@@ -114,7 +114,8 @@ a {
 }
 
 /* Restablecer las propiedades de estilo */
-button {
+button,
+input[type='submit'] {
     background: none;
     border: none;
     color: inherit;

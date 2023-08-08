@@ -88,7 +88,7 @@
             width: 100%;
             gap: 10px;
 
-            a {
+            .card-nav-button {
                 @include displayFlex(row, center, center);
                 width: 100%;
                 min-height: 30px;

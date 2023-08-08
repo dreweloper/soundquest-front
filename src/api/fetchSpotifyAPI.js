@@ -67,13 +67,16 @@ export const fetchSpotifyAPI = async (url, method, token) => {
 
         } else {
 
-            throw new Error(`HTTP request failed with status: ${request.status}`);
+            throw {
+                ok: false,
+                status: request.status,
+            };
 
         };
 
     } catch (error) {
 
-        throw new Error(`Error occurred during the HTTP request: ${error.message}`);
+        return error;
 
     };
 

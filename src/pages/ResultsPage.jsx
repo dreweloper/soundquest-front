@@ -7,14 +7,16 @@ import { Footer, NavBar } from '../layouts';
 export const ResultsPage = () => {
 
     // REDUX STATES
-    const { errors, loading, playlist, token, track } = useSelector(state => state);
+    const { error } = useSelector(state => state.errors);
+    const { host } = useSelector(state => state.host);
+    const { isLoading } = useSelector(state => state.loading);
+    const playlist = useSelector(state => state.playlist);
+    const token = useSelector(state => state.token);
+    const { track_id, isTrackStateComplete } = useSelector(state => state.track);
 
     // REDUX STATES DESTRUCTURING
-    const { error } = errors;
-    const { isLoading } = loading;
-    const { playlist_id } = playlist;
     const { access_token } = token;
-    const { track_id, isTrackStateComplete } = track;
+    const { playlist_id } = playlist;
 
     // REDUX MIDDLEWARES (CUSTOM HOOKS)
     const { getToken } = useTokenStore();
@@ -26,7 +28,7 @@ export const ResultsPage = () => {
 
     useEffect(() => {
 
-        access_token && getUserPlaylists('aleon88'); // If 'access_token' isn't 'undefined'.
+        access_token && getUserPlaylists(host); // If 'access_token' isn't 'undefined'.
 
     }, [token]);
 
