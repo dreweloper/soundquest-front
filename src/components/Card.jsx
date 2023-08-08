@@ -88,7 +88,7 @@ export const Card = () => {
             </section>
 
             {
-                isHostFormOpen && <HostForm />
+                isHostFormOpen && <HostForm onClick={handleHostForm} />
             }
 
         </>

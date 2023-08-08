@@ -115,7 +115,8 @@ a {
 }
 
 /* Restablecer las propiedades de estilo */
-button {
+button,
+input[type=submit] {
   background: none;
   border: none;
   color: inherit;
@@ -151,8 +152,20 @@ body {
   }
 }
 
-.host-form {
-  background-color: red;
+.overlay {
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0; /* To cover the whole page */
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 100;
 }
 
 /* LAYOUTS */
@@ -753,4 +766,128 @@ footer .spotify-container span {
   .error-toast .error-toast-container .close-icon {
     font-size: 2rem;
   }
-} /* 768px end *//*# sourceMappingURL=main.css.map */
+} /* 768px end */
+.host-form-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 90%;
+  max-width: 500px;
+  min-height: 270px;
+  border-radius: 5px;
+  gap: 20px;
+  overflow: hidden;
+  color: #FFFFFF;
+  background-color: #191414;
+}
+.host-form-container > * {
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.host-form-container .close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 5px;
+}
+.host-form-container .close-button span {
+  font-size: 1.2rem;
+  color: #E6E6E6;
+}
+.host-form-container .host-form-description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  margin-top: 20px;
+  gap: 5px;
+}
+.host-form-container .host-form-description h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+}
+.host-form-container .host-form-description p {
+  font-size: 0.8rem;
+  font-weight: 300;
+  text-align: center;
+  color: #999999;
+}
+.host-form-container .host-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  border-radius: 5px;
+  gap: 10px;
+  background-color: #3B3838;
+}
+.host-form-container .host-form #username {
+  width: 70%;
+  max-width: 300px;
+  height: 30px;
+  margin-top: 15px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  text-align: center;
+  border: none;
+  border-radius: 3px;
+  color: #191414;
+  background-color: #FFFFFF;
+}
+.host-form-container .host-form #username::-moz-placeholder {
+  font-weight: 300;
+}
+.host-form-container .host-form #username::placeholder {
+  font-weight: 300;
+}
+.host-form-container .host-form input[type=submit] {
+  width: 90%;
+  max-width: 100px;
+  min-height: 30px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 15px;
+  border: 2px solid #1DB954;
+  border-radius: 3px;
+  color: #191414;
+  background-color: #1DB954;
+}
+.host-form-container .host-form input[type=submit]:hover {
+  color: #1DB954;
+  background-color: #191414;
+  border: 2px solid #1DB954;
+  transition-duration: 0.4s;
+  transition-timing-function: ease-in-out;
+}
+.host-form-container .host-error-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  min-height: 40px;
+  margin-bottom: 20px;
+  color: #ec2206;
+  gap: 5px;
+}
+.host-form-container .host-error-container > * {
+  padding: 0 5px;
+}
+.host-form-container .host-error-container span {
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+.host-form-container .host-error-container .host-error-message {
+  font-size: 0.8rem;
+  font-weight: 300;
+  text-align: center;
+}/*# sourceMappingURL=main.css.map */

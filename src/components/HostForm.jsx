@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useForm, useHostStore } from "../hooks";
 import { useSelector } from "react-redux";
 
-export const HostForm = () => {
+export const HostForm = ({ onClick }) => {
 
     // REDUX STATE
     const { errorHost, errorMessage } = useSelector(state => state.host);
@@ -25,22 +25,58 @@ export const HostForm = () => {
 
         <>
 
-            <form
-                className='host-form'
-                onSubmit={handleSubmit}
-            >
+            <div className='overlay'>
 
-                <label htmlFor='username'>Please enter a Spotify username:</label>
+                <section className='host-form-container fade-in-transition'>
 
-                <input type='text' name='username' id='username' autoComplete="off" />
+                    <button
+                        className="close-button"
+                        onClick={onClick}
+                    >
 
-                <input type='submit' value='Send' />
+                        <span className='material-symbols-rounded'>
+                            close
+                        </span>
 
-            </form>
+                    </button>
 
-            {
-                errorHost && (<p>{errorMessage}</p>)
-            }
+                    <div className="host-form-description">
+
+                        <h2>Become a Host</h2>
+
+                        <p>Discover random tracks from any Spotify user’s playlists!</p>
+
+                    </div>
+
+                    <form
+                        className='host-form'
+                        onSubmit={handleSubmit}
+                    >
+
+                        <input type='text' name='username' id='username' placeholder='Enter a Spotify username' autoComplete="off" />
+
+                        <input type='submit' value='Send' />
+
+                    </form>
+
+                    {
+                        errorHost && (
+                            <div className='host-error-container fade-in-transition'>
+
+                                <span className='material-symbols-rounded'>
+                                    error
+                                </span>
+
+                                <p className='host-error-message'>{errorMessage}</p>
+
+                            </div>
+
+                        )
+                    }
+
+                </section>
+
+            </div>
 
         </>
 
