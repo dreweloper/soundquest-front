@@ -877,7 +877,6 @@ footer .spotify-container span {
   min-height: 40px;
   margin-bottom: 20px;
   color: #ec2206;
-  gap: 5px;
 }
 .host-form-container .host-error-container > * {
   padding: 0 5px;
@@ -890,4 +889,60 @@ footer .spotify-container span {
   font-size: 0.8rem;
   font-weight: 300;
   text-align: center;
-}/*# sourceMappingURL=main.css.map */
+}
+
+/* ***************************************/
+/* MEDIA QUERIES *************************/
+/* ***************************************/
+/* 992px *************************/
+@media screen and (min-width: 992px) {
+  .host-form-container {
+    max-width: 600px;
+    min-height: 345px;
+    gap: 30px;
+  }
+  .host-form-container .close-button {
+    margin: 10px;
+  }
+  .host-form-container .close-button span {
+    font-size: 1.3rem;
+  }
+  .host-form-container .host-form-description {
+    margin-top: 30px;
+    gap: 10px;
+  }
+  .host-form-container .host-form-description h2 {
+    font-size: 1.2rem;
+  }
+  .host-form-container .host-form-description p {
+    font-size: 0.9rem;
+  }
+  .host-form-container .host-form {
+    gap: 15px;
+  }
+  .host-form-container .host-form #username {
+    max-width: 450px;
+    height: 40px;
+    margin-top: 20px;
+    font-size: 0.9rem;
+  }
+  .host-form-container .host-form input[type=submit] {
+    max-width: 150px;
+    min-height: 40px;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+  .host-form-container .host-error-container {
+    min-height: 40px;
+    margin-bottom: 30px;
+  }
+  .host-form-container .host-error-container > * {
+    padding: 0 10px;
+  }
+  .host-form-container .host-error-container span {
+    font-size: 1.7rem;
+  }
+  .host-form-container .host-error-container .host-error-message {
+    font-size: 0.9rem;
+  }
+} /* 992px end *//*# sourceMappingURL=main.css.map */
