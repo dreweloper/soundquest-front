@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSpotifyAPI } from "../api";
-import { clearErrorHost, closeHostForm, setErrorHost, setHost } from "../store/slices";
+import { clearErrorHost, closeHostForm, finishHostLoading, setErrorHost, setHost, startHostLoading } from "../store/slices";
 
 /**
  * Custom hook for 'hostSlice' to handle asynchronous functions.
@@ -39,6 +39,8 @@ export const useHostStore = () => {
     const getUserProfile = async (uid) => {
 
         errorHost && dispatch(clearErrorHost()); // To clear the error message in case of a successful retry.
+
+        dispatch(startHostLoading());
 
         /**
          * Authorization header value that contains the token type (Bearer) and the access token.
@@ -80,7 +82,7 @@ export const useHostStore = () => {
                     dispatch(closeHostForm());
 
                 } else { // The user doesn't have any public playlists.
-                    
+
                     dispatch(setErrorHost(`The user doesn't have any public playlists.`));
 
                 };
@@ -89,6 +91,7 @@ export const useHostStore = () => {
 
                 // Status 400: invalid username
                 if (response.status == 400) dispatch(setErrorHost('Invalid username.'));
+
                 // Status 500: username doesn't exist.
                 if (response.status == 500) dispatch(setErrorHost(`The username doesn't exist.`));
 
@@ -98,7 +101,16 @@ export const useHostStore = () => {
 
             dispatch(setErrorHost(`Internal server error. Try again later.`));
 
-        };
+        } finally {
+
+            // Ensure the loading effect lasts longer.
+            setTimeout(() => {
+
+                dispatch(finishHostLoading());
+
+            }, 1000);
+
+        }
 
     }; //!GETUSERPROFILE
 

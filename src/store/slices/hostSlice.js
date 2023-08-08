@@ -8,7 +8,8 @@ export const hostSlice = createSlice({
         host: 'aleon88',
         errorHost: false,
         errorMessage: undefined,
-        isHostFormOpen: false
+        isHostFormOpen: false,
+        isHostLoading: false,
     },
 
     reducers: {
@@ -22,6 +23,9 @@ export const hostSlice = createSlice({
         openHostForm: (state) => {
             state.isHostFormOpen = true;
         },
+        startHostLoading: (state) => {
+            state.isHostLoading = true;
+        },
         resetHost: (state) => {
             state.host = 'aleon88';
         },
@@ -31,6 +35,9 @@ export const hostSlice = createSlice({
         },
         closeHostForm: (state) => {
             state.isHostFormOpen = false;
+        },
+        finishHostLoading: (state) => {
+            state.isHostLoading = false;
         }
     }
 
@@ -40,7 +47,9 @@ export const {
     setHost,
     setErrorHost,
     openHostForm,
+    startHostLoading,
     resetHost,
     clearErrorHost,
-    closeHostForm
+    closeHostForm,
+    finishHostLoading
 } = hostSlice.actions;

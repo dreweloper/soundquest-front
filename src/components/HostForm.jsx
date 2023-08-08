@@ -6,7 +6,7 @@ import { clearErrorHost, closeHostForm } from "../store/slices";
 export const HostForm = () => {
 
     // REDUX HOOKS
-    const { errorHost, errorMessage, isHostFormOpen } = useSelector(state => state.host);
+    const { errorHost, errorMessage, isHostLoading } = useSelector(state => state.host);
 
     const dispatch = useDispatch();
 
@@ -67,24 +67,29 @@ export const HostForm = () => {
 
                         <input type='text' name='username' id='username' placeholder='Enter a Spotify username' autoComplete="off" />
 
-                        <input type='submit' value='Send' />
+                        <input type='submit' value='Send' disabled={isHostLoading} />
 
                     </form>
 
-                    {
-                        errorHost && (
-                            <div className='host-error-container fade-in-transition'>
+                    <div className='host-container'>
 
-                                <span className='material-symbols-rounded'>
-                                    error
-                                </span>
+                        {
+                            isHostLoading && (<span className="loader"></span>)
+                        }
 
-                                <p className='host-error-message'>{errorMessage}</p>
+                        {
+                            !isHostLoading && errorHost && (
+                                <>
+                                    <span className='material-symbols-rounded fade-in-transition'>
+                                        error
+                                    </span>
 
-                            </div>
+                                    <p className='host-error-message fade-in-transition'>{errorMessage}</p>
+                                </>
+                            )
+                        }
 
-                        )
-                    }
+                    </div>
 
                 </section>
 
