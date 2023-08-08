@@ -6,7 +6,7 @@ import { clearErrorHost, closeHostForm } from "../store/slices";
 export const HostForm = () => {
 
     // REDUX HOOKS
-    const { errorHost, errorMessage, isHostLoading } = useSelector(state => state.host);
+    const { errorHost, errorMessage, isHostLoading, isHostUpdated } = useSelector(state => state.host);
 
     const dispatch = useDispatch();
 
@@ -67,7 +67,7 @@ export const HostForm = () => {
 
                         <input type='text' name='username' id='username' placeholder='Enter a Spotify username' autoComplete="off" />
 
-                        <input type='submit' value='Send' disabled={isHostLoading} />
+                        <input type='submit' value='Send' disabled={isHostLoading || isHostUpdated} />
 
                     </form>
 
@@ -80,11 +80,23 @@ export const HostForm = () => {
                         {
                             !isHostLoading && errorHost && (
                                 <>
-                                    <span className='material-symbols-rounded fade-in-transition'>
+                                    <span className='material-symbols-rounded danger-color fade-in-transition'>
                                         error
                                     </span>
 
-                                    <p className='host-error-message fade-in-transition'>{errorMessage}</p>
+                                    <p className='danger-color fade-in-transition'>{errorMessage}</p>
+                                </>
+                            )
+                        }
+
+                        {
+                            !isHostLoading && isHostUpdated && (
+                                <>
+                                    <span className='material-symbols-rounded success-color fade-in-transition'>
+                                        check_circle
+                                    </span>
+
+                                    <p className='success-color fade-in-transition'>The host has been successfully updated.</p>
                                 </>
                             )
                         }

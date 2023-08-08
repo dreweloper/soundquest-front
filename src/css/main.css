@@ -168,6 +168,14 @@ body {
   z-index: 100;
 }
 
+.danger-color {
+  color: #ec2206;
+}
+
+.success-color {
+  color: #109e5e;
+}
+
 /* LAYOUTS */
 footer {
   display: flex;
@@ -876,7 +884,6 @@ footer .spotify-container span {
   width: 90%;
   min-height: 40px;
   margin-bottom: 20px;
-  color: #ec2206;
 }
 .host-form-container .host-container > * {
   padding: 0 5px;
@@ -885,7 +892,7 @@ footer .spotify-container span {
   font-size: 1.5rem;
   font-weight: 300;
 }
-.host-form-container .host-container .host-error-message {
+.host-form-container .host-container p {
   font-size: 0.8rem;
   font-weight: 300;
   text-align: center;
@@ -955,7 +962,7 @@ footer .spotify-container span {
   .host-form-container .host-container span {
     font-size: 1.7rem;
   }
-  .host-form-container .host-container .host-error-message {
+  .host-form-container .host-container p {
     font-size: 0.9rem;
   }
   .host-form-container .host-container .loader {

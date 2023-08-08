@@ -10,12 +10,13 @@ export const ResultsPage = () => {
     const { error } = useSelector(state => state.errors);
     const { host } = useSelector(state => state.host);
     const { isLoading } = useSelector(state => state.loading);
-    const { playlist_id } = useSelector(state => state.playlist);
+    const playlist = useSelector(state => state.playlist);
     const token = useSelector(state => state.token);
     const { track_id, isTrackStateComplete } = useSelector(state => state.track);
 
     // REDUX STATES DESTRUCTURING
     const { access_token } = token;
+    const { playlist_id } = playlist;
 
     // REDUX MIDDLEWARES (CUSTOM HOOKS)
     const { getToken } = useTokenStore();
@@ -36,7 +37,7 @@ export const ResultsPage = () => {
 
         playlist_id && getPlaylist(playlist_id); // If 'playlist_id' isn't 'undefined'.
 
-    }, [playlist_id]);
+    }, [playlist]);
 
 
     useEffect(() => {

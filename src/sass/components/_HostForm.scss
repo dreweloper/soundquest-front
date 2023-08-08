@@ -96,7 +96,6 @@
         width: 90%;
         min-height: 40px;
         margin-bottom: 20px;
-        color: $danger;
 
         > * {
             padding: 0 5px;
@@ -107,7 +106,7 @@
             font-weight: 300;
         }
 
-        .host-error-message {
+        p {
             font-size: 0.8rem;
             font-weight: 300;
             text-align: center;
@@ -195,7 +194,7 @@
                 font-size: 1.7rem;
             }
     
-            .host-error-message {
+            p {
                 font-size: 0.9rem;
             }
 

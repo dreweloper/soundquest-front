@@ -79,29 +79,67 @@ export const useHostStore = () => {
 
                     dispatch(setHost(uid));
 
-                    dispatch(closeHostForm());
+                    // Ensure the loading effect lasts longer.
+                    setTimeout(() => {
+
+                        dispatch(finishHostLoading());
+
+                    }, 1000);
+
+                    setTimeout(() => {
+
+                        dispatch(closeHostForm());
+
+                    }, 3000);
 
                 } else { // The user doesn't have any public playlists.
 
                     dispatch(setErrorHost(`The user doesn't have any public playlists.`));
+
+                    // Ensure the loading effect lasts longer.
+                    setTimeout(() => {
+
+                        dispatch(finishHostLoading());
+
+                    }, 1000);
 
                 };
 
             } else {
 
                 // Status 400: invalid username
-                if (response.status == 400) dispatch(setErrorHost('Invalid username.'));
+                if (response.status == 400) {
+
+                    dispatch(setErrorHost('Invalid username.'));
+
+                    // Ensure the loading effect lasts longer.
+                    setTimeout(() => {
+
+                        dispatch(finishHostLoading());
+
+                    }, 1000);
+
+                };
 
                 // Status 500: username doesn't exist.
-                if (response.status == 500) dispatch(setErrorHost(`The username doesn't exist.`));
+                if (response.status == 500) {
+
+                    dispatch(setErrorHost(`The username doesn't exist.`));
+
+                    // Ensure the loading effect lasts longer.
+                    setTimeout(() => {
+
+                        dispatch(finishHostLoading());
+
+                    }, 1000);
+
+                };
 
             };
 
         } catch (error) {
 
             dispatch(setErrorHost(`Internal server error. Try again later.`));
-
-        } finally {
 
             // Ensure the loading effect lasts longer.
             setTimeout(() => {
@@ -110,7 +148,7 @@ export const useHostStore = () => {
 
             }, 1000);
 
-        }
+        };
 
     }; //!GETUSERPROFILE
 
