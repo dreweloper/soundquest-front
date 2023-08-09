@@ -79,11 +79,7 @@ export const usePlaylistStore = () => {
                     dispatch(setError());
 
                     // Ensure the loading effect lasts longer.
-                    setTimeout(() => {
-
-                        dispatch(finishLoading());
-
-                    }, 1500);
+                    dispatchWithDelay(dispatch, finishLoading(), 1500);
 
                 } else {
                     /**
@@ -118,11 +114,7 @@ export const usePlaylistStore = () => {
             dispatch(setError());
 
             // Ensure the loading effect lasts longer.
-            setTimeout(() => {
-
-                dispatch(finishLoading());
-
-            }, 1500);
+            dispatchWithDelay(dispatch, finishLoading(), 1500);
 
         };
 

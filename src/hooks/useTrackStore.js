@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSpotifyAPI } from "../api";
 import { clearTrack, finishLoading, setError, setTrack, setTrackID } from "../store/slices";
-import { mapTrackData, shuffleArray } from "../helpers";
+import { dispatchWithDelay, mapTrackData, shuffleArray } from "../helpers";
 
 /**
  * Custom hook for 'trackSlice' to handle asynchronous functions.
@@ -179,11 +179,7 @@ export const useTrackStore = () => {
         } finally {
 
             // Ensure the loading effect lasts longer.
-            setTimeout(() => {
-
-                dispatch(finishLoading());
-
-            }, 1500);
+            dispatchWithDelay(dispatch, finishLoading(), 1500);
 
         };
 
