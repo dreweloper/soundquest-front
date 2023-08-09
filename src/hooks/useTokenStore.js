@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearError, clearToken, finishLoading, setDislike, setError, setToken, startLoading } from "../store/slices";
 import { getCookie, setCookie } from "../helpers/cookies";
 import { fetchSpotifyAPI } from "../api";
+import { dispatchWithDelay } from "../helpers";
 
 /**
  * Custom hook for 'tokenSlice' to handle asynchronous functions related to the Spotify access token.
@@ -31,9 +32,9 @@ export const useTokenStore = () => {
      */
     const getToken = async () => {
 
-        error && dispatch(clearError());
+        if(error) dispatch(clearError());
 
-        like && dispatch(setDislike());
+        if(like) dispatch(setDislike());
 
         dispatch(clearToken());
 
@@ -94,11 +95,7 @@ export const useTokenStore = () => {
             dispatch(setError());
 
             // Ensure the loading effect lasts longer.
-            setTimeout(() => {
-
-                dispatch(finishLoading());
-
-            }, 1500);
+            dispatchWithDelay(dispatch, finishLoading(), 1500);
 
         };
 

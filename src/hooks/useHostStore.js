@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSpotifyAPI } from "../api";
 import { clearErrorHost, closeHostForm, finishHostLoading, setErrorHost, setHost, startHostLoading } from "../store/slices";
+import { dispatchWithDelay } from "../helpers";
 
 /**
  * Custom hook for 'hostSlice' to handle asynchronous functions.
@@ -37,8 +38,9 @@ export const useHostStore = () => {
      * @returns {void}
      */
     const getUserProfile = async (uid) => {
-
-        errorHost && dispatch(clearErrorHost()); // To clear the error message in case of a successful retry.
+        
+        // To clear the error message in case of a successful retry.
+        if(errorHost) dispatch(clearErrorHost());
 
         dispatch(startHostLoading());
 
@@ -80,28 +82,16 @@ export const useHostStore = () => {
                     dispatch(setHost(uid));
 
                     // Ensure the loading effect lasts longer.
-                    setTimeout(() => {
+                    dispatchWithDelay(dispatch, finishHostLoading());
 
-                        dispatch(finishHostLoading());
-
-                    }, 1000);
-
-                    setTimeout(() => {
-
-                        dispatch(closeHostForm());
-
-                    }, 3000);
+                    dispatchWithDelay(dispatch, closeHostForm(), 3000);
 
                 } else { // The user doesn't have any public playlists.
 
                     dispatch(setErrorHost(`The user doesn't have any public playlists.`));
 
                     // Ensure the loading effect lasts longer.
-                    setTimeout(() => {
-
-                        dispatch(finishHostLoading());
-
-                    }, 1000);
+                    dispatchWithDelay(dispatch, finishHostLoading());
 
                 };
 
@@ -113,11 +103,7 @@ export const useHostStore = () => {
                     dispatch(setErrorHost('Invalid username.'));
 
                     // Ensure the loading effect lasts longer.
-                    setTimeout(() => {
-
-                        dispatch(finishHostLoading());
-
-                    }, 1000);
+                    dispatchWithDelay(dispatch, finishHostLoading());
 
                 };
 
@@ -127,11 +113,7 @@ export const useHostStore = () => {
                     dispatch(setErrorHost(`The username doesn't exist.`));
 
                     // Ensure the loading effect lasts longer.
-                    setTimeout(() => {
-
-                        dispatch(finishHostLoading());
-
-                    }, 1000);
+                    dispatchWithDelay(dispatch, finishHostLoading());
 
                 };
 
@@ -142,11 +124,7 @@ export const useHostStore = () => {
             dispatch(setErrorHost(`Internal server error. Try again later.`));
 
             // Ensure the loading effect lasts longer.
-            setTimeout(() => {
-
-                dispatch(finishHostLoading());
-
-            }, 1000);
+            dispatchWithDelay(dispatch, finishHostLoading());
 
         };
 
