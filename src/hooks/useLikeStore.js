@@ -1,66 +1,127 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setDislike, setLike } from "../store/slices";
-import { useFetchMongoDB } from "./useFetchMongoDB";
+import { setDislike, setLike, setLikeError } from "../store/slices";
 import { setIconFill } from "../helpers";
+import { useState } from "react";
+import { fetchMongoDB } from "../api";
 
-/**
- * Custom hook that handles everything related to the Redux 'like' state.
- * This hook provides a function 'handleLike' to handle the 'onClick' event in the 'favorite' button in the Card component. It updates the 'like' state in Redux, adds or removes the track to/from MongoDB using the 'useFetchMongoDB' hook, and changes the 'favorite' icon's fill value using the 'setIconFill' helper function.
- *
- * @function useLikeStore
- * @returns {Object} An object containing the following function:
- * - handleLike: A function that toggles the 'like' state value, adds/removes the track to/from MongoDB, and changes the 'favorite' icon's fill value.
- */
 export const useLikeStore = () => {
+
+    /***
+     * The URL base of the MongoDB API endpoint.
+     * @type {String}
+     */
+    const urlBase = 'https://soundquest-xf5r.onrender.com';
+
+    // REACT HOOKS
+    // State for managing the ID of a MongoDB document.
+    const [objectID, setObjectID] = useState(undefined);
 
     // REDUX HOOKS
     /**
-     * The 'like' state value from Redux store.
-     * @type {Boolean}
+     * The 'playlist' state object from Redux store.
+     * @type {Object}
      */
-    const { like } = useSelector(state => state.like);
+    const playlist = useSelector(state => state.playlist);
+    /**
+     * The 'track' state object from Redux store.
+     * @type {Object}
+     */
+    const track = useSelector(state => state.track);
     /**
      * The dispatch function from Redux to dispatch actions.
      * @type {Function}
      */
     const dispatch = useDispatch();
 
-    // CUSTOM HOOKS
-    /**
-     * The object containing 'addTrack' and 'deleteTrack' functions from the 'useFetchMongoDB' custom hook.
-     * @type {Object}
-     */
-    const { addTrack, deleteTrack } = useFetchMongoDB();
 
-    
     /**
-     * The function handles the 'onClick' event in the 'favorite' button in the Card component.
-     * @function handleLike
+     * Adds a track to the MongoDB API.
+     * @async
+     * @function addTrack
      * @returns {void}
+     * @throws {Error} Throws an error if there is a problem adding the track.
      */
-    const handleLike = () => {
+    const addTrack = async () => {
 
-        if (!like) {
+        /**
+         * Data to be sent in the request body.
+         * @type {Object}
+         * @property {Object} playlist - The playlist object to be added.
+         * @property {Object} track - The track object to be added.
+         */
+        const body = { playlist, track };
 
-            dispatch(setLike()); // Changes the 'like' state's value to 'true'
+        try {
 
-            addTrack(); // Adds the track to MongoDB
+            /**
+             * The response received from the MongoDB API.
+             * @type {Object}
+             */
+            const response = await fetchMongoDB(`${urlBase}/api/v1/tracks`, 'POST', body);
 
-            setIconFill(1); // Changes the icon 'favorite' fill's value to '1'
+            if (response.ok) {
 
-        } else {
+                /**
+                 * The ID of the newly added track document.
+                 * @type {String}
+                 */
+                const { _id } = response.data;
 
-            dispatch(setDislike()); // Changes the 'like' state's value to 'false'
+                setObjectID(_id);
 
-            deleteTrack(); // Removes the track from MongoDB
+                dispatch(setLike());
 
-            setIconFill(0); // Changes the icon 'favorite' fill's value to '0'
+                setIconFill(1);
+
+            };
+
+        } catch (error) {
+
+            dispatch(setLikeError());
 
         };
 
+    }; //!ADDTRACK
+
+    /**
+     * Deletes a track from the MongoDB API.
+     * @async
+     * @function deleteTrack
+     * @returns {void}
+     * @throws {Error} Throws an error if there is a problem adding the track.
+     */
+    const deleteTrack = async () => {
+
+        try {
+            
+            /**
+             * The response received from the MongoDB API.
+             * @type {Object}
+             */
+            const response = await fetchMongoDB(`${urlBase}/api/v1/tracks/${objectID}`, 'DELETE');
+
+            if(response.ok){
+
+                setObjectID(undefined);
+
+                dispatch(setDislike());
+
+                setIconFill(0);
+
+            };
+
+        } catch (error) {
+
+            dispatch(setLikeError());
+            
+        };
+
+    }; //!DELETETRACK
+
+
+    return {
+        addTrack,
+        deleteTrack
     };
-
-
-    return { handleLike };
 
 };

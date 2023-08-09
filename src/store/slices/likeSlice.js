@@ -4,17 +4,30 @@ export const likeSlice = createSlice({
 
     name: 'like',
     initialState: {
-        like: false
+        isLiked: false,
+        likesCounter: 0,
+        likeError: false
     },
     reducers: {
         setLike: (state) => {
-            state.like = true;
+            state.isLiked = true;
+        },
+        setLikeError: (state) => {
+            state.likeError = true;
         },
         setDislike: (state) => {
-            state.like = false;
+            state.isLiked = false;
+        },
+        clearLikeError: (state) => {
+            state.likeError = false;
         }
     }
 
 });
 
-export const { setLike, setDislike } = likeSlice.actions;
+export const {
+    setLike,
+    setLikeError,
+    setDislike,
+    clearLikeError
+} = likeSlice.actions;

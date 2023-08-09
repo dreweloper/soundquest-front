@@ -22,7 +22,6 @@ export const fetchMongoDB = async (url, method, body = {}) => {
      */
     let options = {};
 
-
     if (method == 'POST') {
         /**
          * The data object created by spreading the contents of the 'body' object.
@@ -43,31 +42,29 @@ export const fetchMongoDB = async (url, method, body = {}) => {
         };
     };
 
-
     if (method == 'DELETE') options = { method };
 
 
     try {
 
-        /**
-         * The result of the HTTP request sent to the MongoDB API.
-         * @type {Response}
-         */
-        const request = await fetch(url, options);
+        const response = await fetch(url, options);
 
-        /**
-         * Checks if the HTTP request is successful and returns the JSON data from the response.
-         *
-         * @param {Response} request - The response object from the HTTP request.
-         * @returns {Promise<Object>} A Promise that resolves to an object representing the JSON data received from the response.
-         */
-        if (request.ok) return await request.json();
+        if (response.ok) {
 
-        else throw new Error(`HTTP request failed with status: ${request.status}`);
+            return await response.json();
+
+        } else {
+
+            throw {
+                ok: false,
+                status: response.status
+            };
+
+        };
 
     } catch (error) {
 
-        throw new Error(`Error occurred during the HTTP request: ${error.message}`);
+        return error;
 
     };
 
