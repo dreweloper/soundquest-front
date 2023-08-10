@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setDislike, setLike, setLikeError } from "../store/slices";
+import { setDislike, setLike, setLikeError, updateLikesCounter } from "../store/slices";
 import { setIconFill } from "../helpers";
 import { useState } from "react";
 import { fetchMongoDB } from "../api";
@@ -10,7 +10,7 @@ export const useLikeStore = () => {
      * The URL base of the MongoDB API endpoint.
      * @type {String}
      */
-    const urlBase = 'https://soundquest-xf5r.onrender.com';
+    const urlBase = 'https://soundquest-xf5r.onrender.com/api/v1';
 
     // REACT HOOKS
     // State for managing the ID of a MongoDB document.
@@ -33,6 +33,51 @@ export const useLikeStore = () => {
      */
     const dispatch = useDispatch();
 
+    /**
+     * Fetches the count of tracks from the server and updates the likes counter.
+     * @async
+     * @function getTracksCount
+     * @returns {Promise<void>}
+     */
+    const getTracksCount = async () => {
+
+        try {
+            
+            /**
+             * Fetches the count of tracks from the MongoDB server using a GET request.
+             * @function
+             * @async
+             * @param {String} url - The URL to fetch data from.
+             * @param {String} method - The HTTP method for the request ('GET').
+             * @returns {Promise<Object>} The response data from the server.
+             */
+            const response = await fetchMongoDB(`${urlBase}/tracks/counter`, 'GET');
+
+            if (response.ok) {
+
+                /**
+                 * The updated count of likes
+                 * @type {Number}
+                 */
+                const count = response.data;
+
+                /**
+                 * Dispatches an action to update the likes counter.
+                 * @function
+                 * @param {Number} count - The updated count of likes.
+                 * @returns {void}
+                 */
+                dispatch(updateLikesCounter(count));
+
+            };
+
+        } catch (error) {
+            
+            console.log(error);
+
+        };
+
+    }; //!GETTRACKSCOUNT
 
     /**
      * Adds a track to the MongoDB API.
@@ -57,7 +102,7 @@ export const useLikeStore = () => {
              * The response received from the MongoDB API.
              * @type {Object}
              */
-            const response = await fetchMongoDB(`${urlBase}/api/v1/tracks`, 'POST', body);
+            const response = await fetchMongoDB(`${urlBase}/tracks`, 'POST', body);
 
             if (response.ok) {
 
@@ -72,6 +117,8 @@ export const useLikeStore = () => {
                 dispatch(setLike());
 
                 setIconFill(1);
+
+                getTracksCount();
 
             };
 
@@ -98,7 +145,7 @@ export const useLikeStore = () => {
              * The response received from the MongoDB API.
              * @type {Object}
              */
-            const response = await fetchMongoDB(`${urlBase}/api/v1/tracks/${objectID}`, 'DELETE');
+            const response = await fetchMongoDB(`${urlBase}/track/${objectID}`, 'DELETE');
 
             if(response.ok){
 
@@ -107,6 +154,8 @@ export const useLikeStore = () => {
                 dispatch(setDislike());
 
                 setIconFill(0);
+
+                getTracksCount();
 
             };
 
@@ -120,6 +169,7 @@ export const useLikeStore = () => {
 
 
     return {
+        getTracksCount,
         addTrack,
         deleteTrack
     };

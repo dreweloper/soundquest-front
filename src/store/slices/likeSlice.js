@@ -12,6 +12,9 @@ export const likeSlice = createSlice({
         setLike: (state) => {
             state.isLiked = true;
         },
+        updateLikesCounter: (state, { payload }) => {
+            state.likesCounter = payload;
+        },
         setLikeError: (state) => {
             state.likeError = true;
         },
@@ -28,6 +31,7 @@ export const likeSlice = createSlice({
 export const {
     setLike,
     setLikeError,
+    updateLikesCounter,
     setDislike,
     clearLikeError
 } = likeSlice.actions;
