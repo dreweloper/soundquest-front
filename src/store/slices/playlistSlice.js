@@ -11,8 +11,8 @@ export const playlistSlice = createSlice({
 
     reducers: {
         setPlaylist: (state, { payload }) => {
-            state.playlist_id = payload.playlist_id;
-            state.playlist_url = payload.playlist_url;
+            state.playlist_id = payload.randomPlaylistID;
+            state.playlist_url = payload.playlistUrl;
         },
         clearPlaylist: (state) => {
             state.playlist_id = undefined;
