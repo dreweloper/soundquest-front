@@ -11,6 +11,7 @@ import { dispatchWithDelay } from "../helpers";
  */
 export const useHostStore = () => {
 
+    // REDUX HOOKS
     /**
      * The 'token' state object from Redux store.
      * @type {Object}
@@ -30,6 +31,7 @@ export const useHostStore = () => {
      */
     const dispatch = useDispatch();
 
+    // FUNCTIONS
     /**
      * The function checks the user's Spotify account existence and the presence of public playlists using the provided ID.
      * @function getUserProfile
@@ -77,19 +79,19 @@ export const useHostStore = () => {
                  */
                 const { items } = data;
 
-                if (items.length > 0) { // The user exists and has public playlists.
+                // The user exists and has public playlists.
+                if (items.length > 0) {
 
                     dispatch(setHost(uid));
-
                     // Ensure the loading effect lasts longer.
                     dispatchWithDelay(dispatch, finishHostLoading());
-
+                    // Ensure the window close effect lasts longer than loading effect.
                     dispatchWithDelay(dispatch, closeHostForm(), 3000);
 
-                } else { // The user doesn't have any public playlists.
+                // Handle the case that the user doesn't have any public playlists.
+                } else {
 
                     dispatch(setErrorHost(`The user doesn't have any public playlists.`));
-
                     // Ensure the loading effect lasts longer.
                     dispatchWithDelay(dispatch, finishHostLoading());
 
@@ -101,7 +103,6 @@ export const useHostStore = () => {
                 if (response.status == 400) {
 
                     dispatch(setErrorHost('Invalid username.'));
-
                     // Ensure the loading effect lasts longer.
                     dispatchWithDelay(dispatch, finishHostLoading());
 
@@ -111,7 +112,6 @@ export const useHostStore = () => {
                 if (response.status == 500) {
 
                     dispatch(setErrorHost(`The username doesn't exist.`));
-
                     // Ensure the loading effect lasts longer.
                     dispatchWithDelay(dispatch, finishHostLoading());
 
@@ -122,7 +122,6 @@ export const useHostStore = () => {
         } catch (error) {
 
             dispatch(setErrorHost(`Internal server error. Try again later.`));
-
             // Ensure the loading effect lasts longer.
             dispatchWithDelay(dispatch, finishHostLoading());
 

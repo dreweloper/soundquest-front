@@ -16,7 +16,7 @@ export const trackSlice = createSlice({
 
     reducers: {
         setTrackID: (state, { payload }) => {
-            state.track_id = payload.track_id;
+            state.track_id = payload;
         },
         setTrack: (state, { payload }) => {
             state.album = payload.album;

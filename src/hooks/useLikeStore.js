@@ -6,14 +6,7 @@ import { fetchMongoDB } from "../api";
 
 export const useLikeStore = () => {
 
-    /***
-     * The URL base of the MongoDB API endpoint.
-     * @type {String}
-     */
-    const urlBase = 'https://soundquest-xf5r.onrender.com/api/v1';
-
-    // REACT HOOKS
-    // State for managing the ID of a MongoDB document.
+    // REACT HOOK - State for managing the ID of a MongoDB document.
     const [objectID, setObjectID] = useState(undefined);
 
     // REDUX HOOKS
@@ -33,6 +26,14 @@ export const useLikeStore = () => {
      */
     const dispatch = useDispatch();
 
+    // VARIABLES
+    /***
+     * The URL base of the MongoDB API endpoint.
+     * @type {String}
+     */
+    const urlBase = 'https://soundquest-xf5r.onrender.com/api/v1';
+
+    // FUNCTIONS
     /**
      * Fetches the count of tracks from the server and updates the likes counter.
      * @async
@@ -54,13 +55,11 @@ export const useLikeStore = () => {
             const response = await fetchMongoDB(`${urlBase}/tracks/counter`, 'GET');
 
             if (response.ok) {
-
                 /**
                  * The updated count of likes
                  * @type {Number}
                  */
                 const count = response.data;
-
                 /**
                  * Dispatches an action to update the likes counter.
                  * @function
@@ -87,7 +86,6 @@ export const useLikeStore = () => {
      * @throws {Error} Throws an error if there is a problem adding the track.
      */
     const addTrack = async () => {
-
         /**
          * Data to be sent in the request body.
          * @type {Object}
@@ -97,7 +95,6 @@ export const useLikeStore = () => {
         const body = { playlist, track };
 
         try {
-
             /**
              * The response received from the MongoDB API.
              * @type {Object}
@@ -105,7 +102,6 @@ export const useLikeStore = () => {
             const response = await fetchMongoDB(`${urlBase}/tracks`, 'POST', body);
 
             if (response.ok) {
-
                 /**
                  * The ID of the newly added track document.
                  * @type {String}
@@ -140,7 +136,6 @@ export const useLikeStore = () => {
     const deleteTrack = async () => {
 
         try {
-            
             /**
              * The response received from the MongoDB API.
              * @type {Object}

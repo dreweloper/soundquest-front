@@ -27,7 +27,7 @@ export const useTrackStore = () => {
      * @type {String}
      * @property
      */
-    const { track_id: stateTrackID } = useSelector(state => state.track);
+    const { track_id } = useSelector(state => state.track);
     /**
      * The dispatch function from Redux to dispatch actions.
      * @type {Function}
@@ -53,10 +53,10 @@ export const useTrackStore = () => {
 
     //FUNCTIONS
     /**
-     * Retrieve playlist information owned or followed by a user from Spotify API.
+     * Retrieve playlist information owned or followed by a user from the Spotify API.
      * @function getPlaylist
      * @async
-     * @param {String} id The ID of the playlist to retrieve from Spotify API.
+     * @param {String} id The ID of the playlist to retrieve from the Spotify API.
      * @returns {void}
      */
     const getPlaylist = async (id) => {
@@ -88,17 +88,16 @@ export const useTrackStore = () => {
                      * @type {Array<String>}
                      */
                     const arrTrackIDs = items.map(item => item.track.id);
-
                     /**
                      * A random track ID.
                      * @type {String}
                      */
-                    const track_id = shuffleArray(arrTrackIDs);
+                    const randomTrackID = shuffleArray(arrTrackIDs);
 
-                    // By doing this, the state will always update, ensuring that the `useEffect` in DiscoverPage works consistently.
-                    if (track_id == stateTrackID) dispatch(clearTrack());
+                    // Clear the current track if the new track is the same as the current. By doing this, the state will always update, ensuring that the `useEffect` in DiscoverPage works consistently.
+                    if (randomTrackID == track_id) dispatch(clearTrack());
 
-                    dispatch(setTrackID({ track_id }));
+                    dispatch(setTrackID(randomTrackID));
 
                 };
 
@@ -117,16 +116,15 @@ export const useTrackStore = () => {
     }; //!GETPLAYLIST
 
     /**
-     * Retrieve track information from Spotify API and dispatch it to the Redux store.
+     * Retrieve track information from the Spotify API.
      * @function getTrack
      * @async
-     * @param {String} id - The ID of the track to retrieve from Spotify API.
+     * @param {String} id - The ID of the track to retrieve from the Spotify API.
      * @returns {void}
      */
     const getTrack = async (id) => {
 
         try {
-
             /**
             /* The response received from MongoDB.
             /* @type {Object}
@@ -134,16 +132,18 @@ export const useTrackStore = () => {
             const mongodbResponse = await fetchMongoDB(`${mongodbUrlBase}/track/${id}`, 'GET');
 
             if (mongodbResponse.ok) {
-
                 /**
                  * Information about a specific track received from MongoDB.
                  * @type {Object}
                  */
                 const mongodbData = mongodbResponse.data[0];
+                /**
+                 * Map track data.
+                 * @type {Object}
+                 */
+                const trackData = mapTrackData('mongodb', mongodbData);
 
-                const { album, artwork, artist, name, track_url } = mapTrackData('mongodb', mongodbData);
-
-                dispatch(setTrack({ album, artwork, artist, name, track_url }));
+                dispatch(setTrack({ ...trackData }));
 
             } else {
 
@@ -154,16 +154,18 @@ export const useTrackStore = () => {
                 const spotifyResponse = await fetchSpotifyAPI(`${spotifyUrlBase}/v1/tracks/${id}`, 'GET', authorization);
 
                 if (spotifyResponse.ok) {
-
                     /**
                      * Information about a specific track received from the Spotify Web API.
                      * @type {Object}
                      */
                     const spotifyData = spotifyResponse.data;
+                    /**
+                     * Map track data.
+                     * @type {Object}
+                     */
+                    const trackData = mapTrackData('spotify', spotifyData);
 
-                    const { album, artwork, artist, name, track_url } = mapTrackData('spotify', spotifyData);
-
-                    dispatch(setTrack({ album, artwork, artist, name, track_url }));
+                    dispatch(setTrack({ ...trackData }));
 
                 };
 
