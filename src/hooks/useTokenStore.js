@@ -14,7 +14,7 @@ import { dispatchWithDelay } from "../helpers";
 export const useTokenStore = () => {
 
     // REDUX HOOKS
-    const { like } = useSelector(state => state.like);
+    const { isLiked } = useSelector(state => state.like);
     const { error } = useSelector(state => state.errors);
     /**
      * The dispatch function from Redux to dispatch actions.
@@ -34,7 +34,7 @@ export const useTokenStore = () => {
 
         if(error) dispatch(clearError());
 
-        if(like) dispatch(setDislike());
+        if(isLiked) dispatch(setDislike());
 
         dispatch(clearToken());
 

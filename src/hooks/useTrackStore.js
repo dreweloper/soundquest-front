@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { fetchSpotifyAPI } from "../api";
+import { fetchMongoDB, fetchSpotifyAPI } from "../api";
 import { clearTrack, finishLoading, setError, setTrack, setTrackID } from "../store/slices";
 import { dispatchWithDelay, mapTrackData, shuffleArray } from "../helpers";
 
@@ -34,35 +34,39 @@ export const useTrackStore = () => {
      */
     const dispatch = useDispatch();
 
+    // VARIABLES
     /**
-     * Retrieve playlist information owned by a user from Spotify API.
-     * 
+     * The Authorization header that contains "token_type" (Bearer) and "access_token".
+     * @type {String}
+     */
+    const authorization = `${token_type} ${access_token}`;
+    /**
+     * The URL base of the Spotify Web API.
+     * @type {String}
+     */
+    const spotifyUrlBase = 'https://api.spotify.com';
+    /**
+     * The URL base of the MongoDB API.
+     * @type {String}
+     */
+    const mongodbUrlBase = 'https://soundquest-xf5r.onrender.com/api/v1';
+
+    //FUNCTIONS
+    /**
+     * Retrieve playlist information owned or followed by a user from Spotify API.
      * @function getPlaylist
      * @async
      * @param {String} id The ID of the playlist to retrieve from Spotify API.
      * @returns {void}
-     * @throws {Error} If there is an error during the API request or if the response status is not OK.
      */
     const getPlaylist = async (id) => {
-
-        /**
-         * The Authorization header that contains "token_type" (Bearer) and "access_token".
-         * @type {String}
-         */
-        const authorization = `${token_type} ${access_token}`;
-
-        /**
-         * The endpoint URL to retrieve the playlist from Spotify API.
-         * @type {String}
-         */
-        const url = `https://api.spotify.com/v1/playlists/${id}?offset=0&limit=50`;
 
         try {
             /**
              * The response received from Spotify API.
              * @type {Object}
              */
-            const response = await fetchSpotifyAPI(url, 'GET', authorization);
+            const response = await fetchSpotifyAPI(`${spotifyUrlBase}/v1/playlists/${id}?offset=0&limit=50`, 'GET', authorization);
 
             if (response.ok) {
                 /**
@@ -71,32 +75,28 @@ export const useTrackStore = () => {
                  */
                 const { items } = response.data.tracks;
 
-                // This error occurs when the provided ID corresponds to an empty playlist.
+                // Handle the case when the playlist is empty.
                 if (items.length == 0) {
 
                     dispatch(setError());
-
                     // Ensure the loading effect lasts longer.
-                    setTimeout(() => {
-
-                        dispatch(finishLoading());
-
-                    }, 1500);
+                    dispatchWithDelay(dispatch, finishLoading(), 1500);
 
                 } else {
                     /**
-                     * Track IDs extracted from the playlist's tracks information.
+                     * Array of track IDs extracted from the playlist.
                      * @type {Array<String>}
                      */
-                    const arrTracksID = items.map(item => item.track.id);
+                    const arrTrackIDs = items.map(item => item.track.id);
+
                     /**
                      * A random track ID.
                      * @type {String}
                      */
-                    const track_id = shuffleArray(arrTracksID);
+                    const track_id = shuffleArray(arrTrackIDs);
 
                     // By doing this, the state will always update, ensuring that the `useEffect` in DiscoverPage works consistently.
-                    if(track_id == stateTrackID) dispatch(clearTrack());
+                    if (track_id == stateTrackID) dispatch(clearTrack());
 
                     dispatch(setTrackID({ track_id }));
 
@@ -109,13 +109,8 @@ export const useTrackStore = () => {
             console.log(error);
 
             dispatch(setError());
-
             // Ensure the loading effect lasts longer.
-            setTimeout(() => {
-
-                dispatch(finishLoading());
-
-            }, 1500);
+            dispatchWithDelay(dispatch, finishLoading(), 1500);
 
         };
 
@@ -123,50 +118,54 @@ export const useTrackStore = () => {
 
     /**
      * Retrieve track information from Spotify API and dispatch it to the Redux store.
-     * 
      * @function getTrack
      * @async
      * @param {String} id - The ID of the track to retrieve from Spotify API.
      * @returns {void}
-     * @throws {Error} If there is an error during the API request or if the response status is not OK.
      */
     const getTrack = async (id) => {
-
-        /**
-         * The Authorization header that contains "token_type" (Bearer) and "access_token".
-         * @type {String}
-         */
-        const authorization = `${token_type} ${access_token}`;
-
-        /**
-         * The endpoint URL to retrieve the track from Spotify API.
-         * @type {String}
-         */
-        const url = `https://api.spotify.com/v1/tracks/${id}`;
-
 
         try {
 
             /**
-             * The response received from Spotify API.
-             * @type {Object}
-             */
-            const response = await fetchSpotifyAPI(url, 'GET', authorization);
+            /* The response received from MongoDB.
+            /* @type {Object}
+            */
+            const mongodbResponse = await fetchMongoDB(`${mongodbUrlBase}/track/${id}`, 'GET');
 
-            if (response.ok) {
+            if (mongodbResponse.ok) {
 
                 /**
-                 * The track data received from Spotify API.
+                 * Information about a specific track received from MongoDB.
                  * @type {Object}
-                 * @property {String} album The album on which the track appears.
-                 * @property {String} artwork The cover art for the album.
-                 * @property {String} artist The artists who performed the track.
-                 * @property {String} name The name of the track.
-                 * @property {String} track_url The Spotify URL for this track.
                  */
-                const { album, artwork, artist, name, track_url } = mapTrackData('spotify', response.data);
+                const mongodbData = mongodbResponse.data[0];
+
+                const { album, artwork, artist, name, track_url } = mapTrackData('mongodb', mongodbData);
 
                 dispatch(setTrack({ album, artwork, artist, name, track_url }));
+
+            } else {
+
+                /**
+                 * The response received from Spotify API.
+                 * @type {Object}
+                 */
+                const spotifyResponse = await fetchSpotifyAPI(`${spotifyUrlBase}/v1/tracks/${id}`, 'GET', authorization);
+
+                if (spotifyResponse.ok) {
+
+                    /**
+                     * Information about a specific track received from the Spotify Web API.
+                     * @type {Object}
+                     */
+                    const spotifyData = spotifyResponse.data;
+
+                    const { album, artwork, artist, name, track_url } = mapTrackData('spotify', spotifyData);
+
+                    dispatch(setTrack({ album, artwork, artist, name, track_url }));
+
+                };
 
             };
 

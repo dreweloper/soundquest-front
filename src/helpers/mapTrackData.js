@@ -1,4 +1,14 @@
 /**
+ * Represents the standardized format of track data.
+ * @typedef {Object} TrackData
+ * @property {String} album - The album on which the track appears.
+ * @property {String} artwork - The cover art for the album.
+ * @property {String} artist - The artists who performed the track.
+ * @property {String} name - The name of the track.
+ * @property {String} track_url - The URL of the track.
+ */
+
+/**
  * Map track data from different sources to a standardized format.
  * @function mapTrackData
  * @param {String} source - The source from which the data is received ('spotify' or 'mongodb').
@@ -12,8 +22,8 @@ export const mapTrackData = (source, data) => {
 
         case 'spotify':
             /**
-             * Map track data received from Spotify Web API to a standardized format.
-             * @type {Object}
+             * Map track data received from the Spotify Web API to a standardized format.
+             * @type {TrackData}
              */
             return {
                 album: data.album.name,
@@ -26,7 +36,7 @@ export const mapTrackData = (source, data) => {
         case 'mongodb':
             /**
              * Map track data received from MongoDB to a standardized format.
-             * @type {Object}
+             * @type {TrackData}
              */
             return {
                 album: data.track.album,
