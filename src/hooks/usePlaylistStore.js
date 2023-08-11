@@ -28,7 +28,7 @@ export const usePlaylistStore = () => {
      * @type {String}
      * @property
      */
-    const { playlist_id: statePlaylistID } = useSelector(state => state.playlist); // To prevent conflicts with the constant name.
+    const { playlist_id } = useSelector(state => state.playlist);
     /**
      * The dispatch function from Redux to dispatch actions.
      * @type {Function}
@@ -45,19 +45,16 @@ export const usePlaylistStore = () => {
      * @throws {Error} If the user ID doesn't exist or the user hasn't created any playlists yet, an error is thrown.
      */
     const getUserPlaylists = async (uid) => {
-
         /**
          * Authorization header value that contains the token type (Bearer) and the access token.
          * @type {String}
          */
         const authorization = `${token_type} ${access_token}`;
-
         /**
-         * The URL for the Spotify API endpoint that fetches playlists owned by a user.
+         * The Spotify API endpoint URL that fetches the playlists owned or followed by a user.
          * @type {String}
          */
         const url = `https://api.spotify.com/v1/users/${uid}/playlists?offset=0&limit=50`;
-
 
         try {
             /**
@@ -73,39 +70,34 @@ export const usePlaylistStore = () => {
                 */
                 const { items } = response.data;
 
-                // This error occurs when the provided user ID does not exist, or the user has not created any playlists yet.
+                // Handle the case when the provided user ID doesn't exist, or the user hasn't created any playlist yet.
                 if (items.length == 0) {
 
                     dispatch(setError());
-
                     // Ensure the loading effect lasts longer.
-                    setTimeout(() => {
-
-                        dispatch(finishLoading());
-
-                    }, 1500);
+                    dispatchWithDelay(dispatch, finishLoading(), 1500);
 
                 } else {
                     /**
-                     * Playlist IDs extracted from the user's playlists information.
+                     * Array of playlist IDs extracted from the user's playlists information.
                      * @type {Array<String>} 
                      */
-                    const arrPlaylistsID = items.map(playlist => playlist.id);
+                    const arrPlaylistIDs = items.map(playlist => playlist.id);
                     /**
                      * A random playlist ID.
                      * @type {String}
                      */
-                    const playlist_id = shuffleArray(arrPlaylistsID);
+                    const randomPlaylistID = shuffleArray(arrPlaylistIDs);
                     /**
-                     * The URL for the Spotify playlist with the given 'playlist_id'.
+                     * The URL for the Spotify playlist with the given 'randomPlaylistID'.
                      * @type {String}
                      */
-                    const playlist_url = getPlaylistURL(items, playlist_id);
+                    const playlistUrl = getPlaylistURL(items, randomPlaylistID);
 
-                    // By doing this, the state will always update, ensuring that the `useEffect` in DiscoverPage works consistently.
-                    if(playlist_id == statePlaylistID) dispatch(clearPlaylist());
+                    // Clear the current playlist if the new playlist is the same as the current. By doing this, the state will always update, ensuring that the `useEffect` in DiscoverPage works consistently.
+                    if(randomPlaylistID == playlist_id) dispatch(clearPlaylist());
 
-                    dispatch(setPlaylist({ playlist_id, playlist_url }));
+                    dispatch(setPlaylist({ randomPlaylistID, playlistUrl }));
 
                 };
 
@@ -116,13 +108,8 @@ export const usePlaylistStore = () => {
             console.log(error);
 
             dispatch(setError());
-
             // Ensure the loading effect lasts longer.
-            setTimeout(() => {
-
-                dispatch(finishLoading());
-
-            }, 1500);
+            dispatchWithDelay(dispatch, finishLoading(), 1500);
 
         };
 

@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSpotifyAPI } from "../api";
 import { clearErrorHost, closeHostForm, finishHostLoading, setErrorHost, setHost, startHostLoading } from "../store/slices";
+import { dispatchWithDelay } from "../helpers";
 
 /**
  * Custom hook for 'hostSlice' to handle asynchronous functions.
@@ -10,6 +11,7 @@ import { clearErrorHost, closeHostForm, finishHostLoading, setErrorHost, setHost
  */
 export const useHostStore = () => {
 
+    // REDUX HOOKS
     /**
      * The 'token' state object from Redux store.
      * @type {Object}
@@ -29,6 +31,7 @@ export const useHostStore = () => {
      */
     const dispatch = useDispatch();
 
+    // FUNCTIONS
     /**
      * The function checks the user's Spotify account existence and the presence of public playlists using the provided ID.
      * @function getUserProfile
@@ -37,8 +40,9 @@ export const useHostStore = () => {
      * @returns {void}
      */
     const getUserProfile = async (uid) => {
-
-        errorHost && dispatch(clearErrorHost()); // To clear the error message in case of a successful retry.
+        
+        // To clear the error message in case of a successful retry.
+        if(errorHost) dispatch(clearErrorHost());
 
         dispatch(startHostLoading());
 
@@ -75,33 +79,21 @@ export const useHostStore = () => {
                  */
                 const { items } = data;
 
-                if (items.length > 0) { // The user exists and has public playlists.
+                // The user exists and has public playlists.
+                if (items.length > 0) {
 
                     dispatch(setHost(uid));
-
                     // Ensure the loading effect lasts longer.
-                    setTimeout(() => {
+                    dispatchWithDelay(dispatch, finishHostLoading());
+                    // Ensure the window close effect lasts longer than loading effect.
+                    dispatchWithDelay(dispatch, closeHostForm(), 3000);
 
-                        dispatch(finishHostLoading());
-
-                    }, 1000);
-
-                    setTimeout(() => {
-
-                        dispatch(closeHostForm());
-
-                    }, 3000);
-
-                } else { // The user doesn't have any public playlists.
+                // Handle the case that the user doesn't have any public playlists.
+                } else {
 
                     dispatch(setErrorHost(`The user doesn't have any public playlists.`));
-
                     // Ensure the loading effect lasts longer.
-                    setTimeout(() => {
-
-                        dispatch(finishHostLoading());
-
-                    }, 1000);
+                    dispatchWithDelay(dispatch, finishHostLoading());
 
                 };
 
@@ -111,13 +103,8 @@ export const useHostStore = () => {
                 if (response.status == 400) {
 
                     dispatch(setErrorHost('Invalid username.'));
-
                     // Ensure the loading effect lasts longer.
-                    setTimeout(() => {
-
-                        dispatch(finishHostLoading());
-
-                    }, 1000);
+                    dispatchWithDelay(dispatch, finishHostLoading());
 
                 };
 
@@ -125,13 +112,8 @@ export const useHostStore = () => {
                 if (response.status == 500) {
 
                     dispatch(setErrorHost(`The username doesn't exist.`));
-
                     // Ensure the loading effect lasts longer.
-                    setTimeout(() => {
-
-                        dispatch(finishHostLoading());
-
-                    }, 1000);
+                    dispatchWithDelay(dispatch, finishHostLoading());
 
                 };
 
@@ -140,13 +122,8 @@ export const useHostStore = () => {
         } catch (error) {
 
             dispatch(setErrorHost(`Internal server error. Try again later.`));
-
             // Ensure the loading effect lasts longer.
-            setTimeout(() => {
-
-                dispatch(finishHostLoading());
-
-            }, 1000);
+            dispatchWithDelay(dispatch, finishHostLoading());
 
         };
 

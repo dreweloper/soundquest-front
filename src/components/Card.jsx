@@ -10,15 +10,22 @@ export const Card = () => {
     // REDUX HOOKS
     const { playlist_url } = useSelector(state => state.playlist);
     const { album, artwork, artist, name, track_url } = useSelector(state => state.track);
+    /**
+     * The 'isLiked' state value from Redux store.
+     * @type {Boolean}
+     */
+    const { isLiked } = useSelector(state => state.like);
     const { isHostFormOpen } = useSelector(state => state.host);
 
     const dispatch = useDispatch();
 
     // REDUX MIDDLEWARES (CUSTOM HOOK)
     const { getToken } = useTokenStore();
+    const { addTrack, deleteTrack } = useLikeStore();
 
-    // CUSTOM HOOKS
-    const { handleLike } = useLikeStore();
+    // EVENT
+    // If 'isLiked' is 'false', it is changed to 'true' and the track is added to the MongoDB API, and vice versa.
+    const handleLike = () => !isLiked ? addTrack() : deleteTrack();
 
 
     return (
@@ -67,9 +74,9 @@ export const Card = () => {
 
                     <nav className='card-nav'>
 
-                        <Link className='card-nav-button' to={track_url}> Play on Spotify </Link>
+                        <Link className='card-nav-button' to={track_url} target='_blank'> Play on Spotify </Link>
 
-                        <Link className='card-nav-button' to={playlist_url}> Open playlist </Link>
+                        <Link className='card-nav-button' to={playlist_url} target='_blank'> Open playlist </Link>
 
                         <button
                             className='card-nav-button'

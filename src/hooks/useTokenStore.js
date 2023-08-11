@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearError, clearToken, finishLoading, setDislike, setError, setToken, startLoading } from "../store/slices";
 import { getCookie, setCookie } from "../helpers/cookies";
 import { fetchSpotifyAPI } from "../api";
+import { dispatchWithDelay } from "../helpers";
 
 /**
  * Custom hook for 'tokenSlice' to handle asynchronous functions related to the Spotify access token.
@@ -13,7 +14,7 @@ import { fetchSpotifyAPI } from "../api";
 export const useTokenStore = () => {
 
     // REDUX HOOKS
-    const { like } = useSelector(state => state.like);
+    const { isLiked } = useSelector(state => state.like);
     const { error } = useSelector(state => state.errors);
     /**
      * The dispatch function from Redux to dispatch actions.
@@ -31,9 +32,9 @@ export const useTokenStore = () => {
      */
     const getToken = async () => {
 
-        error && dispatch(clearError());
+        if(error) dispatch(clearError());
 
-        like && dispatch(setDislike());
+        if(isLiked) dispatch(setDislike());
 
         dispatch(clearToken());
 
@@ -44,7 +45,6 @@ export const useTokenStore = () => {
          * @type {String}
          */
         const url = 'https://accounts.spotify.com/api/token';
-
 
         try {
             /**
@@ -79,11 +79,11 @@ export const useTokenStore = () => {
                  * @property {String} token_type - The token type (Bearer).
                  * @property {String} access_token - The access token provided by Spotify.
                  */
-                const { token_type, access_token } = response.data; // Destructuring of the properties "token_type" and "access_token" of "response.data" object.
+                const { token_type, access_token } = response.data;
 
                 dispatch(setToken({ token_type, access_token }));
 
-                setCookie('token', response.data); // 'response.data' is the token object returned by Spotify.
+                setCookie('token', response.data);
 
             };
 
@@ -92,13 +92,8 @@ export const useTokenStore = () => {
             console.log(error);
 
             dispatch(setError());
-
             // Ensure the loading effect lasts longer.
-            setTimeout(() => {
-
-                dispatch(finishLoading());
-
-            }, 1500);
+            dispatchWithDelay(dispatch, finishLoading(), 1500);
 
         };
 

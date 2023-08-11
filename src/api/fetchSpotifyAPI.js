@@ -50,15 +50,15 @@ export const fetchSpotifyAPI = async (url, method, token) => {
 
     try {
 
-        const request = await fetch(url, options);
+        const response = await fetch(url, options);
 
-        if (request.ok) {
+        if (response.ok) {
 
             /**
              * The JSON data received from the successful HTTP response.
              * @type {any}
              */
-            const data = await request.json();
+            const data = await response.json();
 
             return {
                 ok: true,
@@ -69,7 +69,7 @@ export const fetchSpotifyAPI = async (url, method, token) => {
 
             throw {
                 ok: false,
-                status: request.status,
+                status: response.status,
             };
 
         };
