@@ -11,6 +11,11 @@ export const useLikeStore = () => {
 
     // REDUX HOOKS
     /**
+     * The 'host' state object from Redux store.
+     * @type {Object}
+     */
+    const { host } = useSelector(state => state.host);
+    /**
      * The 'playlist' state object from Redux store.
      * @type {Object}
      */
@@ -92,7 +97,7 @@ export const useLikeStore = () => {
          * @property {Object} playlist - The playlist object to be added.
          * @property {Object} track - The track object to be added.
          */
-        const body = { playlist, track };
+        const body = { host, playlist, track };
 
         try {
             /**

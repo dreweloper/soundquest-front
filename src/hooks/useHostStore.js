@@ -81,8 +81,13 @@ export const useHostStore = () => {
 
                 // The user exists and has public playlists.
                 if (items.length > 0) {
+                    /**
+                     * The URL for the Spotify user's profile.
+                     * @type {String}
+                     */
+                    const profileUrl = response.data.external_urls.spotify;
 
-                    dispatch(setHost(uid));
+                    dispatch(setHost({ uid, profileUrl }));
                     // Ensure the loading effect lasts longer.
                     dispatchWithDelay(dispatch, finishHostLoading());
                     // Ensure the window close effect lasts longer than loading effect.
