@@ -5,7 +5,10 @@ export const hostSlice = createSlice({
     name: 'host',
     
     initialState: {
-        host: 'aleon88',
+        host: {
+            username: 'aleon88',
+            profile_url: 'https://open.spotify.com/user/aleon88'
+        },
         isHostFormOpen: false,
         isHostLoading: false,
         isHostUpdated: false,
@@ -15,7 +18,8 @@ export const hostSlice = createSlice({
 
     reducers: {
         setHost: (state , { payload }) => {
-            state.host = payload;
+            state.host.username = payload.uid;
+            state.host.profile_url = payload.profileUrl
             state.isHostUpdated = true;
         },
         setErrorHost: (state, { payload }) => {

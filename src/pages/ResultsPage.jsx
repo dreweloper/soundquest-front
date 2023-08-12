@@ -17,6 +17,7 @@ export const ResultsPage = () => {
     // REDUX STATES DESTRUCTURING
     const { access_token } = token;
     const { playlist_id } = playlist;
+    const { username } = host;
 
     // REDUX MIDDLEWARES (CUSTOM HOOKS)
     const { getToken } = useTokenStore();
@@ -28,7 +29,7 @@ export const ResultsPage = () => {
 
     useEffect(() => {
 
-        access_token && getUserPlaylists(host); // If 'access_token' isn't 'undefined'.
+        access_token && getUserPlaylists(username); // If 'access_token' isn't 'undefined'.
 
     }, [token]);
 
