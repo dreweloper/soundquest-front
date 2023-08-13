@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { fetchMongoDB, fetchSpotifyAPI } from "../api";
+import { fetchSpotifyAPI } from "../api";
 import { clearTrack, finishLoading, setError, setTrack, setTrackID } from "../store/slices";
 import { dispatchWithDelay, mapTrackData, shuffleArray } from "../helpers";
 
@@ -44,12 +44,7 @@ export const useTrackStore = () => {
      * The URL base of the Spotify Web API.
      * @type {String}
      */
-    const spotifyUrlBase = 'https://api.spotify.com';
-    /**
-     * The URL base of the MongoDB API.
-     * @type {String}
-     */
-    const mongodbUrlBase = 'https://soundquest-xf5r.onrender.com/api/v1';
+    const urlBase = 'https://api.spotify.com';
 
     //FUNCTIONS
     /**
@@ -66,7 +61,7 @@ export const useTrackStore = () => {
              * The response received from Spotify API.
              * @type {Object}
              */
-            const response = await fetchSpotifyAPI(`${spotifyUrlBase}/v1/playlists/${id}?offset=0&limit=50`, 'GET', authorization);
+            const response = await fetchSpotifyAPI(`${urlBase}/v1/playlists/${id}?offset=0&limit=50`, 'GET', authorization);
 
             if (response.ok) {
                 /**
@@ -126,48 +121,19 @@ export const useTrackStore = () => {
 
         try {
             /**
-            /* The response received from MongoDB.
-            /* @type {Object}
-            */
-            const mongodbResponse = await fetchMongoDB(`${mongodbUrlBase}/track/${id}`, 'GET');
+             * The response received from Spotify API.
+             * @type {Object}
+             */
+            const response = await fetchSpotifyAPI(`${urlBase}/v1/tracks/${id}`, 'GET', authorization);
 
-            if (mongodbResponse.ok) {
-                /**
-                 * Information about a specific track received from MongoDB.
-                 * @type {Object}
-                 */
-                const mongodbData = mongodbResponse.data[0];
+            if (response.ok) {
                 /**
                  * Map track data.
                  * @type {Object}
                  */
-                const trackData = mapTrackData('mongodb', mongodbData);
+                const trackData = mapTrackData('spotify', response.data);
 
                 dispatch(setTrack({ ...trackData }));
-
-            } else {
-
-                /**
-                 * The response received from Spotify API.
-                 * @type {Object}
-                 */
-                const spotifyResponse = await fetchSpotifyAPI(`${spotifyUrlBase}/v1/tracks/${id}`, 'GET', authorization);
-
-                if (spotifyResponse.ok) {
-                    /**
-                     * Information about a specific track received from the Spotify Web API.
-                     * @type {Object}
-                     */
-                    const spotifyData = spotifyResponse.data;
-                    /**
-                     * Map track data.
-                     * @type {Object}
-                     */
-                    const trackData = mapTrackData('spotify', spotifyData);
-
-                    dispatch(setTrack({ ...trackData }));
-
-                };
 
             };
 
