@@ -6,7 +6,7 @@ import { Footer, NavBar } from '../layouts';
 
 export const ResultsPage = () => {
 
-    // REDUX STATES
+    // REDUX HOOKS
     const { error } = useSelector(state => state.errors);
     const { host } = useSelector(state => state.host);
     const { isLoading } = useSelector(state => state.loading);
@@ -26,7 +26,6 @@ export const ResultsPage = () => {
 
 
     // USEEFFECTS
-
     useEffect(() => {
 
         access_token && getUserPlaylists(username); // If 'access_token' isn't 'undefined'.
@@ -57,7 +56,7 @@ export const ResultsPage = () => {
 
             <main className='main-results fade-in-transition'>
 
-                {
+                {/* {
                     !isLoading && !access_token && (!error &&
 
                         <button
@@ -72,7 +71,7 @@ export const ResultsPage = () => {
                         </button>
 
                     )
-                }
+                } */}
 
                 {
                     isLoading && (<span className='spinner'></span>)
