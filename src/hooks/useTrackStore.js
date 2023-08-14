@@ -22,10 +22,10 @@ export const useTrackStore = () => {
      */
     const { token: { token_type, access_token } } = useSelector(state => state.token);
     /**
-     * Holds the value of the 'track_id' property extracted from the 'track' state.
-     * The name has been changed to prevent conflicts with the constant name.
-     * @type {String}
-     * @property
+     * The 'track' state object from Redux store.
+     * @type {Object}
+     * @property {String} track_id - A randomly selected track ID.
+     * @property {Boolean} isTrackIdDone - It signifies the completion of processing for the state property 'track_id'.
      */
     const { track: { track_id }, isTrackIdDone } = useSelector(state => state.track);
     /**
@@ -48,21 +48,25 @@ export const useTrackStore = () => {
 
     //FUNCTIONS
     /**
-     * Retrieve playlist information owned or followed by a user from the Spotify API.
+     * Retrieves information about a playlist owned or followed by a user from the Spotify API.
+     * 
      * @function getPlaylist
      * @async
-     * @param {String} id The ID of the playlist to retrieve from the Spotify API.
+     * @param {String} id - The ID of the playlist to retrieve from the Spotify API.
      * @returns {void}
+     * @throws {Error} Throws an error if an issue occurs during the token request process.
      */
     const getPlaylist = async (id) => {
 
-        // By doing this, the state will always update, ensuring that the `useEffect` in DiscoverPage works consistently.
+        // Reset 'isTrackIdDone' flag to ensure consistent state updates for 'useEffect' in DiscoverPage.
         if (isTrackIdDone) dispatch(setTrackIdUndone());
 
         try {
             /**
-             * The response received from Spotify API.
+             * The API response received from Spotify API.
              * @type {Object}
+             * @property {Boolean} ok - Indicates if the response is successful.
+             * @property {Object} data - Information about a playlist owned by a Spotify user.
              */
             const response = await fetchSpotifyAPI(`${urlBase}/v1/playlists/${id}?offset=0&limit=50`, 'GET', authorization);
 
@@ -87,7 +91,7 @@ export const useTrackStore = () => {
                      */
                     const arrTrackIDs = items.map(item => item.track.id);
                     /**
-                     * A random track ID.
+                     * A randomly selected track ID.
                      * @type {String}
                      */
                     const randomTrackID = shuffleArray(arrTrackIDs);
@@ -102,9 +106,7 @@ export const useTrackStore = () => {
                         dispatch(setTrackId(randomTrackID));
                         
                     };
-
                 };
-
             };
 
         } catch (error) {
@@ -113,31 +115,35 @@ export const useTrackStore = () => {
 
             dispatch(setError());
             // Ensure the loading effect lasts longer.
-            dispatchWithDelay(dispatch, finishLoading(), 1500);
+            dispatchWithDelay(dispatch, finishLoading(), 1000);
 
         };
 
     }; //!GETPLAYLIST
 
     /**
-     * Retrieve track information from the Spotify API.
+     * Retrieves information about a single track identified by its unique ID from the Spotify API.
+     * 
      * @function getTrack
      * @async
      * @param {String} id - The ID of the track to retrieve from the Spotify API.
      * @returns {void}
+     * @throws {Error} Throws an error if an issue occurs during the token request process.
      */
     const getTrack = async (id) => {
 
         try {
             /**
-             * The response received from Spotify API.
+             * The API response received from Spotify API.
              * @type {Object}
+             * @property {Boolean} ok - Indicates if the response is successful.
+             * @property {Object} data - Catalog information about a single track.
              */
             const response = await fetchSpotifyAPI(`${urlBase}/v1/tracks/${id}`, 'GET', authorization);
 
             if (response.ok) {
                 /**
-                 * Map track data.
+                 * Mapped track data.
                  * @type {Object}
                  */
                 const trackData = mapTrackData('spotify', response.data);

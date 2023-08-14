@@ -14,8 +14,24 @@ import { dispatchWithDelay } from "../helpers";
 export const useTokenStore = () => {
 
     // REDUX HOOKS
+    /**
+     * The 'like' state object from Redux store.
+     * @type {Object}
+     * @property {Boolean} isLiked
+     */
     const { isLiked } = useSelector(state => state.like);
+    /**
+     * The 'error' state object from Redux store.
+     * @type {Object}
+     * @property {Boolean} error
+     */
     const { error } = useSelector(state => state.errors);
+    /**
+     * The 'like' state object from Redux store.
+     * @type {Object}
+     * @property {Object} token - The access token supplied by the Spotify Web API.
+     * @property {Boolean} isTokenDone - It indicates whether the state processing is complete.
+     */
     const { token, isTokenDone } = useSelector(state => state.token);
     /**
      * The dispatch function from Redux to dispatch actions.
@@ -23,32 +39,33 @@ export const useTokenStore = () => {
      */
     const dispatch = useDispatch();
 
+    // VARIABLES
     /**
-     * This function request an access token to Spotify and stores it in the 'token' state and in cookies.
+     * The Spotify API endpoint URL that provides an access token.
+     * @type {String}
+     */
+    const url = 'https://accounts.spotify.com/api/token';
+
+    /**
+     * Requests an access token from Spotify, stores it in the 'token' state, and in cookies.
      * 
      * @function getToken
      * @async
      * @returns {void}
-     * @throws {Error} If an error occurs during the token request process, it logs the error and sets the 'error' state.
+     * @throws {Error} Throws an error if an issue occurs during the token request process.
      */
     const getToken = async () => {
-        /**
-         * The Spotify API endpoint URL that provides an access token.
-         * @type {String}
-         */
-        const url = 'https://accounts.spotify.com/api/token';
-        
-
-        if (error) dispatch(clearError());
-
-        if (isLiked) dispatch(setDislike());
-
-        if (isTokenDone) dispatch(setTokenUndone());
+        // Clear error state if previously set.
+        if(error) dispatch(clearError());
+        // If 'isLiked' flag is set, dispatch 'setDislike' action.
+        if(isLiked) dispatch(setDislike());
+        // Reset 'isTokenDone' flag to ensure consistent state updates for 'useEffect' in DiscoverPage.
+        if(isTokenDone) dispatch(setTokenUndone());
 
         dispatch(startLoading());
 
-        // If the 'token' property of the state is already set up.
-        if (Object.keys(token).length != 0) return dispatchWithDelay(dispatch, setTokenDone(), 500); // This allows time for Redux to update and trigger the useEffect.
+        // If the 'token' property of the state is already set, update 'isTokenDone' flag and return.
+        if(Object.keys(token).length != 0) return dispatchWithDelay(dispatch, setTokenDone(), 500); // Delay helps trigger useEffect in Redux.
 
         try {
             /**
@@ -57,25 +74,26 @@ export const useTokenStore = () => {
              * @property {String} access_token - The access token provided by Spotify.
              * @property {String} expires_in - The token's expiration time (1 hour).
              */
-            const cookieToken = getCookie('token');
+            const cookieToken = getCookie('token'); // Try to retrieve token from cookies.
 
-            // If 'token' exists in cookies.
             if (cookieToken) {
-
+                // If 'token' exists in cookies, set it in state.
                 dispatch(setToken({ ...cookieToken }));
 
-                // If "cookieToken" is undefined (because cookieToken doesn't exist or is expired).
             } else {
+                // If "cookieToken" is undefined (because cookieToken doesn't exist or is expired).
                 /**
                  * The API response received from Spotify API.
                  * @type {Object}
+                 * @property {Boolean} ok - Indicates if the response is successful.
+                 * @property {Object} data - An access token valid for 1 hour.
                  */
                 const response = await fetchSpotifyAPI(url, 'POST');
 
                 if (response.ok) {
-
+                    // Store token in cookies.
                     setCookie('token', response.data);
-
+                    // Set token in state.
                     dispatch(setToken({ ...response.data }));
 
                 };

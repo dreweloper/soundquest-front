@@ -7,12 +7,12 @@ import { Footer, NavBar } from '../layouts';
 export const ResultsPage = () => {
 
     // REDUX HOOKS
-    const { error } = useSelector(state => state.errors);
-    const { host: { username } } = useSelector(state => state.host);
     const { isLoading } = useSelector(state => state.loading);
     const { playlist: { playlist_id }, isPlaylistDone } = useSelector(state => state.playlist);
     const { isTokenDone } = useSelector(state => state.token);
-    const { track: { track_id }, isTrackIdDone, isTrackDone } = useSelector(state => state.track);
+    const { track: { track_id }, isTrackIdDone } = useSelector(state => state.track);
+    const { error } = useSelector(state => state.errors);
+    const { host: { username } } = useSelector(state => state.host);
 
     // REDUX MIDDLEWARES (CUSTOM HOOKS)
     const { getToken } = useTokenStore();
@@ -28,24 +28,24 @@ export const ResultsPage = () => {
     }, []);
 
     useEffect(() => {
-
-        if(isTokenDone) getUserPlaylists(username); // If 'access_token' isn't 'undefined'.
+        // If the 'token' object's state has been completed.
+        if(isTokenDone) getUserPlaylists(username);
 
     }, [isTokenDone]);
 
 
     useEffect(() => {
-
-        if(isPlaylistDone) getPlaylist(playlist_id); // If 'playlist_id' isn't 'undefined'.
+        // If the 'playlist' object's state has been completed.
+        if(isPlaylistDone) getPlaylist(playlist_id);
 
     }, [isPlaylistDone]);
 
 
     useEffect(() => {
+        // If the 'track_id' property within the 'track' state has been completed.
+        if(isTrackIdDone) getTrack(track_id);
 
-        if(isTrackIdDone) getTrack(track_id); // If 'track_id' isn't 'undefined'.
-
-    }, [isTrackIdDone]); // If I only specify 'track', it triggers twice due to the state change caused by the previous `useEffect` with the `setTrackID` dispatch from the `getPlaylist` function of the `useTrackStore` hook.
+    }, [isTrackIdDone]);
 
 
 
@@ -83,7 +83,7 @@ export const ResultsPage = () => {
                 }
 
                 {
-                    !isLoading && !error && (isTrackDone && <Card />)
+                    !isLoading && !error && (<Card />)
                 }
 
             </main >

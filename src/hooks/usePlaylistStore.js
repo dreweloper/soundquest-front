@@ -23,10 +23,10 @@ export const usePlaylistStore = () => {
      */
     const { token: { token_type, access_token }} = useSelector(state => state.token);
     /**
-     * Holds the value of the 'playlist_id' property extracted from the 'playlist' state.
-     * The name has been changed to prevent conflicts with the constant name.
-     * @type {String}
-     * @property
+     * The 'playlist' state object from Redux store.
+     * @type {Object}
+     * @property {String} playlist_id - A randomly selected playlist ID..
+     * @property {Boolean} isPlaylistDone - It indicates whether the state processing is complete.
      */
     const { playlist: { playlist_id }, isPlaylistDone } = useSelector(state => state.playlist);
     /**
@@ -36,13 +36,13 @@ export const usePlaylistStore = () => {
     const dispatch = useDispatch();
 
     /**
-     * Get a list of the playlists owned by a Spotify user.
+     * Fetches user playlists from the Spotify Web API and updates the Redux state.
      * 
      * @function getPlaylist
      * @async
-     * @param {String} uid - The user's Spotify ID.
+     * @param {String} uid - The user's Spotify identifier.
      * @returns {void}
-     * @throws {Error} If the user ID doesn't exist or the user hasn't created any playlists yet, an error is thrown.
+     * @throws {Error} Throws an error if an issue occurs during the token request process.
      */
     const getUserPlaylists = async (uid) => {
         /**
@@ -56,13 +56,15 @@ export const usePlaylistStore = () => {
          */
         const url = `https://api.spotify.com/v1/users/${uid}/playlists?offset=0&limit=50`;
 
-        // By doing this, the state will always update, ensuring that the `useEffect` in DiscoverPage works consistently.
+        // Reset 'isPlaylistDone' flag to ensure consistent state updates for 'useEffect' in DiscoverPage.
         if(isPlaylistDone) dispatch(setPlaylistUndone());
 
         try {
             /**
-             * The response received from Spotify API.
+             * The API response received from Spotify API.
              * @type {Object}
+             * @property {Boolean} ok - Indicates if the response is successful.
+             * @property {Object} data - A list of the playlists owned or followed by a Spotify user.
              */
             const response = await fetchSpotifyAPI(url, 'GET', authorization);
 
@@ -87,12 +89,12 @@ export const usePlaylistStore = () => {
                      */
                     const arrPlaylistIDs = items.map(playlist => playlist.id);
                     /**
-                     * A random playlist ID.
+                     * A randomly selected playlist ID.
                      * @type {String}
                      */
                     const randomPlaylistID = shuffleArray(arrPlaylistIDs);
                     /**
-                     * The URL for the Spotify playlist with the given 'playlist_id'.
+                     * The URL for the Spotify playlist with the given 'randomPlaylistID'.
                      * @type {String}
                      */
                     const PlaylistUrl = getPlaylistURL(items, randomPlaylistID);
@@ -107,11 +109,9 @@ export const usePlaylistStore = () => {
                         dispatch(setPlaylist({ randomPlaylistID, PlaylistUrl }));
 
                     };
-
                 };
-
             };
-
+            
         } catch (error) {
 
             console.log(error);
