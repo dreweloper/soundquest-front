@@ -3,37 +3,36 @@ import { createSlice } from '@reduxjs/toolkit';
 export const trackSlice = createSlice({
 
     name: 'track',
-
     initialState: {
-        track_id: undefined,
-        album: undefined,
-        artwork: undefined,
-        artist: undefined,
-        name: undefined,
-        track_url: undefined,
-        isTrackStateComplete: false
+        track: {
+            track_id: undefined,
+            album: undefined,
+            artwork: undefined,
+            artist: undefined,
+            name: undefined,
+            track_url: undefined,
+        },
+        isTrackIdDone: false,
+        isTrackDone: false
     },
-
     reducers: {
-        setTrackID: (state, { payload }) => {
-            state.track_id = payload;
+        setTrackId: (state, { payload }) => {
+            state.track.track_id = payload;
+            state.isTrackIdDone = true;
+        },
+        setTrackIdDone: (state) => {
+            state.isTrackIdDone = true;
+        },
+        setTrackIdUndone: (state) => {
+            state.isTrackIdDone = false;
         },
         setTrack: (state, { payload }) => {
-            state.album = payload.album;
-            state.artwork = payload.artwork;
-            state.artist = payload.artist;
-            state.name = payload.name;
-            state.track_url = payload.track_url;
-            state.isTrackStateComplete = true;
-        },
-        clearTrack: (state) => {
-            state.track_id = undefined;
-            state.album = undefined;
-            state.artwork = undefined;
-            state.artist = undefined;
-            state.name = undefined;
-            state.track_url = undefined;
-            state.isTrackStateComplete = false;
+            state.track.album = payload.album;
+            state.track.artwork = payload.artwork;
+            state.track.artist = payload.artist;
+            state.track.name = payload.name;
+            state.track.track_url = payload.track_url;
+            state.isTrackDone = true;
         }
     }
 
@@ -41,7 +40,8 @@ export const trackSlice = createSlice({
 
 
 export const {
-    setTrackID,
+    setTrackId,
+    setTrackIdDone,
+    setTrackIdUndone,
     setTrack,
-    clearTrack
 } = trackSlice.actions;

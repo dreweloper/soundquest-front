@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSpotifyAPI } from "../api";
-import { clearTrack, finishLoading, setError, setTrack, setTrackID } from "../store/slices";
+import { finishLoading, setError, setTrack, setTrackId, setTrackIdDone, setTrackIdUndone } from "../store/slices";
 import { dispatchWithDelay, mapTrackData, shuffleArray } from "../helpers";
 
 /**
@@ -20,14 +20,14 @@ export const useTrackStore = () => {
      * @property {String} token_type - The token type ('Bearer').
      * @property {String} access_token - The access token provided by Spotify.
      */
-    const { token_type, access_token } = useSelector(state => state.token);
+    const { token: { token_type, access_token } } = useSelector(state => state.token);
     /**
      * Holds the value of the 'track_id' property extracted from the 'track' state.
      * The name has been changed to prevent conflicts with the constant name.
      * @type {String}
      * @property
      */
-    const { track_id } = useSelector(state => state.track);
+    const { track: { track_id }, isTrackIdDone } = useSelector(state => state.track);
     /**
      * The dispatch function from Redux to dispatch actions.
      * @type {Function}
@@ -55,6 +55,9 @@ export const useTrackStore = () => {
      * @returns {void}
      */
     const getPlaylist = async (id) => {
+
+        // By doing this, the state will always update, ensuring that the `useEffect` in DiscoverPage works consistently.
+        if (isTrackIdDone) dispatch(setTrackIdUndone());
 
         try {
             /**
@@ -89,10 +92,16 @@ export const useTrackStore = () => {
                      */
                     const randomTrackID = shuffleArray(arrTrackIDs);
 
-                    // Clear the current track if the new track is the same as the current. By doing this, the state will always update, ensuring that the `useEffect` in DiscoverPage works consistently.
-                    if (randomTrackID == track_id) dispatch(clearTrack());
+                    // If the new track is the same as the current.
+                    if (randomTrackID == track_id) {
 
-                    dispatch(setTrackID(randomTrackID));
+                        dispatch(setTrackIdDone());
+
+                    } else {
+
+                        dispatch(setTrackId(randomTrackID));
+                        
+                    };
 
                 };
 

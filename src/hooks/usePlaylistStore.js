@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSpotifyAPI } from "../api";
 import { getPlaylistURL, shuffleArray } from "../helpers";
-import { clearPlaylist, finishLoading, setError, setPlaylist } from "../store/slices";
+import { finishLoading, setError, setPlaylist, setPlaylistDone, setPlaylistUndone } from "../store/slices";
 
 /**
  * Custom hook for 'playlistSlice' to handle asynchronous functions.
@@ -21,14 +21,14 @@ export const usePlaylistStore = () => {
      * @property {String} token_type - The token type ('Bearer').
      * @property {String} access_token - The access token provided by Spotify.
      */
-    const { token_type, access_token } = useSelector(state => state.token);
+    const { token: { token_type, access_token }} = useSelector(state => state.token);
     /**
      * Holds the value of the 'playlist_id' property extracted from the 'playlist' state.
      * The name has been changed to prevent conflicts with the constant name.
      * @type {String}
      * @property
      */
-    const { playlist_id } = useSelector(state => state.playlist);
+    const { playlist: { playlist_id }, isPlaylistDone } = useSelector(state => state.playlist);
     /**
      * The dispatch function from Redux to dispatch actions.
      * @type {Function}
@@ -55,6 +55,9 @@ export const usePlaylistStore = () => {
          * @type {String}
          */
         const url = `https://api.spotify.com/v1/users/${uid}/playlists?offset=0&limit=50`;
+
+        // By doing this, the state will always update, ensuring that the `useEffect` in DiscoverPage works consistently.
+        if(isPlaylistDone) dispatch(setPlaylistUndone());
 
         try {
             /**
@@ -89,15 +92,21 @@ export const usePlaylistStore = () => {
                      */
                     const randomPlaylistID = shuffleArray(arrPlaylistIDs);
                     /**
-                     * The URL for the Spotify playlist with the given 'randomPlaylistID'.
+                     * The URL for the Spotify playlist with the given 'playlist_id'.
                      * @type {String}
                      */
-                    const playlistUrl = getPlaylistURL(items, randomPlaylistID);
+                    const PlaylistUrl = getPlaylistURL(items, randomPlaylistID);
 
-                    // Clear the current playlist if the new playlist is the same as the current. By doing this, the state will always update, ensuring that the `useEffect` in DiscoverPage works consistently.
-                    if(randomPlaylistID == playlist_id) dispatch(clearPlaylist());
+                    // If the new playlist is the same as the current.
+                    if(randomPlaylistID == playlist_id) {
 
-                    dispatch(setPlaylist({ randomPlaylistID, playlistUrl }));
+                        dispatch(setPlaylistDone());
+
+                    } else {
+
+                        dispatch(setPlaylist({ randomPlaylistID, PlaylistUrl }));
+
+                    };
 
                 };
 

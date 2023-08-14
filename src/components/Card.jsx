@@ -8,8 +8,8 @@ import { openHostForm } from '../store/slices';
 export const Card = () => {
 
     // REDUX HOOKS
-    const { playlist_url } = useSelector(state => state.playlist);
-    const { album, artwork, artist, name, track_url } = useSelector(state => state.track);
+    const { playlist: { playlist_url }} = useSelector(state => state.playlist);
+    const { track: { album, artwork, artist, name, track_url }} = useSelector(state => state.track);
     /**
      * The 'isLiked' state value from Redux store.
      * @type {Boolean}

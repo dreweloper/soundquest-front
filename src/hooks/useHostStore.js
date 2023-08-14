@@ -18,7 +18,7 @@ export const useHostStore = () => {
      * @property {String} token_type - The token type ('Bearer').
      * @property {String} access_token - The access token provided by Spotify.
      */
-    const { token_type, access_token } = useSelector(state => state.token);
+    const { token: { token_type, access_token }} = useSelector(state => state.token);
     /**
      * The 'host' state object from Redux store.
      * @type {Object}

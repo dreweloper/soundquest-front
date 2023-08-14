@@ -8,16 +8,11 @@ export const ResultsPage = () => {
 
     // REDUX HOOKS
     const { error } = useSelector(state => state.errors);
-    const { host } = useSelector(state => state.host);
+    const { host: { username } } = useSelector(state => state.host);
     const { isLoading } = useSelector(state => state.loading);
-    const playlist = useSelector(state => state.playlist);
-    const token = useSelector(state => state.token);
-    const { track_id, isTrackStateComplete } = useSelector(state => state.track);
-
-    // REDUX STATES DESTRUCTURING
-    const { access_token } = token;
-    const { playlist_id } = playlist;
-    const { username } = host;
+    const { playlist: { playlist_id }, isPlaylistDone } = useSelector(state => state.playlist);
+    const { isTokenDone } = useSelector(state => state.token);
+    const { track: { track_id }, isTrackIdDone, isTrackDone } = useSelector(state => state.track);
 
     // REDUX MIDDLEWARES (CUSTOM HOOKS)
     const { getToken } = useTokenStore();
@@ -28,23 +23,29 @@ export const ResultsPage = () => {
     // USEEFFECTS
     useEffect(() => {
 
-        access_token && getUserPlaylists(username); // If 'access_token' isn't 'undefined'.
+        getToken();
+    
+    }, []);
 
-    }, [token]);
+    useEffect(() => {
+
+        if(isTokenDone) getUserPlaylists(username); // If 'access_token' isn't 'undefined'.
+
+    }, [isTokenDone]);
 
 
     useEffect(() => {
 
-        playlist_id && getPlaylist(playlist_id); // If 'playlist_id' isn't 'undefined'.
+        if(isPlaylistDone) getPlaylist(playlist_id); // If 'playlist_id' isn't 'undefined'.
 
-    }, [playlist]);
+    }, [isPlaylistDone]);
 
 
     useEffect(() => {
 
-        track_id && getTrack(track_id); // If 'track_id' isn't 'undefined'.
+        if(isTrackIdDone) getTrack(track_id); // If 'track_id' isn't 'undefined'.
 
-    }, [track_id]); // If I only specify 'track', it triggers twice due to the state change caused by the previous `useEffect` with the `setTrackID` dispatch from the `getPlaylist` function of the `useTrackStore` hook.
+    }, [isTrackIdDone]); // If I only specify 'track', it triggers twice due to the state change caused by the previous `useEffect` with the `setTrackID` dispatch from the `getPlaylist` function of the `useTrackStore` hook.
 
 
 
@@ -82,7 +83,7 @@ export const ResultsPage = () => {
                 }
 
                 {
-                    !isLoading && !error && (isTrackStateComplete && <Card />)
+                    !isLoading && !error && (isTrackDone && <Card />)
                 }
 
             </main >

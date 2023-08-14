@@ -3,24 +3,32 @@ import { createSlice } from '@reduxjs/toolkit';
 export const tokenSlice = createSlice({
 
     name: 'token',
-
     initialState: {
-        token_type: undefined,
-        access_token: undefined,
+        token: {},
+        isTokenDone: false
     },
-
     reducers: {
         setToken: (state, { payload }) => {
-            state.token_type = payload.token_type;
-            state.access_token = payload.access_token;
+            state.token = payload;
+            state.isTokenDone = true;
+        },
+        setTokenDone: (state) => {
+            state.isTokenDone = true;
         },
         clearToken: (state) => {
-            state.token_type = undefined;
-            state.access_token = undefined;
+            state.token = {};
+        },
+        setTokenUndone: (state) => {
+            state.isTokenDone = false;
         }
     }
 
 });
 
 
-export const { setToken, clearToken } = tokenSlice.actions;
+export const {
+    setToken,
+    setTokenDone,
+    clearToken,
+    setTokenUndone
+} = tokenSlice.actions;

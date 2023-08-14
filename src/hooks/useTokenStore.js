@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { clearError, clearToken, finishLoading, setDislike, setError, setToken, startLoading } from "../store/slices";
+import { clearError, finishLoading, setDislike, setError, setToken, setTokenDone, setTokenUndone, startLoading } from "../store/slices";
 import { getCookie, setCookie } from "../helpers/cookies";
 import { fetchSpotifyAPI } from "../api";
 import { dispatchWithDelay } from "../helpers";
@@ -16,6 +16,7 @@ export const useTokenStore = () => {
     // REDUX HOOKS
     const { isLiked } = useSelector(state => state.like);
     const { error } = useSelector(state => state.errors);
+    const { token, isTokenDone } = useSelector(state => state.token);
     /**
      * The dispatch function from Redux to dispatch actions.
      * @type {Function}
@@ -31,64 +32,58 @@ export const useTokenStore = () => {
      * @throws {Error} If an error occurs during the token request process, it logs the error and sets the 'error' state.
      */
     const getToken = async () => {
-
-        if(error) dispatch(clearError());
-
-        if(isLiked) dispatch(setDislike());
-
-        dispatch(clearToken());
-
-        dispatch(startLoading());
-
         /**
          * The Spotify API endpoint URL that provides an access token.
          * @type {String}
          */
         const url = 'https://accounts.spotify.com/api/token';
+        
+
+        if (error) dispatch(clearError());
+
+        if (isLiked) dispatch(setDislike());
+
+        if (isTokenDone) dispatch(setTokenUndone());
+
+        dispatch(startLoading());
+
+        // If the 'token' property of the state is already set up.
+        if (Object.keys(token).length != 0) return dispatchWithDelay(dispatch, setTokenDone(), 500); // This allows time for Redux to update and trigger the useEffect.
 
         try {
             /**
-             * The value of the 'token' cookie retrieved using the 'getCookie' function.
-             * @type {String}
-             * @see getCookie
+             * @type {Object}
+             * @property {String} token_type - The token type (Bearer).
+             * @property {String} access_token - The access token provided by Spotify.
+             * @property {String} expires_in - The token's expiration time (1 hour).
              */
             const cookieToken = getCookie('token');
 
             // If 'token' exists in cookies.
-            if(cookieToken){
+            if (cookieToken) {
+
+                dispatch(setToken({ ...cookieToken }));
+
+                // If "cookieToken" is undefined (because cookieToken doesn't exist or is expired).
+            } else {
                 /**
+                 * The API response received from Spotify API.
                  * @type {Object}
-                 * @property {String} token_type - The token type (Bearer).
-                 * @property {String} access_token - The access token provided by Spotify.
                  */
-                const { token_type, access_token } = cookieToken;
-                    
-                return dispatch(setToken({ token_type, access_token }));
+                const response = await fetchSpotifyAPI(url, 'POST');
 
-            };
+                if (response.ok) {
 
-            /**
-             * The API response received from Spotify API.
-             * @type {Object}
-             */
-            const response = await fetchSpotifyAPI(url, 'POST'); // If "cookieToken" is undefined (because cookieToken doesn't exist or is expired).
-            
-            if(response.ok){
-                /**
-                 * @type {Object}
-                 * @property {String} token_type - The token type (Bearer).
-                 * @property {String} access_token - The access token provided by Spotify.
-                 */
-                const { token_type, access_token } = response.data;
+                    setCookie('token', response.data);
 
-                dispatch(setToken({ token_type, access_token }));
+                    dispatch(setToken({ ...response.data }));
 
-                setCookie('token', response.data);
+                };
 
             };
 
         } catch (error) {
-            
+
             console.log(error);
 
             dispatch(setError());

@@ -3,7 +3,6 @@ import { createSlice } from '@reduxjs/toolkit';
 export const hostSlice = createSlice({
 
     name: 'host',
-    
     initialState: {
         host: {
             username: 'aleon88',
@@ -15,7 +14,6 @@ export const hostSlice = createSlice({
         errorHost: false,
         errorMessage: undefined,
     },
-
     reducers: {
         setHost: (state , { payload }) => {
             state.host.username = payload.uid;
