@@ -59,7 +59,6 @@ export const hostSlice = createSlice({
          * @param {String} action.payload.profileUrl - The Spotify profile URL of the host.
          */
         setHost: (state, { payload }) => {
-            console.log(payload)
             state.host.username = payload.uid;
             state.host.profile_url = payload.profileUrl
             state.isHostUpdated = true;

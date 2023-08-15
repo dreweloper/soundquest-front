@@ -10,7 +10,7 @@ export const useForm = () => {
 
         ev.preventDefault();
 
-        setForm(ev.target.username.value.replaceAll(' ', ''));
+        setForm(ev.target.username.value.toLowerCase().replaceAll(' ', ''));
 
     }; //!HANDLESUBMIT
 
