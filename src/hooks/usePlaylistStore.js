@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSpotifyAPI } from "../api";
 import { getPlaylistURL, shuffleArray } from "../helpers";
-import { finishLoading, setError, setPlaylist, setPlaylistDone, setPlaylistUndone } from "../store/slices";
+import { finishLoading, setError, setPlaylist, setPlaylistDone, setTokenUndone } from "../store/slices";
 
 /**
  * Custom hook for 'playlistSlice' to handle asynchronous functions.
@@ -56,8 +56,6 @@ export const usePlaylistStore = () => {
          */
         const url = `https://api.spotify.com/v1/users/${uid}/playlists?offset=0&limit=50`;
 
-        // Reset 'isPlaylistDone' flag to ensure consistent state updates for 'useEffect' in DiscoverPage.
-        if(isPlaylistDone) dispatch(setPlaylistUndone());
 
         try {
             /**
@@ -117,6 +115,8 @@ export const usePlaylistStore = () => {
             console.log(error);
 
             dispatch(setError());
+            // Ensures consistent state updates for 'useEffect' in DiscoverPage and prevents unnecessary re-rendering when navigating with arrows.
+            dispatch(setTokenUndone());
             // Ensure the loading effect lasts longer.
             dispatchWithDelay(dispatch, finishLoading(), 1500);
 

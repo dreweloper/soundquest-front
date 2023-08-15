@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
-import { clearError, finishLoading, setDislike, setError, setToken, setTokenDone, setTokenUndone, startLoading } from "../store/slices";
 import { getCookie, setCookie } from "../helpers/cookies";
 import { fetchSpotifyAPI } from "../api";
 import { dispatchWithDelay } from "../helpers";
+import { clearError, finishLoading, setDislike, setError, setToken, setTokenDone, startLoading } from "../store/slices";
 
 /**
  * Custom hook for 'tokenSlice' to handle asynchronous functions related to the Spotify access token.
@@ -32,7 +32,7 @@ export const useTokenStore = () => {
      * @property {Object} token - The access token supplied by the Spotify Web API.
      * @property {Boolean} isTokenDone - It indicates whether the state processing is complete.
      */
-    const { token, isTokenDone } = useSelector(state => state.token);
+    const { token } = useSelector(state => state.token);
     /**
      * The dispatch function from Redux to dispatch actions.
      * @type {Function}
@@ -59,13 +59,11 @@ export const useTokenStore = () => {
         if(error) dispatch(clearError());
         // If 'isLiked' flag is set, dispatch 'setDislike' action.
         if(isLiked) dispatch(setDislike());
-        // Reset 'isTokenDone' flag to ensure consistent state updates for 'useEffect' in DiscoverPage.
-        if(isTokenDone) dispatch(setTokenUndone());
 
         dispatch(startLoading());
 
         // If the 'token' property of the state is already set, update 'isTokenDone' flag and return.
-        if(Object.keys(token).length != 0) return dispatchWithDelay(dispatch, setTokenDone(), 500); // Delay helps trigger useEffect in Redux.
+        if(Object.keys(token).length != 0) return dispatch(setTokenDone()); // Delay helps trigger useEffect in Redux.
 
         try {
             /**

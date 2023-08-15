@@ -12,7 +12,7 @@ export const ResultsPage = () => {
     const { isTokenDone } = useSelector(state => state.token);
     const { track: { track_id }, isTrackIdDone } = useSelector(state => state.track);
     const { error } = useSelector(state => state.errors);
-    const { host: { username } } = useSelector(state => state.host);
+    const { host: { username }} = useSelector(state => state.host);
 
     // REDUX MIDDLEWARES (CUSTOM HOOKS)
     const { getToken } = useTokenStore();

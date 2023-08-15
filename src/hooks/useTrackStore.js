@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSpotifyAPI } from "../api";
-import { finishLoading, setError, setTrack, setTrackId, setTrackIdDone, setTrackIdUndone } from "../store/slices";
 import { dispatchWithDelay, mapTrackData, shuffleArray } from "../helpers";
+import { finishLoading, setError, setPlaylistUndone, setTokenUndone, setTrack, setTrackId, setTrackIdDone, setTrackIdUndone } from "../store/slices";
 
 /**
  * Custom hook for 'trackSlice' to handle asynchronous functions.
@@ -20,14 +20,14 @@ export const useTrackStore = () => {
      * @property {String} token_type - The token type ('Bearer').
      * @property {String} access_token - The access token provided by Spotify.
      */
-    const { token: { token_type, access_token } } = useSelector(state => state.token);
+    const { token: { token_type, access_token }} = useSelector(state => state.token);
     /**
      * The 'track' state object from Redux store.
      * @type {Object}
      * @property {String} track_id - A randomly selected track ID.
      * @property {Boolean} isTrackIdDone - It signifies the completion of processing for the state property 'track_id'.
      */
-    const { track: { track_id }, isTrackIdDone } = useSelector(state => state.track);
+    const { track: { track_id }} = useSelector(state => state.track);
     /**
      * The dispatch function from Redux to dispatch actions.
      * @type {Function}
@@ -57,9 +57,6 @@ export const useTrackStore = () => {
      * @throws {Error} Throws an error if an issue occurs during the token request process.
      */
     const getPlaylist = async (id) => {
-
-        // Reset 'isTrackIdDone' flag to ensure consistent state updates for 'useEffect' in DiscoverPage.
-        if (isTrackIdDone) dispatch(setTrackIdUndone());
 
         try {
             /**
@@ -104,7 +101,7 @@ export const useTrackStore = () => {
                     } else {
 
                         dispatch(setTrackId(randomTrackID));
-                        
+
                     };
                 };
             };
@@ -114,6 +111,10 @@ export const useTrackStore = () => {
             console.log(error);
 
             dispatch(setError());
+            // Ensures consistent state updates for 'useEffect' in DiscoverPage and prevents unnecessary re-rendering when navigating with arrows.
+            dispatch(setTokenUndone());
+            // Ensures consistent state updates for 'useEffect' in DiscoverPage and prevents unnecessary re-rendering when navigating with arrows.
+            dispatch(setPlaylistUndone());
             // Ensure the loading effect lasts longer.
             dispatchWithDelay(dispatch, finishLoading(), 1000);
 
@@ -159,7 +160,12 @@ export const useTrackStore = () => {
             dispatch(setError());
 
         } finally {
-
+            // Ensures consistent state updates for 'useEffect' in DiscoverPage and prevents unnecessary re-rendering when navigating with arrows.
+            dispatch(setTokenUndone());
+            // Ensures consistent state updates for 'useEffect' in DiscoverPage and prevents unnecessary re-rendering when navigating with arrows.
+            dispatch(setPlaylistUndone());
+            // Ensures consistent state updates for 'useEffect' in DiscoverPage and prevents unnecessary re-rendering when navigating with arrows.
+            dispatch(setTrackIdUndone());
             // Ensure the loading effect lasts longer.
             dispatchWithDelay(dispatch, finishLoading(), 1500);
 
