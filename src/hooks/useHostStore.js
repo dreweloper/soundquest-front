@@ -37,13 +37,13 @@ export const useHostStore = () => {
     /**
      * Handles the case that the user exists and has at least one public playlist.
      * @function handleHostUpdateSuccess
-     * @param {String} userId - The user's Spotify ID.
+     * @param {String} uid - The user's Spotify ID.
      * @param {String} profileUrl - The URL for the Spotify user's profile.
      * @returns {void}
      */
-    const handleHostUpdateSuccess = (userId, profileUrl) => {
+    const handleHostUpdateSuccess = (uid, profileUrl) => {
 
-        dispatch(setHost({ userId, profileUrl }));
+        dispatch(setHost({ uid, profileUrl }));
         // Ensures the loading effect lasts longer.
         dispatchWithDelay(dispatch, finishHostLoading());
         // Ensures the window close effect lasts longer than loading effect.
@@ -140,7 +140,7 @@ export const useHostStore = () => {
                  * @property {Object} data - The public profile information about a Spotify user.
                  * @property {Array} items - A list of the playlists owned or followed by a Spotify user.
                  */
-                const { data: { items } } = await fetchSpotifyAPI(`${urlBase}/${uid}/playlists`, 'GET', authorization);
+                const { data: { items }} = await fetchSpotifyAPI(`${urlBase}/${uid}/playlists`, 'GET', authorization);
 
                 items.length == 0 ? handleNoPublicPlaylistsError() : handleHostUpdateSuccess(uid, response.data.external_urls.spotify);
 

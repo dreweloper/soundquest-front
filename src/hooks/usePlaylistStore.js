@@ -73,6 +73,8 @@ export const usePlaylistStore = () => {
                 */
                 const { items } = response.data;
 
+                // console.log(items)
+
                 // Handles the case when the provided user ID doesn't exist, or the user hasn't created any playlist yet.
                 if (items.length == 0) {
 
