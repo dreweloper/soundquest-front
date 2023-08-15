@@ -1,61 +1,139 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+/**
+ * Redux slice for managing host-related state.
+ * 
+ * @function hostSlice
+ * @param {String} name - A string name for this slice of state.
+ * @param {Object<any>} initialState - The initial state value for this slice of state.
+ * @param {Object<Function>} reducers - An object containing Redux "case reducer" functions.
+ * @returns {void}
+ */
 export const hostSlice = createSlice({
 
     name: 'host',
     initialState: {
+        /**
+         * Information about the host.
+         * @type {Object}
+         * @property {String} username - The Spotify user ID of the host.
+         * @property {String} profile_url - The Spotify profile URL of the host.
+         */
         host: {
             username: 'aleon88',
             profile_url: 'https://open.spotify.com/user/aleon88'
         },
+        /**
+         * Error state related to the host.
+         * @type {Object}
+         * @property {Boolean} errorHost - Indicates if an error related to the host occurred.
+         * @property {String|undefined} errorMessage - The error message related to the host.
+         */
+        error: {
+            errorHost: false,
+            errorMessage: undefined
+        },
+        /**
+         * Flag indicating whether the host form is open.
+         * @type {Boolean}
+         */
         isHostFormOpen: false,
+        /**
+         * Flag indicating whether the host is being loaded.
+         * @type {Boolean}
+         */
         isHostLoading: false,
+        /**
+         * Flag indicating whether the host information has been updated.
+         * @type {Boolean}
+         */
         isHostUpdated: false,
-        errorHost: false,
-        errorMessage: undefined,
     },
     reducers: {
-        setHost: (state , { payload }) => {
+        /**
+         * Sets the host information and marks it as updated.
+         * @function
+         * @param {Object} state - The current state.
+         * @param {Object} action - The action object containing the payload.
+         * @param {String} action.payload.uid - The Spotify user ID of the host.
+         * @param {String} action.payload.profileUrl - The Spotify profile URL of the host.
+         */
+        setHost: (state, { payload }) => {
             state.host.username = payload.uid;
             state.host.profile_url = payload.profileUrl
             state.isHostUpdated = true;
         },
-        setErrorHost: (state, { payload }) => {
-            state.errorHost = true;
-            state.errorMessage = payload;
-        },
+        /**
+         * Opens the host form.
+         * @function
+         * @param {Object} state - The current state.
+         */
         openHostForm: (state) => {
             state.isHostFormOpen = true;
         },
+        /**
+         * Closes the host form and resets the host update and error states if they are currently set to true.
+         * @function
+         * @param {Object} state - The current state.
+         */
+        closeHostForm: (state) => {
+            state.isHostFormOpen = false;
+            state.isHostUpdated = state.isHostUpdated && false;
+            if(state.error.errorHost){
+                state.error.errorHost = false;
+                state.error.errorMessage = undefined;
+            };
+        },
+        /**
+         * Starts the loading state for the host.
+         * @function
+         * @param {Object} state - The current state.
+         */
         startHostLoading: (state) => {
             state.isHostLoading = true;
         },
-        resetHost: (state) => {
-            state.host = 'aleon88';
-            state.isHostUpdated = false;
-        },
-        clearErrorHost: (state) => {
-            state.errorHost = false;
-            state.errorMessage = undefined;
-        },
-        closeHostForm: (state) => {
-            state.isHostFormOpen = false;
-            state.isHostUpdated = false;
-        },
+        /**
+         * Finishes the loading state for the host.
+         * @function
+         * @param {Object} state - The current state.
+         */
         finishHostLoading: (state) => {
             state.isHostLoading = false;
+        },
+        /**
+         * Sets the error state for the host and provides an error message.
+         * @function
+         * @param {Object} state - The current state.
+         * @param {Object} action - The action object containing the payload.
+         * @param {String} action.payload - The error message related to the host.
+         */
+        setErrorHost: (state, { payload }) => {
+            state.error.errorHost = true;
+            state.error.errorMessage = payload;
+        },
+        /**
+         * Clears the error state for the host.
+         * @function
+         * @param {Object} state - The current state.
+         */
+        clearErrorHost: (state) => {
+            state.error.errorHost = false;
+            state.error.errorMessage = undefined;
         }
     }
 
 });
 
+/**
+ * Action creators generated by the host slice.
+ * @type {Object}
+ */
 export const {
     setHost,
-    setErrorHost,
     openHostForm,
-    startHostLoading,
-    resetHost,
-    clearErrorHost,
     closeHostForm,
-    finishHostLoading
+    startHostLoading,
+    finishHostLoading,
+    setErrorHost,
+    clearErrorHost,
 } = hostSlice.actions;

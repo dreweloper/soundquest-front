@@ -28,7 +28,7 @@ export const usePlaylistStore = () => {
      * @property {String} playlist_id - A randomly selected playlist ID..
      * @property {Boolean} isPlaylistDone - It indicates whether the state processing is complete.
      */
-    const { playlist: { playlist_id }, isPlaylistDone } = useSelector(state => state.playlist);
+    const { playlist: { playlist_id }} = useSelector(state => state.playlist);
     /**
      * The dispatch function from Redux to dispatch actions.
      * @type {Function}
@@ -73,11 +73,11 @@ export const usePlaylistStore = () => {
                 */
                 const { items } = response.data;
 
-                // Handle the case when the provided user ID doesn't exist, or the user hasn't created any playlist yet.
+                // Handles the case when the provided user ID doesn't exist, or the user hasn't created any playlist yet.
                 if (items.length == 0) {
 
                     dispatch(setError());
-                    // Ensure the loading effect lasts longer.
+                    // Ensures the loading effect lasts longer.
                     dispatchWithDelay(dispatch, finishLoading(), 1500);
 
                 } else {
@@ -117,7 +117,7 @@ export const usePlaylistStore = () => {
             dispatch(setError());
             // Ensures consistent state updates for 'useEffect' in DiscoverPage and prevents unnecessary re-rendering when navigating with arrows.
             dispatch(setTokenUndone());
-            // Ensure the loading effect lasts longer.
+            // Ensures the loading effect lasts longer.
             dispatchWithDelay(dispatch, finishLoading(), 1500);
 
         };

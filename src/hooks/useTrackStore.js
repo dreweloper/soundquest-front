@@ -20,14 +20,14 @@ export const useTrackStore = () => {
      * @property {String} token_type - The token type ('Bearer').
      * @property {String} access_token - The access token provided by Spotify.
      */
-    const { token: { token_type, access_token } } = useSelector(state => state.token);
+    const { token: { token_type, access_token }} = useSelector(state => state.token);
     /**
      * The 'track' state object from Redux store.
      * @type {Object}
      * @property {String} track_id - A randomly selected track ID.
      * @property {Boolean} isTrackIdDone - It signifies the completion of processing for the state property 'track_id'.
      */
-    const { track: { track_id } } = useSelector(state => state.track);
+    const { track: { track_id }} = useSelector(state => state.track);
     /**
      * The dispatch function from Redux to dispatch actions.
      * @type {Function}
@@ -74,11 +74,11 @@ export const useTrackStore = () => {
                  */
                 const { items } = response.data.tracks;
 
-                // Handle the case when the playlist is empty.
+                // Handles the case when the playlist is empty.
                 if (items.length == 0) {
 
                     dispatch(setError());
-                    // Ensure the loading effect lasts longer.
+                    // Ensures the loading effect lasts longer.
                     dispatchWithDelay(dispatch, finishLoading(), 1500);
 
                 } else {
@@ -113,7 +113,7 @@ export const useTrackStore = () => {
             dispatch(setError());
             // Ensures consistent state updates for 'useEffect' in DiscoverPage and prevents unnecessary re-rendering when navigating with arrows.
             resetStateFlags(dispatch, [setTokenUndone, setPlaylistUndone]);
-            // Ensure the loading effect lasts longer.
+            // Ensures the loading effect lasts longer.
             dispatchWithDelay(dispatch, finishLoading(), 1000);
 
         };
@@ -160,7 +160,7 @@ export const useTrackStore = () => {
         } finally {
             // Ensures consistent state updates for 'useEffect' in DiscoverPage and prevents unnecessary re-rendering when navigating with arrows.
             resetStateFlags(dispatch, [setTokenUndone, setPlaylistUndone, setTrackIdUndone]);
-            // Ensure the loading effect lasts longer.
+            // Ensures the loading effect lasts longer.
             dispatchWithDelay(dispatch, finishLoading(), 1500);
 
         };

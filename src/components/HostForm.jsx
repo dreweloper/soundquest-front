@@ -1,12 +1,16 @@
 import { useEffect } from "react";
 import { useForm, useHostStore } from "../hooks";
 import { useDispatch, useSelector } from "react-redux";
-import { clearErrorHost, closeHostForm } from "../store/slices";
+import { closeHostForm } from "../store/slices";
 
 export const HostForm = () => {
 
     // REDUX HOOKS
-    const { errorHost, errorMessage, isHostLoading, isHostUpdated } = useSelector(state => state.host);
+    const {
+        error: { errorHost, errorMessage },
+        isHostLoading,
+        isHostUpdated
+    } = useSelector(state => state.host);
 
     const dispatch = useDispatch();
 
@@ -15,15 +19,6 @@ export const HostForm = () => {
 
     // CUSTOM HOOKS
     const { form, handleSubmit } = useForm();
-
-    // EVENT
-    const handleCloseHostForm = () => {
-
-        dispatch(closeHostForm());
-
-        dispatch(clearErrorHost());
-
-    };
 
     // REACT HOOKS
     useEffect(() => {
@@ -43,7 +38,8 @@ export const HostForm = () => {
 
                     <button
                         className="close-button"
-                        onClick={handleCloseHostForm}
+                        disabled={isHostLoading || isHostUpdated}
+                        onClick={() => { dispatch(closeHostForm()) }}
                     >
 
                         <span className='material-symbols-rounded'>

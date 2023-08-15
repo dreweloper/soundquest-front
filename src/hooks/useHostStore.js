@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSpotifyAPI } from "../api";
-import { clearErrorHost, closeHostForm, finishHostLoading, setErrorHost, setHost, startHostLoading } from "../store/slices";
 import { dispatchWithDelay } from "../helpers";
+import { clearErrorHost, closeHostForm, finishHostLoading, setErrorHost, setHost, startHostLoading } from "../store/slices";
 
 /**
  * Custom hook for 'hostSlice' to handle asynchronous functions.
@@ -24,7 +24,7 @@ export const useHostStore = () => {
      * @type {Object}
      * @property {Boolean} errorHost - Indicates whether there has been an error or not while attempting to modify the host.
      */
-    const { errorHost } = useSelector(state => state.host);
+    const { error: { errorHost }} = useSelector(state => state.host);
     /**
      * The dispatch function from Redux to dispatch actions.
      * @type {Function}
@@ -33,7 +33,8 @@ export const useHostStore = () => {
 
     // FUNCTIONS
     /**
-     * The function checks the user's Spotify account existence and the presence of public playlists using the provided ID.
+     * Checks the user's Spotify account existence and the presence of public playlists using the provided ID.
+     * 
      * @function getUserProfile
      * @async
      * @param {String} uid - The user's Spotify ID.
@@ -41,7 +42,7 @@ export const useHostStore = () => {
      */
     const getUserProfile = async (uid) => {
         
-        // To clear the error message in case of a successful retry.
+        // Clears the error message in case of a successful retry.
         if(errorHost) dispatch(clearErrorHost());
 
         dispatch(startHostLoading());
@@ -88,16 +89,16 @@ export const useHostStore = () => {
                     const profileUrl = response.data.external_urls.spotify;
 
                     dispatch(setHost({ uid, profileUrl }));
-                    // Ensure the loading effect lasts longer.
+                    // Ensures the loading effect lasts longer.
                     dispatchWithDelay(dispatch, finishHostLoading());
-                    // Ensure the window close effect lasts longer than loading effect.
+                    // Ensures the window close effect lasts longer than loading effect.
                     dispatchWithDelay(dispatch, closeHostForm(), 3000);
 
-                // Handle the case that the user doesn't have any public playlists.
+                // Handles the case that the user doesn't have any public playlists.
                 } else {
 
                     dispatch(setErrorHost(`The user doesn't have any public playlists.`));
-                    // Ensure the loading effect lasts longer.
+                    // Ensures the loading effect lasts longer.
                     dispatchWithDelay(dispatch, finishHostLoading());
 
                 };
@@ -108,7 +109,7 @@ export const useHostStore = () => {
                 if (response.status == 400) {
 
                     dispatch(setErrorHost('Invalid username.'));
-                    // Ensure the loading effect lasts longer.
+                    // Ensures the loading effect lasts longer.
                     dispatchWithDelay(dispatch, finishHostLoading());
 
                 };
@@ -117,7 +118,7 @@ export const useHostStore = () => {
                 if (response.status == 500) {
 
                     dispatch(setErrorHost(`The username doesn't exist.`));
-                    // Ensure the loading effect lasts longer.
+                    // Ensures the loading effect lasts longer.
                     dispatchWithDelay(dispatch, finishHostLoading());
 
                 };
@@ -127,7 +128,7 @@ export const useHostStore = () => {
         } catch (error) {
 
             dispatch(setErrorHost(`Internal server error. Try again later.`));
-            // Ensure the loading effect lasts longer.
+            // Ensures the loading effect lasts longer.
             dispatchWithDelay(dispatch, finishHostLoading());
 
         };

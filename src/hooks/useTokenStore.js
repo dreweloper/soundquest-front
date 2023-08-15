@@ -46,6 +46,7 @@ export const useTokenStore = () => {
      */
     const url = 'https://accounts.spotify.com/api/token';
 
+    // FUNCTIONS
     /**
      * Requests an access token from Spotify, stores it in the 'token' state, and in cookies.
      * 
@@ -55,7 +56,7 @@ export const useTokenStore = () => {
      * @throws {Error} Throws an error if an issue occurs during the token request process.
      */
     const getToken = async () => {
-        // Clear error state if previously set.
+        // Clears error state if previously set.
         if(error) dispatch(clearError());
         // If 'isLiked' flag is set, dispatch 'setDislike' action.
         if(isLiked) dispatch(setDislike());
@@ -89,9 +90,9 @@ export const useTokenStore = () => {
                 const response = await fetchSpotifyAPI(url, 'POST');
 
                 if (response.ok) {
-                    // Store token in cookies.
+                    // Stores token in cookies.
                     setCookie('token', response.data);
-                    // Set token in state.
+                    // Sets token in state.
                     dispatch(setToken({ ...response.data }));
 
                 };
@@ -103,7 +104,7 @@ export const useTokenStore = () => {
             console.log(error);
 
             dispatch(setError());
-            // Ensure the loading effect lasts longer.
+            // Ensures the loading effect lasts longer.
             dispatchWithDelay(dispatch, finishLoading(), 1500);
 
         };
