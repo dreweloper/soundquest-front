@@ -19,12 +19,12 @@ export const useLikeStore = () => {
      * The 'playlist' state object from Redux store.
      * @type {Object}
      */
-    const playlist = useSelector(state => state.playlist);
+    const { playlist } = useSelector(state => state.playlist);
     /**
      * The 'track' state object from Redux store.
      * @type {Object}
      */
-    const track = useSelector(state => state.track);
+    const { track } = useSelector(state => state.track);
     /**
      * The dispatch function from Redux to dispatch actions.
      * @type {Function}

@@ -2,14 +2,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useLikeStore, useTokenStore } from '../hooks';
 import { HostForm } from './HostForm';
-import { openHostForm } from '../store/slices';
+import { closeHostForm, openHostForm } from '../store/slices';
+import { useEffect } from 'react';
 
 
 export const Card = () => {
 
     // REDUX HOOKS
-    const { playlist_url } = useSelector(state => state.playlist);
-    const { album, artwork, artist, name, track_url } = useSelector(state => state.track);
+    const { playlist: { playlist_url }} = useSelector(state => state.playlist);
+    const { track: { album, artwork, artist, name, track_url }} = useSelector(state => state.track);
     /**
      * The 'isLiked' state value from Redux store.
      * @type {Boolean}
@@ -26,6 +27,13 @@ export const Card = () => {
     // EVENT
     // If 'isLiked' is 'false', it is changed to 'true' and the track is added to the MongoDB API, and vice versa.
     const handleLike = () => !isLiked ? addTrack() : deleteTrack();
+
+    // REDUX HOOK
+    useEffect(() => {
+        // Handles closing the 'HostForm' component when navigating using browser arrow keys.
+        if(isHostFormOpen) dispatch(closeHostForm());
+
+    }, []);
 
 
     return (

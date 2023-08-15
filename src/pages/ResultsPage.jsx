@@ -6,18 +6,13 @@ import { Footer, NavBar } from '../layouts';
 
 export const ResultsPage = () => {
 
-    // REDUX STATES
-    const { error } = useSelector(state => state.errors);
-    const { host } = useSelector(state => state.host);
+    // REDUX HOOKS
     const { isLoading } = useSelector(state => state.loading);
-    const playlist = useSelector(state => state.playlist);
-    const token = useSelector(state => state.token);
-    const { track_id, isTrackStateComplete } = useSelector(state => state.track);
-
-    // REDUX STATES DESTRUCTURING
-    const { access_token } = token;
-    const { playlist_id } = playlist;
-    const { username } = host;
+    const { playlist: { playlist_id }, isPlaylistDone } = useSelector(state => state.playlist);
+    const { isTokenDone } = useSelector(state => state.token);
+    const { track: { track_id }, isTrackIdDone } = useSelector(state => state.track);
+    const { error } = useSelector(state => state.errors);
+    const { host: { username }} = useSelector(state => state.host);
 
     // REDUX MIDDLEWARES (CUSTOM HOOKS)
     const { getToken } = useTokenStore();
@@ -26,26 +21,31 @@ export const ResultsPage = () => {
 
 
     // USEEFFECTS
-
     useEffect(() => {
 
-        access_token && getUserPlaylists(username); // If 'access_token' isn't 'undefined'.
-
-    }, [token]);
-
+        getToken();
+    
+    }, []);
 
     useEffect(() => {
+        // If the 'token' object's state has been completed.
+        if(isTokenDone) getUserPlaylists(username);
 
-        playlist_id && getPlaylist(playlist_id); // If 'playlist_id' isn't 'undefined'.
-
-    }, [playlist]);
+    }, [isTokenDone]);
 
 
     useEffect(() => {
+        // If the 'playlist' object's state has been completed.
+        if(isPlaylistDone) getPlaylist(playlist_id);
 
-        track_id && getTrack(track_id); // If 'track_id' isn't 'undefined'.
+    }, [isPlaylistDone]);
 
-    }, [track_id]); // If I only specify 'track', it triggers twice due to the state change caused by the previous `useEffect` with the `setTrackID` dispatch from the `getPlaylist` function of the `useTrackStore` hook.
+
+    useEffect(() => {
+        // If the 'track_id' property within the 'track' state has been completed.
+        if(isTrackIdDone) getTrack(track_id);
+
+    }, [isTrackIdDone]);
 
 
 
@@ -57,7 +57,7 @@ export const ResultsPage = () => {
 
             <main className='main-results fade-in-transition'>
 
-                {
+                {/* {
                     !isLoading && !access_token && (!error &&
 
                         <button
@@ -72,7 +72,7 @@ export const ResultsPage = () => {
                         </button>
 
                     )
-                }
+                } */}
 
                 {
                     isLoading && (<span className='spinner'></span>)
@@ -83,7 +83,7 @@ export const ResultsPage = () => {
                 }
 
                 {
-                    !isLoading && !error && (isTrackStateComplete && <Card />)
+                    !isLoading && !error && (<Card />)
                 }
 
             </main >

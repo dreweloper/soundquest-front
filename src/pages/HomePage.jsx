@@ -1,30 +1,10 @@
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
-import { useLikeStore, useTokenStore, useVisit } from '../hooks';
+import { useVisit } from '../hooks';
 
 export const HomePage = () => {
 
     // CUSTOM HOOKS
-    const { getTracksCount } = useLikeStore();
-    const { getToken } = useTokenStore();
     const { recordVisit } = useVisit();
-
-    // REACT HOOKS
-    useEffect(() => {
-
-        // It also serves to awaken the Render server if it is idle.
-        getTracksCount();
-
-    }, []);
-
-    // EVENTS
-    const handleVisit = () => { //! Si desaparece 'getToken', se pasa directamente 'recordVisit' en el evento onClick (sin el handle).
-
-        getToken();
-        // It also serves to awaken the Render server if it is idle.
-        recordVisit();
-
-    };
 
 
     return (
@@ -51,7 +31,7 @@ export const HomePage = () => {
 
                 <Link
                     to='/results'
-                    onClick={handleVisit}
+                    onClick={() => { recordVisit() }} // It also serves to awaken the Render server if it is idle.
                 >
 
                     <span className="material-symbols-rounded">
