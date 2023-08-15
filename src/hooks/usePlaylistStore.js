@@ -21,20 +21,21 @@ export const usePlaylistStore = () => {
      * @property {String} token_type - The token type ('Bearer').
      * @property {String} access_token - The access token provided by Spotify.
      */
-    const { token: { token_type, access_token }} = useSelector(state => state.token);
+    const { token: { token_type, access_token } } = useSelector(state => state.token);
     /**
      * The 'playlist' state object from Redux store.
      * @type {Object}
      * @property {String} playlist_id - A randomly selected playlist ID..
      * @property {Boolean} isPlaylistDone - It indicates whether the state processing is complete.
      */
-    const { playlist: { playlist_id }} = useSelector(state => state.playlist);
+    const { playlist: { playlist_id } } = useSelector(state => state.playlist);
     /**
      * The dispatch function from Redux to dispatch actions.
      * @type {Function}
      */
     const dispatch = useDispatch();
 
+    //FUNCTIONS
     /**
      * Fetches user playlists from the Spotify Web API and updates the Redux state.
      * 
@@ -54,7 +55,17 @@ export const usePlaylistStore = () => {
          * The Spotify API endpoint URL that fetches the playlists owned or followed by a user.
          * @type {String}
          */
-        const url = `https://api.spotify.com/v1/users/${uid}/playlists?offset=0&limit=50`;
+        const urlBase = 'https://api.spotify.com';
+        /**
+         * A randomly selected playlist ID.
+         * @type {String}
+         */
+        let randomPlaylistId;
+        /**
+         * The URL for the Spotify playlist with the given 'randomPlaylistId'.
+         * @type {String}
+         */
+        let playlistUrl;
 
 
         try {
@@ -64,52 +75,73 @@ export const usePlaylistStore = () => {
              * @property {Boolean} ok - Indicates if the response is successful.
              * @property {Object} data - A list of the playlists owned or followed by a Spotify user.
              */
-            const response = await fetchSpotifyAPI(url, 'GET', authorization);
+            const response = await fetchSpotifyAPI(`${urlBase}/v1/users/${uid}/playlists?offset=0&limit=50`, 'GET', authorization);
 
             if (response.ok) {
-               /**
-                * Information about the user's playlists.
-                * @type {Array<Object>}
-                */
-                const { items } = response.data;
+                /**
+                 * The total number of items (array of simplified playlist object) available to return.
+                 * @type {Number}
+                 */
+                const { total } = response.data;
 
-                // Handles the case when the provided user ID doesn't exist, or the user hasn't created any playlist yet.
-                if (items.length == 0) {
+                // Handles the case where the user has over 50 public playlists.
+                if (total > 50) {
+                    /**
+                     * Total number of tracks in a playlist.
+                     * @type {Number}
+                     */
+                    let totalTracks;
 
-                    dispatch(setError());
-                    // Ensures the loading effect lasts longer.
-                    dispatchWithDelay(dispatch, finishLoading(), 1500);
+                    // Handles the case when the playlist is empty to prevent errors from occurring.
+                    do {
+                        /**
+                         * Generates a random offset number within a specified range.
+                         * @type {Number}
+                         */
+                        const randomOffsetNum = Math.floor(Math.random() * total) + 1;
+                        /**
+                         * The API response received from Spotify API.
+                         * The URL takes two query parameters: "offset," a random number representing the playlist to display; and "limit," which defaults to 1, ensuring a single result is always shown to minimize steps for obtaining the required data.
+                         * @type {Object}
+                         * @property {Object} data - A playlist owned or followed by a Spotify user.
+                         */
+                        const { data } = await fetchSpotifyAPI(`${urlBase}/v1/users/${uid}/playlists?offset=${randomOffsetNum}&limit=1`, 'GET', authorization);
 
+                        randomPlaylistId = data.items[0].id;
+
+                        playlistUrl = data.items[0].external_urls.spotify;
+
+                        totalTracks = data.items[0].tracks.total;
+
+                    } while (totalTracks < 1);
+
+                    // Handles the case where the new playlist is the same as the current.
+                    randomPlaylistId == playlist_id ? dispatch(setPlaylistDone()) : dispatch(setPlaylist({ randomPlaylistId, playlistUrl }));
+
+                // This approach eliminates the need for an additional fetch to the Spotify API.
                 } else {
+                    /**
+                     * Information about the user's playlists.
+                     * @type {Array<Object>}
+                     */
+                    const { items } = response.data;
                     /**
                      * Array of playlist IDs extracted from the user's playlists information.
                      * @type {Array<String>} 
                      */
                     const arrPlaylistIDs = items.map(playlist => playlist.id);
-                    /**
-                     * A randomly selected playlist ID.
-                     * @type {String}
-                     */
-                    const randomPlaylistID = shuffleArray(arrPlaylistIDs);
-                    /**
-                     * The URL for the Spotify playlist with the given 'randomPlaylistID'.
-                     * @type {String}
-                     */
-                    const PlaylistUrl = getPlaylistURL(items, randomPlaylistID);
+
+                    randomPlaylistId = shuffleArray(arrPlaylistIDs);
+
+                    playlistUrl = getPlaylistURL(items, randomPlaylistId);
 
                     // If the new playlist is the same as the current.
-                    if(randomPlaylistID == playlist_id) {
+                    randomPlaylistId == playlist_id ? dispatch(setPlaylistDone()) : dispatch(setPlaylist({ randomPlaylistId, playlistUrl }));
 
-                        dispatch(setPlaylistDone());
-
-                    } else {
-
-                        dispatch(setPlaylist({ randomPlaylistID, PlaylistUrl }));
-
-                    };
                 };
+
             };
-            
+
         } catch (error) {
 
             console.log(error);

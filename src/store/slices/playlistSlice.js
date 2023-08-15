@@ -31,8 +31,8 @@ export const playlistSlice = createSlice({
          * @param {PlaylistPayload} action - The action containing the playlist payload.
          */
         setPlaylist: (state, { payload }) => {
-            state.playlist.playlist_id = payload.randomPlaylistID;
-            state.playlist.playlist_url = payload.PlaylistUrl;
+            state.playlist.playlist_id = payload.randomPlaylistId;
+            state.playlist.playlist_url = payload.playlistUrl;
             state.isPlaylistDone = true;
         },
         /**
