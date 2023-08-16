@@ -66,6 +66,11 @@ export const usePlaylistStore = () => {
          * @type {String}
          */
         let playlistUrl;
+        /**
+         * Total tracks in the playlist.
+         * @type {Number}
+         */
+        let totalTracks;
 
 
         try {
@@ -87,36 +92,68 @@ export const usePlaylistStore = () => {
                 // Handles the case where the user has over 50 public playlists.
                 if (total > 50) {
                     /**
-                     * Total number of tracks in a playlist.
+                     * Generates a random number within a specified range.
                      * @type {Number}
                      */
-                    let totalTracks;
+                    const randomNum = Math.floor(Math.random() * total) + 1;
+                    /**
+                     * //!50 porque es el valor máximo que admite Spotify por el query param "limit".
+                     * //!De esta forma se asegura que la respuesta siempre devolverá el número máximo de "items" (playlists).
+                     * @type {Number}
+                     */
+                    const offset = (total - randomNum) < 50 ? total - 50 : randomNum;
 
-                    // Handles the case when the playlist is empty to prevent errors from occurring.
-                    do {
+                    const newResponse = await fetchSpotifyAPI(`${urlBase}/v1/users/${uid}/playlists?offset=${offset}&limit=50`, 'GET', authorization);
+
+                    if (newResponse.ok) {
                         /**
-                         * Generates a random offset number within a specified range.
-                         * @type {Number}
+                         * Information about the user's playlists.
+                         * @type {Array<Object>}
                          */
-                        const randomOffsetNum = Math.floor(Math.random() * total) + 1;
+                        const { items } = newResponse.data;
                         /**
-                         * The API response received from Spotify API.
-                         * The URL takes two query parameters: "offset," a random number representing the playlist to display; and "limit," which defaults to 1, ensuring a single result is always shown to minimize steps for obtaining the required data.
-                         * @type {Object}
-                         * @property {Object} data - A playlist owned or followed by a Spotify user.
+                         * Array of playlist IDs extracted from the user's playlists information.
+                         * @type {Array<String>} 
                          */
-                        const { data } = await fetchSpotifyAPI(`${urlBase}/v1/users/${uid}/playlists?offset=${randomOffsetNum}&limit=1`, 'GET', authorization);
+                        const arrayPlaylistIds = items.map(playlist => playlist.id);
 
-                        randomPlaylistId = data.items[0].id;
+                        // Handles the case when the playlist is empty to prevent errors from occurring.
+                        do {
 
-                        playlistUrl = data.items[0].external_urls.spotify;
+                            randomPlaylistId = shuffleArray(arrayPlaylistIds);
 
-                        totalTracks = data.items[0].tracks.total;
+                            totalTracks = items.find(playlist => playlist.id == randomPlaylistId)?.tracks.total;
 
-                    } while (totalTracks < 1);
+                            if (totalTracks > 0) {
 
-                    // Handles the case where the new playlist is the same as the current.
-                    randomPlaylistId == playlist_id ? dispatch(setPlaylistDone()) : dispatch(setPlaylist({ randomPlaylistId, playlistUrl }));
+                                playlistUrl = items.find(playlist => playlist.id == randomPlaylistId)?.external_urls.spotify;
+
+                            } else {
+                                /**
+                                 * Finds the index of the empty playlist.
+                                 * @type {Number}
+                                 */
+                                const playlistIdIndex = arrayPlaylistIds.findIndex(item => item == randomPlaylistId);
+                                // Removes empty playlists.
+                                arrayPlaylistIds.splice(playlistIdIndex, 1);
+
+                            };
+
+                        } while (totalTracks == 0 && arrayPlaylistIds.length > 0);
+
+                        //! Maneja el error en caso de que todas las playlists estén vacías.
+                        //! En el componente Error habría que dar la opción de informar que el usuario solo tiene playlists vacías y dar la opción de cambiar de host.
+                        if (arrayPlaylistIds.length == 0) return dispatch(setError());
+
+                        // Handles the case where the new playlist is the same as the current.
+                        randomPlaylistId == playlist_id ? dispatch(setPlaylistDone()) : dispatch(setPlaylist({ randomPlaylistId, playlistUrl }));
+
+                    } else {
+
+                        //! handle bad request error
+                        console.log('BAD REQUEST ERROR');
+
+                    };
 
                 // This approach eliminates the need for an additional fetch to the Spotify API.
                 } else {
@@ -129,13 +166,37 @@ export const usePlaylistStore = () => {
                      * Array of playlist IDs extracted from the user's playlists information.
                      * @type {Array<String>} 
                      */
-                    const arrPlaylistIDs = items.map(playlist => playlist.id);
+                    const arrayPlaylistIds = items.map(playlist => playlist.id);
 
-                    randomPlaylistId = shuffleArray(arrPlaylistIDs);
+                    // Handles the case when the playlist is empty to prevent errors from occurring.
+                    do {
 
-                    playlistUrl = getPlaylistURL(items, randomPlaylistId);
+                        randomPlaylistId = shuffleArray(arrayPlaylistIds);
 
-                    // If the new playlist is the same as the current.
+                        totalTracks = items.find(playlist => playlist.id == randomPlaylistId)?.tracks.total;
+
+                        if (totalTracks > 0) {
+
+                            playlistUrl = items.find(playlist => playlist.id == randomPlaylistId)?.external_urls.spotify;
+
+                        } else {
+                            /**
+                             * Finds the index of the empty playlist.
+                             * @type {Number}
+                             */
+                            const playlistIdIndex = arrayPlaylistIds.findIndex(item => item == randomPlaylistId);
+                            // Removes empty playlists.
+                            arrayPlaylistIds.splice(playlistIdIndex, 1);
+
+                        };
+
+                    } while (totalTracks == 0 && arrayPlaylistIds.length > 0);
+
+                    //! Maneja el error en caso de que todas las playlists estén vacías.
+                    //! En el componente Error habría que dar la opción de informar que el usuario solo tiene playlists vacías y dar la opción de cambiar de host.
+                    if (arrayPlaylistIds.length == 0) return dispatch(setError());
+
+                    // Handles the case where the new playlist is the same as the current.
                     randomPlaylistId == playlist_id ? dispatch(setPlaylistDone()) : dispatch(setPlaylist({ randomPlaylistId, playlistUrl }));
 
                 };
