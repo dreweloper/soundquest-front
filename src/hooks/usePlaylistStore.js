@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSpotifyAPI } from "../api";
-import { getPlaylistURL, shuffleArray } from "../helpers";
+import { shuffleArray } from "../helpers";
 import { finishLoading, setError, setPlaylist, setPlaylistDone, setTokenUndone } from "../store/slices";
 
 /**
@@ -37,6 +37,88 @@ export const usePlaylistStore = () => {
 
     //FUNCTIONS
     /**
+     * Handles the selection of a random playlist ID and its URL and updates the Redux state accordingly.
+     * 
+     * @function handlePlaylistSelection
+     * @param {Array<Object>} items - Information about the user's playlists.
+     * @param {Array<String>} arrayPlaylistIds - Array of playlist IDs extracted from the user's playlists information.
+     * @returns {void}
+     */
+    const handlePlaylistSelection = (items, arrayPlaylistIds) => {
+        /**
+         * A randomly selected playlist ID.
+         * @type {String}
+         */
+        let randomPlaylistId;
+        /**
+         * The URL for the Spotify playlist with the given 'randomPlaylistId'.
+         * @type {String}
+         */
+        let playlistUrl;
+        /**
+         * Total tracks in the playlist.
+         * To prevent errors from occurring, the default value is set to 0, as the track object might be null if a track is no longer available.
+         * @type {Number}
+         */
+        let totalTracks;
+
+        do {
+
+            randomPlaylistId = shuffleArray(arrayPlaylistIds);
+
+            totalTracks = items.find(playlist => playlist.id === randomPlaylistId)?.tracks.total || 0;
+
+            if (totalTracks > 0) {
+
+                playlistUrl = items.find(playlist => playlist.id === randomPlaylistId)?.external_urls.spotify;
+
+            } else {
+                /**
+                 * Finds the index of the empty playlist.
+                 * @type {Number}
+                 */
+                const playlistIdIndex = arrayPlaylistIds.findIndex(item => item === randomPlaylistId);
+                // Removes empty playlists.
+                if(playlistIdIndex != -1) arrayPlaylistIds.splice(playlistIdIndex, 1);
+                
+            };
+
+        } while (totalTracks === 0 && arrayPlaylistIds.length > 0);
+
+        // Handles the case where all the playlists are empty.
+        if (arrayPlaylistIds.length === 0) {
+
+            dispatch(setError()); //! En el componente Error habría que dar la opción de informar que el usuario solo tiene playlists vacías y dar la opción de cambiar de host.
+
+        // Handles the case where the new playlist is the same as the current.
+        } else if (randomPlaylistId === playlist_id) {
+
+            dispatch(setPlaylistDone());
+
+        } else {
+
+            dispatch(setPlaylist({ randomPlaylistId, playlistUrl }));
+
+        };
+
+    }; //!HANDLEPLAYLISTSELECTION
+    /**
+     * Handles an error by logging it and dispatching error-related actions.
+     *
+     * @function handleCatchError
+     * @returns {void}
+     */
+    const handleError = () => {
+
+        dispatch(setError());
+        // Ensures consistent state updates for 'useEffect' in DiscoverPage and prevents unnecessary re-rendering when navigating with arrows.
+        dispatch(setTokenUndone());
+        // Ensures the loading effect lasts longer.
+        dispatchWithDelay(dispatch, finishLoading(), 1500);
+
+    }; //!HANDLEERROR
+
+    /**
      * Fetches user playlists from the Spotify Web API and updates the Redux state.
      * 
      * @function getPlaylist
@@ -56,21 +138,6 @@ export const usePlaylistStore = () => {
          * @type {String}
          */
         const urlBase = 'https://api.spotify.com';
-        /**
-         * A randomly selected playlist ID.
-         * @type {String}
-         */
-        let randomPlaylistId;
-        /**
-         * The URL for the Spotify playlist with the given 'randomPlaylistId'.
-         * @type {String}
-         */
-        let playlistUrl;
-        /**
-         * Total tracks in the playlist.
-         * @type {Number}
-         */
-        let totalTracks;
 
 
         try {
@@ -84,25 +151,37 @@ export const usePlaylistStore = () => {
 
             if (response.ok) {
                 /**
-                 * The total number of items (array of simplified playlist object) available to return.
-                 * @type {Number}
+                 * @type {Object}
+                 * @property {Number} total - The total number of items (array of simplified playlist object) available to return.
+                 * @property {Array<Object>} items - Information about the user's playlists.
                  */
-                const { total } = response.data;
+                const { total, items } = response.data;
+                /**
+                 * Array of playlist IDs extracted from the user's playlists information.
+                 * @type {Array<String>} 
+                 */
+                const arrayPlaylistIds = items.map(playlist => playlist.id);
 
                 // Handles the case where the user has over 50 public playlists.
                 if (total > 50) {
                     /**
-                     * Generates a random number within a specified range.
+                     * Generates a random number within a specified range ('total').
                      * @type {Number}
                      */
                     const randomNum = Math.floor(Math.random() * total) + 1;
                     /**
-                     * //!50 porque es el valor máximo que admite Spotify por el query param "limit".
-                     * //!De esta forma se asegura que la respuesta siempre devolverá el número máximo de "items" (playlists).
+                     * The offset of the items returned.
+                     * Ensures the response always returns the maximum number of "items" (playlists).
+                     * 50 is the maximum number of "items" in the response ("limit" query param).
                      * @type {Number}
                      */
                     const offset = (total - randomNum) < 50 ? total - 50 : randomNum;
-
+                     /**
+                     * The API response received from Spotify API.
+                     * @type {Object}
+                     * @property {Boolean} ok - Indicates if the response is successful.
+                     * @property {Object} data - A list of the playlists owned or followed by a Spotify user.
+                     */
                     const newResponse = await fetchSpotifyAPI(`${urlBase}/v1/users/${uid}/playlists?offset=${offset}&limit=50`, 'GET', authorization);
 
                     if (newResponse.ok) {
@@ -110,96 +189,30 @@ export const usePlaylistStore = () => {
                          * Information about the user's playlists.
                          * @type {Array<Object>}
                          */
-                        const { items } = newResponse.data;
+                        const newItems = newResponse.data.items;
                         /**
                          * Array of playlist IDs extracted from the user's playlists information.
                          * @type {Array<String>} 
                          */
-                        const arrayPlaylistIds = items.map(playlist => playlist.id);
-
+                        const newArrayPlaylistIds = newItems.map(playlist => playlist.id);
                         // Handles the case when the playlist is empty to prevent errors from occurring.
-                        do {
-
-                            randomPlaylistId = shuffleArray(arrayPlaylistIds);
-
-                            totalTracks = items.find(playlist => playlist.id == randomPlaylistId)?.tracks.total;
-
-                            if (totalTracks > 0) {
-
-                                playlistUrl = items.find(playlist => playlist.id == randomPlaylistId)?.external_urls.spotify;
-
-                            } else {
-                                /**
-                                 * Finds the index of the empty playlist.
-                                 * @type {Number}
-                                 */
-                                const playlistIdIndex = arrayPlaylistIds.findIndex(item => item == randomPlaylistId);
-                                // Removes empty playlists.
-                                arrayPlaylistIds.splice(playlistIdIndex, 1);
-
-                            };
-
-                        } while (totalTracks == 0 && arrayPlaylistIds.length > 0);
-
-                        //! Maneja el error en caso de que todas las playlists estén vacías.
-                        //! En el componente Error habría que dar la opción de informar que el usuario solo tiene playlists vacías y dar la opción de cambiar de host.
-                        if (arrayPlaylistIds.length == 0) return dispatch(setError());
-
-                        // Handles the case where the new playlist is the same as the current.
-                        randomPlaylistId == playlist_id ? dispatch(setPlaylistDone()) : dispatch(setPlaylist({ randomPlaylistId, playlistUrl }));
+                        handlePlaylistSelection(newItems, newArrayPlaylistIds);
 
                     } else {
-
-                        //! handle bad request error
-                        console.log('BAD REQUEST ERROR');
+                        // Handle bad request error.
+                        handleError();
 
                     };
 
-                // This approach eliminates the need for an additional fetch to the Spotify API.
                 } else {
-                    /**
-                     * Information about the user's playlists.
-                     * @type {Array<Object>}
-                     */
-                    const { items } = response.data;
-                    /**
-                     * Array of playlist IDs extracted from the user's playlists information.
-                     * @type {Array<String>} 
-                     */
-                    const arrayPlaylistIds = items.map(playlist => playlist.id);
-
-                    // Handles the case when the playlist is empty to prevent errors from occurring.
-                    do {
-
-                        randomPlaylistId = shuffleArray(arrayPlaylistIds);
-
-                        totalTracks = items.find(playlist => playlist.id == randomPlaylistId)?.tracks.total;
-
-                        if (totalTracks > 0) {
-
-                            playlistUrl = items.find(playlist => playlist.id == randomPlaylistId)?.external_urls.spotify;
-
-                        } else {
-                            /**
-                             * Finds the index of the empty playlist.
-                             * @type {Number}
-                             */
-                            const playlistIdIndex = arrayPlaylistIds.findIndex(item => item == randomPlaylistId);
-                            // Removes empty playlists.
-                            arrayPlaylistIds.splice(playlistIdIndex, 1);
-
-                        };
-
-                    } while (totalTracks == 0 && arrayPlaylistIds.length > 0);
-
-                    //! Maneja el error en caso de que todas las playlists estén vacías.
-                    //! En el componente Error habría que dar la opción de informar que el usuario solo tiene playlists vacías y dar la opción de cambiar de host.
-                    if (arrayPlaylistIds.length == 0) return dispatch(setError());
-
-                    // Handles the case where the new playlist is the same as the current.
-                    randomPlaylistId == playlist_id ? dispatch(setPlaylistDone()) : dispatch(setPlaylist({ randomPlaylistId, playlistUrl }));
+                    // This approach eliminates the need for an additional fetch to the Spotify API.
+                    handlePlaylistSelection(items, arrayPlaylistIds);
 
                 };
+
+            } else {
+                // Handle bad request error.
+                handleError();
 
             };
 
@@ -207,11 +220,7 @@ export const usePlaylistStore = () => {
 
             console.log(error);
 
-            dispatch(setError());
-            // Ensures consistent state updates for 'useEffect' in DiscoverPage and prevents unnecessary re-rendering when navigating with arrows.
-            dispatch(setTokenUndone());
-            // Ensures the loading effect lasts longer.
-            dispatchWithDelay(dispatch, finishLoading(), 1500);
+            handleError();
 
         };
 
