@@ -66,32 +66,32 @@ export const usePlaylistStore = () => {
 
             randomPlaylistId = shuffleArray(arrayPlaylistIds);
 
-            totalTracks = items.find(playlist => playlist.id === randomPlaylistId)?.tracks.total || 0;
+            totalTracks = items.find(playlist => playlist.id == randomPlaylistId)?.tracks.total || 0;
 
             if (totalTracks > 0) {
 
-                playlistUrl = items.find(playlist => playlist.id === randomPlaylistId)?.external_urls.spotify;
+                playlistUrl = items.find(playlist => playlist.id == randomPlaylistId)?.external_urls.spotify;
 
             } else {
                 /**
                  * Finds the index of the empty playlist.
                  * @type {Number}
                  */
-                const playlistIdIndex = arrayPlaylistIds.findIndex(item => item === randomPlaylistId);
+                const playlistIdIndex = arrayPlaylistIds.findIndex(item => item == randomPlaylistId);
                 // Removes empty playlists.
                 if(playlistIdIndex != -1) arrayPlaylistIds.splice(playlistIdIndex, 1);
                 
             };
 
-        } while (totalTracks === 0 && arrayPlaylistIds.length > 0);
+        } while (totalTracks == 0 && arrayPlaylistIds.length > 0);
 
         // Handles the case where all the playlists are empty.
-        if (arrayPlaylistIds.length === 0) {
+        if (arrayPlaylistIds.length == 0) {
 
             dispatch(setError()); //! En el componente Error habría que dar la opción de informar que el usuario solo tiene playlists vacías y dar la opción de cambiar de host.
 
         // Handles the case where the new playlist is the same as the current.
-        } else if (randomPlaylistId === playlist_id) {
+        } else if (randomPlaylistId == playlist_id) {
 
             dispatch(setPlaylistDone());
 
@@ -102,8 +102,9 @@ export const usePlaylistStore = () => {
         };
 
     }; //!HANDLEPLAYLISTSELECTION
+
     /**
-     * Handles an error by logging it and dispatching error-related actions.
+     * Handles an error dispatching error-related actions.
      *
      * @function handleCatchError
      * @returns {void}

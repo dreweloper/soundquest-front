@@ -20,14 +20,14 @@ export const useTrackStore = () => {
      * @property {String} token_type - The token type ('Bearer').
      * @property {String} access_token - The access token provided by Spotify.
      */
-    const { token: { token_type, access_token }} = useSelector(state => state.token);
+    const { token: { token_type, access_token } } = useSelector(state => state.token);
     /**
      * The 'track' state object from Redux store.
      * @type {Object}
      * @property {String} track_id - A randomly selected track ID.
      * @property {Boolean} isTrackIdDone - It signifies the completion of processing for the state property 'track_id'.
      */
-    const { track: { track_id }} = useSelector(state => state.track);
+    const { track: { track_id } } = useSelector(state => state.track);
     /**
      * The dispatch function from Redux to dispatch actions.
      * @type {Function}
@@ -47,6 +47,22 @@ export const useTrackStore = () => {
     const urlBase = 'https://api.spotify.com';
 
     //FUNCTIONS
+    /**
+     * Handles an error dispatching error-related actions.
+     * 
+     * @function handleError
+     * @returns {void}
+     */
+    const handleError = () => {
+
+        dispatch(setError());
+        // Ensures consistent state updates for 'useEffect' in DiscoverPage and prevents unnecessary re-rendering when navigating with arrows.
+        resetStateFlags(dispatch, [setTokenUndone, setPlaylistUndone]);
+        // Ensures the loading effect lasts longer.
+        dispatchWithDelay(dispatch, finishLoading());
+
+    }; //!HANDLEERROR
+
     /**
      * Retrieves information about a playlist owned or followed by a user from the Spotify API.
      * 
@@ -73,34 +89,34 @@ export const useTrackStore = () => {
                  * @type {Array<Object>}
                  */
                 const { items } = response.data.tracks;
+                /**
+                 * Array of track IDs extracted from the playlist.
+                 * @type {Array<String|[]>}
+                 */
+                const arrayTrackIds = new Array();
+                // It pushes the track ID to the 'arrayTrackIds' only when 'item.track' is not null.
+                items.map(item => item.track && arrayTrackIds.push(item.track.id));
 
-                // Handles the case when the playlist is empty.
-                if (items.length == 0) {
-
-                    dispatch(setError());
-                    // Ensures the loading effect lasts longer.
-                    dispatchWithDelay(dispatch, finishLoading(), 1500);
+                // Handles the case where all playlist tracks are set to 'null'. This can happen if a track is no longer available.
+                if (arrayTrackIds.length == 0) {
+                    //! Pending real handling error (e.g., an specific error message).
+                    handleError();
 
                 } else {
-                    /**
-                     * Array of track IDs extracted from the playlist.
-                     * @type {Array<String>}
-                     */
-                    const arrTrackIDs = items.map(item => item.track.id);
                     /**
                      * A randomly selected track ID.
                      * @type {String}
                      */
-                    const randomTrackID = shuffleArray(arrTrackIDs);
+                    const randomTrackId = shuffleArray(arrayTrackIds);
 
-                    // If the new track is the same as the current.
-                    if (randomTrackID == track_id) {
+                    // Handles the case where the new track is the same as the current.
+                    if (randomTrackId == track_id) {
 
                         dispatch(setTrackIdDone());
 
                     } else {
 
-                        dispatch(setTrackId(randomTrackID));
+                        dispatch(setTrackId(randomTrackId));
 
                     };
                 };
@@ -110,11 +126,7 @@ export const useTrackStore = () => {
 
             console.log(error);
 
-            dispatch(setError());
-            // Ensures consistent state updates for 'useEffect' in DiscoverPage and prevents unnecessary re-rendering when navigating with arrows.
-            resetStateFlags(dispatch, [setTokenUndone, setPlaylistUndone]);
-            // Ensures the loading effect lasts longer.
-            dispatchWithDelay(dispatch, finishLoading(), 1000);
+            handleError();
 
         };
 
