@@ -59,7 +59,7 @@ export const Card = () => {
 
                         <Link className='card-nav-button' to={track_url} target='_blank'> Play on Spotify </Link>
 
-                        <Link className='card-nav-button' to={playlist_url} target='_blank'> Open playlist </Link>
+                        <Link className='card-nav-button' to={playlist_url} target='_blank'> Open Playlist </Link>
 
                     </nav>
 

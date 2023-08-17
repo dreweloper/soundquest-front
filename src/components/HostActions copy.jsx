@@ -30,39 +30,39 @@ export const HostActions = () => {
 
             <section className='host-actions-section fade-in-transition'>
 
-                <div className='host-container'>
+                <Link
+                    className='host-link-container'
+                    to={profile_url}
+                    target='_blank'
+                >
 
-                    <Link
-                        className='host-link'
-                        to={profile_url}
-                        target='_blank'
-                    >
+                    <span className='material-symbols-rounded'>
+                        account_circle
+                    </span>
 
-                        <span className='material-symbols-rounded'>
-                            account_circle
-                        </span>
+                    <span className='host-username'>{username}</span>
 
-                        <span className='host-username'>{username}</span>
+                </Link>
 
-                    </Link>
+                <div className='host-actions-container'>
 
                     <button
-                        className='host-button'
+                        className='host-actions-button'
                         onClick={() => { dispatch(openHostForm()) }}
                         disabled={isLoading}
                     >
-                        Switch Host
+                        Change the Host
+                    </button>
+
+                    <button
+                        className='host-actions-button'
+                        onClick={getToken}
+                        disabled={isLoading}
+                    >
+                        Shuffle another
                     </button>
 
                 </div>
-
-                <button
-                    className='shuffle-button'
-                    onClick={getToken}
-                    disabled={isLoading}
-                >
-                    Random Track
-                </button>
 
             </section>
 
