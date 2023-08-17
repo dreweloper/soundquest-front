@@ -17,6 +17,7 @@
             gap: 10px;
 
             .material-symbols-rounded {
+                font-size: 1.5rem;          
                 font-variation-settings:
                     'FILL' 1,
                     'wght' 400,
@@ -37,17 +38,7 @@
 
         .host-button {
             @include displayFlex(row, center, center);
-            width: 100%;
-            max-width: 300px;
-            min-height: 30px;
-            margin: 0 auto;
-            font-size: 0.9rem;
-            font-weight: 400;
-            text-align: center;
-            border: 2px solid $accent;
-            border-radius: 5px;
-            color: $primary;
-            background-color: $accent;
+            @include mainButtonStyles(100%, 300px, 30px, 0.9rem, 400, $accent, $primary, $accent);
     
             &:hover {
                 @include buttonEffect($accent, $primary, $accent);
@@ -57,16 +48,8 @@
 
     .shuffle-button {
         @include displayFlex(row, center, center);
-        width: 100%;
-        max-width: 300px;
-        min-height: 30px;
-        font-size: 0.9rem;
-        font-weight: 400;
-        text-align: center;
-        border: 2px solid $accent;
-        border-radius: 5px;
-        color: $primary;
-        background-color: $accent;
+        @include mainButtonStyles(100%, 300px, 30px, 0.9rem, 400, $accent, $primary, $accent);
+
 
         &:hover {
             @include buttonEffect($accent, $primary, $accent);
@@ -85,31 +68,37 @@
 @media screen and (min-width:768px) {
 
     .host-actions-section {
-
-        .host-link-container {
-            @include displayFlex(row, center, flex-start);
-            width: 100%;
-            color: $secondary;
-            gap: 10px;
-
-            .material-symbols-rounded {
-                font-size: 2rem;
+        @include displayFlex(row, flex-end, space-between);
+        max-width: 800px;
+        gap: 30px;
+    
+        .host-container {
+            max-width: 350px;
+    
+            .host-link {
+                gap: 15px;
+    
+                .material-symbols-rounded {
+                    font-size: 2rem;          
+                }
+    
+                .host-username {
+                    font-size: 1.25rem;
+                }
             }
-
-            .host-username {
-                font-size: 1.25rem;
+    
+            .host-button {
+                max-width: 350px;
+                min-height: 40px;
+                font-size: 1rem;
             }
         }
-
-        .host-actions-container {
-            @include displayFlex(row, center, center);
-
-            .host-actions-button {
-                max-width: 400px;
-                min-height: 40px;
-            }
+    
+        .shuffle-button {
+            width: 80%;
+            max-width: 400px;
+            min-height: 40px;
+            font-size: 1rem;
         }
     }
-}
-
-/* 768px end */
+} /* 768px end */

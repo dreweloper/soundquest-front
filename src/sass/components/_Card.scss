@@ -69,16 +69,7 @@
 
             .card-nav-button {
                 @include displayFlex(row, center, center);
-                width: 100%;
-                max-width: 296px;
-                min-height: 30px;
-                font-size: 0.9rem;
-                font-weight: 400;
-                text-align: center;
-                border: 2px solid $accent;
-                border-radius: 5px;
-                color: $accent;
-                background-color: $primary;
+                @include mainButtonStyles(100%, 296px, 30px, 0.9rem, 400, $accent, $accent, $primary);
 
                 &:hover {
                     @include buttonEffect($primary, $accent, $accent);
@@ -136,8 +127,9 @@
             .card-nav {
                 gap: 15px;
     
-                a {
+                .card-nav-button {
                     width: 100%;
+                    max-width: 396px;
                     min-height: 40px;
                     font-size: 1rem;
                 }

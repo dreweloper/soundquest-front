@@ -584,8 +584,9 @@ footer .spotify-container span {
   .card-container .card-item .card-nav {
     gap: 15px;
   }
-  .card-container .card-item .card-nav a {
+  .card-container .card-item .card-nav .card-nav-button {
     width: 100%;
+    max-width: 396px;
     min-height: 40px;
     font-size: 1rem;
   }
@@ -710,6 +711,7 @@ footer .spotify-container span {
   gap: 10px;
 }
 .host-actions-section .host-container .host-link .material-symbols-rounded {
+  font-size: 1.5rem;
   font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48;
 }
 .host-actions-section .host-container .host-link .host-username {
@@ -728,7 +730,6 @@ footer .spotify-container span {
   width: 100%;
   max-width: 300px;
   min-height: 30px;
-  margin: 0 auto;
   font-size: 0.9rem;
   font-weight: 400;
   text-align: center;
@@ -773,33 +774,38 @@ footer .spotify-container span {
 /* ***************************************/
 /* 768px *************************/
 @media screen and (min-width: 768px) {
-  .host-actions-section .host-link-container {
+  .host-actions-section {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-    color: #FFFFFF;
-    gap: 10px;
+    align-items: flex-end;
+    justify-content: space-between;
+    max-width: 800px;
+    gap: 30px;
   }
-  .host-actions-section .host-link-container .material-symbols-rounded {
+  .host-actions-section .host-container {
+    max-width: 350px;
+  }
+  .host-actions-section .host-container .host-link {
+    gap: 15px;
+  }
+  .host-actions-section .host-container .host-link .material-symbols-rounded {
     font-size: 2rem;
   }
-  .host-actions-section .host-link-container .host-username {
+  .host-actions-section .host-container .host-link .host-username {
     font-size: 1.25rem;
   }
-  .host-actions-section .host-actions-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+  .host-actions-section .host-container .host-button {
+    max-width: 350px;
+    min-height: 40px;
+    font-size: 1rem;
   }
-  .host-actions-section .host-actions-container .host-actions-button {
+  .host-actions-section .shuffle-button {
+    width: 80%;
     max-width: 400px;
     min-height: 40px;
+    font-size: 1rem;
   }
-}
-/* 768px end */
+} /* 768px end */
 .host-form-container {
   position: relative;
   display: flex;
