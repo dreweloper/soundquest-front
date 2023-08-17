@@ -68,6 +68,8 @@
 @media screen and (min-width:768px) {
 
     .host-actions-section {
+        position: absolute;
+        top: 0;
         @include displayFlex(row, flex-end, space-between);
         max-width: 800px;
         gap: 30px;

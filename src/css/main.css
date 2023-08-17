@@ -392,7 +392,6 @@ footer .spotify-container span {
   }
 } /* 992px end */
 .main-results {
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -425,6 +424,11 @@ footer .spotify-container span {
 /* 768px *************************/
 @media screen and (min-width: 768px) {
   .main-results {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     min-height: calc(100svh - 110px);
   }
 } /* 768px end */
@@ -775,6 +779,8 @@ footer .spotify-container span {
 /* 768px *************************/
 @media screen and (min-width: 768px) {
   .host-actions-section {
+    position: absolute;
+    top: 0;
     display: flex;
     flex-direction: row;
     align-items: flex-end;
