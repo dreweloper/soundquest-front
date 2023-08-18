@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { usePlaylistStore, useTokenStore, useTrackStore } from "../hooks";
-import { useEffect } from 'react';
-import { Card, Error } from '../components';
+import { useEffect, useState } from 'react';
+import { Card, Error, HostActions, InfoBox } from '../components';
 import { Footer, NavBar } from '../layouts';
 
 export const ResultsPage = () => {
@@ -12,38 +12,37 @@ export const ResultsPage = () => {
     const { isTokenDone } = useSelector(state => state.token);
     const { track: { track_id }, isTrackIdDone } = useSelector(state => state.track);
     const { error } = useSelector(state => state.errors);
-    const { host: { username }} = useSelector(state => state.host);
+    const { host: { username } } = useSelector(state => state.host);
 
     // REDUX MIDDLEWARES (CUSTOM HOOKS)
     const { getToken } = useTokenStore();
     const { getUserPlaylists } = usePlaylistStore();
     const { getPlaylist, getTrack } = useTrackStore();
 
+    // REACT HOOKS
+    const [isInfoBoxOpen, setIsInfoBoxOpen] = useState(false);
 
-    // USEEFFECTS
     useEffect(() => {
 
         getToken();
-    
+
     }, []);
 
     useEffect(() => {
         // If the 'token' object's state has been completed.
-        if(isTokenDone) getUserPlaylists(username);
+        if (isTokenDone) getUserPlaylists(username);
 
     }, [isTokenDone]);
 
-
     useEffect(() => {
         // If the 'playlist' object's state has been completed.
-        if(isPlaylistDone) getPlaylist(playlist_id);
+        if (isPlaylistDone) getPlaylist(playlist_id);
 
     }, [isPlaylistDone]);
 
-
     useEffect(() => {
         // If the 'track_id' property within the 'track' state has been completed.
-        if(isTrackIdDone) getTrack(track_id);
+        if (isTrackIdDone) getTrack(track_id);
 
     }, [isTrackIdDone]);
 
@@ -53,26 +52,15 @@ export const ResultsPage = () => {
 
         <>
 
-            <NavBar />
+            <NavBar isInfoBoxOpen={isInfoBoxOpen} setIsInfoBoxOpen={setIsInfoBoxOpen} />
 
             <main className='main-results fade-in-transition'>
 
-                {/* {
-                    !isLoading && !access_token && (!error &&
+                {
+                    isInfoBoxOpen && (<InfoBox isInfoBoxOpen={isInfoBoxOpen} setIsInfoBoxOpen={setIsInfoBoxOpen} />)
+                }
 
-                        <button
-                            className='shuffle-button'
-                            onClick={getToken}
-                        >
-
-                            <span className="material-symbols-rounded">
-                                shuffle
-                            </span>
-
-                        </button>
-
-                    )
-                } */}
+                <HostActions />
 
                 {
                     isLoading && (<span className='spinner'></span>)

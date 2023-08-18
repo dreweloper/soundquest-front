@@ -1,9 +1,6 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { useLikeStore, useTokenStore } from '../hooks';
-import { HostForm } from './HostForm';
-import { closeHostForm, openHostForm } from '../store/slices';
-import { useEffect } from 'react';
+import { useLikeStore } from '../hooks';
 
 
 export const Card = () => {
@@ -16,40 +13,18 @@ export const Card = () => {
      * @type {Boolean}
      */
     const { isLiked } = useSelector(state => state.like);
-    const { isHostFormOpen } = useSelector(state => state.host);
-
-    const dispatch = useDispatch();
 
     // REDUX MIDDLEWARES (CUSTOM HOOK)
-    const { getToken } = useTokenStore();
     const { addTrack, deleteTrack } = useLikeStore();
 
     // EVENT
     // If 'isLiked' is 'false', it is changed to 'true' and the track is added to the MongoDB API, and vice versa.
     const handleLike = () => !isLiked ? addTrack() : deleteTrack();
 
-    // REDUX HOOK
-    useEffect(() => {
-        // Handles closing the 'HostForm' component when navigating using browser arrow keys.
-        if(isHostFormOpen) dispatch(closeHostForm());
-
-    }, []);
-
 
     return (
 
         <>
-
-            <button
-                className='card-shuffle-button fade-in-transition'
-                onClick={getToken}
-            >
-
-                <span className="material-symbols-rounded">
-                    shuffle
-                </span>
-
-            </button>
 
             <section className='card-container fade-in-transition'>
 
@@ -84,24 +59,13 @@ export const Card = () => {
 
                         <Link className='card-nav-button' to={track_url} target='_blank'> Play on Spotify </Link>
 
-                        <Link className='card-nav-button' to={playlist_url} target='_blank'> Open playlist </Link>
-
-                        <button
-                            className='card-nav-button'
-                            onClick={() => { dispatch(openHostForm()) }}
-                        >
-                            Become a Host
-                        </button>
+                        <Link className='card-nav-button' to={playlist_url} target='_blank'> Open Playlist </Link>
 
                     </nav>
 
                 </div>
 
             </section>
-
-            {
-                isHostFormOpen && <HostForm />
-            }
 
         </>
 

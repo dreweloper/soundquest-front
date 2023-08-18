@@ -27,6 +27,18 @@ body {
     z-index: 100;
 }
 
+.close-button {
+    position: absolute;
+    top: 0; right: 0;
+    width: fit-content;
+    margin: 5px;
+}
+
+.close-icon {
+    font-size: 1.2rem;
+    color: $secondary-10;
+}
+
 .danger-color {
     color: $danger;
 }

@@ -1,18 +1,31 @@
-
-@mixin displayFlex($direction, $align, $justify){
+@mixin displayFlex($direction, $align, $justify) {
     display: flex;
     flex-direction: $direction;
     align-items: $align;
     justify-content: $justify;
 }
 
-@mixin positionAbsoluteCenter(){
+@mixin positionAbsoluteCenter() {
     position: absolute;
-    top: 50%; left: 50%;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
 }
 
-@mixin buttonEffect($fontColor, $bgColor, $borderColor){
+@mixin mainButtonStyles($width, $maxW, $minH, $fontS, $fontW, $borderColor, $color, $bgColor) {
+    width: $width;
+    max-width: $maxW;
+    min-height: $minH;
+    font-size: $fontS;
+    font-weight: $fontW;
+    text-align: center;
+    border: 2px solid $borderColor;
+    border-radius: 5px;
+    color: $color;
+    background-color: $bgColor;
+}
+
+@mixin buttonEffect($fontColor, $bgColor, $borderColor) {
     color: $fontColor;
     background-color: $bgColor;
     border: 2px solid $borderColor;
@@ -20,7 +33,7 @@
     transition-timing-function: ease-in-out;
 }
 
-@mixin spinner($width, $height, $borderPX, $borderRGBA, $borderLeftColor){
+@mixin spinner($width, $height, $borderPX, $borderRGBA, $borderLeftColor) {
     width: $width;
     height: $height;
     border: $borderPX solid rgba($borderRGBA, $borderRGBA, $borderRGBA, .1);

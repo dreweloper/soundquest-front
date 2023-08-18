@@ -14,18 +14,6 @@
         object-fit: contain
     }
 
-    .close-button {
-        position: absolute;
-        top: 0; right: 0;
-        width: fit-content;
-        margin: 5px;
-
-        span {
-            font-size: 1.2rem;
-            color: $secondary-10;
-        }
-    }
-
     .host-form-description {
         @include displayFlex(column, center, center);
         width: 90%;
@@ -146,7 +134,7 @@
         .close-button {
             margin: 10px;
     
-            span {
+            .close-icon {
                 font-size: 1.3rem;
             }
         }

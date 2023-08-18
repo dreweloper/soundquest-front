@@ -2,38 +2,16 @@
     --icon-fill-value: 0;
 }
 
-.card-shuffle-button {
-    @include displayFlex(row, center, center);
-    width: 90%;
-    max-width: 300px;
-    min-height: 30px;
-    padding: 0 10px;
-    margin-top: 20px;
-    border: 2px solid $accent;
-    border-radius: 5px;
-    color: $primary;
-    background-color: $accent;
-
-    &:hover {
-        @include buttonEffect($accent, $primary, $accent);
-    }
-
-    span {
-        font-size: 1.5rem;
-        font-weight: 400;
-    }
-}
-
 .card-container {
     @include displayFlex(column, center, center);
     width: 90%;
-    max-width: 300px;
     margin-bottom: 30px;
     gap: 10px;
 
     .artwork {
         @include displayFlex(row, center, center);
         width: 100%;
+        max-width: 300px;
         overflow: hidden;
 
         img {
@@ -44,6 +22,7 @@
     .card-item {
         @include displayFlex(column, center, center);
         width: 100%;
+        max-width: 300px;
         gap: 20px;
 
         .track-info {
@@ -86,21 +65,14 @@
         .card-nav {
             @include displayFlex(column, center, center);
             width: 100%;
-            gap: 10px;
+            gap: 15px;
 
             .card-nav-button {
                 @include displayFlex(row, center, center);
-                width: 100%;
-                min-height: 30px;
-                font-size: 0.9rem;
-                font-weight: 300;
-                border: 2px solid $accent;
-                border-radius: 5px;
-                color: $accent;
-                background-color: $primary;
+                @include mainButtonStyles(100%, 296px, 30px, 0.9rem, 400, $accent, $secondary, $primary);
 
                 &:hover {
-                    @include buttonEffect($primary, $accent, $accent);
+                    @include buttonEffect($secondary, $accent, $accent);
                 }
             }
         }
@@ -116,16 +88,6 @@
 /* 768px *************************/
   
 @media screen and (min-width:768px) {
-
-    .card-shuffle-button {
-        max-width: 400px;
-        min-height: 40px;
-        margin-top: 30px;
-    
-        span {
-            font-size: 2rem;
-        }
-    }
     
     .card-container {
         @include displayFlex(row, center, space-between);
@@ -165,8 +127,9 @@
             .card-nav {
                 gap: 15px;
     
-                a {
+                .card-nav-button {
                     width: 100%;
+                    max-width: 396px;
                     min-height: 40px;
                     font-size: 1rem;
                 }

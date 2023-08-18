@@ -44,7 +44,7 @@ export const usePlaylistStore = () => {
      * @param {Array<String>} arrayPlaylistIds - Array of playlist IDs extracted from the user's playlists information.
      * @returns {void}
      */
-    const handlePlaylistSelection = (items, arrayPlaylistIds) => {
+    const handlePlaylistSelection = (items, arrayPlaylistIds) => { //! refact: que reciba por arg solo 'items' y el map de 'arrayPlaylistIds' lo haga dentro de la func. El return será un objeto con randomPlaylistId, playlistUrl y arrayPlaylistIds, para poder pasarlo a 'handleActions'. Ver cómo se puede refact con un objeto y payload para el dispatch success.
         /**
          * A randomly selected playlist ID.
          * @type {String}
@@ -65,14 +65,14 @@ export const usePlaylistStore = () => {
         do {
 
             randomPlaylistId = shuffleArray(arrayPlaylistIds);
-
+            //! refact: esto podría ser una función (find) aparte también e incluso un helper en caso de que se utilice en 'useTrackStore', por ej.
             totalTracks = items.find(playlist => playlist.id == randomPlaylistId)?.tracks.total || 0;
 
             if (totalTracks > 0) {
 
                 playlistUrl = items.find(playlist => playlist.id == randomPlaylistId)?.external_urls.spotify;
 
-            } else {
+            } else { //! refact: crear helper "removeElement"
                 /**
                  * Finds the index of the empty playlist.
                  * @type {Number}
@@ -84,7 +84,7 @@ export const usePlaylistStore = () => {
             };
 
         } while (totalTracks == 0 && arrayPlaylistIds.length > 0);
-
+        //! refact: crear función 'handleAction' y que sea un switch, por ejemplo.
         // Handles the case where all the playlists are empty.
         if (arrayPlaylistIds.length == 0) {
 
@@ -164,7 +164,7 @@ export const usePlaylistStore = () => {
                 const arrayPlaylistIds = items.map(playlist => playlist.id);
 
                 // Handles the case where the user has over 50 public playlists.
-                if (total > 50) {
+                if (total > 50) { //! refact: hacer una función 'generateRandomOffset', por ej.
                     /**
                      * Generates a random number within a specified range ('total').
                      * @type {Number}
