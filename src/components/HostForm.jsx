@@ -42,7 +42,7 @@ export const HostForm = () => {
                         onClick={() => { dispatch(closeHostForm()) }}
                     >
 
-                        <span className='material-symbols-rounded'>
+                        <span className='material-symbols-rounded close-icon'>
                             close
                         </span>
 
@@ -50,9 +50,9 @@ export const HostForm = () => {
 
                     <div className="host-form-description">
 
-                        <h2>Become a Host</h2>
+                        <h2>Lorem, ipsum dolor.</h2>
 
-                        <p>Discover random tracks from any Spotify user’s playlists!</p>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, eligendi.</p>
 
                     </div>
 
@@ -63,7 +63,7 @@ export const HostForm = () => {
 
                         <input type='text' name='username' id='username' placeholder='Enter a Spotify username' autoComplete="off" />
 
-                        <input type='submit' value='Send' disabled={isHostLoading || isHostUpdated} />
+                        <input type='submit' value='Switch' disabled={isHostLoading || isHostUpdated} />
 
                     </form>
 

@@ -18,19 +18,20 @@
 
             .material-symbols-rounded {
                 font-size: 1.5rem;          
+                font-weight: 400;
                 font-variation-settings:
                     'FILL' 1,
-                    'wght' 400,
-                    'GRAD' 0,
-                    'opsz' 48
             }
 
             .host-username {
                 font-size: 1rem;
                 font-weight: 400;
                 color: $secondary;
+            }
 
-                &:hover {
+            &:hover {
+
+                .host-username {
                     color: $accent;
                 }
             }
@@ -38,21 +39,21 @@
 
         .host-button {
             @include displayFlex(row, center, center);
-            @include mainButtonStyles(100%, 300px, 30px, 0.9rem, 400, $accent, $primary, $accent);
+            @include mainButtonStyles(100%, 300px, 30px, 0.9rem, 400, $accent, $secondary, $accent);
     
             &:hover {
-                @include buttonEffect($accent, $primary, $accent);
+                @include buttonEffect($secondary, $primary, $accent);
             }
         }
     }
 
     .shuffle-button {
         @include displayFlex(row, center, center);
-        @include mainButtonStyles(100%, 300px, 30px, 0.9rem, 400, $accent, $primary, $accent);
+        @include mainButtonStyles(100%, 300px, 30px, 0.9rem, 400, $accent, $secondary, $accent);
 
 
         &:hover {
-            @include buttonEffect($accent, $primary, $accent);
+            @include buttonEffect($secondary, $primary, $accent);
         }
     }
 }

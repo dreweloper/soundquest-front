@@ -30,6 +30,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["@reduxjs/toolkit", "virtual:7ab4bdc514c0981f28c738b6384bfa46168d2f39f0e5335649d9d16996a1534fedd21cefcbace6b903829ae288f812ce71fb5bc6dd0291965035d147f08a2d8c#npm:1.9.5"],\
             ["@vitejs/plugin-react", "virtual:7ab4bdc514c0981f28c738b6384bfa46168d2f39f0e5335649d9d16996a1534fedd21cefcbace6b903829ae288f812ce71fb5bc6dd0291965035d147f08a2d8c#npm:4.0.1"],\
+            ["prop-types", "npm:15.8.1"],\
             ["react", "npm:18.2.0"],\
             ["react-cookie", "virtual:7ab4bdc514c0981f28c738b6384bfa46168d2f39f0e5335649d9d16996a1534fedd21cefcbace6b903829ae288f812ce71fb5bc6dd0291965035d147f08a2d8c#npm:4.1.1"],\
             ["react-dom", "virtual:7ab4bdc514c0981f28c738b6384bfa46168d2f39f0e5335649d9d16996a1534fedd21cefcbace6b903829ae288f812ce71fb5bc6dd0291965035d147f08a2d8c#npm:18.2.0"],\
@@ -1987,6 +1988,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["object-assign", [\
+        ["npm:4.1.1", {\
+          "packageLocation": "./.yarn/cache/object-assign-npm-4.1.1-1004ad6dec-fcc6e4ea8c.zip/node_modules/object-assign/",\
+          "packageDependencies": [\
+            ["object-assign", "npm:4.1.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["once", [\
         ["npm:1.4.0", {\
           "packageLocation": "./.yarn/cache/once-npm-1.4.0-ccf03ef07a-cd0a885013.zip/node_modules/once/",\
@@ -2073,6 +2083,18 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["promise-retry", "npm:2.0.1"],\
             ["err-code", "npm:2.0.3"],\
             ["retry", "npm:0.12.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["prop-types", [\
+        ["npm:15.8.1", {\
+          "packageLocation": "./.yarn/cache/prop-types-npm-15.8.1-17c71ee7ee-c056d3f1c0.zip/node_modules/prop-types/",\
+          "packageDependencies": [\
+            ["prop-types", "npm:15.8.1"],\
+            ["loose-envify", "npm:1.4.0"],\
+            ["object-assign", "npm:4.1.1"],\
+            ["react-is", "npm:16.13.1"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -2493,6 +2515,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["soundquest-front", "workspace:."],\
             ["@reduxjs/toolkit", "virtual:7ab4bdc514c0981f28c738b6384bfa46168d2f39f0e5335649d9d16996a1534fedd21cefcbace6b903829ae288f812ce71fb5bc6dd0291965035d147f08a2d8c#npm:1.9.5"],\
             ["@vitejs/plugin-react", "virtual:7ab4bdc514c0981f28c738b6384bfa46168d2f39f0e5335649d9d16996a1534fedd21cefcbace6b903829ae288f812ce71fb5bc6dd0291965035d147f08a2d8c#npm:4.0.1"],\
+            ["prop-types", "npm:15.8.1"],\
             ["react", "npm:18.2.0"],\
             ["react-cookie", "virtual:7ab4bdc514c0981f28c738b6384bfa46168d2f39f0e5335649d9d16996a1534fedd21cefcbace6b903829ae288f812ce71fb5bc6dd0291965035d147f08a2d8c#npm:4.1.1"],\
             ["react-dom", "virtual:7ab4bdc514c0981f28c738b6384bfa46168d2f39f0e5335649d9d16996a1534fedd21cefcbace6b903829ae288f812ce71fb5bc6dd0291965035d147f08a2d8c#npm:18.2.0"],\

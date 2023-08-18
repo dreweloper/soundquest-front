@@ -169,6 +169,20 @@ body {
   z-index: 100;
 }
 
+.close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 5px;
+}
+
+.close-icon {
+  font-size: 1.2rem;
+  color: #E6E6E6;
+}
+
 .danger-color {
   color: #ec2206;
 }
@@ -226,7 +240,7 @@ footer .spotify-container span {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   width: 100%;
   max-width: 1200px;
   height: 60px;
@@ -234,7 +248,7 @@ footer .spotify-container span {
   color: #FFFFFF;
   background-color: #191414;
 }
-.nav-bar a {
+.nav-bar .nav-logo {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -244,16 +258,31 @@ footer .spotify-container span {
   min-height: 100%;
   gap: 10px;
 }
-.nav-bar a .material-symbols-rounded {
+.nav-bar .nav-logo .equalizer-icon {
   font-size: 1.8rem;
   margin-left: 10px;
   color: #1DB954;
 }
-.nav-bar a .title-nav {
+.nav-bar .nav-logo .nav-logo-title {
   font-family: "Prompt", sans-serif;
   font-size: 1.8rem;
   text-transform: uppercase;
   margin-right: 10px;
+}
+.nav-bar .nav-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+}
+.nav-bar .nav-button .info-icon {
+  font-size: 1.8rem;
+  font-weight: 300;
+  font-variation-settings: "FILL" 1;
+}
+.nav-bar .nav-button:hover .info-icon {
+  font-variation-settings: "FILL" 0;
 }
 
 /* ***************************************/
@@ -264,18 +293,25 @@ footer .spotify-container span {
   .nav-bar {
     height: 80px;
   }
-  .nav-bar a {
+  .nav-bar .nav-logo {
     gap: 15px;
   }
-  .nav-bar a .material-symbols-rounded {
+  .nav-bar .nav-logo .equalizer-icon {
     font-size: 2rem;
     margin-left: 15px;
   }
-  .nav-bar a .title-nav {
+  .nav-bar .nav-logo .nav-logo-title {
     font-size: 2rem;
     margin-right: 15px;
   }
-} /* 992px end */
+  .nav-bar .nav-button {
+    margin-right: 30px;
+  }
+  .nav-bar .nav-button .info-icon {
+    font-size: 2rem;
+  }
+}
+/* 992px end */
 /* PAGES */
 .main-home {
   display: flex;
@@ -533,11 +569,11 @@ footer .spotify-container span {
   text-align: center;
   border: 2px solid #1DB954;
   border-radius: 5px;
-  color: #1DB954;
+  color: #FFFFFF;
   background-color: #191414;
 }
 .card-container .card-item .card-nav .card-nav-button:hover {
-  color: #191414;
+  color: #FFFFFF;
   background-color: #1DB954;
   border: 2px solid #1DB954;
   transition-duration: 0.4s;
@@ -716,14 +752,15 @@ footer .spotify-container span {
 }
 .host-actions-section .host-container .host-link .material-symbols-rounded {
   font-size: 1.5rem;
-  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48;
+  font-weight: 400;
+  font-variation-settings: "FILL" 1;
 }
 .host-actions-section .host-container .host-link .host-username {
   font-size: 1rem;
   font-weight: 400;
   color: #FFFFFF;
 }
-.host-actions-section .host-container .host-link .host-username:hover {
+.host-actions-section .host-container .host-link:hover .host-username {
   color: #1DB954;
 }
 .host-actions-section .host-container .host-button {
@@ -739,11 +776,11 @@ footer .spotify-container span {
   text-align: center;
   border: 2px solid #1DB954;
   border-radius: 5px;
-  color: #191414;
+  color: #FFFFFF;
   background-color: #1DB954;
 }
 .host-actions-section .host-container .host-button:hover {
-  color: #1DB954;
+  color: #FFFFFF;
   background-color: #191414;
   border: 2px solid #1DB954;
   transition-duration: 0.4s;
@@ -762,11 +799,11 @@ footer .spotify-container span {
   text-align: center;
   border: 2px solid #1DB954;
   border-radius: 5px;
-  color: #191414;
+  color: #FFFFFF;
   background-color: #1DB954;
 }
 .host-actions-section .shuffle-button:hover {
-  color: #1DB954;
+  color: #FFFFFF;
   background-color: #191414;
   border: 2px solid #1DB954;
   transition-duration: 0.4s;
@@ -830,18 +867,6 @@ footer .spotify-container span {
 .host-form-container > * {
   -o-object-fit: contain;
      object-fit: contain;
-}
-.host-form-container .close-button {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: -moz-fit-content;
-  width: fit-content;
-  margin: 5px;
-}
-.host-form-container .close-button span {
-  font-size: 1.2rem;
-  color: #E6E6E6;
 }
 .host-form-container .host-form-description {
   display: flex;
@@ -961,7 +986,7 @@ footer .spotify-container span {
   .host-form-container .close-button {
     margin: 10px;
   }
-  .host-form-container .close-button span {
+  .host-form-container .close-button .close-icon {
     font-size: 1.3rem;
   }
   .host-form-container .host-form-description {
@@ -1016,4 +1041,36 @@ footer .spotify-container span {
   100% {
     background-position: 0 0;
   }
+}
+.info-box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 90%;
+  max-width: 350px;
+  height: 430px;
+  border-radius: 5px;
+  gap: 30px;
+  color: #FFFFFF;
+  background-color: #191414;
+  overflow: scroll;
+}
+.info-box .info-text {
+  width: 90%;
+  font-size: 0.9rem;
+  font-weight: 200;
+  margin-top: 40px;
+}
+.info-box .github-link {
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-bottom: 10px;
+}
+.info-box .github-link .devicon-github-original {
+  font-size: 2.5rem;
+}
+.info-box .github-link:hover {
+  color: #1DB954;
 }/*# sourceMappingURL=main.css.map */

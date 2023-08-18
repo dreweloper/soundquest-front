@@ -1,29 +1,48 @@
 .nav-bar {
-    @include displayFlex(row, center, flex-start);
+    @include displayFlex(row, center, space-between);
     width: 100%;
     max-width: 1200px;
     height: 60px;
     margin: 0 auto;
     color: $secondary;
-    background-color: $primary;    
+    background-color: $primary;
 
-    a {
+    .nav-logo {
         @include displayFlex(row, center, space-between);
         width: fit-content;
         min-height: 100%;
         gap: 10px;
 
-        .material-symbols-rounded {
+        .equalizer-icon {
             font-size: 1.8rem;
             margin-left: 10px;
             color: $accent;
         }
 
-        .title-nav {
+        .nav-logo-title {
             font-family: $font-prompt;
             font-size: 1.8rem;
             text-transform: uppercase;
             margin-right: 10px;
+        }
+    }
+
+    .nav-button {
+        @include displayFlex(row, center, center);
+        margin-right: 20px;
+
+        .info-icon {
+            font-size: 1.8rem;
+            font-weight: 300;
+            font-variation-settings:
+                'FILL' 1,
+        }
+
+        &:hover {
+            .info-icon {
+                font-variation-settings:
+                    'FILL' 0,
+            }
         }
     }
 }
@@ -35,24 +54,34 @@
 /* ***************************************/
 
 /* 992px *************************/
-  
+
 @media screen and (min-width:992px) {
 
     .nav-bar {
         height: 80px;
-    
-        a {
+
+        .nav-logo {
             gap: 15px;
-    
-            .material-symbols-rounded {
+
+            .equalizer-icon {
                 font-size: 2rem;
                 margin-left: 15px;
             }
-    
-            .title-nav {
+
+            .nav-logo-title {
                 font-size: 2rem;
                 margin-right: 15px;
             }
         }
+
+        .nav-button {
+            margin-right: 30px;
+
+            .info-icon {
+                font-size: 2rem;
+            }
+        }
     }
-} /* 992px end */
+}
+
+/* 992px end */

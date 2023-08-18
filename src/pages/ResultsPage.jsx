@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { usePlaylistStore, useTokenStore, useTrackStore } from "../hooks";
-import { useEffect } from 'react';
-import { Card, Error, HostActions } from '../components';
+import { useEffect, useState } from 'react';
+import { Card, Error, HostActions, InfoBox } from '../components';
 import { Footer, NavBar } from '../layouts';
 
 export const ResultsPage = () => {
@@ -19,8 +19,9 @@ export const ResultsPage = () => {
     const { getUserPlaylists } = usePlaylistStore();
     const { getPlaylist, getTrack } = useTrackStore();
 
+    // REACT HOOKS
+    const [isInfoBoxOpen, setIsInfoBoxOpen] = useState(false);
 
-    // USEEFFECTS
     useEffect(() => {
 
         getToken();
@@ -51,9 +52,13 @@ export const ResultsPage = () => {
 
         <>
 
-            <NavBar />
+            <NavBar isInfoBoxOpen={isInfoBoxOpen} setIsInfoBoxOpen={setIsInfoBoxOpen} />
 
             <main className='main-results fade-in-transition'>
+
+                {
+                    isInfoBoxOpen && (<InfoBox isInfoBoxOpen={isInfoBoxOpen} setIsInfoBoxOpen={setIsInfoBoxOpen} />)
+                }
 
                 <HostActions />
 
