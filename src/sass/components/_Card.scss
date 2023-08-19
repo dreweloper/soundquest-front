@@ -5,13 +5,13 @@
 .card-container {
     @include displayFlex(column, center, center);
     width: 90%;
+    max-width: 300px;
     margin-bottom: 30px;
-    gap: 10px;
 
     .artwork {
         @include displayFlex(row, center, center);
         width: 100%;
-        max-width: 300px;
+        margin-bottom: 10px;
         overflow: hidden;
 
         img {
@@ -22,13 +22,11 @@
     .card-item {
         @include displayFlex(column, center, center);
         width: 100%;
-        max-width: 300px;
-        gap: 20px;
 
         .track-info {
             @include displayFlex(column, center, center);
             width: 100%;
-            min-height: fit-content;
+            margin-bottom: 20px;
             border-radius: 5px;
             background-color: $primary-dark;
 
@@ -55,7 +53,7 @@
                 margin: 20px 0 10px;
                 color: $accent;
 
-                .material-symbols-rounded {
+                .like-icon {
                     font-variation-settings:
                     'FILL' var(--icon-fill-value)
                 }
@@ -88,52 +86,7 @@
 /* 768px *************************/
   
 @media screen and (min-width:768px) {
+
     
-    .card-container {
-        @include displayFlex(row, center, space-between);
-        max-width: 800px;
-        min-height: 350px;
-        gap: 30px;
-    
-        .artwork {
-            max-width: 350px;
-        }
-    
-        .card-item {
-            @include displayFlex(column, flex-end, space-between);
-            width: 80%;
-            max-width: 400px;
-            height: 100%;
-            min-height: 350px;
-            gap: 30px;
-    
-            .track-info {
-                min-height: 150px;
-    
-                .song {
-                    font-size: 1.2rem;
-                    margin: 10px 0 10px;
-                }
-        
-                .artist {
-                    font-size: 1rem;
-                }
-        
-                .like-button {
-                    margin: 30px 0 0;
-                }
-            }
-    
-            .card-nav {
-                gap: 15px;
-    
-                .card-nav-button {
-                    width: 100%;
-                    max-width: 396px;
-                    min-height: 40px;
-                    font-size: 1rem;
-                }
-            }
-        }
-    }
+
 } /* 768px end */

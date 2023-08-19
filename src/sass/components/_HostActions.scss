@@ -1,22 +1,24 @@
 .host-actions-section {
     @include displayFlex(column, center, center);
     width: 90%;
+    max-width: 300px;
     margin-top: 10px;
-    gap: 15px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid $secondary;
 
     .host-container {
         @include displayFlex(column, flex-start, center);
         width: 100%;
-        max-width: 300px;
-        gap: 15px;
+        margin-bottom: 15px;
 
         .host-link {
             @include displayFlex(row, center, center);
             width: fit-content;
+            margin-bottom: 15px;
             color: $secondary;
             gap: 10px;
 
-            .material-symbols-rounded {
+            .host-icon {
                 font-size: 1.5rem;          
                 font-weight: 400;
                 font-variation-settings:
@@ -68,40 +70,6 @@
 
 @media screen and (min-width:768px) {
 
-    .host-actions-section {
-        position: absolute;
-        top: 0;
-        @include displayFlex(row, flex-end, space-between);
-        max-width: 800px;
-        gap: 30px;
-    
-        .host-container {
-            max-width: 350px;
-    
-            .host-link {
-                gap: 15px;
-    
-                .material-symbols-rounded {
-                    font-size: 2rem;          
-                }
-    
-                .host-username {
-                    font-size: 1.25rem;
-                }
-            }
-    
-            .host-button {
-                max-width: 350px;
-                min-height: 40px;
-                font-size: 1rem;
-            }
-        }
-    
-        .shuffle-button {
-            width: 80%;
-            max-width: 400px;
-            min-height: 40px;
-            font-size: 1rem;
-        }
-    }
+
+
 } /* 768px end */

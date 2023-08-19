@@ -38,7 +38,7 @@ export const HostActions = () => {
                         target='_blank'
                     >
 
-                        <span className='material-symbols-rounded'>
+                        <span className='material-symbols-rounded host-icon'>
                             account_circle
                         </span>
 

@@ -485,8 +485,8 @@ footer .spotify-container span {
   align-items: center;
   justify-content: center;
   width: 90%;
+  max-width: 300px;
   margin-bottom: 30px;
-  gap: 10px;
 }
 .card-container .artwork {
   display: flex;
@@ -494,7 +494,7 @@ footer .spotify-container span {
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 300px;
+  margin-bottom: 10px;
   overflow: hidden;
 }
 .card-container .artwork img {
@@ -507,8 +507,6 @@ footer .spotify-container span {
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 300px;
-  gap: 20px;
 }
 .card-container .card-item .track-info {
   display: flex;
@@ -516,8 +514,7 @@ footer .spotify-container span {
   align-items: center;
   justify-content: center;
   width: 100%;
-  min-height: -moz-fit-content;
-  min-height: fit-content;
+  margin-bottom: 20px;
   border-radius: 5px;
   background-color: #3B3838;
 }
@@ -545,7 +542,7 @@ footer .spotify-container span {
   margin: 20px 0 10px;
   color: #1DB954;
 }
-.card-container .card-item .track-info .like-button .material-symbols-rounded {
+.card-container .card-item .track-info .like-button .like-icon {
   font-variation-settings: "FILL" var(--icon-fill-value);
 }
 .card-container .card-item .card-nav {
@@ -584,53 +581,7 @@ footer .spotify-container span {
 /* MEDIA QUERIES *************************/
 /* ***************************************/
 /* 768px *************************/
-@media screen and (min-width: 768px) {
-  .card-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 800px;
-    min-height: 350px;
-    gap: 30px;
-  }
-  .card-container .artwork {
-    max-width: 350px;
-  }
-  .card-container .card-item {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: space-between;
-    width: 80%;
-    max-width: 400px;
-    height: 100%;
-    min-height: 350px;
-    gap: 30px;
-  }
-  .card-container .card-item .track-info {
-    min-height: 150px;
-  }
-  .card-container .card-item .track-info .song {
-    font-size: 1.2rem;
-    margin: 10px 0 10px;
-  }
-  .card-container .card-item .track-info .artist {
-    font-size: 1rem;
-  }
-  .card-container .card-item .track-info .like-button {
-    margin: 30px 0 0;
-  }
-  .card-container .card-item .card-nav {
-    gap: 15px;
-  }
-  .card-container .card-item .card-nav .card-nav-button {
-    width: 100%;
-    max-width: 396px;
-    min-height: 40px;
-    font-size: 1rem;
-  }
-} /* 768px end */
+/* 768px end */
 .error-toast {
   position: absolute;
   top: 50%;
@@ -728,8 +679,10 @@ footer .spotify-container span {
   align-items: center;
   justify-content: center;
   width: 90%;
+  max-width: 300px;
   margin-top: 10px;
-  gap: 15px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #FFFFFF;
 }
 .host-actions-section .host-container {
   display: flex;
@@ -737,8 +690,7 @@ footer .spotify-container span {
   align-items: flex-start;
   justify-content: center;
   width: 100%;
-  max-width: 300px;
-  gap: 15px;
+  margin-bottom: 15px;
 }
 .host-actions-section .host-container .host-link {
   display: flex;
@@ -747,10 +699,11 @@ footer .spotify-container span {
   justify-content: center;
   width: -moz-fit-content;
   width: fit-content;
+  margin-bottom: 15px;
   color: #FFFFFF;
   gap: 10px;
 }
-.host-actions-section .host-container .host-link .material-symbols-rounded {
+.host-actions-section .host-container .host-link .host-icon {
   font-size: 1.5rem;
   font-weight: 400;
   font-variation-settings: "FILL" 1;
@@ -814,41 +767,7 @@ footer .spotify-container span {
 /* MEDIA QUERIES *************************/
 /* ***************************************/
 /* 768px *************************/
-@media screen and (min-width: 768px) {
-  .host-actions-section {
-    position: absolute;
-    top: 0;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content: space-between;
-    max-width: 800px;
-    gap: 30px;
-  }
-  .host-actions-section .host-container {
-    max-width: 350px;
-  }
-  .host-actions-section .host-container .host-link {
-    gap: 15px;
-  }
-  .host-actions-section .host-container .host-link .material-symbols-rounded {
-    font-size: 2rem;
-  }
-  .host-actions-section .host-container .host-link .host-username {
-    font-size: 1.25rem;
-  }
-  .host-actions-section .host-container .host-button {
-    max-width: 350px;
-    min-height: 40px;
-    font-size: 1rem;
-  }
-  .host-actions-section .shuffle-button {
-    width: 80%;
-    max-width: 400px;
-    min-height: 40px;
-    font-size: 1rem;
-  }
-} /* 768px end */
+/* 768px end */
 .host-form-container {
   position: relative;
   display: flex;

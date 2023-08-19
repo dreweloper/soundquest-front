@@ -47,7 +47,7 @@ export const Card = () => {
                             onClick={handleLike}
                         >
 
-                            <span id='like' className="material-symbols-rounded">
+                            <span id='like' className="material-symbols-rounded like-icon">
                                 favorite
                             </span>
 
