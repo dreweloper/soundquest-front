@@ -428,30 +428,13 @@ footer .spotify-container span {
   }
 } /* 992px end */
 .main-results {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   width: 100%;
   min-height: calc(100svh - 100px);
-  gap: 30px;
-  background-color: #191414;
-}
-.main-results .spinner {
-  width: 50px;
-  height: 50px;
-  border: 5px solid rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-  border-left-color: #1DB954;
-  animation: spinner 1s ease infinite;
-}
-@keyframes spinner {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
 }
 
 /* ***************************************/
@@ -460,11 +443,6 @@ footer .spotify-container span {
 /* 768px *************************/
 @media screen and (min-width: 768px) {
   .main-results {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     min-height: calc(100svh - 110px);
   }
 } /* 768px end */
@@ -543,6 +521,7 @@ footer .spotify-container span {
   color: #1DB954;
 }
 .card-container .card-item .track-info .like-button .like-icon {
+  font-size: 1.5rem;
   font-variation-settings: "FILL" var(--icon-fill-value);
 }
 .card-container .card-item .card-nav {
@@ -581,7 +560,23 @@ footer .spotify-container span {
 /* MEDIA QUERIES *************************/
 /* ***************************************/
 /* 768px *************************/
-/* 768px end */
+@media screen and (min-width: 768px) {
+  .card-container {
+    width: 100%;
+    max-width: 350px;
+  }
+  .card-container .card-item .track-info {
+    margin-bottom: 25px;
+  }
+  .card-container .card-item .card-nav {
+    gap: 20px;
+  }
+  .card-container .card-item .card-nav .card-nav-button {
+    max-width: 346px;
+  }
+} /* 768px end */
+/* 992px *************************/
+/* 992px end */
 .error-toast {
   position: absolute;
   top: 50%;
@@ -680,8 +675,8 @@ footer .spotify-container span {
   justify-content: center;
   width: 90%;
   max-width: 300px;
-  margin-top: 10px;
   padding-bottom: 30px;
+  margin: 10px 0 30px;
   border-bottom: 1px solid #FFFFFF;
 }
 .host-actions-section .host-container {
@@ -723,7 +718,7 @@ footer .spotify-container span {
   justify-content: center;
   width: 100%;
   max-width: 300px;
-  min-height: 30px;
+  min-height: 34px;
   font-size: 0.9rem;
   font-weight: 400;
   text-align: center;
@@ -746,7 +741,7 @@ footer .spotify-container span {
   justify-content: center;
   width: 100%;
   max-width: 300px;
-  min-height: 30px;
+  min-height: 34px;
   font-size: 0.9rem;
   font-weight: 400;
   text-align: center;
@@ -767,7 +762,28 @@ footer .spotify-container span {
 /* MEDIA QUERIES *************************/
 /* ***************************************/
 /* 768px *************************/
-/* 768px end */
+@media screen and (min-width: 768px) {
+  .host-actions-section {
+    width: 100%;
+    max-width: 350px;
+    padding-bottom: 35px;
+    margin: 50px 0 35px;
+  }
+  .host-actions-section .host-container {
+    margin-bottom: 20px;
+  }
+  .host-actions-section .host-container .host-link {
+    margin-bottom: 20px;
+  }
+  .host-actions-section .host-container .host-button {
+    max-width: none;
+  }
+  .host-actions-section .shuffle-button {
+    max-width: none;
+  }
+} /* 768px end */
+/* 992px *************************/
+/* 992px end */
 .host-form-container {
   position: relative;
   display: flex;
@@ -1036,7 +1052,7 @@ footer .spotify-container span {
 .skeleton-container .skeleton-item .skeleton-nav .skeleton-button {
   width: 100%;
   max-width: 296px;
-  height: 30px;
+  height: 34px;
   background-color: #3B3838;
   border-radius: 5px;
   background-color: #3B3838;
@@ -1046,7 +1062,27 @@ footer .spotify-container span {
 /* MEDIA QUERIES *************************/
 /* ***************************************/
 /* 768px *************************/
-/* 768px end */
+@media screen and (min-width: 768px) {
+  .skeleton-container {
+    width: 100%;
+    max-width: 350px;
+    margin-bottom: 35px;
+  }
+  .skeleton-container .skeleton-artwork {
+    height: 350px;
+  }
+  .skeleton-container .skeleton-item .skeleton-track-info {
+    margin-bottom: 25px;
+  }
+  .skeleton-container .skeleton-item .skeleton-nav {
+    gap: 20px;
+  }
+  .skeleton-container .skeleton-item .skeleton-nav .skeleton-button {
+    max-width: none;
+  }
+} /* 768px end */
+/* 992px *************************/
+/* 992px end */
 /* ***************************************/
 /* KEYFRAMES *****************************/
 /* ***************************************/

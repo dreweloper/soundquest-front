@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSpotifyAPI } from "../api";
-import { shuffleArray } from "../helpers";
+import { dispatchWithDelay, shuffleArray } from "../helpers";
 import { finishLoading, setError, setPlaylist, setPlaylistDone, setTokenUndone } from "../store/slices";
 
 /**

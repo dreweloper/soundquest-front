@@ -54,6 +54,7 @@
                 color: $accent;
 
                 .like-icon {
+                    font-size: 1.5rem;
                     font-variation-settings:
                     'FILL' var(--icon-fill-value)
                 }
@@ -84,9 +85,32 @@
 /* ***************************************/
 
 /* 768px *************************/
-  
 @media screen and (min-width:768px) {
+
+    .card-container {
+        width: 100%;
+        max-width: 350px;
+    
+        .card-item {
+    
+            .track-info {
+                margin-bottom: 25px;
+            }
+    
+            .card-nav {
+                gap: 20px;
+    
+                .card-nav-button {
+                    max-width: 346px;
+                }
+            }
+        }
+    }
+} /* 768px end */
+
+/* 992px *************************/
+@media screen and (min-width:992px) {
 
     
 
-} /* 768px end */
+} /* 992px end */

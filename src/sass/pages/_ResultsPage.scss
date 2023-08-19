@@ -1,21 +1,8 @@
 .main-results {
+    position: relative;
     @include displayFlex(column, center, flex-start);
     width: 100%;
     min-height: calc(100svh - (60px + 40px));
-    gap: 30px;
-    background-color: $primary;
-
-    .spinner {
-        @include keyframes(spinner){
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-        @include spinner(50px, 50px, 5px, 255, $accent);
-    }
 }
 
 
@@ -28,8 +15,6 @@
 @media screen and (min-width:768px) {
     
     .main-results {
-        position: relative;
-        @include displayFlex(column, center, center);
         min-height: calc(100svh - (60px + 50px));
     }
 } /* 768px end */
