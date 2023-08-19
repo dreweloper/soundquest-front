@@ -6,8 +6,8 @@ import { useLikeStore } from '../hooks';
 export const Card = () => {
 
     // REDUX HOOKS
-    const { playlist: { playlist_url }} = useSelector(state => state.playlist);
-    const { track: { album, artwork, artist, name, track_url }} = useSelector(state => state.track);
+    const { playlist: { playlist_url } } = useSelector(state => state.playlist);
+    const { track: { album, artwork, artist, name, track_url } } = useSelector(state => state.track);
     /**
      * The 'isLiked' state value from Redux store.
      * @type {Boolean}
@@ -38,9 +38,13 @@ export const Card = () => {
 
                     <article className='track-info'>
 
-                        <p className='song'> {name} </p>
+                        <div className='track-info-container'>
 
-                        <p className='artist'> {artist} </p>
+                            <p className='song'> {name} </p>
+
+                            <p className='artist'> {artist} </p>
+
+                        </div>
 
                         <button
                             className='like-button'

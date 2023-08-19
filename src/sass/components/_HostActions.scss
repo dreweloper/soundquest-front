@@ -97,6 +97,39 @@
 /* 992px *************************/
 @media screen and (min-width:992px) {
 
-
-
+    .host-actions-section {
+        @include displayFlex(row, flex-end, center);
+        width: 100%;
+        max-width: 600px;
+        padding-bottom: 30px;
+        margin: 40px 0 30px;
+    
+        .host-container {
+            margin-bottom: 0;
+    
+            .host-link {
+                margin-bottom: 15px;
+    
+                .host-icon {
+                    font-size: 1.6rem;          
+                }
+    
+                .host-username {
+                    font-size: 1.2rem;
+                }
+            }
+    
+            .host-button {
+                max-width: 280px;
+                height: 39px;
+                font-size: 1rem;
+            }
+        }
+    
+        .shuffle-button {
+            max-width: 280px;
+            height: 39px;
+            font-size: 1rem;
+        }
+    }
 } /* 992px end */

@@ -490,26 +490,38 @@ footer .spotify-container span {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   width: 100%;
+  min-height: 105px;
   margin-bottom: 20px;
   border-radius: 5px;
   background-color: #3B3838;
 }
-.card-container .card-item .track-info .song {
+.card-container .card-item .track-info .track-info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: -moz-fit-content;
+  min-height: fit-content;
+  margin: 10px 0;
+}
+.card-container .card-item .track-info .track-info-container .song {
   font-size: 1.1rem;
-  font-weight: 300;
+  font-weight: 400;
   text-align: center;
   padding: 0 10px;
-  margin: 10px 0 8px;
+  margin-bottom: 6px;
+  line-height: 20px;
   color: #FFFFFF;
 }
-.card-container .card-item .track-info .artist {
+.card-container .card-item .track-info .track-info-container .artist {
   font-size: 0.9rem;
   font-weight: 200;
   font-style: italic;
   text-align: center;
-  padding: 0 5px;
+  padding: 0 10px;
   color: #FFFFFF;
 }
 .card-container .card-item .track-info .like-button {
@@ -517,7 +529,7 @@ footer .spotify-container span {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin: 20px 0 10px;
+  margin-bottom: 10px;
   color: #1DB954;
 }
 .card-container .card-item .track-info .like-button .like-icon {
@@ -576,7 +588,53 @@ footer .spotify-container span {
   }
 } /* 768px end */
 /* 992px *************************/
-/* 992px end */
+@media screen and (min-width: 992px) {
+  .card-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 600px;
+  }
+  .card-container .artwork {
+    max-width: 280px;
+    margin-bottom: 0;
+  }
+  .card-container .card-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 280px;
+    min-height: 280px;
+  }
+  .card-container .card-item .track-info {
+    min-height: 150px;
+    margin-bottom: 25px;
+  }
+  .card-container .card-item .track-info .track-info-container {
+    margin: 20px 0 10px;
+  }
+  .card-container .card-item .track-info .track-info-container .song {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  .card-container .card-item .track-info .track-info-container .artist {
+    font-size: 1rem;
+  }
+  .card-container .card-item .track-info .like-button {
+    margin-bottom: 20px;
+  }
+  .card-container .card-item .track-info .like-button .like-icon {
+    font-size: 1.6rem;
+  }
+  .card-container .card-item .card-nav .card-nav-button {
+    max-width: 276px;
+    height: 35px;
+    font-size: 1rem;
+  }
+} /* 992px end */
 .error-toast {
   position: absolute;
   top: 50%;
@@ -783,7 +841,40 @@ footer .spotify-container span {
   }
 } /* 768px end */
 /* 992px *************************/
-/* 992px end */
+@media screen and (min-width: 992px) {
+  .host-actions-section {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+    width: 100%;
+    max-width: 600px;
+    padding-bottom: 30px;
+    margin: 40px 0 30px;
+  }
+  .host-actions-section .host-container {
+    margin-bottom: 0;
+  }
+  .host-actions-section .host-container .host-link {
+    margin-bottom: 15px;
+  }
+  .host-actions-section .host-container .host-link .host-icon {
+    font-size: 1.6rem;
+  }
+  .host-actions-section .host-container .host-link .host-username {
+    font-size: 1.2rem;
+  }
+  .host-actions-section .host-container .host-button {
+    max-width: 280px;
+    height: 39px;
+    font-size: 1rem;
+  }
+  .host-actions-section .shuffle-button {
+    max-width: 280px;
+    height: 39px;
+    font-size: 1rem;
+  }
+} /* 992px end */
 .host-form-container {
   position: relative;
   display: flex;
@@ -1036,7 +1127,7 @@ footer .spotify-container span {
 }
 .skeleton-container .skeleton-item .skeleton-track-info {
   width: 100%;
-  height: 104px;
+  height: 105px;
   margin-bottom: 20px;
   border-radius: 5px;
   background-color: #3B3838;
@@ -1051,7 +1142,7 @@ footer .spotify-container span {
 }
 .skeleton-container .skeleton-item .skeleton-nav .skeleton-button {
   width: 100%;
-  max-width: 296px;
+  max-width: 300px;
   height: 34px;
   background-color: #3B3838;
   border-radius: 5px;
@@ -1082,7 +1173,42 @@ footer .spotify-container span {
   }
 } /* 768px end */
 /* 992px *************************/
-/* 992px end */
+@media screen and (min-width: 992px) {
+  .skeleton-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 0;
+  }
+  .skeleton-container .skeleton-artwork {
+    max-width: 280px;
+    height: 280px;
+    margin-bottom: 0;
+  }
+  .skeleton-container .skeleton-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 280px;
+    min-height: 280px;
+  }
+  .skeleton-container .skeleton-item .skeleton-track-info {
+    width: 100%;
+    height: 150px;
+    margin-bottom: 25px;
+  }
+  .skeleton-container .skeleton-item .skeleton-nav {
+    gap: 20px;
+  }
+  .skeleton-container .skeleton-item .skeleton-nav .skeleton-button {
+    max-width: 280px;
+    height: 39px;
+  }
+} /* 992px end */
 /* ***************************************/
 /* KEYFRAMES *****************************/
 /* ***************************************/
