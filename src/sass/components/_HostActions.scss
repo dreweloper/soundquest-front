@@ -133,3 +133,28 @@
         }
     }
 } /* 992px end */
+
+/* 1200px *************************/
+@media screen and (min-width:1200px) {
+
+    .host-actions-section {
+        max-width: 800px;
+        padding-bottom: 40px;
+        margin: 50px 0 40px;
+    
+        .host-container {
+    
+            .host-link {
+                margin-bottom: 20px;
+            }
+    
+            .host-button {
+                max-width: 380px;
+            }
+        }
+    
+        .shuffle-button {
+            max-width: 380px;
+        }
+    }
+} /* 1200px end */

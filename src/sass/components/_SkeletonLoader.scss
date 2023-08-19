@@ -115,6 +115,35 @@
     }
 } /* 992px end */
 
+/* 1200px *************************/
+@media screen and (min-width:1200px) {
+
+    .skeleton-container {
+        max-width: 800px;
+    
+        .skeleton-artwork {
+            max-width: 380px;
+            height: 380px;
+        }
+    
+        .skeleton-item {
+            max-width: 380px;
+            min-height: 380px;
+    
+            .skeleton-track-info {
+                height: 257px;
+            }
+    
+            .skeleton-nav {
+    
+                .skeleton-button {
+                    max-width: 380px;
+                }
+            }
+        }
+    }
+} /* 1200px end */
+
 
 
 /* ***************************************/

@@ -635,6 +635,37 @@ footer .spotify-container span {
     font-size: 1rem;
   }
 } /* 992px end */
+/* 1200px *************************/
+@media screen and (min-width: 1200px) {
+  .card-container {
+    max-width: 800px;
+  }
+  .card-container .artwork {
+    max-width: 380px;
+  }
+  .card-container .card-item {
+    max-width: 380px;
+    min-height: 380px;
+  }
+  .card-container .card-item .track-info {
+    min-height: 257px;
+  }
+  .card-container .card-item .track-info .track-info-container {
+    margin: 60px 0 20px;
+  }
+  .card-container .card-item .track-info .track-info-container .song {
+    margin-bottom: 12px;
+  }
+  .card-container .card-item .track-info .like-button {
+    margin-bottom: 60px;
+  }
+  .card-container .card-item .track-info .like-button .like-icon {
+    font-size: 1.8rem;
+  }
+  .card-container .card-item .card-nav .card-nav-button {
+    max-width: 376px;
+  }
+} /* 1200px end */
 .error-toast {
   position: absolute;
   top: 50%;
@@ -875,6 +906,23 @@ footer .spotify-container span {
     font-size: 1rem;
   }
 } /* 992px end */
+/* 1200px *************************/
+@media screen and (min-width: 1200px) {
+  .host-actions-section {
+    max-width: 800px;
+    padding-bottom: 40px;
+    margin: 50px 0 40px;
+  }
+  .host-actions-section .host-container .host-link {
+    margin-bottom: 20px;
+  }
+  .host-actions-section .host-container .host-button {
+    max-width: 380px;
+  }
+  .host-actions-section .shuffle-button {
+    max-width: 380px;
+  }
+} /* 1200px end */
 .host-form-container {
   position: relative;
   display: flex;
@@ -1209,6 +1257,26 @@ footer .spotify-container span {
     height: 39px;
   }
 } /* 992px end */
+/* 1200px *************************/
+@media screen and (min-width: 1200px) {
+  .skeleton-container {
+    max-width: 800px;
+  }
+  .skeleton-container .skeleton-artwork {
+    max-width: 380px;
+    height: 380px;
+  }
+  .skeleton-container .skeleton-item {
+    max-width: 380px;
+    min-height: 380px;
+  }
+  .skeleton-container .skeleton-item .skeleton-track-info {
+    height: 257px;
+  }
+  .skeleton-container .skeleton-item .skeleton-nav .skeleton-button {
+    max-width: 380px;
+  }
+} /* 1200px end */
 /* ***************************************/
 /* KEYFRAMES *****************************/
 /* ***************************************/
