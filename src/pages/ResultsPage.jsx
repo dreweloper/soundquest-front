@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { usePlaylistStore, useTokenStore, useTrackStore } from "../hooks";
 import { useEffect, useState } from 'react';
-import { Card, Error, HostActions, InfoBox } from '../components';
+import { Card, Error, HostActions, InfoBox, SkeletonLoader } from '../components';
 import { Footer, NavBar } from '../layouts';
 
 export const ResultsPage = () => {
@@ -63,7 +63,7 @@ export const ResultsPage = () => {
                 <HostActions />
 
                 {
-                    isLoading && (<span className='spinner'></span>)
+                    isLoading && (<SkeletonLoader />)
                 }
 
                 {

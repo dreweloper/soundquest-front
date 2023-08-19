@@ -3,3 +3,4 @@ export * from './Error';
 export * from './HostActions';
 export * from './HostForm';
 export * from './InfoBox';
+export * from './SkeletonLoader';

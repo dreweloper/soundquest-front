@@ -5,13 +5,13 @@
 .card-container {
     @include displayFlex(column, center, center);
     width: 90%;
+    max-width: 300px;
     margin-bottom: 30px;
-    gap: 10px;
 
     .artwork {
         @include displayFlex(row, center, center);
         width: 100%;
-        max-width: 300px;
+        margin-bottom: 10px;
         overflow: hidden;
 
         img {
@@ -22,40 +22,48 @@
     .card-item {
         @include displayFlex(column, center, center);
         width: 100%;
-        max-width: 300px;
-        gap: 20px;
 
         .track-info {
-            @include displayFlex(column, center, center);
+            @include displayFlex(column, center, space-between);
             width: 100%;
-            min-height: fit-content;
+            min-height: 105px;
+            margin-bottom: 20px;
             border-radius: 5px;
             background-color: $primary-dark;
 
-            .song {
-                font-size: 1.1rem;
-                font-weight: 300;
-                text-align: center;
-                padding: 0 10px;
-                margin: 10px 0 8px;
-                color: $secondary;
-            }
-    
-            .artist {
-                font-size: 0.9rem;
-                font-weight: 200;
-                font-style: italic;
-                text-align: center;
-                padding: 0 5px;
-                color: $secondary;
+            .track-info-container {
+                @include displayFlex(column, center, center);
+                width: 100%;
+                min-height: fit-content;
+                margin: 10px 0;
+
+                .song {
+                    font-size: 1.1rem;
+                    font-weight: 400;
+                    text-align: center;
+                    padding: 0 10px;
+                    margin-bottom: 6px;
+                    line-height: 20px;
+                    color: $secondary;
+                }
+        
+                .artist {
+                    font-size: 0.9rem;
+                    font-weight: 200;
+                    font-style: italic;
+                    text-align: center;
+                    padding: 0 10px;
+                    color: $secondary;
+                }
             }
     
             .like-button {
                 @include displayFlex(row, center, center);
-                margin: 20px 0 10px;
+                margin-bottom: 10px;
                 color: $accent;
 
-                .material-symbols-rounded {
+                .like-icon {
+                    font-size: 1.5rem;
                     font-variation-settings:
                     'FILL' var(--icon-fill-value)
                 }
@@ -86,54 +94,125 @@
 /* ***************************************/
 
 /* 768px *************************/
-  
 @media screen and (min-width:768px) {
-    
+
     .card-container {
-        @include displayFlex(row, center, space-between);
-        max-width: 800px;
-        min-height: 350px;
-        gap: 30px;
-    
-        .artwork {
-            max-width: 350px;
-        }
+        width: 100%;
+        max-width: 350px;
     
         .card-item {
-            @include displayFlex(column, flex-end, space-between);
-            width: 80%;
-            max-width: 400px;
-            height: 100%;
-            min-height: 350px;
-            gap: 30px;
     
             .track-info {
-                min-height: 150px;
-    
-                .song {
-                    font-size: 1.2rem;
-                    margin: 10px 0 10px;
-                }
-        
-                .artist {
-                    font-size: 1rem;
-                }
-        
-                .like-button {
-                    margin: 30px 0 0;
-                }
+                margin-bottom: 25px;
             }
     
             .card-nav {
-                gap: 15px;
+                gap: 20px;
     
                 .card-nav-button {
-                    width: 100%;
-                    max-width: 396px;
-                    min-height: 40px;
-                    font-size: 1rem;
+                    max-width: 346px;
                 }
             }
         }
     }
 } /* 768px end */
+
+/* 992px *************************/
+@media screen and (min-width:992px) {
+
+    .card-container {
+        @include displayFlex(row, flex-start, space-between);
+        width: 100%;
+        max-width: 600px;
+    
+        .artwork {
+            max-width: 280px;
+            margin-bottom: 0;
+        }
+    
+        .card-item {
+            @include displayFlex(column, center, space-between);
+            max-width: 280px;
+            min-height: 280px;
+    
+            .track-info {
+                min-height: 150px;
+                margin-bottom: 25px;
+
+                .track-info-container {
+                    margin: 20px 0 10px;
+    
+                    .song {
+                        font-size: 1.2rem;
+                        margin-bottom: 10px;
+                    }
+            
+                    .artist {
+                        font-size: 1rem;
+                    }
+                }
+        
+                .like-button {
+                    margin-bottom: 20px;
+    
+                    .like-icon {
+                        font-size: 1.6rem;
+                    }
+                }
+            }
+    
+            .card-nav {
+    
+                .card-nav-button {
+                    max-width: 276px;
+                    height: 35px;
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+} /* 992px end */
+
+/* 1200px *************************/
+@media screen and (min-width:1200px) {
+
+    .card-container {
+        max-width: 800px;
+    
+        .artwork {
+            max-width: 380px;
+        }
+    
+        .card-item {
+            max-width: 380px;
+            min-height: 380px;
+    
+            .track-info {
+                min-height: 257px;
+
+                .track-info-container {
+                    margin: 60px 0 20px;
+
+                    .song {
+                        margin-bottom: 12px;
+                    }
+                }
+        
+                .like-button {
+                    margin-bottom: 60px;
+    
+                    .like-icon {
+                        font-size: 1.8rem;
+                    }
+                }
+            }
+    
+            .card-nav {
+    
+                .card-nav-button {
+                    max-width: 376px;
+                }
+            }
+        }
+    }
+} /* 1200px end */
