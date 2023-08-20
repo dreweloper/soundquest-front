@@ -1,32 +1,9 @@
 .info-box {
     position: relative;
-    @include displayFlex(column, center, flex-start);
+    @include displayFlex(column, center, space-between);
     width: 90%;
-    max-width: 350px;
-    height: 430px;
+    min-height: fit-content;
     border-radius: 5px;
-    gap: 30px;
     color: $secondary;
     background-color: $primary;
-    overflow: scroll;
-
-    .info-text {
-        width: 90%;
-        font-size: 0.9rem;
-        font-weight: 200;
-        margin-top: 40px;
-    }
-
-    .github-link {
-        width: fit-content;
-        margin-bottom: 10px;
-
-        .devicon-github-original {
-            font-size: 2.5rem;
-        }
-
-        &:hover {
-            color: $accent;
-        }
-    }   
 }

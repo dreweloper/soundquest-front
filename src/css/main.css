@@ -183,6 +183,10 @@ body {
   color: #E6E6E6;
 }
 
+.font-bold {
+  font-weight: 700;
+}
+
 .danger-color {
   color: #ec2206;
 }
@@ -1121,32 +1125,13 @@ footer .spotify-container span {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   width: 90%;
-  max-width: 350px;
-  height: 430px;
+  min-height: -moz-fit-content;
+  min-height: fit-content;
   border-radius: 5px;
-  gap: 30px;
   color: #FFFFFF;
   background-color: #191414;
-  overflow: scroll;
-}
-.info-box .info-text {
-  width: 90%;
-  font-size: 0.9rem;
-  font-weight: 200;
-  margin-top: 40px;
-}
-.info-box .github-link {
-  width: -moz-fit-content;
-  width: fit-content;
-  margin-bottom: 10px;
-}
-.info-box .github-link .devicon-github-original {
-  font-size: 2.5rem;
-}
-.info-box .github-link:hover {
-  color: #1DB954;
 }
 
 .skeleton-container {
