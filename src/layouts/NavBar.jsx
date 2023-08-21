@@ -24,7 +24,7 @@ export const NavBar = ({ isInfoBoxOpen, setIsInfoBoxOpen }) => {
             >
 
                 <span className='material-symbols-rounded info-icon'>
-                    help_center
+                    help
                 </span>
 
             </button >
