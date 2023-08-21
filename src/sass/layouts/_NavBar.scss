@@ -32,16 +32,17 @@
         margin-right: 20px;
 
         .info-icon {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 300;
             font-variation-settings:
-                'FILL' 1,
+                'FILL' 1
         }
 
         &:hover {
             .info-icon {
+                color: $accent;
                 font-variation-settings:
-                    'FILL' 0,
+                    'FILL' 0
             }
         }
     }
@@ -78,7 +79,7 @@
             margin-right: 30px;
 
             .info-icon {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
         }
     }
