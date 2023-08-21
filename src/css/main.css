@@ -285,7 +285,7 @@ footer .spotify-container span {
   margin-right: 20px;
 }
 .nav-bar .nav-button .info-icon {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 300;
   font-variation-settings: "FILL" 1;
 }
@@ -317,7 +317,7 @@ footer .spotify-container span {
     margin-right: 30px;
   }
   .nav-bar .nav-button .info-icon {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 }
 /* 992px end */
@@ -848,12 +848,32 @@ footer .spotify-container span {
   color: #FFFFFF;
   background-color: #1DB954;
 }
+.host-actions-section .shuffle-button .spinner {
+  width: 15px;
+  height: 15px;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-left-color: #191414;
+  animation: spinner 1s ease infinite;
+}
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 .host-actions-section .shuffle-button:hover {
   color: #FFFFFF;
   background-color: #191414;
   border: 2px solid #1DB954;
   transition-duration: 0.4s;
   transition-timing-function: ease-in-out;
+}
+.host-actions-section .shuffle-button:hover .spinner {
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-left-color: #FFFFFF;
 }
 
 /* ***************************************/
@@ -879,7 +899,8 @@ footer .spotify-container span {
   .host-actions-section .shuffle-button {
     max-width: none;
   }
-} /* 768px end */
+}
+/* 768px end */
 /* 992px *************************/
 @media screen and (min-width: 992px) {
   .host-actions-section {
@@ -914,7 +935,12 @@ footer .spotify-container span {
     height: 39px;
     font-size: 1rem;
   }
-} /* 992px end */
+  .host-actions-section .shuffle-button .spinner {
+    width: 19px;
+    height: 19px;
+  }
+}
+/* 992px end */
 /* 1200px *************************/
 @media screen and (min-width: 1200px) {
   .host-actions-section {
@@ -931,7 +957,8 @@ footer .spotify-container span {
   .host-actions-section .shuffle-button {
     max-width: 380px;
   }
-} /* 1200px end */
+}
+/* 1200px end */
 .host-form-container {
   position: relative;
   display: flex;
