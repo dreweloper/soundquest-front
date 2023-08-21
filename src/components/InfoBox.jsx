@@ -1,7 +1,11 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { en, es } from '../data/infoBoxTexts.json';
 
 export const InfoBox = ({ isInfoBoxOpen, setIsInfoBoxOpen }) => {
+
+    const [language, setLanguage] = useState('EN');
 
 
     return (
@@ -10,28 +14,86 @@ export const InfoBox = ({ isInfoBoxOpen, setIsInfoBoxOpen }) => {
 
             <div className='overlay'>
 
-                <section className='info-box'>
+                <article className='info-box-card'>
 
-                    <button
-                        className='close-button'
-                        onClick={() => { setIsInfoBoxOpen(!isInfoBoxOpen) }}
-                    >
+                    <div className='info-box-container'>
 
-                        <span className='material-symbols-rounded close-icon'>
-                            close
-                        </span>
+                        <div className='lang-options'>
 
-                    </button>
+                            <span
+                                className={language == 'EN' ? 'font-bold cursor-pointer' : 'cursor-pointer'}
+                                onClick={() => { setLanguage('EN') }}
+                            >
+                                EN
+                            </span>
 
-                    <p className='info-text'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum quo adipisci modi corporis officia, debitis natus deserunt quibusdam incidunt! Omnis accusantium nam dolor animi fuga voluptas rerum harum error molestias cumque molestiae facere magni voluptatum aliquam magnam sit doloribus sequi ut, quidem autem ad ullam et consequuntur veniam. Id provident impedit quam maiores modi quod dolor at, earum vitae. Asperiores, possimus? Adipisci ducimus eligendi aliquid maxime debitis libero delectus deleniti, dolor dolorum ab numquam, quod dolores ratione provident laborum at sint temporibus molestias eum? Autem, velit recusandae reiciendis tenetur saepe illo voluptas magnam officia eius iste consequatur quaerat cumque nam.</p>
+                            <span>|</span>
 
-                    <Link className='github-link' to='https://github.com/dreweloper' target='_blank'>
+                            <span
+                                className={language == 'ES' ? 'font-bold cursor-pointer' : 'cursor-pointer'}
+                                onClick={() => { setLanguage('ES') }}
+                            >
+                                ES
+                            </span>
 
-                        <i className='devicon-github-original'></i>
+                        </div>
 
-                    </Link>
+                        <button
+                            className='close-box-button'
+                            onClick={() => { setIsInfoBoxOpen(!isInfoBoxOpen) }}
+                        >
 
-                </section>
+                            <span className='material-symbols-rounded close-icon'>
+                                close
+                            </span>
+
+                        </button>
+
+                    </div>
+
+                    {
+                        language == 'EN' && (
+                            <div className='info-box-text'>
+
+                                <h2>{en.title}</h2>
+                                
+                                <p>{en.description}</p>
+
+                            </div>
+                        )
+                    }
+
+                    {
+                        language == 'ES' && (
+                            <div className='info-box-text'>
+
+                                <h2>{es.title}</h2>
+
+                                <p>{es.description}</p>
+
+                            </div>
+                        )
+                    }
+
+                    <div className='info-box-contact'>
+
+                        {
+                            language == 'EN' && (<p>Developed by <span>Andrés León</span></p>)
+                        }
+
+                        {
+                            language == 'ES' && (<p>Desarrollado por <span>Andrés León</span></p>)
+                        }
+
+                        <Link className='github-link' to='https://github.com/dreweloper' target='_blank'>
+
+                            <i className='devicon-github-original'></i>
+
+                        </Link>
+
+                    </div>
+
+                </article>
 
             </div>
 

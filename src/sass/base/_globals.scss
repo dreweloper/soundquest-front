@@ -39,6 +39,14 @@ body {
     color: $secondary-10;
 }
 
+.font-bold {
+    font-weight: 700;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
 .danger-color {
     color: $danger;
 }
