@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { en, es } from '../data/infoBoxTexts.json';
 
 export const InfoBox = ({ isInfoBoxOpen, setIsInfoBoxOpen }) => {
 
@@ -13,52 +14,86 @@ export const InfoBox = ({ isInfoBoxOpen, setIsInfoBoxOpen }) => {
 
             <div className='overlay'>
 
-                <section className='info-box'>
+                <article className='info-box-card'>
 
-                    <div className='language-options'>
+                    <div className='info-box-container'>
 
-                        <span
-                            className={language == 'EN' ? 'font-bold' : null}
-                            onClick={() => { setLanguage('EN')}}
+                        <div className='lang-options'>
+
+                            <span
+                                className={language == 'EN' ? 'font-bold cursor-pointer' : 'cursor-pointer'}
+                                onClick={() => { setLanguage('EN') }}
+                            >
+                                EN
+                            </span>
+
+                            <span>|</span>
+
+                            <span
+                                className={language == 'ES' ? 'font-bold cursor-pointer' : 'cursor-pointer'}
+                                onClick={() => { setLanguage('ES') }}
+                            >
+                                ES
+                            </span>
+
+                        </div>
+
+                        <button
+                            className='close-box-button'
+                            onClick={() => { setIsInfoBoxOpen(!isInfoBoxOpen) }}
                         >
-                            EN
-                        </span>
-                        |
-                        <span
-                            className={language == 'ES' ? 'font-bold' : null}
-                            onClick={() => { setLanguage('ES')}}
-                        >
-                            ES
-                        </span>
+
+                            <span className='material-symbols-rounded close-icon'>
+                                close
+                            </span>
+
+                        </button>
 
                     </div>
 
-                    <button
-                        className='close-button'
-                        onClick={() => { setIsInfoBoxOpen(!isInfoBoxOpen) }}
-                    >
-
-                        <span className='material-symbols-rounded close-icon'>
-                            close
-                        </span>
-
-                    </button>
-
                     {
-                        language == 'EN' && (<p className='info-text'>SoundQuest isn't just an app, it's your gateway to a universe of new music discovery. Leveraging Spotify's API, we cracked the code to bring you truly random tracks, sparking your musical journey like never before. What started as a way to share my own playlists evolved into something even greater. Now, you have the power to be the host, inviting yourself or a friend into the mix, or even tapping into Spotify's official user ID to explore over 1,300 professionally curated playlists. Click, explore, and embark on a limitless sonic journey with SoundQuest’s one-click wonder, right from where you are!</p>)
+                        language == 'EN' && (
+                            <div className='info-box-text'>
+
+                                <h2>{en.title}</h2>
+                                
+                                <p>{en.description}</p>
+
+                            </div>
+                        )
                     }
 
                     {
-                        language == 'ES' && (<p className='info-text'>SoundQuest no es solo una aplicación, es tu entrada a un universo de música nueva. El resultado de combinar la API de Spotify y nuestro algoritmo es que ahora puedes disfrutar de una experiencia musical con canciones completamente aleatorias. Lo que comenzó como una forma de compartir mis propias playlists evolucionó en algo mucho más significativo. Ahora, tienes el poder de ser el anfitrión, ya sea invitándote a ti mismo o a un amigo, o incluso conectándote con el usuario oficial de Spotify para explorar más de 1.300 playlists curadas por profesionales. ¡Haz click, explora y embárcate en un viaje sonoro sin límites desde donde estés con SoundQuest!</p>)
+                        language == 'ES' && (
+                            <div className='info-box-text'>
+
+                                <h2>{es.title}</h2>
+
+                                <p>{es.description}</p>
+
+                            </div>
+                        )
                     }
 
-                    <Link className='github-link' to='https://github.com/dreweloper' target='_blank'>
+                    <div className='info-box-contact'>
 
-                        <i className='devicon-github-original'></i>
+                        {
+                            language == 'EN' && (<p>Developed by <span>Andrés León</span></p>)
+                        }
 
-                    </Link>
+                        {
+                            language == 'ES' && (<p>Desarrollado por <span>Andrés León</span></p>)
+                        }
 
-                </section>
+                        <Link className='github-link' to='https://github.com/dreweloper' target='_blank'>
+
+                            <i className='devicon-github-original'></i>
+
+                        </Link>
+
+                    </div>
+
+                </article>
 
             </div>
 

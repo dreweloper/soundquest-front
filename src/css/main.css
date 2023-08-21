@@ -187,6 +187,10 @@ body {
   font-weight: 700;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 .danger-color {
   color: #ec2206;
 }
@@ -1120,18 +1124,95 @@ footer .spotify-container span {
     background-position: 0 0;
   }
 }
-.info-box {
-  position: relative;
+.info-box-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   width: 90%;
-  min-height: -moz-fit-content;
-  min-height: fit-content;
+  max-width: 350px;
+  min-height: 355px;
   border-radius: 5px;
   color: #FFFFFF;
   background-color: #191414;
+}
+.info-box-card .info-box-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 40px;
+  background-color: #3B3838;
+}
+.info-box-card .info-box-container .lang-options {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 50px;
+  margin-left: 17.5px;
+  font-size: 0.9rem;
+  color: #191414;
+}
+.info-box-card .info-box-container .close-box-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-right: 17.5px;
+}
+.info-box-card .info-box-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 90%;
+}
+.info-box-card .info-box-text h2 {
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin: 20px 0 10px;
+}
+.info-box-card .info-box-text p {
+  font-size: 0.9rem;
+  font-weight: 200;
+  line-height: 1.17rem;
+  word-spacing: 0.1em;
+  margin: 10px 0 20px;
+  color: #E6E6E6;
+}
+.info-box-card .info-box-contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  border-top: 2px solid #1DB954;
+}
+.info-box-card .info-box-contact p {
+  font-size: 0.9rem;
+  font-weight: 200;
+  word-spacing: 0.1em;
+  margin: 20px 0 15px;
+}
+.info-box-card .info-box-contact p span {
+  font-weight: 500;
+}
+.info-box-card .info-box-contact .github-link {
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-bottom: 20px;
+}
+.info-box-card .info-box-contact .github-link i {
+  font-size: 2rem;
+}
+.info-box-card .info-box-contact .github-link:hover {
+  color: #1DB954;
 }
 
 .skeleton-container {
