@@ -61,7 +61,9 @@ export const HostActions = () => {
                     onClick={getToken}
                     disabled={isLoading}
                 >
-                    Random Track
+                    {
+                        isLoading ? (<span className="spinner"></span>) : (<span>Random Track</span>)
+                    }
                 </button>
 
             </section>
