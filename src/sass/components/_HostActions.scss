@@ -62,17 +62,11 @@
                     transform: rotate(360deg);
                 }
             }
-            @include spinner(15px, 15px, 3px, 0, $primary);
+            @include spinner(15px, 15px, 3px, 255, $secondary);
         }
 
         &:hover {
             @include buttonEffect($secondary, $primary, $accent);
-
-            .spinner {
-                border: 3px solid rgba(255, 255, 255, .1);
-                border-left-color: $secondary;
-    
-            }
         }
     }
 }

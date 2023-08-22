@@ -851,9 +851,9 @@ footer .spotify-container span {
 .host-actions-section .shuffle-button .spinner {
   width: 15px;
   height: 15px;
-  border: 3px solid rgba(0, 0, 0, 0.1);
+  border: 3px solid rgba(255, 255, 255, 0.1);
   border-radius: 50%;
-  border-left-color: #191414;
+  border-left-color: #FFFFFF;
   animation: spinner 1s ease infinite;
 }
 @keyframes spinner {
@@ -870,10 +870,6 @@ footer .spotify-container span {
   border: 2px solid #1DB954;
   transition-duration: 0.4s;
   transition-timing-function: ease-in-out;
-}
-.host-actions-section .shuffle-button:hover .spinner {
-  border: 3px solid rgba(255, 255, 255, 0.1);
-  border-left-color: #FFFFFF;
 }
 
 /* ***************************************/
