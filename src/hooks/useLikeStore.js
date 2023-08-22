@@ -121,7 +121,7 @@ export const useLikeStore = () => {
 
                 getTracksCount();
 
-                dispatchWithDelay(dispatch, closeLikeSnackBar(), 3000);
+                // dispatchWithDelay(dispatch, closeLikeSnackBar(), 3000);
 
             };
 

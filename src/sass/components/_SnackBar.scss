@@ -1,0 +1,55 @@
+.snackbar {
+    @include keyframes(slide-in) {
+        from {
+            left: -290px;
+            filter: blur(2px);
+        }
+        to {
+            left: 10px;
+            filter: blur(0);
+        };
+    }
+    @include keyframes(slide-out) {
+        from {
+            left: 10px;
+            filter: blur(0);
+        }
+        to {
+            left: -290px;
+            filter: blur(2px);
+        };
+    }
+    position: fixed;
+    bottom: 10px;
+    @include displayFlex(row, center, space-between);
+    width: 100%;
+    max-width: 280px;
+    min-height: 70px;
+    border-radius: 5px;
+    opacity: 0.95;
+    animation: slide-in 1s ease-out forwards, slide-out 1s 4s ease-in forwards;
+
+    .snackbar-message {
+        @include displayFlex(column, center, center);
+        width: 100%;
+        margin: 0 5px;
+        color: $secondary;
+
+        p {
+            font-size: 0.9rem;
+            font-weight: 300;
+
+            span {
+                font-weight: 600;
+            }
+        }
+    }
+
+    .close-button {
+        margin: 1px 3px 0 0;
+
+        .close-icon {
+            font-size: 1rem;
+        }
+    }
+}

@@ -16,18 +16,24 @@ export const SnackBar = () => {
 
         <>
 
-            <div className="snackbar">
+            <div className={!likeError ? "snackbar success-bg-color" : "snackbar danger-bg-color"}>
 
                 <div className="snackbar-message">
 
-                    <h3>{!likeError ? 'Track added' : 'An error ocurred'}</h3>
+                    {!likeError ? (
 
-                    <p>{!likeError ? `Likes counter: ${likesCounter}` : 'Try again, please'}</p>
+                        <p><span>{likesCounter}</span> tracks have been liked in total.</p>
+
+                    ) : (
+
+                        <p>An error occurred. Please try again.</p>
+
+                    )}
 
                 </div>
 
                 <button
-                    className="snackbar-button"
+                    className="close-button"
                     onClick={() => { dispatch(closeLikeSnackBar()) }}
                 >
 
@@ -37,7 +43,7 @@ export const SnackBar = () => {
 
                 </button>
 
-            </div>
+            </div >
 
         </>
 
