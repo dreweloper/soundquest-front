@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setDislike, setLike, setLikeError, updateLikesCounter } from "../store/slices";
-import { setIconFill } from "../helpers";
+import { closeLikeSnackBar, setDislike, setLike, setLikeError, updateLikesCounter } from "../store/slices";
+import { dispatchWithDelay, setIconFill } from "../helpers";
 import { useState } from "react";
 import { fetchMongoDB } from "../api";
 
@@ -48,7 +48,7 @@ export const useLikeStore = () => {
     const getTracksCount = async () => {
 
         try {
-            
+
             /**
              * Fetches the count of tracks from the MongoDB server using a GET request.
              * @function
@@ -76,7 +76,7 @@ export const useLikeStore = () => {
             };
 
         } catch (error) {
-            
+
             console.log(error);
 
         };
@@ -121,11 +121,13 @@ export const useLikeStore = () => {
 
                 getTracksCount();
 
+                dispatchWithDelay(dispatch, closeLikeSnackBar(), 3000);
+
             };
 
         } catch (error) {
 
-            dispatch(setLikeError());
+            dispatch(setLikeError()); //! Habría que renderizar mensaje de error en el SnackBar
 
         };
 
@@ -147,13 +149,13 @@ export const useLikeStore = () => {
              */
             const response = await fetchMongoDB(`${urlBase}/track/${objectID}`, 'DELETE');
 
-            if(response.ok){
-
-                setObjectID(undefined);
+            if (response.ok) {
 
                 dispatch(setDislike());
 
                 setIconFill(0);
+
+                setObjectID(undefined);
 
                 getTracksCount();
 
@@ -162,7 +164,7 @@ export const useLikeStore = () => {
         } catch (error) {
 
             dispatch(setLikeError());
-            
+
         };
 
     }; //!DELETETRACK

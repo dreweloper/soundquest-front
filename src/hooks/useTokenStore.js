@@ -56,6 +56,7 @@ export const useTokenStore = () => {
      * @throws {Error} Throws an error if an issue occurs during the token request process.
      */
     const getToken = async () => {
+        //! Faltaría el 'likeError'. Idea: centralizar en una función 'handle' todo lo que se debe cerrar o limpiar en caso de que se dispare 'getToken'
         // Clears error state if previously set.
         if(error) dispatch(clearError());
         // If 'isLiked' flag is set, dispatch 'setDislike' action.

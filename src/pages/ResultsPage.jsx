@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { usePlaylistStore, useTokenStore, useTrackStore } from "../hooks";
 import { useEffect, useState } from 'react';
-import { Card, Error, HostActions, InfoBox, SkeletonLoader } from '../components';
+import { Card, Error, HostActions, InfoBox, SkeletonLoader, SnackBar } from '../components';
 import { Footer, NavBar } from '../layouts';
 
 export const ResultsPage = () => {
@@ -13,6 +13,7 @@ export const ResultsPage = () => {
     const { track: { track_id }, isTrackIdDone } = useSelector(state => state.track);
     const { error } = useSelector(state => state.errors);
     const { host: { username } } = useSelector(state => state.host);
+    const { isLikeSnackBarOpen } = useSelector(state => state.like);
 
     // REDUX MIDDLEWARES (CUSTOM HOOKS)
     const { getToken } = useTokenStore();
@@ -72,6 +73,10 @@ export const ResultsPage = () => {
 
                 {
                     !isLoading && !error && (<Card />)
+                }
+
+                {
+                    isLikeSnackBarOpen && (<SnackBar />)
                 }
 
             </main >
