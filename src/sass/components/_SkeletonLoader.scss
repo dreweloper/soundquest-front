@@ -1,4 +1,17 @@
 .skeleton-container {
+    @include keyframes(skeleton) {
+        0% {
+            opacity: 0.7;
+        }
+    
+        50% {
+            opacity: 0.3;
+        }
+        
+        100% {
+            opacity: 0.7;
+        }
+    }
     @include displayFlex(column, center, center);
     width: 90%;
     max-width: 300px;
@@ -143,24 +156,3 @@
         }
     }
 } /* 1200px end */
-
-
-
-/* ***************************************/
-/* KEYFRAMES *****************************/
-/* ***************************************/
-
-@keyframes skeleton {
-
-    0% {
-        opacity: 0.7;
-    }
-
-    50% {
-        opacity: 0.3;
-    }
-    
-    100% {
-        opacity: 0.7;
-    }
-}
