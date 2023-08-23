@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { closeLikeSnackBar, setDislike, setLike, setLikeError, updateLikesCounter } from "../store/slices";
-import { dispatchWithDelay, setIconFill } from "../helpers";
+import { clearLikeError, setDislike, setLike, setLikeError, updateLikesCounter } from "../store/slices";
+import { setIconFill } from "../helpers";
 import { useState } from "react";
 import { fetchMongoDB } from "../api";
 
@@ -25,6 +25,12 @@ export const useLikeStore = () => {
      * @type {Object}
      */
     const { track } = useSelector(state => state.track);
+    /**
+     * The 'like' state object from Redux store.
+     * @type {Object}
+     * @property {Boolean} likeError - A flag indicating whether an error has occurred while adding the song to MongoDB.
+     */
+    const { likeError } = useSelector(state => state.like);
     /**
      * The dispatch function from Redux to dispatch actions.
      * @type {Function}
@@ -99,6 +105,8 @@ export const useLikeStore = () => {
          */
         const body = { host, playlist, track };
 
+        if(likeError) dispatch(clearLikeError());
+
         try {
             /**
              * The response received from the MongoDB API.
@@ -125,7 +133,7 @@ export const useLikeStore = () => {
 
         } catch (error) {
 
-            dispatch(setLikeError()); //! Habría que renderizar mensaje de error en el SnackBar
+            dispatch(setLikeError());
 
         };
 

@@ -13,7 +13,7 @@ export const Card = () => {
      * The 'isLiked' state value from Redux store.
      * @type {Boolean}
      */
-    const { isLiked } = useSelector(state => state.like);
+    const { isLiked, isLikeSnackBarOpen } = useSelector(state => state.like);
 
     // REDUX MIDDLEWARES (CUSTOM HOOK)
     const { addTrack, deleteTrack } = useLikeStore();
@@ -59,7 +59,7 @@ export const Card = () => {
                         </button>
 
                         {
-                            isLiked && (<SnackBar />)
+                            isLikeSnackBarOpen && (<SnackBar />)
                         }
 
                     </article>

@@ -13,7 +13,6 @@ export const ResultsPage = () => {
     const { track: { track_id }, isTrackIdDone } = useSelector(state => state.track);
     const { error } = useSelector(state => state.errors);
     const { host: { username } } = useSelector(state => state.host);
-    const { isLikeSnackBarOpen } = useSelector(state => state.like);
 
     // REDUX MIDDLEWARES (CUSTOM HOOKS)
     const { getToken } = useTokenStore();
@@ -73,10 +72,6 @@ export const ResultsPage = () => {
 
                 {
                     !isLoading && !error && (<Card />)
-                }
-
-                {
-                    isLikeSnackBarOpen && (<SnackBar />)
                 }
 
             </main >

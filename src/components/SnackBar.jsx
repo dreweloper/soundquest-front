@@ -1,22 +1,61 @@
-import { useDispatch, useSelector } from "react-redux";
-import { closeLikeSnackBar } from "../store/slices";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 export const SnackBar = () => {
 
-    // REDUX HOOKS
-    const { likeError, likesCounter } = useSelector(state => state.like);
+    // REDUX HOOK
     /**
-     * The dispatch function from Redux to dispatch actions.
-     * @type {Function}
+     * The 'like' state object from Redux store.
+     * @type {Object}
+     * @property {Boolean} likeError - A flag indicating whether an error has occurred while adding the song to MongoDB.
+     * @property {Number} likesCounter - The count of total likes.
      */
-    const dispatch = useDispatch();
+    const { likeError, likesCounter } = useSelector(state => state.like);
+
+    // REACT HOOKS
+    /**
+     * State to control the visibility of a component.
+     * @type {boolean}
+     * @default true
+     */
+    const [visible, setVisible] = useState(true);
+
+    useEffect(() => {
+        /**
+         * A flag indicating whether the component is currently mounted.
+         * This flag is used to prevent state updates on an unmounted component.
+         * @type {Boolean}
+         */
+        let isMounted = true;
+        /**
+         * Timer that changes the visibility state after a delay.
+         * @type {Number}
+         */
+        const timer = setTimeout(() => {
+
+            if (isMounted) setVisible(false);
+
+        }, 3000);
+        /**
+         * Cleanup function to clear the timer and update the mounted status.
+         */
+        return () => {
+
+            isMounted = false;
+
+            clearTimeout(timer);
+
+        };
+
+    }, []);
+
 
 
     return (
 
         <>
 
-            <div className={!likeError ? "snackbar success-bg-color" : "snackbar danger-bg-color"}>
+            <div className={`snackbar ${visible ? 'slide-in' : 'slide-out'} ${!likeError ? 'success-bg-color' : 'danger-bg-color'}`}>
 
                 <div className="snackbar-message">
 
@@ -34,7 +73,7 @@ export const SnackBar = () => {
 
                 <button
                     className="close-button"
-                    onClick={() => { dispatch(closeLikeSnackBar()) }}
+                    onClick={() => { setVisible(false) }}
                 >
 
                     <span className='material-symbols-rounded close-icon'>
