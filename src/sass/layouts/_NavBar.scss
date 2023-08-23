@@ -1,38 +1,38 @@
 .nav-bar {
     @include displayFlex(row, center, space-between);
     width: 100%;
-    max-width: 1200px;
-    height: 60px;
-    margin: 0 auto;
+    height: 50px;
     color: $secondary;
-    background-color: $primary;
+
+    > * {
+        margin: 0 10px;
+    }
 
     .nav-logo {
         @include displayFlex(row, center, space-between);
         width: fit-content;
-        min-height: 100%;
-        gap: 10px;
+        gap: 5px;
 
         .equalizer-icon {
-            font-size: 1.8rem;
-            margin-left: 10px;
+            font-size: 1.6rem;
+            font-weight: 400;
             color: $accent;
         }
 
         .nav-logo-title {
             font-family: $font-prompt;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
+            font-weight: 500;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            margin-right: 10px;
         }
     }
 
     .nav-button {
         @include displayFlex(row, center, center);
-        margin-right: 20px;
 
         .info-icon {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 300;
             font-variation-settings:
                 'FILL' 1
@@ -54,35 +54,63 @@
 /* MEDIA QUERIES *************************/
 /* ***************************************/
 
-/* 992px *************************/
+/* 768px *************************/
+@media screen and (min-width:768px) {
 
+    .nav-bar {
+        height: 60px;
+    
+        > * {
+            margin: 0 20px;
+        }
+    
+        .nav-logo {
+            gap: 8px;
+    
+            .equalizer-icon {
+                font-size: 1.8rem;
+            }
+    
+            .nav-logo-title {
+                font-size: 1.8rem;
+            }
+        }
+    
+        .nav-button {
+    
+            .info-icon {
+                font-size: 1.8rem;
+            }
+        }
+    }
+}/* 768px end */
+
+/* 992px *************************/
 @media screen and (min-width:992px) {
 
     .nav-bar {
-        height: 80px;
+        max-width: 992px;
+        height: 70px;
+        margin: 0 auto;
 
+    
         .nav-logo {
-            gap: 15px;
-
+            gap: 10px;
+    
             .equalizer-icon {
                 font-size: 2rem;
-                margin-left: 15px;
             }
-
+    
             .nav-logo-title {
                 font-size: 2rem;
-                margin-right: 15px;
             }
         }
-
+    
         .nav-button {
-            margin-right: 30px;
-
+    
             .info-icon {
                 font-size: 2rem;
             }
         }
     }
-}
-
-/* 992px end */
+}/* 992px end */
