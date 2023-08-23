@@ -11,7 +11,7 @@ export const Error = () => {
 
         dispatch(clearError());
 
-        dispatch(clearToken()); // To renderize de shuffle button in ResultsPage.
+        dispatch(clearToken()); //? To renderize de shuffle button in ResultsPage.
 
     };
 

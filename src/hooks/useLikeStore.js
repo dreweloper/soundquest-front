@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setDislike, setLike, setLikeError, updateLikesCounter } from "../store/slices";
+import { clearLikeError, setDislike, setLike, setLikeError, updateLikesCounter } from "../store/slices";
 import { setIconFill } from "../helpers";
 import { useState } from "react";
 import { fetchMongoDB } from "../api";
@@ -26,6 +26,12 @@ export const useLikeStore = () => {
      */
     const { track } = useSelector(state => state.track);
     /**
+     * The 'like' state object from Redux store.
+     * @type {Object}
+     * @property {Boolean} likeError - A flag indicating whether an error has occurred while adding the song to MongoDB.
+     */
+    const { likeError } = useSelector(state => state.like);
+    /**
      * The dispatch function from Redux to dispatch actions.
      * @type {Function}
      */
@@ -48,7 +54,7 @@ export const useLikeStore = () => {
     const getTracksCount = async () => {
 
         try {
-            
+
             /**
              * Fetches the count of tracks from the MongoDB server using a GET request.
              * @function
@@ -76,7 +82,7 @@ export const useLikeStore = () => {
             };
 
         } catch (error) {
-            
+
             console.log(error);
 
         };
@@ -98,6 +104,8 @@ export const useLikeStore = () => {
          * @property {Object} track - The track object to be added.
          */
         const body = { host, playlist, track };
+
+        if(likeError) dispatch(clearLikeError());
 
         try {
             /**
@@ -147,13 +155,13 @@ export const useLikeStore = () => {
              */
             const response = await fetchMongoDB(`${urlBase}/track/${objectID}`, 'DELETE');
 
-            if(response.ok){
-
-                setObjectID(undefined);
+            if (response.ok) {
 
                 dispatch(setDislike());
 
                 setIconFill(0);
+
+                setObjectID(undefined);
 
                 getTracksCount();
 
@@ -162,7 +170,7 @@ export const useLikeStore = () => {
         } catch (error) {
 
             dispatch(setLikeError());
-            
+
         };
 
     }; //!DELETETRACK

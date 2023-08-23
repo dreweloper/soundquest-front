@@ -1,4 +1,17 @@
 .skeleton-container {
+    @include keyframes(skeleton) {
+        0% {
+            opacity: 0.7;
+        }
+    
+        50% {
+            opacity: 0.3;
+        }
+        
+        100% {
+            opacity: 0.7;
+        }
+    }
     @include displayFlex(column, center, center);
     width: 90%;
     max-width: 300px;
@@ -54,7 +67,6 @@
     .skeleton-container {
         width: 100%;
         max-width: 350px;
-        margin-bottom: 35px;
     
         .skeleton-artwork {
             height: 350px;
@@ -84,7 +96,6 @@
         @include displayFlex(row, flex-start, space-between);
         width: 100%;
         max-width: 600px;
-        margin-bottom: 0;
     
         .skeleton-artwork {
             max-width: 280px;
@@ -143,24 +154,3 @@
         }
     }
 } /* 1200px end */
-
-
-
-/* ***************************************/
-/* KEYFRAMES *****************************/
-/* ***************************************/
-
-@keyframes skeleton {
-
-    0% {
-        opacity: 0.7;
-    }
-
-    50% {
-        opacity: 0.3;
-    }
-    
-    100% {
-        opacity: 0.7;
-    }
-}

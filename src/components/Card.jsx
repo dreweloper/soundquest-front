@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useLikeStore } from '../hooks';
+import { SnackBar } from './SnackBar';
 
 
 export const Card = () => {
@@ -56,6 +57,10 @@ export const Card = () => {
                             </span>
 
                         </button>
+
+                        {
+                            isLiked && (<SnackBar />)
+                        }
 
                     </article>
 
