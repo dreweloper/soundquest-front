@@ -14,7 +14,7 @@ export const InfoBox = ({ isInfoBoxOpen, setIsInfoBoxOpen }) => {
 
             <div className='overlay'>
 
-                <article className='info-box-card'>
+                <article className='info-box-card fade-in-transition'>
 
                     <div className='info-box-container'>
 

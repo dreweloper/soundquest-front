@@ -35,14 +35,14 @@
             font-size: 1.6rem;
             font-weight: 300;
             font-variation-settings:
-                'FILL' 1
+                'FILL' 0
         }
 
         &:hover {
             .info-icon {
                 color: $accent;
                 font-variation-settings:
-                    'FILL' 0
+                    'FILL' 1
             }
         }
     }

@@ -1,8 +1,8 @@
 .info-box-card {
     @include displayFlex(column, center, flex-start);
     width: 90%;
-    max-width: 350px;
-    min-height: 370px;
+    max-width: 500px;
+    min-height: fit-content;
     border-radius: 5px;
     color: $secondary;
     background-color: $primary;
@@ -11,12 +11,13 @@
         @include displayFlex(row, center, space-between);
         width: 100%;
         height: 40px;
+        border-radius: 5px 5px 0 0;
         background-color: $primary-dark;
 
         .lang-options {
             @include displayFlex(row, center, space-between);
             width: 50px;
-            margin-left: 17.5px;
+            margin-left: 5%;
             font-size: 0.9rem;
             color: $primary;
         }
@@ -24,7 +25,7 @@
         .close-box-button {
             @include displayFlex(row, center, center);
             width: fit-content;
-            margin-right: 17.5px;          
+            margin-right: 1%;          
         }
     }
 
@@ -59,6 +60,7 @@
             font-size: 0.9rem;
             font-weight: 200;
             word-spacing: 0.10em;
+            text-align: center;
             margin: 20px 0 15px;
 
             span {
@@ -80,3 +82,15 @@
         }
     }
 }
+
+
+
+/* ***************************************/
+/* MEDIA QUERIES *************************/
+/* ***************************************/
+
+/* 992px *************************/
+@media screen and (min-width:992px) {
+
+
+}/* 992px end */
