@@ -1,0 +1,209 @@
+.host-form-container {
+    position: relative;
+    @include displayFlex(column, center, flex-start);
+    width: 90%;
+    max-width: 500px;
+    min-height: 270px;
+    border-radius: 5px;
+    gap: 20px;
+    overflow: hidden;
+    color: $secondary;
+    background-color: $primary;
+
+    > * {
+        object-fit: contain
+    }
+
+    .host-form-description {
+        @include displayFlex(column, center, center);
+        width: 90%;
+        margin-top: 20px;
+        gap: 5px;
+
+        h2 {
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        p {
+            font-size: 0.8rem;
+            font-weight: 300;
+            text-align: center;
+            color: $secondary-40;
+        }
+    }
+
+    .host-form {
+        @include displayFlex(column, center, center);
+        width: 90%;
+        border-radius: 5px;
+        gap: 10px;
+        background-color: $primary-dark;
+
+        #username {
+            width: 70%;
+            max-width: 300px;
+            height: 30px;
+            margin-top: 15px;
+            font-family: $font-poppins;
+            font-size: 0.8rem;
+            font-weight: 400;
+            text-align: center;
+            border: none;
+            border-radius: 3px;
+            color: $primary;
+            background-color: $secondary;
+
+            &::placeholder {
+                font-weight: 300;
+            }
+        }
+
+        input[type='submit'] {
+            width: 90%;
+            max-width: 100px;
+            min-height: 30px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-align: center;
+            margin-bottom: 15px;
+            border: 2px solid $accent;
+            border-radius: 3px;
+            color: $primary;
+            background-color: $accent;
+        
+            &:hover {
+                @include buttonEffect($accent, $primary, $accent);
+            }
+        }
+    }
+
+    .host-container {
+        @include displayFlex(row, center, center);
+        width: 90%;
+        min-height: 40px;
+        margin-bottom: 20px;
+
+        > * {
+            padding: 0 5px;
+        }
+
+        span {
+            font-size: 1.5rem;
+            font-weight: 300;
+        }
+
+        p {
+            font-size: 0.8rem;
+            font-weight: 300;
+            text-align: center;
+        }
+
+        .loader {
+            width: 100px;
+            height: 16px;
+            display: inline-block;
+            background-color: $accent;
+            border: 1px solid $accent;
+            border-radius: 4px;
+            background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.25) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.25) 50%, rgba(0, 0, 0, 0.25) 75%, transparent 75%, transparent);
+            font-size: 30px;
+            background-size: 1em 1em;
+            box-sizing: border-box;
+            animation: barStripe 1s linear infinite;
+        }
+    }
+}
+
+
+
+/* ***************************************/
+/* MEDIA QUERIES *************************/
+/* ***************************************/
+
+/* 992px *************************/
+  
+@media screen and (min-width:992px) {
+
+    .host-form-container {
+        max-width: 600px;
+        min-height: 345px;
+        gap: 30px;
+    
+        .close-button {
+            margin: 10px;
+    
+            .close-icon {
+                font-size: 1.3rem;
+            }
+        }
+    
+        .host-form-description {
+            margin-top: 30px;
+            gap: 10px;
+    
+            h2 {
+                font-size: 1.2rem;
+            }
+    
+            p {
+                font-size: 0.9rem;
+            }
+        }
+    
+        .host-form {
+            gap: 15px;
+    
+            #username {
+                max-width: 450px;
+                height: 40px;
+                margin-top: 20px;
+                font-size: 0.9rem;
+            }
+    
+            input[type='submit'] {
+                max-width: 150px;
+                min-height: 40px;
+                font-size: 0.9rem;
+                margin-bottom: 20px;
+            }
+        }
+    
+        .host-container {
+            min-height: 40px;
+            margin-bottom: 30px;
+
+            > * {
+                padding: 0 10px;
+            }
+    
+            span {
+                font-size: 1.7rem;
+            }
+    
+            p {
+                font-size: 0.9rem;
+            }
+
+            .loader {
+                width: 150px;
+            }
+        }
+    }
+} /* 992px end */
+
+
+
+/* ***************************************/
+/* KEYFRAMES *****************************/
+/* ***************************************/
+
+@keyframes barStripe {
+    0% {
+      background-position: 1em 0;
+    }
+    100% {
+      background-position: 0 0;
+    }
+}

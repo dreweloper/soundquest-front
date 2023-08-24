@@ -980,199 +980,169 @@ footer .spotify-container span {
     max-width: 380px;
   }
 } /* 1200px end */
-.host-form-container {
-  position: relative;
+.host-form-section {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   width: 90%;
   max-width: 500px;
-  min-height: 270px;
+  min-height: -moz-fit-content;
+  min-height: fit-content;
   border-radius: 5px;
-  gap: 20px;
-  overflow: hidden;
   color: #FFFFFF;
   background-color: #191414;
 }
-.host-form-container > * {
-  -o-object-fit: contain;
-     object-fit: contain;
-}
-.host-form-container .host-form-description {
+.host-form-section .host-form-top {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  width: 90%;
-  margin-top: 20px;
-  gap: 5px;
-}
-.host-form-container .host-form-description h2 {
-  font-size: 1rem;
-  font-weight: 600;
-  text-align: center;
-}
-.host-form-container .host-form-description p {
-  font-size: 0.8rem;
-  font-weight: 300;
-  text-align: center;
-  color: #999999;
-}
-.host-form-container .host-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 90%;
-  border-radius: 5px;
-  gap: 10px;
+  justify-content: flex-end;
+  width: 100%;
+  height: 40px;
+  border-radius: 5px 5px 0 0;
   background-color: #3B3838;
 }
-.host-form-container .host-form #username {
-  width: 70%;
-  max-width: 300px;
-  height: 30px;
-  margin-top: 15px;
-  font-family: "Poppins", sans-serif;
-  font-size: 0.8rem;
-  font-weight: 400;
-  text-align: center;
-  border: none;
-  border-radius: 3px;
-  color: #191414;
-  background-color: #FFFFFF;
+.host-form-section .host-form-top button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-right: 1%;
 }
-.host-form-container .host-form #username::-moz-placeholder {
-  font-weight: 300;
-}
-.host-form-container .host-form #username::placeholder {
-  font-weight: 300;
-}
-.host-form-container .host-form input[type=submit] {
+.host-form-section .host-form-description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 90%;
-  max-width: 100px;
-  min-height: 30px;
-  font-size: 0.8rem;
-  font-weight: 500;
-  text-align: center;
-  margin-bottom: 15px;
-  border: 2px solid #1DB954;
-  border-radius: 3px;
-  color: #191414;
-  background-color: #1DB954;
+  padding-bottom: 30px;
+  margin: 30px 0;
+  gap: 10px;
+  border-bottom: 1px solid #1DB954;
 }
-.host-form-container .host-form input[type=submit]:hover {
+.host-form-section .host-form-description h2 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  line-height: 1.17rem;
+}
+.host-form-section .host-form-description p {
+  font-size: 0.85rem;
+  font-weight: 200;
+  line-height: 1.17rem;
+  word-spacing: 0.1em;
+  color: #CCCCCC;
+}
+.host-form-section .host-form-description p span {
+  padding: 0 1px;
   color: #1DB954;
-  background-color: #191414;
-  border: 2px solid #1DB954;
-  transition-duration: 0.4s;
-  transition-timing-function: ease-in-out;
 }
-.host-form-container .host-container {
+.host-form-section .host-form {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   width: 90%;
-  min-height: 40px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  gap: 10px;
 }
-.host-form-container .host-container > * {
-  padding: 0 5px;
+.host-form-section .host-form > * {
+  border-radius: 5px;
 }
-.host-form-container .host-container span {
-  font-size: 1.5rem;
-  font-weight: 300;
+.host-form-section .host-form #username {
+  width: 100%;
+  height: 30px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  color: #191414;
+  background-color: #FFFFFF;
 }
-.host-form-container .host-container p {
+.host-form-section .host-form #username::-moz-placeholder {
   font-size: 0.8rem;
-  font-weight: 300;
+  text-align: center;
+  color: #191414;
+}
+.host-form-section .host-form #username::placeholder {
+  font-size: 0.8rem;
+  text-align: center;
+  color: #191414;
+}
+.host-form-section .host-form input[type=submit] {
+  width: 100%;
+  max-width: 100px;
+  min-height: 32px;
+  font-size: 0.9rem;
+  font-weight: 400;
+  text-align: center;
+  border: 2px solid #1DB954;
+  border-radius: 5px;
+  color: #FFFFFF;
+  background-color: #1DB954;
   text-align: center;
 }
-.host-form-container .host-container .loader {
-  width: 100px;
-  height: 16px;
-  display: inline-block;
-  background-color: #1DB954;
-  border: 1px solid #1DB954;
-  border-radius: 4px;
-  background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.25) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.25) 50%, rgba(0, 0, 0, 0.25) 75%, transparent 75%, transparent);
-  font-size: 30px;
-  background-size: 1em 1em;
-  box-sizing: border-box;
-  animation: barStripe 1s linear infinite;
+.host-form-section .host-form input[type=submit]:hover {
+  color: #FFFFFF;
+  background-color: #191414;
+  border: 2px solid #1DB954;
+  transition-duration: 0.4s;
+  transition-timing-function: ease-in-out;
+}
+.host-form-section .host-form-message {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 90%;
+  margin-bottom: 30px;
+  gap: 10px;
+}
+.host-form-section .host-form-message span {
+  font-size: 1.3rem;
+  font-weight: 400;
+}
+.host-form-section .host-form-message p {
+  font-size: 0.9rem;
+  font-weight: 200;
+  word-spacing: 0.05em;
+  line-height: 1.17rem;
 }
 
 /* ***************************************/
 /* MEDIA QUERIES *************************/
 /* ***************************************/
-/* 992px *************************/
-@media screen and (min-width: 992px) {
-  .host-form-container {
-    max-width: 600px;
-    min-height: 345px;
-    gap: 30px;
+/* 768px *************************/
+@media screen and (min-width: 768px) {
+  .host-form-section .host-form-description h2 {
+    font-size: 1rem;
   }
-  .host-form-container .close-button {
-    margin: 10px;
-  }
-  .host-form-container .close-button .close-icon {
-    font-size: 1.3rem;
-  }
-  .host-form-container .host-form-description {
-    margin-top: 30px;
-    gap: 10px;
-  }
-  .host-form-container .host-form-description h2 {
-    font-size: 1.2rem;
-  }
-  .host-form-container .host-form-description p {
+  .host-form-section .host-form-description p {
     font-size: 0.9rem;
   }
-  .host-form-container .host-form {
-    gap: 15px;
+  .host-form-section .host-form #username {
+    font-size: 1rem;
   }
-  .host-form-container .host-form #username {
-    max-width: 450px;
-    height: 40px;
-    margin-top: 20px;
+  .host-form-section .host-form #username::-moz-placeholder {
     font-size: 0.9rem;
   }
-  .host-form-container .host-form input[type=submit] {
-    max-width: 150px;
-    min-height: 40px;
-    font-size: 0.9rem;
-    margin-bottom: 20px;
-  }
-  .host-form-container .host-container {
-    min-height: 40px;
-    margin-bottom: 30px;
-  }
-  .host-form-container .host-container > * {
-    padding: 0 10px;
-  }
-  .host-form-container .host-container span {
-    font-size: 1.7rem;
-  }
-  .host-form-container .host-container p {
+  .host-form-section .host-form #username::placeholder {
     font-size: 0.9rem;
   }
-  .host-form-container .host-container .loader {
-    width: 150px;
+  .host-form-section .host-form input[type=submit] {
+    font-size: 1rem;
   }
-} /* 992px end */
-/* ***************************************/
-/* KEYFRAMES *****************************/
-/* ***************************************/
-@keyframes barStripe {
-  0% {
-    background-position: 1em 0;
+  .host-form-section .host-form-message span {
+    font-size: 1.4rem;
   }
-  100% {
-    background-position: 0 0;
+  .host-form-section .host-form-message p {
+    font-size: 1rem;
   }
-}
+} /* 768px end */
 .info-box-card {
   display: flex;
   flex-direction: column;
@@ -1224,18 +1194,18 @@ footer .spotify-container span {
 }
 .info-box-card .info-box-text h2 {
   width: 100%;
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 0.95rem;
+  font-weight: 700;
   letter-spacing: 0.5px;
-  margin: 20px 0 10px;
+  margin: 30px 0 10px;
 }
 .info-box-card .info-box-text p {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 200;
   line-height: 1.17rem;
   word-spacing: 0.1em;
-  margin: 10px 0 20px;
-  color: #E6E6E6;
+  margin-bottom: 30px;
+  color: #CCCCCC;
 }
 .info-box-card .info-box-contact {
   display: flex;
@@ -1243,14 +1213,14 @@ footer .spotify-container span {
   align-items: center;
   justify-content: center;
   width: 90%;
-  border-top: 2px solid #1DB954;
+  border-top: 1px solid #1DB954;
 }
 .info-box-card .info-box-contact p {
   font-size: 0.9rem;
   font-weight: 200;
   word-spacing: 0.1em;
   text-align: center;
-  margin: 20px 0 15px;
+  margin: 30px 0 15px;
 }
 .info-box-card .info-box-contact p span {
   font-weight: 500;
@@ -1258,7 +1228,7 @@ footer .spotify-container span {
 .info-box-card .info-box-contact .github-link {
   width: -moz-fit-content;
   width: fit-content;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 .info-box-card .info-box-contact .github-link i {
   font-size: 2rem;
@@ -1270,8 +1240,18 @@ footer .spotify-container span {
 /* ***************************************/
 /* MEDIA QUERIES *************************/
 /* ***************************************/
-/* 992px *************************/
-/* 992px end */
+/* 768px *************************/
+@media screen and (min-width: 768px) {
+  .info-box-card .info-box-text h2 {
+    font-size: 1rem;
+  }
+  .info-box-card .info-box-text p {
+    font-size: 0.9rem;
+  }
+  .info-box-card .info-box-contact p {
+    font-size: 1rem;
+  }
+} /* 768px end */
 .skeleton-container {
   display: flex;
   flex-direction: column;

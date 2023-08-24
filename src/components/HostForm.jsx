@@ -34,25 +34,28 @@ export const HostForm = () => {
 
             <div className='overlay'>
 
-                <section className='host-form-container fade-in-transition'>
+                <section className='host-form-section fade-in-transition'>
 
-                    <button
-                        className="close-button"
-                        disabled={isHostLoading || isHostUpdated}
-                        onClick={() => { dispatch(closeHostForm()) }}
-                    >
+                    <div className='host-form-top'>
 
-                        <span className='material-symbols-rounded close-icon'>
-                            close
-                        </span>
+                        <button
+                            disabled={isHostLoading || isHostUpdated}
+                            onClick={() => { dispatch(closeHostForm()) }}
+                        >
 
-                    </button>
+                            <span className='material-symbols-rounded close-icon'>
+                                close
+                            </span>
+
+                        </button>
+
+                    </div>
 
                     <div className="host-form-description">
 
-                        <h2>Lorem, ipsum dolor.</h2>
+                        <h2>Connect Through Music: Share Yours or Discover Others’ Playlists!</h2>
 
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, eligendi.</p>
+                        <p>Special Tip: Choose “<span>spotify</span>” as the host and explore tracks from over 1,300 playlists curated by professionals.</p>
 
                     </div>
 
@@ -63,41 +66,37 @@ export const HostForm = () => {
 
                         <input type='text' name='username' id='username' placeholder='Enter a Spotify username' autoComplete="off" />
 
-                        <input type='submit' value='Switch' disabled={isHostLoading || isHostUpdated} />
+                        <input type='submit' value={isHostLoading ? 'Loading…' : 'Switch'} disabled={isHostLoading || isHostUpdated} />
 
                     </form>
 
-                    <div className='host-container'>
+                    {
+                        isHostLoading && (<span className="loader"></span>)
+                    }
 
-                        {
-                            isHostLoading && (<span className="loader"></span>)
-                        }
+                    {
+                        !isHostLoading && errorHost && (
+                            <div className='host-form-message'>
+                                <span className='material-symbols-rounded danger-color fade-in-transition'>
+                                    error
+                                </span>
 
-                        {
-                            !isHostLoading && errorHost && (
-                                <>
-                                    <span className='material-symbols-rounded danger-color fade-in-transition'>
-                                        error
-                                    </span>
+                                <p className='danger-color fade-in-transition'>{errorMessage}</p>
+                            </div>
+                        )
+                    }
 
-                                    <p className='danger-color fade-in-transition'>{errorMessage}</p>
-                                </>
-                            )
-                        }
+                    {
+                        !isHostLoading && isHostUpdated && (
+                            <div className='host-form-message'>
+                                <span className='material-symbols-rounded success-color fade-in-transition'>
+                                    check_circle
+                                </span>
 
-                        {
-                            !isHostLoading && isHostUpdated && (
-                                <>
-                                    <span className='material-symbols-rounded success-color fade-in-transition'>
-                                        check_circle
-                                    </span>
-
-                                    <p className='success-color fade-in-transition'>The host has been successfully updated.</p>
-                                </>
-                            )
-                        }
-
-                    </div>
+                                <p className='success-color fade-in-transition'>The host has been successfully updated.</p>
+                            </div>
+                        )
+                    }
 
                 </section>
 
