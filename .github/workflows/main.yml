@@ -1,0 +1,13 @@
+name: Mantener Web Service Activo
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'  # Ejecutar cada 15 minutos
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Realizar Llamada de Mantenimiento
+        run: curl -sS https://soundquest-xf5r.onrender.com/api/v1/tracks/counter
