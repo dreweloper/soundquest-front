@@ -1,22 +1,22 @@
 .info-box-card {
     @include displayFlex(column, center, flex-start);
     width: 90%;
-    max-width: 350px;
-    min-height: 370px;
+    max-width: 500px;
+    min-height: fit-content;
     border-radius: 5px;
-    color: $secondary;
     background-color: $primary;
 
     .info-box-container {
         @include displayFlex(row, center, space-between);
         width: 100%;
         height: 40px;
-        background-color: $primary-dark;
+        border-radius: 5px 5px 0 0;
+        background-color: $primary-medium;
 
         .lang-options {
             @include displayFlex(row, center, space-between);
             width: 50px;
-            margin-left: 17.5px;
+            margin-left: 5%;
             font-size: 0.9rem;
             color: $primary;
         }
@@ -24,7 +24,7 @@
         .close-box-button {
             @include displayFlex(row, center, center);
             width: fit-content;
-            margin-right: 17.5px;          
+            margin-right: 1%;          
         }
     }
 
@@ -34,32 +34,33 @@
 
         h2 {
             width: 100%;
-            font-size: 1rem;
-            font-weight: 600;
+            font-size: 0.95rem;
+            font-weight: 700;
             letter-spacing: 0.5px;
-            margin: 20px 0 10px;
+            margin: 30px 0 10px;
         }
 
         p {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 200;
             line-height: 1.17rem;
             word-spacing: 0.10em;
-            margin: 10px 0 20px;
-            color: $secondary-10;
+            margin-bottom: 30px;
+            color: $primary-ligth;
         }
     }
 
     .info-box-contact {
         @include displayFlex(column, center, center);
         width: 90%;
-        border-top: 2px solid $accent;
+        border-top: 1px solid $accent;
 
         p {
             font-size: 0.9rem;
             font-weight: 200;
             word-spacing: 0.10em;
-            margin: 20px 0 15px;
+            text-align: center;
+            margin: 30px 0 15px;
 
             span {
                 font-weight: 500;
@@ -68,7 +69,7 @@
 
         .github-link {
             width: fit-content;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
 
             i {
                 font-size: 2rem;
@@ -80,3 +81,34 @@
         }
     }
 }
+
+
+
+/* ***************************************/
+/* MEDIA QUERIES *************************/
+/* ***************************************/
+
+/* 768px *************************/
+@media screen and (min-width:768px) {
+
+    .info-box-card {
+    
+        .info-box-text {
+    
+            h2 {
+                font-size: 1rem;
+            }
+    
+            p {
+                font-size: 0.9rem;
+            }
+        }
+    
+        .info-box-contact {
+    
+            p {
+                font-size: 1rem;
+            }
+        }
+    }
+}/* 768px end */

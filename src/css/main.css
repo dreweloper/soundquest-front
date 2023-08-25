@@ -138,7 +138,8 @@ input[type=submit] {
 /* GENERIC KEYFRAMES */
 body {
   font-family: "Poppins", sans-serif;
-  background-color: #191414;
+  color: #FFFFFF;
+  background-color: #121212;
 }
 
 .fade-in-transition {
@@ -180,7 +181,7 @@ body {
 
 .close-icon {
   font-size: 1.2rem;
-  color: #E6E6E6;
+  color: #FFFFFF;
 }
 
 .font-bold {
@@ -231,7 +232,6 @@ footer .spotify-container .spotify-logo {
 footer .spotify-container span {
   font-size: 0.7rem;
   font-weight: 100;
-  color: #FFFFFF;
 }
 
 /* ***************************************/
@@ -258,11 +258,10 @@ footer .spotify-container span {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  max-width: 1200px;
-  height: 60px;
-  margin: 0 auto;
-  color: #FFFFFF;
-  background-color: #191414;
+  height: 50px;
+}
+.nav-bar > * {
+  margin: 0 10px;
 }
 .nav-bar .nav-logo {
   display: flex;
@@ -271,64 +270,80 @@ footer .spotify-container span {
   justify-content: space-between;
   width: -moz-fit-content;
   width: fit-content;
-  min-height: 100%;
-  gap: 10px;
+  gap: 5px;
 }
 .nav-bar .nav-logo .equalizer-icon {
-  font-size: 1.8rem;
-  margin-left: 10px;
+  font-size: 1.6rem;
+  font-weight: 400;
   color: #1DB954;
 }
 .nav-bar .nav-logo .nav-logo-title {
   font-family: "Prompt", sans-serif;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
+  font-weight: 500;
+  letter-spacing: 1px;
   text-transform: uppercase;
-  margin-right: 10px;
 }
 .nav-bar .nav-button {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-right: 20px;
 }
 .nav-bar .nav-button .info-icon {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 300;
-  font-variation-settings: "FILL" 1;
+  font-variation-settings: "FILL" 0;
 }
 .nav-bar .nav-button:hover .info-icon {
   color: #1DB954;
-  font-variation-settings: "FILL" 0;
+  font-variation-settings: "FILL" 1;
 }
 
 /* ***************************************/
 /* MEDIA QUERIES *************************/
 /* ***************************************/
+/* 768px *************************/
+@media screen and (min-width: 768px) {
+  .nav-bar {
+    height: 60px;
+  }
+  .nav-bar > * {
+    margin: 0 20px;
+  }
+  .nav-bar .nav-logo {
+    gap: 8px;
+  }
+  .nav-bar .nav-logo .equalizer-icon {
+    font-size: 1.8rem;
+  }
+  .nav-bar .nav-logo .nav-logo-title {
+    font-size: 1.8rem;
+  }
+  .nav-bar .nav-button .info-icon {
+    font-size: 1.8rem;
+  }
+} /* 768px end */
 /* 992px *************************/
 @media screen and (min-width: 992px) {
   .nav-bar {
-    height: 80px;
+    max-width: 992px;
+    height: 70px;
+    margin: 0 auto;
   }
   .nav-bar .nav-logo {
-    gap: 15px;
+    gap: 10px;
   }
   .nav-bar .nav-logo .equalizer-icon {
     font-size: 2rem;
-    margin-left: 15px;
   }
   .nav-bar .nav-logo .nav-logo-title {
     font-size: 2rem;
-    margin-right: 15px;
-  }
-  .nav-bar .nav-button {
-    margin-right: 30px;
   }
   .nav-bar .nav-button .info-icon {
     font-size: 2rem;
   }
-}
-/* 992px end */
+} /* 992px end */
 /* PAGES */
 .main-home {
   display: flex;
@@ -361,13 +376,12 @@ footer .spotify-container span {
   font-family: "Prompt", sans-serif;
   font-size: 3rem;
   text-transform: uppercase;
-  color: #FFFFFF;
 }
 .main-home .section-home .headline p {
   font-size: 1rem;
   font-weight: 200;
   letter-spacing: 0.3px;
-  color: #CCCCCC;
+  color: #a7a7a7;
 }
 .main-home a {
   display: flex;
@@ -377,13 +391,13 @@ footer .spotify-container span {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 2px solid #191414;
-  color: #191414;
+  border: 2px solid #121212;
+  color: #121212;
   background-color: #1DB954;
 }
 .main-home a:hover {
   color: #1DB954;
-  background-color: #191414;
+  background-color: #121212;
   border: 2px solid #1DB954;
   transition-duration: 0.4s;
   transition-timing-function: ease-in-out;
@@ -451,7 +465,7 @@ footer .spotify-container span {
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-  min-height: calc(100svh - 100px);
+  min-height: calc(100svh - 90px);
 }
 
 /* ***************************************/
@@ -470,7 +484,7 @@ footer .spotify-container span {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: calc(100svh - 130px);
+    min-height: calc(100svh - 120px);
   }
 } /* 992px end */
 /* COMPONENTS */
@@ -516,7 +530,7 @@ footer .spotify-container span {
   min-height: 105px;
   margin-bottom: 20px;
   border-radius: 5px;
-  background-color: #3B3838;
+  background-color: #292929;
 }
 .card-container .card-item .track-info .track-info-container {
   display: flex;
@@ -530,7 +544,7 @@ footer .spotify-container span {
 }
 .card-container .card-item .track-info .track-info-container .song {
   font-size: 1.1rem;
-  font-weight: 400;
+  font-weight: 500;
   text-align: center;
   padding: 0 10px;
   margin-bottom: 6px;
@@ -543,7 +557,7 @@ footer .spotify-container span {
   font-style: italic;
   text-align: center;
   padding: 0 10px;
-  color: #FFFFFF;
+  color: #a7a7a7;
 }
 .card-container .card-item .track-info .like-button {
   display: flex;
@@ -579,7 +593,7 @@ footer .spotify-container span {
   border: 2px solid #1DB954;
   border-radius: 5px;
   color: #FFFFFF;
-  background-color: #191414;
+  background-color: #121212;
 }
 .card-container .card-item .card-nav .card-nav-button:hover {
   color: #FFFFFF;
@@ -687,7 +701,7 @@ footer .spotify-container span {
     max-width: 376px;
   }
 } /* 1200px end */
-.error-toast {
+.error-toast-section {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -697,62 +711,51 @@ footer .spotify-container span {
   align-items: center;
   justify-content: center;
   width: 90%;
+  max-width: 300px;
 }
-.error-toast .error-toast-container {
+.error-toast-section .error-toast-container {
   position: relative;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
   width: 100%;
-  max-width: 300px;
-  min-height: 100px;
+  min-height: -moz-fit-content;
+  min-height: fit-content;
+  border: 1px solid #ec2206;
   border-radius: 5px;
-  background-color: #180301;
-  box-shadow: rgba(236, 34, 6, 0.1) 0px 10px 10px -10px;
-  animation: transition 0.5s linear;
 }
-@keyframes transition {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 100%;
-  }
-}
-.error-toast .error-toast-container .material-symbols-rounded {
-  color: #ec2206;
-  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48;
-}
-.error-toast .error-toast-container .error-icon {
+.error-toast-section .error-toast-container .error-icon {
   font-size: 1.5rem;
-  padding: 15px;
+  font-weight: 400;
+  margin: 30px 10px;
+  color: #ec2206;
 }
-.error-toast .error-toast-container .text-error-container {
+.error-toast-section .error-toast-container .error-toast-message {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  color: #FFFFFF;
-  padding: 15px;
-  gap: 10px;
+  margin: 30px 10px 30px 0;
 }
-.error-toast .error-toast-container .text-error-container .error-title {
-  font-size: 1.1rem;
-  font-weight: 400;
-  letter-spacing: 0.5px;
-}
-.error-toast .error-toast-container .text-error-container .error-subtitle {
+.error-toast-section .error-toast-container .error-toast-message h3 {
   font-size: 0.9rem;
-  font-weight: 200;
-  letter-spacing: 0.5px;
+  font-weight: 600;
+  line-height: 1.1rem;
+  word-spacing: 0.05em;
+  margin-bottom: 5px;
 }
-.error-toast .error-toast-container .close-icon {
-  position: absolute;
-  top: 0;
-  right: 0;
-  font-size: 1.5rem;
-  padding: 5px;
+.error-toast-section .error-toast-container .error-toast-message p {
+  font-size: 0.8rem;
+  font-weight: 300;
+  line-height: 1.1rem;
+  word-spacing: 0.05em;
+  color: #a7a7a7;
+}
+.error-toast-section .error-toast-container .close-button span {
+  font-size: 1rem;
+  margin: 2px 2px 0 0;
+  color: #FFFFFF;
 }
 
 /* ***************************************/
@@ -760,24 +763,60 @@ footer .spotify-container span {
 /* ***************************************/
 /* 768px *************************/
 @media screen and (min-width: 768px) {
-  .error-toast .error-toast-container {
-    max-width: 400px;
+  .error-toast-section {
+    width: 100%;
+    max-width: 350px;
   }
-  .error-toast .error-toast-container .error-icon {
-    font-size: 2rem;
+  .error-toast-section .error-toast-container .error-icon {
+    margin: 40px 20px;
   }
-  .error-toast .error-toast-container .text-error-container .error-title {
-    font-size: 1.2rem;
-    letter-spacing: 0;
+  .error-toast-section .error-toast-container .error-toast-message {
+    margin: 40px 20px 40px 0;
   }
-  .error-toast .error-toast-container .text-error-container .error-subtitle {
-    font-size: 1rem;
-    letter-spacing: 0;
+  .error-toast-section .error-toast-container .error-toast-message h3 {
+    font-size: 0.95rem;
   }
-  .error-toast .error-toast-container .close-icon {
-    font-size: 2rem;
+  .error-toast-section .error-toast-container .error-toast-message p {
+    font-size: 0.85rem;
+  }
+  .error-toast-section .error-toast-container .close-button span {
+    font-size: 1.1rem;
   }
 } /* 768px end */
+/* 992px *************************/
+@media screen and (min-width: 992px) {
+  .error-toast-section {
+    position: static;
+    top: 0;
+    left: 0;
+    transform: none;
+    max-width: 600px;
+    height: 280px;
+  }
+  .error-toast-section .error-toast-container .error-toast-message h3 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+  .error-toast-section .error-toast-container .error-toast-message p {
+    font-size: 0.9rem;
+  }
+  .error-toast-section .error-toast-container .close-button span {
+    font-size: 1.2rem;
+  }
+} /* 992px end */
+/* 1200px *************************/
+@media screen and (min-width: 1200px) {
+  .error-toast-section {
+    max-width: 800px;
+    height: 380px;
+  }
+  .error-toast-section .error-toast-container .error-icon {
+    font-size: 1.6rem;
+  }
+  .error-toast-section .error-toast-container .close-button span {
+    font-size: 1.3rem;
+  }
+} /* 1200px end */
 .host-actions-section {
   display: flex;
   flex-direction: column;
@@ -788,6 +827,7 @@ footer .spotify-container span {
   padding-bottom: 30px;
   margin: 20px 0 30px;
   border-bottom: 1px solid #FFFFFF;
+  color: #FFFFFF;
 }
 .host-actions-section .host-container {
   display: flex;
@@ -805,7 +845,6 @@ footer .spotify-container span {
   width: -moz-fit-content;
   width: fit-content;
   margin-bottom: 15px;
-  color: #FFFFFF;
   gap: 10px;
 }
 .host-actions-section .host-container .host-link .host-icon {
@@ -816,7 +855,6 @@ footer .spotify-container span {
 .host-actions-section .host-container .host-link .host-username {
   font-size: 1rem;
   font-weight: 400;
-  color: #FFFFFF;
 }
 .host-actions-section .host-container .host-link:hover .host-username {
   color: #1DB954;
@@ -839,7 +877,7 @@ footer .spotify-container span {
 }
 .host-actions-section .host-container .host-button:hover {
   color: #FFFFFF;
-  background-color: #191414;
+  background-color: #121212;
   border: 2px solid #1DB954;
   transition-duration: 0.4s;
   transition-timing-function: ease-in-out;
@@ -878,7 +916,7 @@ footer .spotify-container span {
 }
 .host-actions-section .shuffle-button:hover {
   color: #FFFFFF;
-  background-color: #191414;
+  background-color: #121212;
   border: 2px solid #1DB954;
   transition-duration: 0.4s;
   transition-timing-function: ease-in-out;
@@ -907,8 +945,7 @@ footer .spotify-container span {
   .host-actions-section .shuffle-button {
     max-width: none;
   }
-}
-/* 768px end */
+} /* 768px end */
 /* 992px *************************/
 @media screen and (min-width: 992px) {
   .host-actions-section {
@@ -947,8 +984,7 @@ footer .spotify-container span {
     width: 19px;
     height: 19px;
   }
-}
-/* 992px end */
+} /* 992px end */
 /* 1200px *************************/
 @media screen and (min-width: 1200px) {
   .host-actions-section {
@@ -965,212 +1001,180 @@ footer .spotify-container span {
   .host-actions-section .shuffle-button {
     max-width: 380px;
   }
-}
-/* 1200px end */
-.host-form-container {
-  position: relative;
+} /* 1200px end */
+.host-form-section {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   width: 90%;
   max-width: 500px;
-  min-height: 270px;
+  min-height: -moz-fit-content;
+  min-height: fit-content;
   border-radius: 5px;
-  gap: 20px;
-  overflow: hidden;
-  color: #FFFFFF;
-  background-color: #191414;
+  background-color: #121212;
 }
-.host-form-container > * {
-  -o-object-fit: contain;
-     object-fit: contain;
+.host-form-section .host-form-top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  height: 40px;
+  border-radius: 5px 5px 0 0;
+  background-color: #292929;
 }
-.host-form-container .host-form-description {
+.host-form-section .host-form-top button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-right: 1%;
+}
+.host-form-section .host-form-description {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 90%;
-  margin-top: 20px;
-  gap: 5px;
-}
-.host-form-container .host-form-description h2 {
-  font-size: 1rem;
-  font-weight: 600;
-  text-align: center;
-}
-.host-form-container .host-form-description p {
-  font-size: 0.8rem;
-  font-weight: 300;
-  text-align: center;
-  color: #999999;
-}
-.host-form-container .host-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 90%;
-  border-radius: 5px;
+  padding-bottom: 30px;
+  margin: 30px 0;
   gap: 10px;
-  background-color: #3B3838;
+  border-bottom: 1px solid #1DB954;
 }
-.host-form-container .host-form #username {
-  width: 70%;
-  max-width: 300px;
-  height: 30px;
-  margin-top: 15px;
-  font-family: "Poppins", sans-serif;
-  font-size: 0.8rem;
-  font-weight: 400;
-  text-align: center;
-  border: none;
-  border-radius: 3px;
-  color: #191414;
-  background-color: #FFFFFF;
+.host-form-section .host-form-description h2 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  line-height: 1.17rem;
 }
-.host-form-container .host-form #username::-moz-placeholder {
-  font-weight: 300;
+.host-form-section .host-form-description p {
+  font-size: 0.85rem;
+  font-weight: 200;
+  line-height: 1.17rem;
+  word-spacing: 0.1em;
+  color: #a7a7a7;
 }
-.host-form-container .host-form #username::placeholder {
-  font-weight: 300;
-}
-.host-form-container .host-form input[type=submit] {
-  width: 90%;
-  max-width: 100px;
-  min-height: 30px;
-  font-size: 0.8rem;
-  font-weight: 500;
-  text-align: center;
-  margin-bottom: 15px;
-  border: 2px solid #1DB954;
-  border-radius: 3px;
-  color: #191414;
-  background-color: #1DB954;
-}
-.host-form-container .host-form input[type=submit]:hover {
+.host-form-section .host-form-description p span {
+  padding: 0 1px;
   color: #1DB954;
-  background-color: #191414;
-  border: 2px solid #1DB954;
-  transition-duration: 0.4s;
-  transition-timing-function: ease-in-out;
 }
-.host-form-container .host-container {
+.host-form-section .host-form {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   width: 90%;
-  min-height: 40px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  gap: 10px;
 }
-.host-form-container .host-container > * {
-  padding: 0 5px;
+.host-form-section .host-form > * {
+  border-radius: 5px;
 }
-.host-form-container .host-container span {
-  font-size: 1.5rem;
-  font-weight: 300;
+.host-form-section .host-form #username {
+  width: 100%;
+  height: 30px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  color: #121212;
+  background-color: #FFFFFF;
 }
-.host-form-container .host-container p {
+.host-form-section .host-form #username::-moz-placeholder {
   font-size: 0.8rem;
-  font-weight: 300;
+  text-align: center;
+  color: #121212;
+}
+.host-form-section .host-form #username::placeholder {
+  font-size: 0.8rem;
+  text-align: center;
+  color: #121212;
+}
+.host-form-section .host-form input[type=submit] {
+  width: 100%;
+  max-width: 100px;
+  min-height: 32px;
+  font-size: 0.9rem;
+  font-weight: 400;
+  text-align: center;
+  border: 2px solid #1DB954;
+  border-radius: 5px;
+  color: #FFFFFF;
+  background-color: #1DB954;
   text-align: center;
 }
-.host-form-container .host-container .loader {
-  width: 100px;
-  height: 16px;
-  display: inline-block;
-  background-color: #1DB954;
-  border: 1px solid #1DB954;
-  border-radius: 4px;
-  background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.25) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.25) 50%, rgba(0, 0, 0, 0.25) 75%, transparent 75%, transparent);
-  font-size: 30px;
-  background-size: 1em 1em;
-  box-sizing: border-box;
-  animation: barStripe 1s linear infinite;
+.host-form-section .host-form input[type=submit]:hover {
+  color: #FFFFFF;
+  background-color: #121212;
+  border: 2px solid #1DB954;
+  transition-duration: 0.4s;
+  transition-timing-function: ease-in-out;
+}
+.host-form-section .host-form-message {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 90%;
+  margin-bottom: 30px;
+  gap: 10px;
+}
+.host-form-section .host-form-message span {
+  font-size: 1.3rem;
+  font-weight: 400;
+}
+.host-form-section .host-form-message p {
+  font-size: 0.9rem;
+  font-weight: 200;
+  word-spacing: 0.05em;
+  line-height: 1.17rem;
 }
 
 /* ***************************************/
 /* MEDIA QUERIES *************************/
 /* ***************************************/
-/* 992px *************************/
-@media screen and (min-width: 992px) {
-  .host-form-container {
-    max-width: 600px;
-    min-height: 345px;
-    gap: 30px;
+/* 768px *************************/
+@media screen and (min-width: 768px) {
+  .host-form-section .host-form-description h2 {
+    font-size: 1rem;
   }
-  .host-form-container .close-button {
-    margin: 10px;
-  }
-  .host-form-container .close-button .close-icon {
-    font-size: 1.3rem;
-  }
-  .host-form-container .host-form-description {
-    margin-top: 30px;
-    gap: 10px;
-  }
-  .host-form-container .host-form-description h2 {
-    font-size: 1.2rem;
-  }
-  .host-form-container .host-form-description p {
+  .host-form-section .host-form-description p {
     font-size: 0.9rem;
   }
-  .host-form-container .host-form {
-    gap: 15px;
+  .host-form-section .host-form #username {
+    font-size: 1rem;
   }
-  .host-form-container .host-form #username {
-    max-width: 450px;
-    height: 40px;
-    margin-top: 20px;
+  .host-form-section .host-form #username::-moz-placeholder {
     font-size: 0.9rem;
   }
-  .host-form-container .host-form input[type=submit] {
-    max-width: 150px;
-    min-height: 40px;
-    font-size: 0.9rem;
-    margin-bottom: 20px;
-  }
-  .host-form-container .host-container {
-    min-height: 40px;
-    margin-bottom: 30px;
-  }
-  .host-form-container .host-container > * {
-    padding: 0 10px;
-  }
-  .host-form-container .host-container span {
-    font-size: 1.7rem;
-  }
-  .host-form-container .host-container p {
+  .host-form-section .host-form #username::placeholder {
     font-size: 0.9rem;
   }
-  .host-form-container .host-container .loader {
-    width: 150px;
+  .host-form-section .host-form input[type=submit] {
+    font-size: 1rem;
   }
-} /* 992px end */
-/* ***************************************/
-/* KEYFRAMES *****************************/
-/* ***************************************/
-@keyframes barStripe {
-  0% {
-    background-position: 1em 0;
+  .host-form-section .host-form-message span {
+    font-size: 1.4rem;
   }
-  100% {
-    background-position: 0 0;
+  .host-form-section .host-form-message p {
+    font-size: 1rem;
   }
-}
+} /* 768px end */
 .info-box-card {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   width: 90%;
-  max-width: 350px;
-  min-height: 370px;
+  max-width: 500px;
+  min-height: -moz-fit-content;
+  min-height: fit-content;
   border-radius: 5px;
-  color: #FFFFFF;
-  background-color: #191414;
+  background-color: #121212;
 }
 .info-box-card .info-box-container {
   display: flex;
@@ -1179,7 +1183,8 @@ footer .spotify-container span {
   justify-content: space-between;
   width: 100%;
   height: 40px;
-  background-color: #3B3838;
+  border-radius: 5px 5px 0 0;
+  background-color: #292929;
 }
 .info-box-card .info-box-container .lang-options {
   display: flex;
@@ -1187,9 +1192,9 @@ footer .spotify-container span {
   align-items: center;
   justify-content: space-between;
   width: 50px;
-  margin-left: 17.5px;
+  margin-left: 5%;
   font-size: 0.9rem;
-  color: #191414;
+  color: #121212;
 }
 .info-box-card .info-box-container .close-box-button {
   display: flex;
@@ -1198,7 +1203,7 @@ footer .spotify-container span {
   justify-content: center;
   width: -moz-fit-content;
   width: fit-content;
-  margin-right: 17.5px;
+  margin-right: 1%;
 }
 .info-box-card .info-box-text {
   display: flex;
@@ -1209,18 +1214,18 @@ footer .spotify-container span {
 }
 .info-box-card .info-box-text h2 {
   width: 100%;
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 0.95rem;
+  font-weight: 700;
   letter-spacing: 0.5px;
-  margin: 20px 0 10px;
+  margin: 30px 0 10px;
 }
 .info-box-card .info-box-text p {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 200;
   line-height: 1.17rem;
   word-spacing: 0.1em;
-  margin: 10px 0 20px;
-  color: #E6E6E6;
+  margin-bottom: 30px;
+  color: #a7a7a7;
 }
 .info-box-card .info-box-contact {
   display: flex;
@@ -1228,13 +1233,14 @@ footer .spotify-container span {
   align-items: center;
   justify-content: center;
   width: 90%;
-  border-top: 2px solid #1DB954;
+  border-top: 1px solid #1DB954;
 }
 .info-box-card .info-box-contact p {
   font-size: 0.9rem;
   font-weight: 200;
   word-spacing: 0.1em;
-  margin: 20px 0 15px;
+  text-align: center;
+  margin: 30px 0 15px;
 }
 .info-box-card .info-box-contact p span {
   font-weight: 500;
@@ -1242,7 +1248,7 @@ footer .spotify-container span {
 .info-box-card .info-box-contact .github-link {
   width: -moz-fit-content;
   width: fit-content;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 .info-box-card .info-box-contact .github-link i {
   font-size: 2rem;
@@ -1251,6 +1257,21 @@ footer .spotify-container span {
   color: #1DB954;
 }
 
+/* ***************************************/
+/* MEDIA QUERIES *************************/
+/* ***************************************/
+/* 768px *************************/
+@media screen and (min-width: 768px) {
+  .info-box-card .info-box-text h2 {
+    font-size: 1rem;
+  }
+  .info-box-card .info-box-text p {
+    font-size: 0.9rem;
+  }
+  .info-box-card .info-box-contact p {
+    font-size: 1rem;
+  }
+} /* 768px end */
 .skeleton-container {
   display: flex;
   flex-direction: column;
@@ -1277,7 +1298,7 @@ footer .spotify-container span {
   width: 100%;
   height: 300px;
   margin-bottom: 10px;
-  background-color: #3B3838;
+  background-color: #242424;
 }
 .skeleton-container .skeleton-item {
   display: flex;
@@ -1291,7 +1312,7 @@ footer .spotify-container span {
   height: 105px;
   margin-bottom: 20px;
   border-radius: 5px;
-  background-color: #3B3838;
+  background-color: #242424;
 }
 .skeleton-container .skeleton-item .skeleton-nav {
   display: flex;
@@ -1305,9 +1326,8 @@ footer .spotify-container span {
   width: 100%;
   max-width: 300px;
   height: 34px;
-  background-color: #3B3838;
   border-radius: 5px;
-  background-color: #3B3838;
+  background-color: #242424;
 }
 
 /* ***************************************/
@@ -1411,7 +1431,6 @@ footer .spotify-container span {
   justify-content: center;
   width: 100%;
   margin: 0 5px;
-  color: #FFFFFF;
 }
 .snackbar .snackbar-message p {
   font-size: 0.9rem;

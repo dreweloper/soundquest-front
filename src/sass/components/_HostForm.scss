@@ -1,117 +1,108 @@
-.host-form-container {
-    position: relative;
-    @include displayFlex(column, center, flex-start);
+.host-form-section {
+    @include displayFlex (column, center, flex-start);
     width: 90%;
     max-width: 500px;
-    min-height: 270px;
+    min-height: fit-content;
     border-radius: 5px;
-    gap: 20px;
-    overflow: hidden;
-    color: $secondary;
     background-color: $primary;
 
-    > * {
-        object-fit: contain
+    .host-form-top {
+        @include displayFlex(row, center, flex-end);
+        width: 100%;
+        height: 40px;
+        border-radius: 5px 5px 0 0;
+        background-color: $primary-medium;
+
+        button {
+            @include displayFlex(row, center, center);
+            width: fit-content;
+            margin-right: 1%;
+        }
     }
 
     .host-form-description {
         @include displayFlex(column, center, center);
         width: 90%;
-        margin-top: 20px;
-        gap: 5px;
+        padding-bottom: 30px;
+        margin: 30px 0;
+        gap: 10px;
+        border-bottom: 1px solid $accent;
 
         h2 {
-            font-size: 1rem;
-            font-weight: 600;
-            text-align: center;
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            line-height: 1.17rem;
         }
 
         p {
-            font-size: 0.8rem;
-            font-weight: 300;
-            text-align: center;
-            color: $secondary-40;
+            font-size: 0.85rem;
+            font-weight: 200;
+            line-height: 1.17rem;
+            word-spacing: 0.10em;
+            color: $primary-ligth;
+
+            span {
+                padding: 0 1px;
+                color: $accent;
+            }
         }
     }
 
     .host-form {
-        @include displayFlex(column, center, center);
+        @include displayFlex(row, center, center);
         width: 90%;
-        border-radius: 5px;
+        margin-bottom: 30px;
         gap: 10px;
-        background-color: $primary-dark;
+
+        > * {
+            border-radius: 5px;
+        }
 
         #username {
-            width: 70%;
-            max-width: 300px;
+            width: 100%;
             height: 30px;
-            margin-top: 15px;
             font-family: $font-poppins;
-            font-size: 0.8rem;
-            font-weight: 400;
+            font-size: 0.9rem;
             text-align: center;
             border: none;
-            border-radius: 3px;
+            border-radius: 5px;
             color: $primary;
             background-color: $secondary;
 
             &::placeholder {
-                font-weight: 300;
+                font-size: 0.8rem;
+                text-align: center;
+                color: $primary;
             }
         }
 
-        input[type='submit'] {
-            width: 90%;
-            max-width: 100px;
-            min-height: 30px;
-            font-size: 0.8rem;
-            font-weight: 500;
+        input[type=submit] {
+            @include mainButtonStyles(100%, 100px, 32px, 0.9rem, 400, $accent, $secondary, $accent);
             text-align: center;
-            margin-bottom: 15px;
-            border: 2px solid $accent;
-            border-radius: 3px;
-            color: $primary;
-            background-color: $accent;
-        
+
             &:hover {
-                @include buttonEffect($accent, $primary, $accent);
+                @include buttonEffect($secondary, $primary, $accent);
             }
         }
     }
 
-    .host-container {
-        @include displayFlex(row, center, center);
+    .host-form-message {
+        @include displayFlex(row, center, flex-start);
         width: 90%;
-        min-height: 40px;
-        margin-bottom: 20px;
-
-        > * {
-            padding: 0 5px;
-        }
+        margin-bottom: 30px;
+        gap: 10px;
 
         span {
-            font-size: 1.5rem;
-            font-weight: 300;
+            font-size: 1.3rem;
+            font-weight: 400;
         }
 
         p {
-            font-size: 0.8rem;
-            font-weight: 300;
-            text-align: center;
-        }
-
-        .loader {
-            width: 100px;
-            height: 16px;
-            display: inline-block;
-            background-color: $accent;
-            border: 1px solid $accent;
-            border-radius: 4px;
-            background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.25) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.25) 50%, rgba(0, 0, 0, 0.25) 75%, transparent 75%, transparent);
-            font-size: 30px;
-            background-size: 1em 1em;
-            box-sizing: border-box;
-            animation: barStripe 1s linear infinite;
+            font-size: 0.9rem;
+            font-weight: 200;
+            word-spacing: 0.05em;
+            line-height: 1.17rem;
         }
     }
 }
@@ -122,29 +113,15 @@
 /* MEDIA QUERIES *************************/
 /* ***************************************/
 
-/* 992px *************************/
-  
-@media screen and (min-width:992px) {
+/* 768px *************************/
+@media screen and (min-width:768px) {
 
-    .host-form-container {
-        max-width: 600px;
-        min-height: 345px;
-        gap: 30px;
-    
-        .close-button {
-            margin: 10px;
-    
-            .close-icon {
-                font-size: 1.3rem;
-            }
-        }
+    .host-form-section {
     
         .host-form-description {
-            margin-top: 30px;
-            gap: 10px;
     
             h2 {
-                font-size: 1.2rem;
+                font-size: 1rem;
             }
     
             p {
@@ -153,57 +130,29 @@
         }
     
         .host-form {
-            gap: 15px;
     
             #username {
-                max-width: 450px;
-                height: 40px;
-                margin-top: 20px;
-                font-size: 0.9rem;
+                font-size: 1rem;
+    
+                &::placeholder {
+                    font-size: 0.9rem;
+                }
             }
     
-            input[type='submit'] {
-                max-width: 150px;
-                min-height: 40px;
-                font-size: 0.9rem;
-                margin-bottom: 20px;
+            input[type=submit] {
+                font-size: 1rem;
             }
         }
     
-        .host-container {
-            min-height: 40px;
-            margin-bottom: 30px;
-
-            > * {
-                padding: 0 10px;
-            }
+        .host-form-message {
     
             span {
-                font-size: 1.7rem;
+                font-size: 1.4rem;
             }
     
             p {
-                font-size: 0.9rem;
-            }
-
-            .loader {
-                width: 150px;
+                font-size: 1rem;
             }
         }
     }
-} /* 992px end */
-
-
-
-/* ***************************************/
-/* KEYFRAMES *****************************/
-/* ***************************************/
-
-@keyframes barStripe {
-    0% {
-      background-position: 1em 0;
-    }
-    100% {
-      background-position: 0 0;
-    }
-}
+}/* 768px end */

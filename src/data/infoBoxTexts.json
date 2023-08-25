@@ -1,10 +1,10 @@
 {
     "en": {
         "title": "Explore Music Like Never Before",
-        "description": "Discover the thrill of true randomness with our “random track” button, powered by Spotify's API and our custom algorithm. Spice things up by using the “switch host” feature to share your playlists or uncover ones you never knew existed. Embrace the SoundQuest journey!"
+        "description": "Discover the thrill of true randomness with our “Random Track” button, powered by Spotify's API and our custom algorithm. Spice things up by using the “Switch Host” feature to share your playlists or uncover ones you never knew existed. Embrace the SoundQuest journey!"
     },
     "es": {
-        "title": "Título",
-        "description": "Descripción"
+        "title": "Explora la Música como Nunca Antes",
+        "description": "Descubre canciones completamente aleatorias con nuestro botón “Random Track”, o prueba la función “Switch Host” para compartir tus playlists o descubrir otras que desconocías. Todo esto potenciado por la API de Spotify y nuestro algoritmo personalizado. ¡Embárcate en la experiencia SoundQuest!"
     }
 }

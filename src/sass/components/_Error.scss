@@ -1,65 +1,52 @@
-.error-toast {
+.error-toast-section {
     @include positionAbsoluteCenter();
     @include displayFlex(row, center, center);
     width: 90%;
+    max-width: 300px;
 
     .error-toast-container {
-        @include keyframes(transition) {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 100%;
-            }
-        }
         position: relative;
-        @include displayFlex(row, center, flex-start);
+        @include displayFlex(row, flex-start, flex-start);
         width: 100%;
-        max-width: 300px;
-        min-height: 100px;
+        min-height: fit-content;
+        border: 1px solid $danger;
         border-radius: 5px;
-        background-color: $danger-bg;
-        box-shadow: rgba(236, 34, 6, 0.1) 0px 10px 10px -10px;
-        animation: transition 0.5s linear;
 
-        .material-symbols-rounded {
-            color: $danger;
-            font-variation-settings:
-            'FILL' 1,
-            'wght' 400,
-            'GRAD' 0,
-            'opsz' 48
-        }
-    
         .error-icon {
             font-size: 1.5rem;
-            padding: 15px;
+            font-weight: 400;
+            margin: 30px 10px;
+            color: $danger;
         }
     
-        .text-error-container {
+        .error-toast-message {
             @include displayFlex(column, flex-start, center);
-            color: $secondary;
-            padding: 15px;
-            gap: 10px;
+            margin: 30px 10px 30px 0;
     
-            .error-title {
-                font-size: 1.1rem;
-                font-weight: 400;
-                letter-spacing: 0.5px;
+            h3 {
+                font-size: 0.9rem;
+                font-weight: 600;
+                line-height: 1.1rem;
+                word-spacing: 0.05em;
+                margin-bottom: 5px;
             }
     
-            .error-subtitle {
-                font-size: 0.9rem;
-                font-weight: 200;
-                letter-spacing: 0.5px;
+            p {
+                font-size: 0.8rem;
+                font-weight: 300;
+                line-height: 1.1rem;
+                word-spacing: 0.05em;
+                color: $primary-ligth;
             }
         }
-    
-        .close-icon {
-            position: absolute;
-            top: 0; right: 0;
-            font-size: 1.5rem;
-            padding: 5px;
+
+        .close-button {
+
+            span {
+                font-size: 1rem;
+                margin: 2px 2px 0 0;
+                color: $secondary;
+            }
         }
     }
 }
@@ -71,34 +58,93 @@
 /* ***************************************/
 
 /* 768px *************************/
-  
 @media screen and (min-width:768px) {
     
-    .error-toast {
-
+    .error-toast-section {
+        width: 100%;
+        max-width: 350px;
+    
         .error-toast-container {
-            max-width: 400px;
-
+    
             .error-icon {
-                font-size: 2rem;
+                margin: 40px 20px;
+            }
+        
+            .error-toast-message {
+                margin: 40px 20px 40px 0;
+
+                h3 {
+                    font-size: 0.95rem;
+                }
+        
+                p {
+                    font-size: 0.85rem;
+                }
             }
     
-            .text-error-container {
+            .close-button {
     
-                .error-title {
-                    font-size: 1.2rem;
-                    letter-spacing: 0;
+                span {
+                    font-size: 1.1rem;
                 }
-    
-                .error-subtitle {
-                    font-size: 1rem;
-                    letter-spacing: 0;
-                }
-            }
-    
-            .close-icon {
-                font-size: 2rem;
             }
         }
     }
 } /* 768px end */
+
+/* 992px *************************/
+@media screen and (min-width:992px) {
+    
+    .error-toast-section {
+        position: static;
+        top: 0; left: 0;
+        transform: none;
+        max-width: 600px;
+        height: 280px;
+    
+        .error-toast-container {
+
+            .error-toast-message {
+
+                h3 {
+                    font-size: 1rem;
+                    margin-bottom: 10px;
+                }
+        
+                p {
+                    font-size: 0.9rem;
+                }
+            }
+    
+            .close-button {
+    
+                span {
+                    font-size: 1.2rem;
+                }
+            }
+        }
+    }
+} /* 992px end */
+
+/* 1200px *************************/
+@media screen and (min-width:1200px) {
+    
+    .error-toast-section {
+        max-width: 800px;
+        height: 380px;
+    
+        .error-toast-container {
+
+            .error-icon {
+                font-size: 1.6rem;
+            }
+    
+            .close-button {
+    
+                span {
+                    font-size: 1.3rem;
+                }
+            }
+        }
+    }
+} /* 1200px end */

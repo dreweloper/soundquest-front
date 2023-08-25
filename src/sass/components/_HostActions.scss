@@ -5,6 +5,7 @@
     padding-bottom: 30px;
     margin: 20px 0 30px;
     border-bottom: 1px solid $secondary;
+    color: $secondary;
 
     .host-container {
         @include displayFlex(column, flex-start, center);
@@ -15,7 +16,6 @@
             @include displayFlex(row, center, center);
             width: fit-content;
             margin-bottom: 15px;
-            color: $secondary;
             gap: 10px;
 
             .host-icon {
@@ -28,7 +28,6 @@
             .host-username {
                 font-size: 1rem;
                 font-weight: 400;
-                color: $secondary;
             }
 
             &:hover {
@@ -103,9 +102,7 @@
         }
     }
 
-}
-
-/* 768px end */
+}/* 768px end */
 
 /* 992px *************************/
 @media screen and (min-width:992px) {
@@ -150,9 +147,7 @@
             }
         }
     }
-}
-
-/* 992px end */
+}/* 992px end */
 
 /* 1200px *************************/
 @media screen and (min-width:1200px) {
@@ -177,6 +172,4 @@
             max-width: 380px;
         }
     }
-}
-
-/* 1200px end */
+}/* 1200px end */

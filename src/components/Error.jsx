@@ -1,26 +1,16 @@
-import { useDispatch } from "react-redux";
-import { clearError, clearToken } from "../store/slices";
+import { useTokenStore } from "../hooks";
 
 export const Error = () => {
 
-    // REDUX HOOKS
-    const dispatch = useDispatch();
-
-    // EVENT
-    const handleCloseToast = () => {
-
-        dispatch(clearError());
-
-        dispatch(clearToken()); //? To renderize de shuffle button in ResultsPage.
-
-    };
+    // REDUX MIDDLEWARE (CUSTOM HOOK)
+    const { getToken } = useTokenStore();
 
 
     return (
 
         <>
 
-            <section className='error-toast'>
+            <section className='error-toast-section'>
 
                 <div className='error-toast-container'>
 
@@ -28,17 +18,19 @@ export const Error = () => {
                         error
                     </span>
 
-                    <div className='text-error-container'>
+                    <div className='error-toast-message'>
 
-                        <p className='error-title'>Oops! <span role='img' aria-label='Face with a wide smile, squinting eyes and a bead of sweat.'>😅</span></p>
+                        <h3>An Error Occurred:</h3>
 
-                        <p className='error-subtitle'>Try again, please…</p>
+                        <p>An error occurred while processing your request. Please try again.</p>
 
                     </div>
 
-                    <button onClick={handleCloseToast}>
+                    <button
+                        className='close-button'
+                        onClick={() => { getToken() }}>
 
-                        <span className='material-symbols-rounded close-icon'>
+                        <span className='material-symbols-rounded'>
                             close
                         </span>
 
