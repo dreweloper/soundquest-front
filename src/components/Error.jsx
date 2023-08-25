@@ -26,7 +26,9 @@ export const Error = () => {
 
                     </div>
 
-                    <button onClick={() => { getToken() }}>
+                    <button
+                        className='close-button'
+                        onClick={() => { getToken() }}>
 
                         <span className='material-symbols-rounded'>
                             close

@@ -717,21 +717,21 @@ footer .spotify-container span {
   color: #FFFFFF;
 }
 .error-toast-section .error-toast-container {
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: flex-start;
   width: 100%;
   min-height: -moz-fit-content;
   min-height: fit-content;
   border: 1px solid #ec2206;
   border-radius: 5px;
-  gap: 10px;
 }
 .error-toast-section .error-toast-container .error-icon {
   font-size: 1.5rem;
-  font-weight: 300;
-  margin: 10px 0 0 5px;
+  font-weight: 400;
+  margin: 30px 10px;
   color: #ec2206;
 }
 .error-toast-section .error-toast-container .error-toast-message {
@@ -739,7 +739,7 @@ footer .spotify-container span {
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  margin: 10px 0;
+  margin: 30px 10px 30px 0;
 }
 .error-toast-section .error-toast-container .error-toast-message h3 {
   font-size: 0.9rem;
@@ -755,17 +755,9 @@ footer .spotify-container span {
   word-spacing: 0.05em;
   color: #CCCCCC;
 }
-.error-toast-section .error-toast-container button {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-.error-toast-section .error-toast-container button span {
+.error-toast-section .error-toast-container .close-button span {
   font-size: 1rem;
-  margin: 5px 5px 0 0;
+  margin: 2px 2px 0 0;
   color: #E6E6E6;
 }
 
@@ -778,18 +770,56 @@ footer .spotify-container span {
     width: 100%;
     max-width: 350px;
   }
-  .error-toast-section .error-toast-container {
-    gap: 15px;
-  }
   .error-toast-section .error-toast-container .error-icon {
-    margin: 15px 0 0 10px;
+    margin: 40px 20px;
   }
   .error-toast-section .error-toast-container .error-toast-message {
-    margin: 15px 0;
+    margin: 40px 20px 40px 0;
+  }
+  .error-toast-section .error-toast-container .error-toast-message h3 {
+    font-size: 0.95rem;
+  }
+  .error-toast-section .error-toast-container .error-toast-message p {
+    font-size: 0.85rem;
+  }
+  .error-toast-section .error-toast-container .close-button span {
+    font-size: 1.1rem;
   }
 } /* 768px end */
 /* 992px *************************/
-/* 992px end */
+@media screen and (min-width: 992px) {
+  .error-toast-section {
+    position: static;
+    top: 0;
+    left: 0;
+    transform: none;
+    max-width: 600px;
+    height: 280px;
+  }
+  .error-toast-section .error-toast-container .error-toast-message h3 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+  .error-toast-section .error-toast-container .error-toast-message p {
+    font-size: 0.9rem;
+  }
+  .error-toast-section .error-toast-container .close-button span {
+    font-size: 1.2rem;
+  }
+} /* 992px end */
+/* 1200px *************************/
+@media screen and (min-width: 1200px) {
+  .error-toast-section {
+    max-width: 800px;
+    height: 380px;
+  }
+  .error-toast-section .error-toast-container .error-icon {
+    font-size: 1.6rem;
+  }
+  .error-toast-section .error-toast-container .close-button span {
+    font-size: 1.3rem;
+  }
+} /* 1200px end */
 .host-actions-section {
   display: flex;
   flex-direction: column;

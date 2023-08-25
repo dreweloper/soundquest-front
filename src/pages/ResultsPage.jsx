@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { usePlaylistStore, useTokenStore, useTrackStore } from "../hooks";
 import { useEffect, useState } from 'react';
-import { Card, Error, HostActions, InfoBox, SkeletonLoader, SnackBar } from '../components';
+import { Card, Error, HostActions, InfoBox, SkeletonLoader } from '../components';
 import { Footer, NavBar } from '../layouts';
 
 export const ResultsPage = () => {
@@ -22,29 +22,29 @@ export const ResultsPage = () => {
     // REACT HOOKS
     const [isInfoBoxOpen, setIsInfoBoxOpen] = useState(false);
 
-    // useEffect(() => {
+    useEffect(() => {
 
-    //     getToken();
+        getToken();
 
-    // }, []);
+    }, []);
 
-    // useEffect(() => {
-    //     // If the 'token' object's state has been completed.
-    //     if (isTokenDone) getUserPlaylists(username);
+    useEffect(() => {
+        // If the 'token' object's state has been completed.
+        if (isTokenDone) getUserPlaylists(username);
 
-    // }, [isTokenDone]);
+    }, [isTokenDone]);
 
-    // useEffect(() => {
-    //     // If the 'playlist' object's state has been completed.
-    //     if (isPlaylistDone) getPlaylist(playlist_id);
+    useEffect(() => {
+        // If the 'playlist' object's state has been completed.
+        if (isPlaylistDone) getPlaylist(playlist_id);
 
-    // }, [isPlaylistDone]);
+    }, [isPlaylistDone]);
 
-    // useEffect(() => {
-    //     // If the 'track_id' property within the 'track' state has been completed.
-    //     if (isTrackIdDone) getTrack(track_id);
+    useEffect(() => {
+        // If the 'track_id' property within the 'track' state has been completed.
+        if (isTrackIdDone) getTrack(track_id);
 
-    // }, [isTrackIdDone]);
+    }, [isTrackIdDone]);
 
 
 

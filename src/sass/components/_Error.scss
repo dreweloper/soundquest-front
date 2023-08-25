@@ -6,23 +6,23 @@
     color: $secondary;
 
     .error-toast-container {
-        @include displayFlex(row, flex-start, space-between);
+        position: relative;
+        @include displayFlex(row, flex-start, flex-start);
         width: 100%;
         min-height: fit-content;
         border: 1px solid $danger;
         border-radius: 5px;
-        gap: 10px;
 
         .error-icon {
             font-size: 1.5rem;
-            font-weight: 300;
-            margin: 10px 0 0 5px;
+            font-weight: 400;
+            margin: 30px 10px;
             color: $danger;
         }
     
         .error-toast-message {
             @include displayFlex(column, flex-start, center);
-            margin: 10px 0;
+            margin: 30px 10px 30px 0;
     
             h3 {
                 font-size: 0.9rem;
@@ -41,13 +41,11 @@
             }
         }
 
-        button {
-            @include displayFlex(row, center, center);
-            width: fit-content;
+        .close-button {
 
             span {
                 font-size: 1rem;
-                margin: 5px 5px 0 0;
+                margin: 2px 2px 0 0;
                 color: $secondary-10;
             }
         }
@@ -68,14 +66,28 @@
         max-width: 350px;
     
         .error-toast-container {
-            gap: 15px;
     
             .error-icon {
-                margin: 15px 0 0 10px;
+                margin: 40px 20px;
             }
         
             .error-toast-message {
-                margin: 15px 0;
+                margin: 40px 20px 40px 0;
+
+                h3 {
+                    font-size: 0.95rem;
+                }
+        
+                p {
+                    font-size: 0.85rem;
+                }
+            }
+    
+            .close-button {
+    
+                span {
+                    font-size: 1.1rem;
+                }
             }
         }
     }
@@ -84,5 +96,56 @@
 /* 992px *************************/
 @media screen and (min-width:992px) {
     
+    .error-toast-section {
+        position: static;
+        top: 0; left: 0;
+        transform: none;
+        max-width: 600px;
+        height: 280px;
+    
+        .error-toast-container {
 
+            .error-toast-message {
+
+                h3 {
+                    font-size: 1rem;
+                    margin-bottom: 10px;
+                }
+        
+                p {
+                    font-size: 0.9rem;
+                }
+            }
+    
+            .close-button {
+    
+                span {
+                    font-size: 1.2rem;
+                }
+            }
+        }
+    }
 } /* 992px end */
+
+/* 1200px *************************/
+@media screen and (min-width:1200px) {
+    
+    .error-toast-section {
+        max-width: 800px;
+        height: 380px;
+    
+        .error-toast-container {
+
+            .error-icon {
+                font-size: 1.6rem;
+            }
+    
+            .close-button {
+    
+                span {
+                    font-size: 1.3rem;
+                }
+            }
+        }
+    }
+} /* 1200px end */
