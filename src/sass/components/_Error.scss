@@ -1,65 +1,55 @@
-.error-toast {
+.error-toast-section {
     @include positionAbsoluteCenter();
     @include displayFlex(row, center, center);
     width: 90%;
+    max-width: 300px;
+    color: $secondary;
 
     .error-toast-container {
-        @include keyframes(transition) {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 100%;
-            }
-        }
-        position: relative;
-        @include displayFlex(row, center, flex-start);
+        @include displayFlex(row, flex-start, space-between);
         width: 100%;
-        max-width: 300px;
-        min-height: 100px;
+        min-height: fit-content;
+        border: 1px solid $danger;
         border-radius: 5px;
-        background-color: $danger-bg;
-        box-shadow: rgba(236, 34, 6, 0.1) 0px 10px 10px -10px;
-        animation: transition 0.5s linear;
+        gap: 10px;
 
-        .material-symbols-rounded {
-            color: $danger;
-            font-variation-settings:
-            'FILL' 1,
-            'wght' 400,
-            'GRAD' 0,
-            'opsz' 48
-        }
-    
         .error-icon {
             font-size: 1.5rem;
-            padding: 15px;
+            font-weight: 300;
+            margin: 10px 0 0 5px;
+            color: $danger;
         }
     
-        .text-error-container {
+        .error-toast-message {
             @include displayFlex(column, flex-start, center);
-            color: $secondary;
-            padding: 15px;
-            gap: 10px;
+            margin: 10px 0;
     
-            .error-title {
-                font-size: 1.1rem;
-                font-weight: 400;
-                letter-spacing: 0.5px;
+            h3 {
+                font-size: 0.9rem;
+                font-weight: 600;
+                line-height: 1.1rem;
+                word-spacing: 0.05em;
+                margin-bottom: 5px;
             }
     
-            .error-subtitle {
-                font-size: 0.9rem;
-                font-weight: 200;
-                letter-spacing: 0.5px;
+            p {
+                font-size: 0.8rem;
+                font-weight: 300;
+                line-height: 1.1rem;
+                word-spacing: 0.05em;
+                color: $secondary-20;
             }
         }
-    
-        .close-icon {
-            position: absolute;
-            top: 0; right: 0;
-            font-size: 1.5rem;
-            padding: 5px;
+
+        button {
+            @include displayFlex(row, center, center);
+            width: fit-content;
+
+            span {
+                font-size: 1rem;
+                margin: 5px 5px 0 0;
+                color: $secondary-10;
+            }
         }
     }
 }
@@ -71,34 +61,28 @@
 /* ***************************************/
 
 /* 768px *************************/
-  
 @media screen and (min-width:768px) {
     
-    .error-toast {
-
+    .error-toast-section {
+        width: 100%;
+        max-width: 350px;
+    
         .error-toast-container {
-            max-width: 400px;
-
+            gap: 15px;
+    
             .error-icon {
-                font-size: 2rem;
+                margin: 15px 0 0 10px;
             }
-    
-            .text-error-container {
-    
-                .error-title {
-                    font-size: 1.2rem;
-                    letter-spacing: 0;
-                }
-    
-                .error-subtitle {
-                    font-size: 1rem;
-                    letter-spacing: 0;
-                }
-            }
-    
-            .close-icon {
-                font-size: 2rem;
+        
+            .error-toast-message {
+                margin: 15px 0;
             }
         }
     }
 } /* 768px end */
+
+/* 992px *************************/
+@media screen and (min-width:992px) {
+    
+
+} /* 992px end */
