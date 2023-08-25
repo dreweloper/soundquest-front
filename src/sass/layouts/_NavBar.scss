@@ -2,7 +2,6 @@
     @include displayFlex(row, center, space-between);
     width: 100%;
     height: 50px;
-    color: $secondary;
 
     > * {
         margin: 0 10px;

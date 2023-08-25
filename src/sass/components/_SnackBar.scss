@@ -1,7 +1,6 @@
 .snackbar {
     position: fixed;
-    bottom: 10px;
-    left: -290px;
+    bottom: 10px; left: -290px;
     @include displayFlex(row, center, space-between);
     width: 100%;
     max-width: 280px;
@@ -15,7 +14,6 @@
         @include displayFlex(column, center, center);
         width: 100%;
         margin: 0 5px;
-        color: $secondary;
 
         p {
             font-size: 0.9rem;
@@ -55,8 +53,7 @@
 @media screen and (min-width:768px) {
 
     .snackbar {
-        bottom: 60px;
-        left: -310px;
+        bottom: 60px; left: -310px;
 
         .close-button {
             margin: 3px 3px 0 0;
@@ -76,8 +73,7 @@
 @media screen and (min-width:992px) {
 
     .snackbar {
-        bottom: 50px;
-        left: -330px;
+        bottom: 50px; left: -330px;
         max-width: 320px;
         min-height: 80px;
     

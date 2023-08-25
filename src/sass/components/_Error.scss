@@ -3,7 +3,6 @@
     @include displayFlex(row, center, center);
     width: 90%;
     max-width: 300px;
-    color: $secondary;
 
     .error-toast-container {
         position: relative;
@@ -37,7 +36,7 @@
                 font-weight: 300;
                 line-height: 1.1rem;
                 word-spacing: 0.05em;
-                color: $secondary-20;
+                color: $primary-ligth;
             }
         }
 
@@ -46,7 +45,7 @@
             span {
                 font-size: 1rem;
                 margin: 2px 2px 0 0;
-                color: $secondary-10;
+                color: $secondary;
             }
         }
     }

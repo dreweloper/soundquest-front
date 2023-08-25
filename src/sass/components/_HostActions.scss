@@ -5,6 +5,7 @@
     padding-bottom: 30px;
     margin: 20px 0 30px;
     border-bottom: 1px solid $secondary;
+    color: $secondary;
 
     .host-container {
         @include displayFlex(column, flex-start, center);
@@ -15,7 +16,6 @@
             @include displayFlex(row, center, center);
             width: fit-content;
             margin-bottom: 15px;
-            color: $secondary;
             gap: 10px;
 
             .host-icon {
@@ -28,7 +28,6 @@
             .host-username {
                 font-size: 1rem;
                 font-weight: 400;
-                color: $secondary;
             }
 
             &:hover {

@@ -138,6 +138,7 @@ input[type=submit] {
 /* GENERIC KEYFRAMES */
 body {
   font-family: "Poppins", sans-serif;
+  color: #FFFFFF;
   background-color: #121212;
 }
 
@@ -180,7 +181,7 @@ body {
 
 .close-icon {
   font-size: 1.2rem;
-  color: #E6E6E6;
+  color: #FFFFFF;
 }
 
 .font-bold {
@@ -231,7 +232,6 @@ footer .spotify-container .spotify-logo {
 footer .spotify-container span {
   font-size: 0.7rem;
   font-weight: 100;
-  color: #FFFFFF;
 }
 
 /* ***************************************/
@@ -259,7 +259,6 @@ footer .spotify-container span {
   justify-content: space-between;
   width: 100%;
   height: 50px;
-  color: #FFFFFF;
 }
 .nav-bar > * {
   margin: 0 10px;
@@ -377,13 +376,12 @@ footer .spotify-container span {
   font-family: "Prompt", sans-serif;
   font-size: 3rem;
   text-transform: uppercase;
-  color: #FFFFFF;
 }
 .main-home .section-home .headline p {
   font-size: 1rem;
   font-weight: 200;
   letter-spacing: 0.3px;
-  color: #CCCCCC;
+  color: #a7a7a7;
 }
 .main-home a {
   display: flex;
@@ -532,7 +530,7 @@ footer .spotify-container span {
   min-height: 105px;
   margin-bottom: 20px;
   border-radius: 5px;
-  background-color: #242424;
+  background-color: #292929;
 }
 .card-container .card-item .track-info .track-info-container {
   display: flex;
@@ -546,7 +544,7 @@ footer .spotify-container span {
 }
 .card-container .card-item .track-info .track-info-container .song {
   font-size: 1.1rem;
-  font-weight: 400;
+  font-weight: 500;
   text-align: center;
   padding: 0 10px;
   margin-bottom: 6px;
@@ -559,7 +557,7 @@ footer .spotify-container span {
   font-style: italic;
   text-align: center;
   padding: 0 10px;
-  color: #FFFFFF;
+  color: #a7a7a7;
 }
 .card-container .card-item .track-info .like-button {
   display: flex;
@@ -714,7 +712,6 @@ footer .spotify-container span {
   justify-content: center;
   width: 90%;
   max-width: 300px;
-  color: #FFFFFF;
 }
 .error-toast-section .error-toast-container {
   position: relative;
@@ -753,12 +750,12 @@ footer .spotify-container span {
   font-weight: 300;
   line-height: 1.1rem;
   word-spacing: 0.05em;
-  color: #CCCCCC;
+  color: #a7a7a7;
 }
 .error-toast-section .error-toast-container .close-button span {
   font-size: 1rem;
   margin: 2px 2px 0 0;
-  color: #E6E6E6;
+  color: #FFFFFF;
 }
 
 /* ***************************************/
@@ -830,6 +827,7 @@ footer .spotify-container span {
   padding-bottom: 30px;
   margin: 20px 0 30px;
   border-bottom: 1px solid #FFFFFF;
+  color: #FFFFFF;
 }
 .host-actions-section .host-container {
   display: flex;
@@ -847,7 +845,6 @@ footer .spotify-container span {
   width: -moz-fit-content;
   width: fit-content;
   margin-bottom: 15px;
-  color: #FFFFFF;
   gap: 10px;
 }
 .host-actions-section .host-container .host-link .host-icon {
@@ -858,7 +855,6 @@ footer .spotify-container span {
 .host-actions-section .host-container .host-link .host-username {
   font-size: 1rem;
   font-weight: 400;
-  color: #FFFFFF;
 }
 .host-actions-section .host-container .host-link:hover .host-username {
   color: #1DB954;
@@ -1016,7 +1012,6 @@ footer .spotify-container span {
   min-height: -moz-fit-content;
   min-height: fit-content;
   border-radius: 5px;
-  color: #FFFFFF;
   background-color: #121212;
 }
 .host-form-section .host-form-top {
@@ -1027,7 +1022,7 @@ footer .spotify-container span {
   width: 100%;
   height: 40px;
   border-radius: 5px 5px 0 0;
-  background-color: #242424;
+  background-color: #292929;
 }
 .host-form-section .host-form-top button {
   display: flex;
@@ -1060,7 +1055,7 @@ footer .spotify-container span {
   font-weight: 200;
   line-height: 1.17rem;
   word-spacing: 0.1em;
-  color: #CCCCCC;
+  color: #a7a7a7;
 }
 .host-form-section .host-form-description p span {
   padding: 0 1px;
@@ -1179,7 +1174,6 @@ footer .spotify-container span {
   min-height: -moz-fit-content;
   min-height: fit-content;
   border-radius: 5px;
-  color: #FFFFFF;
   background-color: #121212;
 }
 .info-box-card .info-box-container {
@@ -1190,7 +1184,7 @@ footer .spotify-container span {
   width: 100%;
   height: 40px;
   border-radius: 5px 5px 0 0;
-  background-color: #242424;
+  background-color: #292929;
 }
 .info-box-card .info-box-container .lang-options {
   display: flex;
@@ -1231,7 +1225,7 @@ footer .spotify-container span {
   line-height: 1.17rem;
   word-spacing: 0.1em;
   margin-bottom: 30px;
-  color: #CCCCCC;
+  color: #a7a7a7;
 }
 .info-box-card .info-box-contact {
   display: flex;
@@ -1332,7 +1326,6 @@ footer .spotify-container span {
   width: 100%;
   max-width: 300px;
   height: 34px;
-  background-color: #242424;
   border-radius: 5px;
   background-color: #242424;
 }
@@ -1438,7 +1431,6 @@ footer .spotify-container span {
   justify-content: center;
   width: 100%;
   margin: 0 5px;
-  color: #FFFFFF;
 }
 .snackbar .snackbar-message p {
   font-size: 0.9rem;

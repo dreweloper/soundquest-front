@@ -53,7 +53,7 @@ export const HostForm = () => {
 
                     <div className="host-form-description">
 
-                        <h2>Connect Through Music: Share Yours or Discover Others’ Playlists!</h2>
+                        <h2>Connect Through Music: Share Yours or Discover Others' Playlists!</h2>
 
                         <p>Special Tip: Choose “<span>spotify</span>” as the host and explore tracks from over 1,300 playlists curated by professionals.</p>
 
@@ -69,10 +69,6 @@ export const HostForm = () => {
                         <input type='submit' value={isHostLoading ? 'Loading…' : 'Switch'} disabled={isHostLoading || isHostUpdated} />
 
                     </form>
-
-                    {
-                        isHostLoading && (<span className="loader"></span>)
-                    }
 
                     {
                         !isHostLoading && errorHost && (

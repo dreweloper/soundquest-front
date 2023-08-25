@@ -1,6 +1,7 @@
 // TYPE SELECTORS
 body {
     font-family: $font-poppins;
+    color: $secondary;
     background-color: $primary;
 }
 
@@ -36,7 +37,7 @@ body {
 
 .close-icon {
     font-size: 1.2rem;
-    color: $secondary-10;
+    color: $secondary;
 }
 
 .font-bold {
