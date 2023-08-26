@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm, useHostStore } from "../hooks";
 import { useDispatch, useSelector } from "react-redux";
 import { closeHostForm } from "../store/slices";
@@ -21,6 +21,8 @@ export const HostForm = () => {
     const { form, handleSubmit } = useForm();
 
     // REACT HOOKS
+    const [language, setLanguage] = useState('EN');
+
     useEffect(() => {
 
         form && getUserProfile(form);
@@ -38,7 +40,24 @@ export const HostForm = () => {
 
                     <div className='host-form-top'>
 
+                        <div className='lang-options'>
+
+                            <span
+                                className={language == 'EN' ? 'font-bold cursor-pointer' : 'cursor-pointer'}
+                                onClick={() => { setLanguage('EN') }}
+                            > EN </span>
+
+                            <span>|</span>
+
+                            <span
+                                className={language == 'ES' ? 'font-bold cursor-pointer' : 'cursor-pointer'}
+                                onClick={() => { setLanguage('ES') }}
+                            > ES </span>
+
+                        </div>
+
                         <button
+                            className='close-box-button'
                             disabled={isHostLoading || isHostUpdated}
                             onClick={() => { dispatch(closeHostForm()) }}
                         >
@@ -53,9 +72,29 @@ export const HostForm = () => {
 
                     <div className="host-form-description">
 
-                        <h2>Connect Through Music: Share Yours or Discover Others' Playlists!</h2>
+                        {
+                            language == 'EN' && (
+                                <>
 
-                        <p>Special Tip: Choose “<span>spotify</span>” as the host and explore tracks from over 1,300 playlists curated by professionals.</p>
+                                    <h2>Connect Through Music: Share yours or discover others' playlists!</h2>
+
+                                    <p>Special Tip: Choose “<span>spotify</span>” as the host and explore tracks from over 1,300 playlists curated by professionals.</p>
+
+                                </>
+                            )
+                        }
+
+                        {
+                            language == 'ES' && (
+                                <>
+
+                                    <h2>Conecta a través de la música: Comparte tus listas de reproducción o descubre otras nuevas.</h2>
+
+                                    <p>Special Tip: Elige “<span>spotify</span>” como host y explora canciones de entre más de 1.300 listas seleccionadas por profesionales.</p>
+
+                                </>
+                            )
+                        }
 
                     </div>
 

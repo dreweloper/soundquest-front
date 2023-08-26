@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { en, es } from '../data/infoBoxTexts.json';
 
 export const InfoBox = ({ isInfoBoxOpen, setIsInfoBoxOpen }) => {
 
+    // REACT HOOK
     const [language, setLanguage] = useState('EN');
 
 
@@ -51,29 +51,33 @@ export const InfoBox = ({ isInfoBoxOpen, setIsInfoBoxOpen }) => {
 
                     </div>
 
-                    {
-                        language == 'EN' && (
-                            <div className='info-box-text'>
+                    <div className='info-box-text'>
 
-                                <h2>{en.title}</h2>
-                                
-                                <p>{en.description}</p>
+                        {
+                            language == 'EN' && (
+                                <>
 
-                            </div>
-                        )
-                    }
+                                    <h2>Explore Music Like Never Before</h2>
 
-                    {
-                        language == 'ES' && (
-                            <div className='info-box-text'>
+                                    <p>Discover the thrill of true randomness with our “Random Track” button, powered by Spotify's API and our custom algorithm. Spice things up by using the “Switch Host” feature to share your playlists or uncover ones you never knew existed. Embrace the SoundQuest journey!</p>
 
-                                <h2>{es.title}</h2>
+                                </>
+                            )
+                        }
 
-                                <p>{es.description}</p>
+                        {
+                            language == 'ES' && (
+                                <>
 
-                            </div>
-                        )
-                    }
+                                    <h2>Explora la Música como Nunca Antes</h2>
+
+                                    <p>Descubre canciones completamente aleatorias con nuestro botón “Random Track”, o prueba la función “Switch Host” para compartir tus playlists o descubrir otras que desconocías. Todo esto potenciado por la API de Spotify y nuestro algoritmo personalizado. ¡Embárcate en la experiencia SoundQuest!</p>
+
+                                </>
+                            )
+                        }
+
+                    </div>
 
                     <div className='info-box-contact'>
 
