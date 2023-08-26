@@ -6,6 +6,13 @@ import { SnackBar } from './SnackBar';
 
 export const Card = () => {
 
+    //VARIABLES
+    /**
+     * The target value for opening an external link based on the window's inner width.
+     * @type {String}
+     */
+    const target = window.innerWidth >= 1200 ? '_blank' : '_self';
+
     // REDUX HOOKS
     const { playlist: { playlist_url } } = useSelector(state => state.playlist);
     const { track: { album, artwork, artist, name, track_url } } = useSelector(state => state.track);
@@ -66,9 +73,9 @@ export const Card = () => {
 
                     <nav className='card-nav'>
 
-                        <Link className='card-nav-button' to={track_url} target='_blank'> Play on Spotify </Link>
+                        <Link className='card-nav-button' to={track_url} target={target}> Play on Spotify </Link>
 
-                        <Link className='card-nav-button' to={playlist_url} target='_blank'> Open Playlist </Link>
+                        <Link className='card-nav-button' to={playlist_url} target={target}> Open Playlist </Link>
 
                     </nav>
 

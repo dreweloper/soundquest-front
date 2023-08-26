@@ -7,16 +7,23 @@
     background-color: $primary;
 
     .host-form-top {
-        @include displayFlex(row, center, flex-end);
+        @include displayFlex(row, center, space-between);
         width: 100%;
         height: 40px;
         border-radius: 5px 5px 0 0;
         background-color: $primary-medium;
 
-        button {
+        .lang-options {
+            @include displayFlex(row, center, space-between);
+            width: 50px;
+            margin-left: 5%;
+            font-size: 0.9rem;
+        }
+
+        .close-box-button {
             @include displayFlex(row, center, center);
             width: fit-content;
-            margin-right: 1%;
+            margin-right: 1%;          
         }
     }
 
@@ -43,7 +50,6 @@
             color: $primary-ligth;
 
             span {
-                padding: 0 1px;
                 color: $accent;
             }
         }
@@ -72,8 +78,9 @@
 
             &::placeholder {
                 font-size: 0.8rem;
+                font-weight: 300;
                 text-align: center;
-                color: $primary;
+                color: $primary-ligth;
             }
         }
 
@@ -140,17 +147,6 @@
             }
     
             input[type=submit] {
-                font-size: 1rem;
-            }
-        }
-    
-        .host-form-message {
-    
-            span {
-                font-size: 1.4rem;
-            }
-    
-            p {
                 font-size: 1rem;
             }
         }
