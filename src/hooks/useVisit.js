@@ -5,7 +5,7 @@ export const useVisit = () => {
 
     const recordVisit = async () => {
 
-        const url = 'https://soundquest-xf5r.onrender.com/api/v1/visits';
+        const url = 'https://soundquest-back-docker.onrender.com/api/v1/visits';
 
         try {
             

@@ -42,7 +42,7 @@ export const useLikeStore = () => {
      * The URL base of the MongoDB API endpoint.
      * @type {String}
      */
-    const urlBase = 'https://soundquest-xf5r.onrender.com/api/v1';
+    const urlBase = 'https://soundquest-back-docker.onrender.com/api/v1';
 
     // FUNCTIONS
     /**

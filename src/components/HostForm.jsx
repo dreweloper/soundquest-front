@@ -76,9 +76,9 @@ export const HostForm = () => {
                             language == 'EN' && (
                                 <>
 
-                                    <h2>Connect Through Music: Share yours or discover others' playlists!</h2>
+                                    <h2>Connect through music: share yours or discover others' playlists</h2>
 
-                                    <p>Special Tip: Choose “<span>spotify</span>” as the host and explore tracks from over 1,300 playlists curated by professionals.</p>
+                                    <p>Special tip: change the host to “<span>spotify</span>” and explore tracks from over 1,300 playlists curated by professionals.</p>
 
                                 </>
                             )
@@ -88,9 +88,9 @@ export const HostForm = () => {
                             language == 'ES' && (
                                 <>
 
-                                    <h2>Conecta a través de la música: Comparte tus listas de reproducción o descubre otras nuevas.</h2>
+                                    <h2>Conecta a través de la música: comparte tus playlists o descubre nuevas</h2>
 
-                                    <p>Special Tip: Elige “<span>spotify</span>” como host y explora canciones de entre más de 1.300 listas seleccionadas por profesionales.</p>
+                                    <p>Special tip: cambia el host a “<span>spotify</span>” y explora canciones de entre más de 1.300 listas seleccionadas por profesionales.</p>
 
                                 </>
                             )
