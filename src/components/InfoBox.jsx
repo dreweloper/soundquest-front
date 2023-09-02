@@ -57,9 +57,9 @@ export const InfoBox = ({ isInfoBoxOpen, setIsInfoBoxOpen }) => {
                             language == 'EN' && (
                                 <>
 
-                                    <h2>Explore Music Like Never Before</h2>
+                                    <h2>Explore music like never before</h2>
 
-                                    <p>Discover the thrill of true randomness with our “Random Track” button, powered by Spotify's API and our custom algorithm. Spice things up by using the “Switch Host” feature to share your playlists or uncover ones you never knew existed. Embrace the SoundQuest journey!</p>
+                                    <p>Experience the thrill of discovering new music with our "Random Track" button, or use the “Switch Host” feature to share your playlists or uncover ones you never knew existed. All powered by Spotifys API and our custom algorithm. Embrace the SoundQuest journey!</p>
 
                                 </>
                             )
@@ -69,7 +69,7 @@ export const InfoBox = ({ isInfoBoxOpen, setIsInfoBoxOpen }) => {
                             language == 'ES' && (
                                 <>
 
-                                    <h2>Explora la Música como Nunca Antes</h2>
+                                    <h2>Explora la música como nunca antes</h2>
 
                                     <p>Descubre canciones completamente aleatorias con nuestro botón “Random Track”, o prueba la función “Switch Host” para compartir tus playlists o descubrir otras que desconocías. Todo esto potenciado por la API de Spotify y nuestro algoritmo personalizado. ¡Embárcate en la experiencia SoundQuest!</p>
 
