@@ -59,7 +59,7 @@ export const InfoBox = ({ isInfoBoxOpen, setIsInfoBoxOpen }) => {
 
                                     <h2>Explore music like never before</h2>
 
-                                    <p>Experience the thrill of discovering new music with our "Random Track" button, or use the “Switch Host” feature to share your playlists or uncover ones you never knew existed. All powered by Spotifys API and our custom algorithm. Embrace the SoundQuest journey!</p>
+                                    <p>Experience the thrill of discovering new music with our “Random Track” button, or use the “Switch Host” feature to share your playlists or uncover ones you never knew existed. All powered by Spotify's API and our custom algorithm. Embrace the SoundQuest journey!</p>
 
                                 </>
                             )
